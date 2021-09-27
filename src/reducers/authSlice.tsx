@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 import cookie from 'js-cookie';
 
-interface authState {
+interface authInitialState {
     user: object | null;
     isAuthenticated: boolean;
     accessToken: string;
@@ -18,7 +18,7 @@ const initialState = {
     refreshToken: cookie.get('refreshTokenCN')
         ? cookie.get('refreshTokenCN')
         : '',
-} as authState;
+} as authInitialState;
 
 export const authSlice = createSlice({
     name: 'auth',
