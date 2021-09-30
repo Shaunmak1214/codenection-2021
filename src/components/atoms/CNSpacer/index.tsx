@@ -8,6 +8,8 @@ interface Props {
 
 const CNSpacer = ({ size }: Props) => {
     if (size === 'xs') {
+        return <Box w="100%" h="40px"></Box>;
+    } else if (size === 'sm') {
         return <Box w="100%" h="50px"></Box>;
     } else if (size === 'md') {
         return <Box w="100%" h="60px"></Box>;
