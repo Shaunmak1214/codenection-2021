@@ -1,3 +1,3 @@
 import CountDownSection from './CountDownSection';
-
-export { CountDownSection };
+import Header from './Header';
+export { CountDownSection, Header };
