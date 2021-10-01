@@ -2,27 +2,25 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Button, Text } from '@chakra-ui/react';
 
-const PrimaryButton = ({ ...props }) => {
-    let children: React.ReactNode = props.children;
-    return (
-        <Button
-            borderRadius="0"
-            border="2px solid #FFFFFF"
-            bg="transparent"
-            color="#FFFFFF"
-            px="10"
-            py="20px"
-            _hover={{
-                bg: '#FFFFFF',
-                color: '#002A97',
-                border: '2px solid #002A97',
-            }}
-            {...props}
-        >
-            <Text>{children}</Text>
-        </Button>
-    );
-};
+const PrimaryButton = React.forwardRef((props: any, ref: any) => (
+    <Button
+        borderRadius="0"
+        border="2px solid #FFFFFF"
+        bg="transparent"
+        color="#FFFFFF"
+        px="10"
+        py="20px"
+        _hover={{
+            bg: '#FFFFFF',
+            color: '#002A97',
+            border: '2px solid #002A97',
+        }}
+        {...props}
+        ref={ref}
+    >
+        <Text>{props.children}</Text>
+    </Button>
+));
 
 const SecondaryButton = ({ ...props }) => {
     const children: React.ReactNode = props.children;
@@ -46,8 +44,11 @@ const SecondaryButton = ({ ...props }) => {
     );
 };
 
+PrimaryButton.displayName = 'PrimaryButton';
+
 PrimaryButton.propTypes = {
     children: PropTypes.node.isRequired,
+    ref: PropTypes.any,
 };
 
 SecondaryButton.propTypes = {

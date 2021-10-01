@@ -1,5 +1,5 @@
 import CNLanding from './svgs/CNLanding.svg';
-import CodeNectionText from './jpgs-pngs/CodeNectionText.png';
-import CodeNectionLogo from './jpgs-pngs/CodeNectionLogo.png';
+import CodeNectionText from './svgs/CodeNectionText.svg';
+import CodeNectionLogo from './svgs/CodeNectionLogo.svg';
 
 export { CNLanding, CodeNectionLogo, CodeNectionText };

@@ -37,15 +37,15 @@ const Landing: React.FC = () => {
                         {' '}
                         Free to all universities and colleges students
                     </PrimaryText>
-                    <PrimaryText>accroess Malaysia</PrimaryText>
+                    <PrimaryText>across Malaysia</PrimaryText>
 
                     <CNSpacer size="sm" />
-                    <PrimaryButton zIndex="100">Register Now</PrimaryButton>
+                    <PrimaryButton zIndex="20">Register Now</PrimaryButton>
                 </Container>
                 <LandingImgRenderer />
             </HStack>
             <CountDownSection />
-            <Box w="100%" h="400px"></Box>
+            <Box w="100%" h="1000px"></Box>
         </>
     );
 };

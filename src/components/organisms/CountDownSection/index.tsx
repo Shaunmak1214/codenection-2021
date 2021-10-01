@@ -33,10 +33,10 @@ const CountDownSection = () => {
                             justifyContent="space-between"
                             w="85%"
                             alignItems="center"
-                            mt="20px"
+                            mt="25px"
                             mb="20px"
                         >
-                            <Text fontSize="40px" fontWeight="bold" pl="30px">
+                            <Text fontSize="35px" fontWeight="bold" pl="30px">
                                 Join us as a{' '}
                                 <span style={{ color: '#002A97' }}>
                                     CodeNector!
