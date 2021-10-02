@@ -7,43 +7,39 @@ type onUpdate = (err: object | null, res: object | null) => any;
 
 axios.defaults.baseURL = API_URL;
 const useAxios = (axiosParams: object, onUpdate: onUpdate) => {
-    const [loading, setLoading] = useState<boolean>(false);
+  const [loading, setLoading] = useState<boolean>(false);
 
-    const fetchData = (data: object | null) => {
-        setLoading(true);
-        axios
-            .request({
-                ...axiosParams,
-                data: data ? data : null,
-            })
-            .then((res) => {
-                if (
-                    res.status === 200 ||
-                    res.status === 201 ||
-                    res.status === 203
-                ) {
-                    onUpdate(null, res);
-                } else {
-                    onUpdate(res, null);
-                }
-            })
+  const fetchData = (data: object | null) => {
+    setLoading(true);
+    axios
+      .request({
+        ...axiosParams,
+        data: data ? data : null,
+      })
+      .then((res) => {
+        if (res.status === 200 || res.status === 201 || res.status === 203) {
+          onUpdate(null, res);
+        } else {
+          onUpdate(res, null);
+        }
+      })
 
-            .catch((err) => {
-                //check wat backend returns first
-                onUpdate(err.response, null);
-            })
+      .catch((err) => {
+        //check wat backend returns first
+        onUpdate(err.response, null);
+      })
 
-            .finally(() => {
-                setLoading(false);
-            });
-    };
+      .finally(() => {
+        setLoading(false);
+      });
+  };
 
-    return { loading, fetch: fetchData };
+  return { loading, fetch: fetchData };
 };
 
 useAxios.propTypes = {
-    axiosParams: PropTypes.object.isRequired,
-    onUpdate: PropTypes.func,
+  axiosParams: PropTypes.object.isRequired,
+  onUpdate: PropTypes.func,
 };
 
 export default useAxios;
