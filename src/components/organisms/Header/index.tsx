@@ -56,7 +56,13 @@ const Header = () => {
         <Container maxW="1500px">
           <SimpleGrid columns={3} justifyItems="center" alignItems="center">
             <HStack w="100%" justifyContent="space-between" alignItems="center">
-              <Image src={CodeNectionText} w="170px" h="auto" />
+              <Image
+                src={CodeNectionText}
+                w="170px"
+                h="auto"
+                cursor="pointer"
+                onClick={() => (window.location.href = '/')}
+              />
               <Link href="#">
                 <Text>About</Text>
               </Link>
@@ -67,7 +73,13 @@ const Header = () => {
                 <Text>Leaderboard</Text>
               </Link>
             </HStack>
-            <Image src={CodeNectionLogo} w="64px" h="auto" />
+            <Image
+              src={CodeNectionLogo}
+              w="64px"
+              h="auto"
+              cursor="pointer"
+              onClick={() => (window.location.href = '/')}
+            />
             <HStack w="100%" justifyContent="space-between" alignItems="center">
               <Link>
                 <Text>Rules & FAQ</Text>

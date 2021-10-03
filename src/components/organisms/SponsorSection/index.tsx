@@ -9,6 +9,7 @@ import {
   SilverSponsor,
   BronzeSponsor,
 } from '../../../data/sponsorData';
+import { SecondaryButton } from '../../atoms';
 const SponsorSection = () => {
   return (
     <Center bg="#EFF8F7" py="100px">
@@ -21,6 +22,15 @@ const SponsorSection = () => {
         <SponsorsBlock sponsorData={GoldSponsor} />
         <SponsorsBlock sponsorData={SilverSponsor} />
         <SponsorsBlock sponsorData={BronzeSponsor} />
+        <SecondaryButton
+          bg="#002A97"
+          color="#FFFFFF"
+          border="none"
+          px="20"
+          py="22px"
+        >
+          Become a Sponser
+        </SecondaryButton>
       </Container>
     </Center>
   );
