@@ -5,15 +5,6 @@ import React from 'react';
 import { Image } from '@chakra-ui/image';
 
 const Index = () => {
-  // const TableRow = () => {
-  //     return (
-  //         <HStack>
-  //             <Text>{'name'}</Text>
-  //             <Text>{'score'}</Text>
-  //         </HStack>
-  //     );
-  // };
-
   const leaderboardData = [
     {
       idx: 1,
@@ -33,10 +24,74 @@ const Index = () => {
       entries: 3,
       last: '2h',
     },
+    {
+      idx: 3,
+      teamName: 'Team 3',
+      teamLogo:
+        'https://lh3.googleusercontent.com/ogw/ADea4I48pMqmRjD_VIFjWl23JWaMwveNy0JFQGPPbEDFjA=s32-c-mo',
+      score: '100,000,000',
+      entries: 3,
+      last: '2h',
+    },
+    {
+      idx: 4,
+      teamName: 'Team 4',
+      teamLogo:
+        'https://lh3.googleusercontent.com/ogw/ADea4I48pMqmRjD_VIFjWl23JWaMwveNy0JFQGPPbEDFjA=s32-c-mo',
+      score: '100,000,000',
+      entries: 3,
+      last: '2h',
+    },
+    {
+      idx: 5,
+      teamName: 'Team 5',
+      teamLogo:
+        'https://lh3.googleusercontent.com/ogw/ADea4I48pMqmRjD_VIFjWl23JWaMwveNy0JFQGPPbEDFjA=s32-c-mo',
+      score: '100,000,000',
+      entries: 3,
+      last: '2h',
+    },
+    {
+      idx: 6,
+      teamName: 'Team 5',
+      teamLogo:
+        'https://lh3.googleusercontent.com/ogw/ADea4I48pMqmRjD_VIFjWl23JWaMwveNy0JFQGPPbEDFjA=s32-c-mo',
+      score: '100,000,000',
+      entries: 3,
+      last: '2h',
+    },
+    {
+      idx: 7,
+      teamName: 'Team 5',
+      teamLogo:
+        'https://lh3.googleusercontent.com/ogw/ADea4I48pMqmRjD_VIFjWl23JWaMwveNy0JFQGPPbEDFjA=s32-c-mo',
+      score: '100,000,000',
+      entries: 3,
+      last: '2h',
+    },
+    {
+      idx: 8,
+      teamName: 'Team 5',
+      teamLogo:
+        'https://lh3.googleusercontent.com/ogw/ADea4I48pMqmRjD_VIFjWl23JWaMwveNy0JFQGPPbEDFjA=s32-c-mo',
+      score: '100,000,000',
+      entries: 3,
+      last: '2h',
+    },
+    {
+      idx: 9,
+      teamName: 'Team 5',
+      teamLogo:
+        'https://lh3.googleusercontent.com/ogw/ADea4I48pMqmRjD_VIFjWl23JWaMwveNy0JFQGPPbEDFjA=s32-c-mo',
+      score: '100,000,000',
+      entries: 3,
+      last: '2h',
+    },
   ];
 
   return (
     <Container maxW="container.xl" w="100%" h="100%">
+      <CNSpacer size="md" />
       <VStack>
         <CNSpacer size="sm" />
         <HStack w="100%" justifyContent="space-between">

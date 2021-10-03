@@ -3,7 +3,7 @@ import { Container, HStack, Box } from '@chakra-ui/layout';
 import { PrimaryButton } from '../components/atoms/Buttons';
 import { Image, Heading } from '@chakra-ui/react';
 import { CNLanding } from '../assets';
-import { CountDownSection } from '../components/organisms';
+import { CountDownSection, SponsorSection } from '../components/organisms';
 import { CNSpacer } from '../components/atoms';
 import { PrimaryText } from '../components/atoms';
 
@@ -21,7 +21,7 @@ const Landing: React.FC = () => {
         <Container maxW="container.xl">
           <Heading color="#ffffff">CodeNection 2021</Heading>
 
-          <PrimaryText fontSize="25px">
+          <PrimaryText fontSize="2xl">
             Competitive Programming Contest
           </PrimaryText>
 
@@ -30,15 +30,16 @@ const Landing: React.FC = () => {
             {' '}
             Free to all universities and colleges students
           </PrimaryText>
-          <PrimaryText>accroess Malaysia</PrimaryText>
+          <PrimaryText>across Malaysia</PrimaryText>
 
           <CNSpacer size="sm" />
-          <PrimaryButton zIndex="100">Register Now</PrimaryButton>
+          <PrimaryButton zIndex="20">Register Now</PrimaryButton>
         </Container>
         <LandingImgRenderer />
       </HStack>
       <CountDownSection />
-      <Box w="100%" h="400px"></Box>
+      <Box w="100%" h="1000px"></Box>
+      <SponsorSection />
     </>
   );
 };
