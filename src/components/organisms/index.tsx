@@ -1,3 +1,4 @@
 import CountDownSection from './CountDownSection';
-
-export { CountDownSection };
+import SponsorSection from './SponsorSection';
+import Header from './Header';
+export { CountDownSection, Header, SponsorSection };
