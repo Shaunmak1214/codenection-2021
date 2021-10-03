@@ -1,13 +1,13 @@
 import React from 'react';
 import { HStack, Container, Center, SimpleGrid } from '@chakra-ui/layout';
 import { Image, Link, Text } from '@chakra-ui/react';
-import { PrimaryButton } from '../../atoms';
+import { HeaderButton } from '../../atoms';
 import { CodeNectionLogo, CodeNectionText } from '../../../assets';
 import { useRef, useEffect } from 'react';
 
 const Header = () => {
     const headerSticky = useRef<any | null>(null);
-    const buttonRef = useRef<any | null>(null);
+    const buttonRef = React.createRef<HTMLButtonElement>();
 
     const handleScroll = (e: any) => {
         const window: any = e.currentTarget;
@@ -87,18 +87,9 @@ const Header = () => {
                             <Link>
                                 <Text>Sponsors</Text>
                             </Link>
-                            <PrimaryButton
-                                bg="#FFFFFF"
-                                color="#002A97"
-                                _hover={{
-                                    bg: '#0a0a0A',
-                                    color: '#FFFFFF',
-                                    border: '2px solid #0A0A0A',
-                                }}
-                                ref={buttonRef}
-                            >
+                            <HeaderButton ref={buttonRef}>
                                 Login/Register
-                            </PrimaryButton>
+                            </HeaderButton>
                         </HStack>
                     </SimpleGrid>
                 </Container>

@@ -36,7 +36,7 @@ const CountDownSection = () => {
                             mt="25px"
                             mb="20px"
                         >
-                            <Text fontSize="35px" fontWeight="bold" pl="30px">
+                            <Text fontSize="4xl" fontWeight="bold" pl="30px">
                                 Join us as a{' '}
                                 <span style={{ color: '#002A97' }}>
                                     CodeNector!
@@ -54,52 +54,52 @@ const CountDownSection = () => {
                             <CountDownBlock>
                                 <Text
                                     ref={daysRef}
-                                    fontSize="40px"
+                                    fontSize="5xl"
                                     fontWeight="bold"
                                     color="#002A97"
                                 >
                                     0
                                 </Text>
-                                <Text color="#002A97" fontSize="20px">
+                                <Text color="#002A97" fontSize="lg">
                                     DAYS
                                 </Text>
                             </CountDownBlock>
                             <CountDownBlock>
                                 <Text
                                     ref={hoursRef}
-                                    fontSize="40px"
+                                    fontSize="5xl"
                                     fontWeight="bold"
                                     color="#002A97"
                                 >
                                     0
                                 </Text>
-                                <Text color="#002A97" fontSize="20px">
+                                <Text color="#002A97" fontSize="lg">
                                     HOURS
                                 </Text>
                             </CountDownBlock>
                             <CountDownBlock>
                                 <Text
                                     ref={minutesRef}
-                                    fontSize="40px"
+                                    fontSize="5xl"
                                     fontWeight="bold"
                                     color="#002A97"
                                 >
                                     0
                                 </Text>
-                                <Text color="#002A97" fontSize="20px">
+                                <Text color="#002A97" fontSize="lg">
                                     MINUTES
                                 </Text>
                             </CountDownBlock>
                             <CountDownBlock lastBlock="last">
                                 <Text
                                     ref={secondsRef}
-                                    fontSize="40px"
+                                    fontSize="5xl"
                                     fontWeight="bold"
                                     color="#002A97"
                                 >
                                     0
                                 </Text>
-                                <Text color="#002A97" fontSize="20px">
+                                <Text color="#002A97" fontSize="lg">
                                     SECONDS
                                 </Text>
                             </CountDownBlock>

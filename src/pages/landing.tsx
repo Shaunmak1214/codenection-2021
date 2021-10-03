@@ -3,7 +3,7 @@ import { Container, HStack, Box } from '@chakra-ui/layout';
 import { PrimaryButton } from '../components/atoms/Buttons';
 import { Image, Heading } from '@chakra-ui/react';
 import { CNLanding } from '../assets';
-import { CountDownSection } from '../components/organisms';
+import { CountDownSection, SponsorSection } from '../components/organisms';
 import { CNSpacer } from '../components/atoms';
 import { PrimaryText } from '../components/atoms';
 
@@ -28,7 +28,7 @@ const Landing: React.FC = () => {
                 <Container maxW="container.xl">
                     <Heading color="#ffffff">CodeNection 2021</Heading>
 
-                    <PrimaryText fontSize="25px">
+                    <PrimaryText fontSize="2xl">
                         Competitive Programming Contest
                     </PrimaryText>
 
@@ -46,6 +46,7 @@ const Landing: React.FC = () => {
             </HStack>
             <CountDownSection />
             <Box w="100%" h="1000px"></Box>
+            <SponsorSection />
         </>
     );
 };
