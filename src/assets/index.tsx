@@ -14,7 +14,6 @@ import PlatinumBadge from './svgs/PlatinumBadge.svg';
 import GoldBadge from './svgs/GoldBadge.svg';
 import SilverBadge from './svgs/SilverBadge.svg';
 import BronzeBadge from './svgs/BronzeBadge.svg';
-
 export {
   CNLanding,
   CodeNectionLogo,
