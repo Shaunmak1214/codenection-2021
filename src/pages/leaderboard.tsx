@@ -1,8 +1,18 @@
-import { Container, HStack, VStack, Text, Box, Flex } from '@chakra-ui/layout';
-import CNSpacer from '../components/atoms/CNSpacer';
-import { CNChooser } from '../components/atoms/CNChooser';
 import React from 'react';
 import { Image } from '@chakra-ui/image';
+import {
+  Container,
+  HStack,
+  VStack,
+  Text,
+  Box,
+  Flex,
+  Heading,
+} from '@chakra-ui/layout';
+
+import CNHoverableAvatarGroup from '../components/organisms/HoverableAvatarGroup';
+import CNSpacer from '../components/atoms/CNSpacer';
+import { CNChooser } from '../components/atoms/CNChooser';
 
 const Index = () => {
   const leaderboardData = [
@@ -96,9 +106,9 @@ const Index = () => {
         <CNSpacer size="sm" />
         <HStack w="100%" justifyContent="space-between">
           <VStack alignItems="flex-start">
-            <Text fontSize="45px" fontWeight="bold">
+            <Heading fontSize="45px" fontWeight="bold">
               Leaderboard
-            </Text>
+            </Heading>
             <Text>Last updated at 30/09 6:00PM</Text>
           </VStack>
           <CNChooser />
@@ -178,7 +188,19 @@ const Index = () => {
                   <Text>{data.teamName}</Text>
                 </Flex>
                 <Box w="100%" textAlign="center">
-                  <Text>Team Members</Text>
+                  <CNHoverableAvatarGroup
+                    data={[
+                      {
+                        uni: 'https://www.mmu.edu.my/favicon.ico',
+                      },
+                      {
+                        uni: 'https://www.mmu.edu.my/favicon.ico',
+                      },
+                      {
+                        uni: 'https://www.mmu.edu.my/favicon.ico',
+                      },
+                    ]}
+                  />
                 </Box>
                 <Box w="50%" textAlign="center">
                   <Text>{data.score}</Text>
