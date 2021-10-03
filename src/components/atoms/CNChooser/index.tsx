@@ -1,23 +1,40 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useState } from 'react';
 import PropTypes from 'prop-types';
 import { Center, HStack, Box } from '@chakra-ui/layout';
 import { Text } from '@chakra-ui/react';
 
 const CNChooser = ({ ...props }) => {
   // let children: React.ReactNode = props.children;
+  const [selected, setSelected] = useState(1);
   let firstChoiceRef = useRef(null);
+  let secChoiceRef = useRef(null);
+  let selectBoxRef = useRef(null);
 
-  useEffect(() => {
-    if (firstChoiceRef.current) {
-      // @ts-ignore
-      let center = firstChoiceRef.current.getBoundingClientRect().x;
-      console.log(center);
-    }
-  }, []);
+  const handleFirstClick = () => {
+    // @ts-ignore
+    selectBoxRef.current.style.transform = `translateX(0px)`;
+    // @ts-ignore
+    firstChoiceRef.current.style.color = `#ffffff`;
+
+    setSelected(1);
+  };
+
+  const handleSecClick = () => {
+    // @ts-ignore
+    let secChoiceCenter = secChoiceRef.current.getBoundingClientRect().x;
+    // @ts-ignore
+    let selectBoxCenter = selectBoxRef.current.getBoundingClientRect().x;
+    // @ts-ignore
+    selectBoxRef.current.style.transform = `translateX(${
+      secChoiceCenter - selectBoxCenter
+    }px)`;
+
+    setSelected(2);
+  };
 
   return (
     <HStack
-      justifyContent="space-around"
+      justifyContent="center"
       bg="#F5F5F5"
       borderRadius="20px"
       px="4"
@@ -27,28 +44,51 @@ const CNChooser = ({ ...props }) => {
       position="relative"
       {...props}
     >
-      <Center ref={firstChoiceRef} w="45%" zIndex="2">
-        <Text>Private Leaderboard</Text>
+      <Center
+        ref={firstChoiceRef}
+        w="48%"
+        zIndex="2"
+        onClick={() => {
+          handleFirstClick();
+        }}
+      >
+        <Text color={selected === 1 ? '#ffffff' : '#000000'}>
+          Private Leaderboard
+        </Text>
       </Center>
-      <Center w="45%" zIndex="2">
-        <Text>Public Leaderboard</Text>
+      <Center
+        ref={secChoiceRef}
+        w="48%"
+        zIndex="2"
+        onClick={() => {
+          handleSecClick();
+        }}
+      >
+        <Text color={selected === 2 ? '#ffffff' : '#000000'}>
+          Public Leaderboard
+        </Text>
       </Center>
 
       <Box
+        ref={selectBoxRef}
         position="absolute"
         w="45%"
         h="70%"
-        borderRadius="10px"
+        borderRadius="15px"
         bgColor="#455171"
         zIndex="1"
-        right="15px"
+        left="11px"
+        transition="all 300ms cubic-bezier(0.740, -0.175, 0.000, 1.080)"
+        transitionTimingFunction="cubic-bezier(0.740, -0.175, 0.000, 1.080)"
       ></Box>
     </HStack>
   );
 };
 
 CNChooser.propTypes = {
-  children: PropTypes.node.isRequired,
+  children: PropTypes.node,
 };
+
+React.memo(CNChooser);
 
 export { CNChooser };
