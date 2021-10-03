@@ -16,7 +16,9 @@ const CNChooser = ({ ...props }) => {
     // @ts-ignore
     firstChoiceRef.current.style.color = `#ffffff`;
 
-    setSelected(1);
+    setTimeout(() => {
+      setSelected(1);
+    }, 300);
   };
 
   const handleSecClick = () => {
@@ -29,7 +31,9 @@ const CNChooser = ({ ...props }) => {
       secChoiceCenter - selectBoxCenter
     }px)`;
 
-    setSelected(2);
+    setTimeout(() => {
+      setSelected(2);
+    }, 300);
   };
 
   return (
