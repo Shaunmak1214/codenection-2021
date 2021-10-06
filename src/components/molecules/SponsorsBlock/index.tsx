@@ -40,39 +40,39 @@ const SponsorsBlock = ({ sponsorData, ...props }: any) => {
   };
   // @ts-ignore
   const SponsorBlockRenderer = ({ sponsorData, ...props }): any => {
-    const { key, sponsor } = props;
+    const { sponsor } = props;
+
     switch (sponsorData.type) {
       case 'Title':
-        console.log('title here');
         return (
-          <SponsorImg key={key} bgImage={sponsorData.flags} w="450px" h="270px">
+          <SponsorImg bgImage={sponsorData.flags} w="450px" h="270px">
             <Image maxH="125px" mb="20px" src={sponsor.imageSrc} />
           </SponsorImg>
         );
       case 'Platinum':
         return (
-          <SponsorImg key={key} bgImage={sponsorData.flags} w="370px" h="220px">
+          <SponsorImg bgImage={sponsorData.flags} w="370px" h="220px">
             <Image maxH="125px" mb="20px" src={sponsor.imageSrc} />
           </SponsorImg>
         );
 
       case 'Gold':
         return (
-          <SponsorImg key={key} bgImage={sponsorData.flags} w="290px" h="200px">
+          <SponsorImg bgImage={sponsorData.flags} w="290px" h="200px">
             <Image maxH="100px" mb="20px" src={sponsor.imageSrc} />
           </SponsorImg>
         );
 
       case 'Silver':
         return (
-          <SponsorImg key={key} bgImage={sponsorData.flags} w="250px" h="180px">
+          <SponsorImg bgImage={sponsorData.flags} w="250px" h="180px">
             <Image maxH="80px" mb="20px" src={sponsor.imageSrc} />
           </SponsorImg>
         );
 
       case 'Bronze':
         return (
-          <SponsorImg key={key} bgImage={sponsorData.flags} w="230px" h="170px">
+          <SponsorImg bgImage={sponsorData.flags} w="230px" h="170px">
             <Image maxH="70px" mb="20px" src={sponsor.imageSrc} />
           </SponsorImg>
         );
@@ -96,11 +96,11 @@ const SponsorsBlock = ({ sponsorData, ...props }: any) => {
           alignItems="center"
           spacing={5}
         >
-          {sponsorData.data.map((sponsor: dataObject, idx: number) => {
+          {sponsorData.data.map((sponsor: dataObject) => {
             return (
               <SponsorBlockRenderer
                 sponsorData={sponsorData}
-                key={idx}
+                key={sponsor.idx}
                 sponsor={sponsor}
               />
             );

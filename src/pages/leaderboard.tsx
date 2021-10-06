@@ -149,7 +149,7 @@ const Index = () => {
           <CNSpacer size="5xs" />
 
           <VStack className="leaderboard-row" w="100%">
-            {leaderboardData.map((data, idx) => (
+            {leaderboardData.map((data) => (
               <HStack
                 className="table-row"
                 w="100%"
@@ -167,7 +167,7 @@ const Index = () => {
                   boxShadow: ' 0px 2px 20px rgba(182, 182, 182, 0.25);',
                 }}
                 transition="all 0.2s ease-in-out"
-                key={idx}
+                key={data.idx}
               >
                 <Box textAlign="center" w="15%">
                   <Text>{data.idx}</Text>
