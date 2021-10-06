@@ -192,12 +192,15 @@ const Index = () => {
                     data={[
                       {
                         uni: 'https://www.mmu.edu.my/favicon.ico',
+                        membersName: 'Shaun Mak',
                       },
                       {
                         uni: 'https://www.mmu.edu.my/favicon.ico',
+                        membersName: 'WOW Mak',
                       },
                       {
                         uni: 'https://www.mmu.edu.my/favicon.ico',
+                        membersName: 'Jason Tan',
                       },
                     ]}
                   />

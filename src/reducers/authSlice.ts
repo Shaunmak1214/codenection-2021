@@ -6,6 +6,7 @@ interface authInitialState {
   isAuthenticated: boolean;
   accessToken: string;
   refreshToken: string;
+  register_state: object | null;
 }
 
 const initialState = {
@@ -16,6 +17,10 @@ const initialState = {
   refreshToken: cookie.get('refreshTokenCN')
     ? cookie.get('refreshTokenCN')
     : '',
+  register_state:
+    cookie.get('register_stateCN') !== undefined
+      ? JSON.parse(cookie.get('register_stateCN')!)
+      : {},
 } as authInitialState;
 
 export const authSlice = createSlice({
@@ -44,6 +49,10 @@ export const authSlice = createSlice({
     },
     UPDATE: (state, action) => {
       state.user = action.payload;
+    },
+    REGISTERSTATE: (state, action) => {
+      state.register_state = action.payload;
+      cookie.set('register_stateCN', JSON.stringify(action.payload));
     },
   },
 });

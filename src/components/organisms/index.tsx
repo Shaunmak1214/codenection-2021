@@ -1,4 +1,5 @@
 import CountDownSection from './CountDownSection';
 import SponsorSection from './SponsorSection';
 import Header from './Header';
-export { CountDownSection, Header, SponsorSection };
+import RegisterIndicator from './RegisterIndicator';
+export { CountDownSection, Header, SponsorSection, RegisterIndicator };
