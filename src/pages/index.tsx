@@ -1,4 +1,4 @@
 import Landing from './landing';
 import Leaderboard from './leaderboard';
-
-export { Landing, Leaderboard };
+import Register from './register';
+export { Landing, Leaderboard, Register };

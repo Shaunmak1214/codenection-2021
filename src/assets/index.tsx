@@ -5,6 +5,7 @@ import PlatinumBG from './jpgs-pngs/PlatinumBG.png';
 import GoldBG from './jpgs-pngs/GoldBG.png';
 import SilverBG from './jpgs-pngs/SilverBG.png';
 import BronzeBG from './jpgs-pngs/BronzeBG.png';
+
 //svgs
 import CNLanding from './svgs/CNLanding.svg';
 import CodeNectionText from './svgs/CodeNectionText.svg';
@@ -14,6 +15,9 @@ import PlatinumBadge from './svgs/PlatinumBadge.svg';
 import GoldBadge from './svgs/GoldBadge.svg';
 import SilverBadge from './svgs/SilverBadge.svg';
 import BronzeBadge from './svgs/BronzeBadge.svg';
+import KeyIcon from './svgs/KeyIcon.svg';
+import RightIcon from './svgs/RightIcon.svg';
+
 export {
   CNLanding,
   CodeNectionLogo,
@@ -29,4 +33,6 @@ export {
   GoldBG,
   SilverBG,
   BronzeBG,
+  KeyIcon,
+  RightIcon,
 };

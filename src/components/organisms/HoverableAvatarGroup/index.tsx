@@ -13,7 +13,11 @@ const Index: React.FC<IHoverableAvatarGroupProps> = ({ data }) => {
     <>
       <Flex w="100%" flexDir="row" justifyContent="center">
         {data.map((item: any, idx: any) => (
-          <CNHoverableAvatar key={idx} uni={item.uni} />
+          <CNHoverableAvatar
+            key={idx}
+            uni={item.uni}
+            memberName={item.membersName}
+          />
         ))}
       </Flex>
     </>
