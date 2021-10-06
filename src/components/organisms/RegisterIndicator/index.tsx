@@ -1,20 +1,25 @@
 import React from 'react';
 import { RegisterFormStepper } from '../../molecules';
-import { KeyIcon } from '../../../assets';
+// import { KeyIcon, ProfileIcon, TeamIcon } from '../../../assets';
 import { VStack, Container, Center } from '@chakra-ui/layout';
 import { Image } from '@chakra-ui/react';
 import { CodeNectionLogo } from '../../../assets';
 import { PrimaryText } from '../../atoms';
-const RegisterIndicator = () => {
+
+interface Props {
+  currentStep: number;
+}
+
+const RegisterIndicator = ({ currentStep }: Props) => {
   return (
     <>
-      <VStack bg="#002A97" h="100vh" w="50%" maxW="container.xl">
-        <Container py="40px">
+      <VStack bg="#002A97" h="100vh" w="50%">
+        <Container pt="45px" pb="35px">
           <Image
             src={CodeNectionLogo}
             w="75px"
             h="75px"
-            mb="12px"
+            mb="10px"
             cursor="pointer"
             onClick={() => (window.location.href = '/')}
           />
@@ -30,25 +35,28 @@ const RegisterIndicator = () => {
           <Container d="flex" justifyContent="center" alignItems="center">
             <VStack>
               <RegisterFormStepper
-                leadIcon={KeyIcon}
+                // LeadIcon={<KeyIcon />}
                 header="Create your Account"
                 steps={1}
+                currentStep={currentStep}
               >
-                Test
+                Setting up your CodeNector account
               </RegisterFormStepper>
               <RegisterFormStepper
-                leadIcon={KeyIcon}
-                header="Create your Account"
+                // LeadIcon={<ProfileIcon />}
+                header="Build your Profile"
                 steps={2}
+                currentStep={currentStep}
               >
-                Test
+                Let us know who you are
               </RegisterFormStepper>
               <RegisterFormStepper
-                leadIcon={KeyIcon}
-                header="Create your Account"
+                // LeadIcon={<TeamIcon />}
+                header="Verify and Join a Team"
                 steps={3}
+                currentStep={currentStep}
               >
-                Test
+                Get your account ready and join a team
               </RegisterFormStepper>
             </VStack>
           </Container>
