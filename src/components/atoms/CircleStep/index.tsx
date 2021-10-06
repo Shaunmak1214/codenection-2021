@@ -19,10 +19,10 @@ const CircleStep = ({ status, ...props }: Props) => {
           : '1px solid #4EFF9F '
       }
       borderRadius="50%"
-      h="60px"
-      w="60px"
+      h="50px"
+      w="50px"
       position="absolute"
-      left="-15px"
+      left="-10px"
     >
       <Container
         bg={
@@ -33,8 +33,8 @@ const CircleStep = ({ status, ...props }: Props) => {
             : ' #4EFF9F '
         }
         borderRadius="50%"
-        w="50px"
-        h="50px"
+        w="40px"
+        h="40px"
         d="flex"
         justifyContent="center"
         alignItems="center"
@@ -43,7 +43,7 @@ const CircleStep = ({ status, ...props }: Props) => {
         {status === 'success' ? (
           <Image src={SuccessTick} h="50px" w="50px" />
         ) : (
-          <Text color="#002A97" zIndex="20" fontWeight="bold" fontSize="3xl">
+          <Text color="#002A97" zIndex="20" fontWeight="bold" fontSize="xl">
             {children}
           </Text>
         )}
