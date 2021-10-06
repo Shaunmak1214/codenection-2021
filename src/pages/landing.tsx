@@ -33,7 +33,12 @@ const Landing: React.FC = () => {
           <PrimaryText>across Malaysia</PrimaryText>
 
           <CNSpacer size="sm" />
-          <PrimaryButton zIndex="20">Register Now</PrimaryButton>
+          <PrimaryButton
+            zIndex="20"
+            onClick={() => (window.location.href = '/register')}
+          >
+            Register Now
+          </PrimaryButton>
         </Container>
         <LandingImgRenderer />
       </HStack>

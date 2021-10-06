@@ -1,50 +1,69 @@
 import React from 'react';
 import { Box, Center, Container, HStack } from '@chakra-ui/layout';
-import { Image } from '@chakra-ui/react';
-import { PrimaryText, CircleStep } from '../../atoms';
+import { Image, Text } from '@chakra-ui/react';
+import { CircleStep, StepperBox } from '../../atoms';
 import PropTypes from 'prop-types';
-import { RightIcon } from '../../../assets';
+import { RightIcon, LockIcon, KeyIcon } from '../../../assets';
+
 interface Props {
-  leadIcon: string;
+  LeadIcon?: any;
   header: string;
   children: any;
   next?: boolean;
   steps: number;
+  currentStep: number;
 }
 
-const Index = ({ leadIcon, header, steps, ...props }: Props) => {
+const Index = ({ currentStep, header, steps, ...props }: Props) => {
   const children: React.ReactNode = props.children;
+  let status: string = 'normal';
+
+  if (currentStep === steps) {
+    status = 'normal';
+  } else if (currentStep < steps) {
+    status = 'locked';
+  } else {
+    status = 'success';
+  }
 
   return (
     <>
       <Center position="relative">
         <Container maxW="container.xl">
-          <HStack
-            border="1px solid #FFFFFF"
-            py="30px"
-            borderRadius="10px"
-            mb="20px"
-            w="500px"
-            columns={4}
-            justifyContent="space-between"
-            alignItems="center"
-            px="25px"
+          <StepperBox
+            variant={
+              status === 'normal'
+                ? 'normal'
+                : status === 'locked'
+                ? 'locked'
+                : 'success'
+            }
           >
             <HStack
               ml="25px"
               justifyContent="space-between"
               alignItems="center"
             >
-              <CircleStep>{steps}</CircleStep>
-              <Image src={leadIcon} w="55px" h="55px" />
+              <CircleStep status={status}>{steps}</CircleStep>
+              {/* <Image src={leadIcon} w="50px" h="50px" /> */}
+              <KeyIcon className={`icon_green`} />
               <Box pl="25px">
-                <PrimaryText>{header}</PrimaryText>
-                <PrimaryText>{children}</PrimaryText>
+                <Text>{header}</Text>
+                <Text>{children}</Text>
               </Box>
             </HStack>
 
-            <Image src={RightIcon} pr="12px" />
-          </HStack>
+            <Image
+              src={
+                status === 'normal'
+                  ? RightIcon
+                  : status === 'locked'
+                  ? LockIcon
+                  : undefined
+              }
+              pr="12px"
+            />
+          </StepperBox>
         </Container>
       </Center>
     </>
