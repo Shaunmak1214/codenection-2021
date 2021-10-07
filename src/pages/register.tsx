@@ -39,6 +39,7 @@ const Register = () => {
     switch (step) {
       case 1:
         return <FormUserDetails nextStep={nextStep} />;
+
       case 2:
         return <FormPersonalDetails nextStep={nextStep} prevStep={prevStep} />;
       case 3:
