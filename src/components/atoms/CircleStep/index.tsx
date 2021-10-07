@@ -41,7 +41,7 @@ const CircleStep = ({ status, ...props }: Props) => {
         {...props}
       >
         {status === 'success' ? (
-          <Image src={SuccessTick} h="50px" w="50px" />
+          <Image src={SuccessTick} position="absolute" />
         ) : (
           <Text color="#002A97" zIndex="20" fontWeight="bold" fontSize="xl">
             {children}
