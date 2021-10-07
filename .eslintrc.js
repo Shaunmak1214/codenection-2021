@@ -36,6 +36,7 @@ module.exports = {
     'space-before-blocks': 'error',
     'import/prefer-default-export': 'off',
     'unused-imports/no-unused-imports': 'error',
+    useTabs: 0,
   },
   overrides: [
     {

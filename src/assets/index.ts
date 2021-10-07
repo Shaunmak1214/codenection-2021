@@ -25,7 +25,8 @@ import LockIcon from './svgs/LockIcon.svg';
 import { ReactComponent as ProfileIcon } from './svgs/ProfileIcon.svg';
 import { ReactComponent as TeamIcon } from './svgs/TeamIcon.svg';
 import SuccessTick from './svgs/SuccessTick.svg';
-
+import HomeIcon from './svgs/HomeIcon.svg';
+import BackIcon from './svgs/BackIcon.svg';
 export {
   CNLanding,
   CodeNectionLogo,
@@ -51,4 +52,6 @@ export {
   ProfileIcon,
   TeamIcon,
   SuccessTick,
+  HomeIcon,
+  BackIcon,
 };

@@ -1,9 +1,9 @@
 import React from 'react';
-import { Center, VStack, Container } from '@chakra-ui/layout';
-import { Text, Link } from '@chakra-ui/react';
+import { VStack, Container, Box } from '@chakra-ui/layout';
+import { Text, Link, Image } from '@chakra-ui/react';
 import { Formik, Form, Field } from 'formik';
 import { CNTextFormField, PrimaryButton, SecondaryText } from '../../atoms';
-import { EmailIcon, PasswordIcon } from '../../../assets';
+import { EmailIcon, PasswordIcon, HomeIcon } from '../../../assets';
 import * as yup from 'yup';
 import { motion } from 'framer-motion';
 
@@ -35,14 +35,28 @@ const FormUserDetails = ({ nextStep }: Props) => {
   };
 
   return (
-    <Center h="100vh" w="50%">
+    <VStack h="100%" w="50%">
       <motion.div
         initial={{ opacity: 0, x: 75 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.5 }}
       >
         <Container w="550px" maxW="container.form">
-          <Container w="100%">
+          <Container>
+            <Box
+              boxShadow="0px 4px 10px rgba(159, 159, 159, 0.25)"
+              borderRadius="10px"
+              w="40px"
+              h="40px"
+              d="flex"
+              justifyContent="center"
+              alignItems="center"
+              my="50px"
+              cursor="pointer"
+              onClick={() => (window.location.href = '/')}
+            >
+              <Image src={HomeIcon} />
+            </Box>
             <Text color="#5B5B5B">Step 1</Text>
             <SecondaryText fontWeight="bold" fontSize="4xl">
               Create Your Account
@@ -60,7 +74,7 @@ const FormUserDetails = ({ nextStep }: Props) => {
             >
               {() => (
                 <Form>
-                  <VStack>
+                  <VStack spacing={8}>
                     <Field
                       label="Student Email: "
                       name="email"
@@ -106,7 +120,7 @@ const FormUserDetails = ({ nextStep }: Props) => {
           </Container>
         </Container>
       </motion.div>
-    </Center>
+    </VStack>
   );
 };
 

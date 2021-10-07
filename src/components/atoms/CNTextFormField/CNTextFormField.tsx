@@ -17,7 +17,7 @@ import React from 'react';
 
 interface Props {
   label: string;
-  leftIcon: string;
+  leftIcon?: string;
 
   field: any;
   form: any;
@@ -38,18 +38,21 @@ const CNTextFormField = ({ field, label, leftIcon, type, ...props }: Props) => {
   };
 
   return (
-    <VStack py="12px" w="100%">
+    <VStack w="100%">
       <FormControl w="100%">
         <FormLabel>{label}</FormLabel>
         <InputGroup>
-          <InputLeftElement
-            ml="10px"
-            pt="8px"
-            children={<Image src={leftIcon} />}
-          />
+          {leftIcon && (
+            <InputLeftElement
+              ml="10px"
+              pt="8px"
+              children={<Image src={leftIcon} />}
+            />
+          )}
+
           <Input
             backgroundColor="#F5F5F5"
-            pl="50px"
+            pl={leftIcon && '50px'}
             py="23px"
             borderRadius="10px"
             type={type}
@@ -57,14 +60,14 @@ const CNTextFormField = ({ field, label, leftIcon, type, ...props }: Props) => {
             {...field}
             {...props}
           />
-          {type === 'password' ? (
+          {type === 'password' && (
             <InputRightElement
               pt="8px"
               pr="10px"
               children={<Image ref={imgRef} src={ShowIcon} />}
               onClick={handleClick}
             />
-          ) : null}
+          )}
         </InputGroup>
 
         <FormErrorMessage></FormErrorMessage>

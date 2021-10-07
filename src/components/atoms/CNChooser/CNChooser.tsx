@@ -95,4 +95,4 @@ CNChooser.propTypes = {
 
 React.memo(CNChooser);
 
-export { CNChooser };
+export default CNChooser;

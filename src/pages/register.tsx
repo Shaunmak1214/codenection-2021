@@ -13,6 +13,8 @@ import {
 import { HStack } from '@chakra-ui/layout';
 import store from '../store';
 
+import '../register.css';
+
 const Register = () => {
   const dispatch = useDispatch();
   const formStore = store.getState().form;
@@ -50,7 +52,7 @@ const Register = () => {
   };
 
   return (
-    <HStack>
+    <HStack alignItems="flex-start">
       <RegisterIndicator currentStep={step} />
       {/* @ts-ignore */}
       <UserForm />
