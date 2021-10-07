@@ -1,6 +1,5 @@
 import React from 'react';
 import { RegisterFormStepper } from '../../molecules';
-// import { KeyIcon, ProfileIcon, TeamIcon } from '../../../assets';
 import { VStack, Container, Center } from '@chakra-ui/layout';
 import { Image } from '@chakra-ui/react';
 import { CodeNectionLogo } from '../../../assets';
@@ -35,7 +34,7 @@ const RegisterIndicator = ({ currentStep }: Props) => {
           <Container d="flex" justifyContent="center" alignItems="center">
             <VStack>
               <RegisterFormStepper
-                // LeadIcon={<KeyIcon />}
+                type="key"
                 header="Create your Account"
                 steps={1}
                 currentStep={currentStep}
@@ -43,7 +42,7 @@ const RegisterIndicator = ({ currentStep }: Props) => {
                 Setting up your CodeNector account
               </RegisterFormStepper>
               <RegisterFormStepper
-                // LeadIcon={<ProfileIcon />}
+                type="profile"
                 header="Build your Profile"
                 steps={2}
                 currentStep={currentStep}
@@ -51,7 +50,7 @@ const RegisterIndicator = ({ currentStep }: Props) => {
                 Let us know who you are
               </RegisterFormStepper>
               <RegisterFormStepper
-                // LeadIcon={<TeamIcon />}
+                type="team"
                 header="Verify and Join a Team"
                 steps={3}
                 currentStep={currentStep}

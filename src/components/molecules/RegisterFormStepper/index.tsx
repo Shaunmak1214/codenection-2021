@@ -3,10 +3,16 @@ import { Box, Center, Container, HStack } from '@chakra-ui/layout';
 import { Image, Text } from '@chakra-ui/react';
 import { CircleStep, StepperBox } from '../../atoms';
 import PropTypes from 'prop-types';
-import { RightIcon, LockIcon, KeyIcon } from '../../../assets';
+import {
+  RightIcon,
+  LockIcon,
+  KeyIcon,
+  ProfileIcon,
+  TeamIcon,
+} from '../../../assets';
 
 interface Props {
-  LeadIcon?: any;
+  type: string;
   header: string;
   children: any;
   next?: boolean;
@@ -14,7 +20,7 @@ interface Props {
   currentStep: number;
 }
 
-const Index = ({ currentStep, header, steps, ...props }: Props) => {
+const Index = ({ currentStep, type, header, steps, ...props }: Props) => {
   const children: React.ReactNode = props.children;
   let status: string = 'normal';
 
@@ -25,6 +31,27 @@ const Index = ({ currentStep, header, steps, ...props }: Props) => {
   } else {
     status = 'success';
   }
+
+  interface renderIconProps {
+    className: string;
+  }
+
+  const RenderIcon = ({ className }: renderIconProps) => {
+    switch (type) {
+      case 'profile':
+        return <ProfileIcon className={className} />;
+      case 'team':
+        return <TeamIcon className={className} />;
+      case 'key':
+        return <KeyIcon className={className} />;
+      default:
+        return <KeyIcon className={className} />;
+    }
+  };
+
+  RenderIcon.propTypes = {
+    className: PropTypes.string,
+  };
 
   return (
     <>
@@ -45,8 +72,17 @@ const Index = ({ currentStep, header, steps, ...props }: Props) => {
               alignItems="center"
             >
               <CircleStep status={status}>{steps}</CircleStep>
-              {/* <Image src={leadIcon} w="50px" h="50px" /> */}
-              <KeyIcon className={`icon_green`} />
+
+              <RenderIcon
+                className={
+                  status === 'normal'
+                    ? 'icon-white'
+                    : status === 'locked'
+                    ? 'icon-gray'
+                    : 'icon-green'
+                }
+              />
+
               <Box pl="25px">
                 <Text>{header}</Text>
                 <Text>{children}</Text>
@@ -72,7 +108,7 @@ const Index = ({ currentStep, header, steps, ...props }: Props) => {
 
 Index.propTypes = {
   children: PropTypes.node.isRequired,
-  leadIcon: PropTypes.string,
+  type: PropTypes.string.isRequired,
   header: PropTypes.string,
   steps: PropTypes.number,
 };
