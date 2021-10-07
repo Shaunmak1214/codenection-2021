@@ -10,9 +10,8 @@ import {
   Heading,
 } from '@chakra-ui/layout';
 
-import CNHoverableAvatarGroup from '../components/organisms/HoverableAvatarGroup';
-import CNSpacer from '../components/atoms/CNSpacer';
-import { CNChooser } from '../components/atoms/CNChooser';
+import { CNChooser, CNSpacer } from '../components/atoms';
+import { CNHoverableAvatarGroup } from '../components/organisms';
 
 const Index = () => {
   const leaderboardData = [

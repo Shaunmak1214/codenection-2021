@@ -1,6 +1,6 @@
 import React from 'react';
 import { Container, HStack, Box } from '@chakra-ui/layout';
-import { PrimaryButton } from '../components/atoms/Buttons';
+import { PrimaryButton } from '../components/atoms/';
 import { Image, Heading } from '@chakra-ui/react';
 import { CNLanding } from '../assets';
 import { CountDownSection, SponsorSection } from '../components/organisms';

@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import CNHoverableAvatar from '../../molecules/HoverableAvatar';
+import { CNHoverableAvatar } from '../../molecules';
 import { Flex } from '@chakra-ui/layout';
 
 interface IHoverableAvatarGroupProps {
