@@ -9,9 +9,25 @@
 }
 
 .icon-green {
-  fill: #00b894;
+  fill: #4EFF9F;
 }
 
-.icon-green > g > path {
-  fill: #00b894;
+.icon-green  path {
+  fill: #4EFF9F;
+}
+
+.icon-white {
+  fill: #ffffff;
+}
+
+.icon-white  path {
+  fill: #ffffff;
+}
+
+.icon-gray {
+  fill: #407DC1;
+}
+
+.icon-gray  path {
+  fill: #407DC1;
 }

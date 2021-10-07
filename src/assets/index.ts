@@ -22,8 +22,8 @@ import PasswordIcon from './svgs/PasswordIcon.svg';
 import ShowIcon from './svgs/ShowIcon.svg';
 import HideIcon from './svgs/HideIcon.svg';
 import LockIcon from './svgs/LockIcon.svg';
-import ProfileIcon from './svgs/ProfileIcon.svg';
-import TeamIcon from './svgs/TeamIcon.svg';
+import { ReactComponent as ProfileIcon } from './svgs/ProfileIcon.svg';
+import { ReactComponent as TeamIcon } from './svgs/TeamIcon.svg';
 import SuccessTick from './svgs/SuccessTick.svg';
 
 export {
