@@ -14,19 +14,28 @@ import { ShowIcon, HideIcon } from '../../../assets';
 import PropTypes from 'prop-types';
 
 import React from 'react';
-
+import { getIn } from 'formik';
 interface Props {
   label: string;
   leftIcon?: string;
-
-  field: any;
-  form: any;
+  form?: any;
+  field?: any;
   type?: string;
+  placeholder?: string;
 }
 
-const CNTextFormField = ({ field, label, leftIcon, type, ...props }: Props) => {
+const CNTextFormField = ({
+  form,
+  field,
+  label,
+  leftIcon,
+  type,
+  ...props
+}: Props) => {
   const textRef = React.useRef<any>(null);
   const imgRef = React.useRef<any>(null);
+  const errorText: string =
+    getIn(form.touched, field.name) && getIn(form.errors, field.name);
   const handleClick = () => {
     if (textRef.current!.type === 'password') {
       imgRef.current!.src = HideIcon;
@@ -39,7 +48,7 @@ const CNTextFormField = ({ field, label, leftIcon, type, ...props }: Props) => {
 
   return (
     <VStack w="100%">
-      <FormControl w="100%">
+      <FormControl w="100%" isInvalid={errorText ? true : false}>
         <FormLabel>{label}</FormLabel>
         <InputGroup>
           {leftIcon && (
@@ -70,17 +79,18 @@ const CNTextFormField = ({ field, label, leftIcon, type, ...props }: Props) => {
           )}
         </InputGroup>
 
-        <FormErrorMessage></FormErrorMessage>
+        <FormErrorMessage fontSieze="sm">{errorText}</FormErrorMessage>
       </FormControl>
     </VStack>
   );
 };
 
+React.memo(CNTextFormField);
+
 CNTextFormField.propTypes = {
   field: PropTypes.any,
   label: PropTypes.any,
   leftIcon: PropTypes.string,
-
   type: PropTypes.string,
 };
 

@@ -1,19 +1,19 @@
 /* eslint-disabled */
 // @ts-nocheck
 
-import React, { useEffect } from 'react';
+import React from 'react';
 import * as yup from 'yup';
 import { motion } from 'framer-motion';
 import { Formik, Form, Field } from 'formik';
 
-import { Text, FormLabel, Image } from '@chakra-ui/react';
+import { Text, Image } from '@chakra-ui/react';
 import { VStack, Container, HStack, Box, SimpleGrid } from '@chakra-ui/layout';
 
 import {
   CNTextFormField,
   SecondaryText,
   PrimaryButton,
-  CNSelectFormField,
+  // CNSelectFormField,
   CNSelectDropdownField,
 } from '../../atoms';
 
@@ -24,47 +24,46 @@ interface Props {
 }
 
 interface MyFormValues {
-  email: string;
-  password: string;
-  confirmPassword: string;
+  dob: string;
+  gender: string;
+  citizenship: string;
+  noiu: string;
+  major: string;
+  educationLevel: string;
+  codingProf: string;
 }
 
+// eslint-disable-next-line
 const FormPersonalDetails = ({ nextStep, prevStep }: Props) => {
-  // eslint-disable-next-line
-  const [eventType, setEventType] = React.useState([]);
+  const [CNData, setCNData] = React.useState({});
 
-  const continueNext = (e: any) => {
-    e.preventDefault();
-    nextStep();
+  const updateValues = (name: any, value: any) => {
+    setCNData({
+      ...CNData,
+      [name]: value,
+    });
   };
 
+  // eslint-disable-next-line
   const schema = yup.object({
-    dob: yup.number().required(),
-    noiu: yup.string().required(),
-    major: yup.string().required(),
+    dob: yup.string().min(3).max(60).required(),
+    noiu: yup.string().min(3).max(60).required(),
+    major: yup.string().min(3).max(60).required(),
+    gender: yup.string().min(3).max(60).required(),
+    citizenship: yup.string().min(3).max(60).required(),
+    educationLevel: yup.string().min(3).max(60).required(),
+    codingProf: yup.string().min(3).max(60).required(),
   });
-  const initialValues: MyFormValues = {};
 
-  const onSelect = React.useCallback(
-    (value, selected) => {
-      setEventType((eventType) => {
-        if (selected) {
-          if (eventType.includes(value)) {
-            return [...eventType];
-          } else {
-            return [...eventType, value];
-          }
-        } else {
-          return eventType.filter((item) => item !== value);
-        }
-      });
-    },
-    [setEventType],
-  );
-
-  useEffect(() => {
-    console.log(eventType);
-  }, [eventType]);
+  const initialValues: MyFormValues = {
+    dob: '',
+    gender: '',
+    citizenship: '',
+    noiu: '',
+    major: '',
+    educationLevel: '',
+    codingProf: '',
+  };
 
   return (
     <VStack h="100%" w="50%">
@@ -86,6 +85,10 @@ const FormPersonalDetails = ({ nextStep, prevStep }: Props) => {
               my="50px"
               cursor="pointer"
               onClick={prevStep}
+              _hover={{
+                transform: 'scale(1.1)',
+                transition: 'all .3s ease-in-out',
+              }}
             >
               <Image src={BackIcon} ml="-2px" />
             </Box>
@@ -100,23 +103,18 @@ const FormPersonalDetails = ({ nextStep, prevStep }: Props) => {
 
           <Container w="100%" py="30px">
             <Formik
-              validationSchema={schema}
+              // validationSchema={schema}
               initialValues={initialValues}
-              onSubmit={() => console.log('submitted')}
+              validator={() => {}}
+              onSubmit={(data) => {
+                let mergedData = { ...data, ...CNData };
+                console.log(mergedData);
+              }}
             >
-              {() => (
+              {(props) => (
+                // eslint-disable-next-line
                 <Form>
-                  <Box w="100%" h="100%" py="2" borderRadius="8px">
-                    <FormLabel>Select Event:</FormLabel>
-                    <CNSelectFormField value="internal" onSelect={onSelect}>
-                      <Text>Close Category (Open to MMU only)</Text>
-                    </CNSelectFormField>
-                    <CNSelectFormField value="external" onSelect={onSelect}>
-                      <Text>
-                        Open Category (Open to all universities including MMU)
-                      </Text>
-                    </CNSelectFormField>
-                  </Box>
+                  {/* {console.log(props)} */}
                   <VStack spacing={8}>
                     <SimpleGrid
                       columns={3}
@@ -131,6 +129,7 @@ const FormPersonalDetails = ({ nextStep, prevStep }: Props) => {
                         py="0"
                         borderRadius="8px"
                         placeholder="DD / MM / YY"
+                        type="string"
                         component={CNTextFormField}
                       />
                       <Field
@@ -143,7 +142,7 @@ const FormPersonalDetails = ({ nextStep, prevStep }: Props) => {
                             value: 'male',
                           },
                           {
-                            label: 'Female',
+                            label: 'female',
                             value: 'female',
                           },
                           {
@@ -155,8 +154,8 @@ const FormPersonalDetails = ({ nextStep, prevStep }: Props) => {
                             value: 'not-say',
                           },
                         ]}
-                        onSelect={(valueSelected) => {
-                          console.log(valueSelected);
+                        onSelect={(name, value) => {
+                          updateValues(name, value);
                         }}
                         component={CNSelectDropdownField}
                       />
@@ -174,8 +173,8 @@ const FormPersonalDetails = ({ nextStep, prevStep }: Props) => {
                             value: 'international',
                           },
                         ]}
-                        onSelect={(valueSelected) => {
-                          console.log(valueSelected);
+                        onSelect={(name, value) => {
+                          updateValues(name, value);
                         }}
                         component={CNSelectDropdownField}
                       />
@@ -207,8 +206,8 @@ const FormPersonalDetails = ({ nextStep, prevStep }: Props) => {
                           value: 'international',
                         },
                       ]}
-                      onSelect={(valueSelected) => {
-                        console.log(valueSelected);
+                      onSelect={(name, value) => {
+                        updateValues(name, value);
                       }}
                       component={CNSelectDropdownField}
                     />
@@ -230,19 +229,24 @@ const FormPersonalDetails = ({ nextStep, prevStep }: Props) => {
                           value: 'expert',
                         },
                       ]}
-                      onSelect={(valueSelected) => {
-                        console.log(valueSelected);
+                      onSelect={(name, value) => {
+                        updateValues(name, value);
                       }}
                       component={CNSelectDropdownField}
                     />
                   </VStack>
-
                   <HStack mt="50px" mb="50px">
                     <PrimaryButton
                       borderRadius="8px"
                       w="100%"
                       _hover={{ bg: '#000000' }}
-                      onClick={continueNext}
+                      type="submit"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        //eslint-disable-next-line
+                        props.submitForm();
+                        // nextStep();
+                      }}
                     >
                       Next
                     </PrimaryButton>

@@ -1,6 +1,6 @@
 /* eslint-disable */
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { FormControl, FormLabel } from '@chakra-ui/form-control';
 import { Select } from 'chakra-react-select';
@@ -8,27 +8,40 @@ import { Select } from 'chakra-react-select';
 interface Props {
   label: string;
   value: string;
-  onSelect: (value: any) => void;
+
   field: any;
   form: any;
 }
 
 const CNSelectDropdownField = ({
   field,
+  form,
   label,
   value,
-  onSelect,
   ...props
 }: Props) => {
+  const [selected, setSelected] = React.useState('');
+
   const handleSelect = (e: any) => {
-    onSelect(e.value);
+    setSelected(e.value);
   };
+
+  useEffect(() => {
+    console.log(selected);
+    form.setFieldValue(field.name, selected);
+  }, [selected]);
 
   return (
     <>
-      <FormControl id="email">
+      <FormControl>
         <FormLabel>{label}</FormLabel>
-        <Select {...field} {...props} size="md" onChange={handleSelect} />
+        <Select
+          value={selected}
+          {...field}
+          {...props}
+          size="md"
+          onChange={handleSelect}
+        />
       </FormControl>
     </>
   );
