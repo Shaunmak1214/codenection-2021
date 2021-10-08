@@ -9,6 +9,7 @@ import { motion } from 'framer-motion';
 
 interface MyFormValues {
   email: string;
+
   password: string;
   confirmPassword: string;
 }
@@ -18,18 +19,26 @@ interface Props {
 }
 
 const FormUserDetails = ({ nextStep }: Props) => {
-  const continueNext = (e: any) => {
-    e.preventDefault();
+  const continueNext = () => {
     nextStep();
   };
 
   const schema = yup.object({
-    email: yup.string().required(),
-    password: yup.string().required(),
-    confirmPassword: yup.string().required(),
+    email: yup.string().min(3).max(60).required('Email is a required field'),
+
+    password: yup
+      .string()
+      .min(3)
+      .max(60)
+      .required('Password is a required field'),
+    confirmPassword: yup
+      .string()
+      .oneOf([yup.ref('password'), null], 'Password not match')
+      .required('Confirm Password is a required field'),
   });
   const initialValues: MyFormValues = {
     email: '',
+
     password: '',
     confirmPassword: '',
   };
@@ -70,7 +79,9 @@ const FormUserDetails = ({ nextStep }: Props) => {
             <Formik
               validationSchema={schema}
               initialValues={initialValues}
-              onSubmit={() => console.log('submitted')}
+              onSubmit={() => {
+                continueNext();
+              }}
             >
               {() => (
                 <Form>
@@ -82,6 +93,7 @@ const FormUserDetails = ({ nextStep }: Props) => {
                       placeholder="xxxx@student.mmu.edu.my"
                       component={CNTextFormField}
                     />
+
                     <Field
                       label="Password: "
                       name="password"
@@ -104,7 +116,7 @@ const FormUserDetails = ({ nextStep }: Props) => {
                     borderRadius="8px"
                     w="100%"
                     _hover={{ bg: '#000000' }}
-                    onClick={continueNext}
+                    type="submit"
                   >
                     Next
                   </PrimaryButton>

@@ -6,11 +6,23 @@ import PropTypes from 'prop-types';
 
 interface Props {
   value: string;
-  onSelect: (value: any, selected: any) => void;
+  onSelect?: (value: any, selected: any) => void;
+  form: any;
   children: any;
+  field: any;
+
+  display: string;
 }
 
-const CNSelectFormField = ({ value, onSelect, children, ...props }: Props) => {
+const CNSelectFormField = ({
+  value,
+  form,
+  field,
+  onSelect,
+  children,
+  display,
+  ...props
+}: Props) => {
   const [selected, setSelected] = React.useState(false);
   const selectableRef = useRef(null);
 
@@ -19,12 +31,11 @@ const CNSelectFormField = ({ value, onSelect, children, ...props }: Props) => {
   };
 
   useEffect(() => {
-    onSelect(value, selected);
+    form.setFieldValue(field.name, value);
   }, [selected]);
 
   return (
     <>
-      {selected}
       <HStack
         className="selectable"
         ref={selectableRef}
@@ -41,7 +52,7 @@ const CNSelectFormField = ({ value, onSelect, children, ...props }: Props) => {
         onClick={() => handleSelect()}
         {...props}
       >
-        <Box width="90%">{children}</Box>
+        <Box width="90%">{display}</Box>
         <Center width="10%">
           {selected ? (
             <svg
@@ -81,9 +92,11 @@ React.memo(CNSelectFormField);
 CNSelectFormField.propTypes = {
   value: PropTypes.string.isRequired,
   selected: PropTypes.bool,
-  children: PropTypes.node.isRequired,
-  onSelect: PropTypes.func.isRequired,
+  children: PropTypes.node,
+  onSelect: PropTypes.func,
   props: PropTypes.node,
+  form: PropTypes.any,
+  field: PropTypes.any,
 };
 
 export default CNSelectFormField;
