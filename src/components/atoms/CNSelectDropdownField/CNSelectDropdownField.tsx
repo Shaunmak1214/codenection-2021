@@ -2,15 +2,19 @@
 
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { FormControl, FormLabel } from '@chakra-ui/form-control';
+import {
+  FormControl,
+  FormErrorMessage,
+  FormLabel,
+} from '@chakra-ui/form-control';
 import { Select } from 'chakra-react-select';
+import { getIn } from 'formik';
 
 interface Props {
-  label: string;
-  value: string;
-
-  field: any;
-  form: any;
+  label?: string;
+  value?: string;
+  field?: any;
+  form?: any;
 }
 
 const CNSelectDropdownField = ({
@@ -20,28 +24,24 @@ const CNSelectDropdownField = ({
   value,
   ...props
 }: Props) => {
-  const [selected, setSelected] = React.useState('');
+  const errorText: string =
+    getIn(form.touched, field.name) && getIn(form.errors, field.name);
 
   const handleSelect = (e: any) => {
-    setSelected(e.value);
+    form.setFieldValue(field.name, e.value);
   };
-
-  useEffect(() => {
-    console.log(selected);
-    form.setFieldValue(field.name, selected);
-  }, [selected]);
 
   return (
     <>
-      <FormControl>
+      <FormControl isInvalid={errorText ? true : false}>
         <FormLabel>{label}</FormLabel>
         <Select
-          value={selected}
-          {...field}
+          // {...field}
           {...props}
-          size="md"
+          // @ts-ignore
           onChange={handleSelect}
         />
+        <FormErrorMessage fontSize="sm">{errorText}</FormErrorMessage>
       </FormControl>
     </>
   );

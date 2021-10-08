@@ -9,16 +9,21 @@ import { motion } from 'framer-motion';
 
 interface MyFormValues {
   email: string;
-
   password: string;
   confirmPassword: string;
 }
 
+interface reduxProps {
+  email: string;
+  password: string;
+}
 interface Props {
   nextStep: () => void;
+  updateReg: (values: reduxProps) => void;
+  formStore: any;
 }
 
-const FormUserDetails = ({ nextStep }: Props) => {
+const FormUserDetails = ({ nextStep, updateReg }: Props) => {
   const continueNext = () => {
     nextStep();
   };
@@ -38,7 +43,6 @@ const FormUserDetails = ({ nextStep }: Props) => {
   });
   const initialValues: MyFormValues = {
     email: '',
-
     password: '',
     confirmPassword: '',
   };
@@ -79,7 +83,11 @@ const FormUserDetails = ({ nextStep }: Props) => {
             <Formik
               validationSchema={schema}
               initialValues={initialValues}
-              onSubmit={() => {
+              onSubmit={(data) => {
+                updateReg({
+                  email: data.email,
+                  password: data.password,
+                });
                 continueNext();
               }}
             >
