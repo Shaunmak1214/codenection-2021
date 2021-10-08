@@ -20,10 +20,11 @@ const Register = () => {
   const formStore = store.getState().form;
 
   // will be passed down to children to execute the action
-  const updateReg = (e: any) => {
+  const updateReg = (data: any) => {
     dispatch(
       UPDATEREG({
-        [e.target.name]: e.target.value,
+        ...formStore.register_state,
+        ...data,
       }),
     );
   };
@@ -40,10 +41,23 @@ const Register = () => {
   const UserForm = () => {
     switch (step) {
       case 1:
-        return <FormUserDetails nextStep={nextStep} />;
+        return (
+          <FormUserDetails
+            nextStep={nextStep}
+            updateReg={updateReg}
+            formStore={formStore}
+          />
+        );
 
       case 2:
-        return <FormPersonalDetails nextStep={nextStep} prevStep={prevStep} />;
+        return (
+          <FormPersonalDetails
+            nextStep={nextStep}
+            prevStep={prevStep}
+            updateReg={updateReg}
+            formStore={formStore}
+          />
+        );
       case 3:
         return <FormTeamDetails />;
       default:

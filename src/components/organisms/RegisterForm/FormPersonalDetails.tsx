@@ -6,63 +6,110 @@ import * as yup from 'yup';
 import { motion } from 'framer-motion';
 import { Formik, Form, Field } from 'formik';
 
-import { Text, Image } from '@chakra-ui/react';
+import { Text, Image, Spinner, useToast } from '@chakra-ui/react';
 import { VStack, Container, HStack, Box, SimpleGrid } from '@chakra-ui/layout';
 
 import {
   CNTextFormField,
   SecondaryText,
   PrimaryButton,
-  // CNSelectFormField,
   CNSelectDropdownField,
 } from '../../atoms';
 
+import useAxios from '../../../hooks/useAxios';
+
 import { BackIcon } from '../../.././assets';
+
+interface MyFormValues {
+  full_name: string;
+  dob: string;
+  sex: string;
+  citizenship: string;
+  university: string;
+  field_major: string;
+  education_level: string;
+  coding_prof: string;
+}
+
 interface Props {
   nextStep: () => void;
   prevStep: () => void;
-}
-
-interface MyFormValues {
-  dob: string;
-  gender: string;
-  citizenship: string;
-  noiu: string;
-  major: string;
-  educationLevel: string;
-  codingProf: string;
+  updateReg: (values: MyFormValues) => void;
+  formStore: any;
 }
 
 // eslint-disable-next-line
-const FormPersonalDetails = ({ nextStep, prevStep }: Props) => {
-  const [CNData, setCNData] = React.useState({});
+const FormPersonalDetails = ({
+  nextStep,
+  prevStep,
+  updateReg,
+  formStore,
+}: Props) => {
+  const { loading: signUpLoading, fetch } = useAxios(
+    { url: '/auth/signup', method: 'POST' },
+    (err, data) => {
+      if (err) {
+        toast({
+          title: 'Email already existed',
+          description: err.data.message,
+          status: 'error',
+          position: 'top-right',
+          duration: 90000,
+          isClosable: true,
+        });
+      } else {
+        console.log(data);
+        nextStep();
+      }
+    },
+  );
 
-  const updateValues = (name: any, value: any) => {
-    setCNData({
-      ...CNData,
-      [name]: value,
-    });
-  };
+  const toast = useToast();
 
-  // eslint-disable-next-line
   const schema = yup.object({
-    dob: yup.string().min(3).max(60).required(),
-    noiu: yup.string().min(3).max(60).required(),
-    major: yup.string().min(3).max(60).required(),
-    gender: yup.string().min(3).max(60).required(),
-    citizenship: yup.string().min(3).max(60).required(),
-    educationLevel: yup.string().min(3).max(60).required(),
-    codingProf: yup.string().min(3).max(60).required(),
+    full_name: yup.string().required('Full name is required'),
+    dob: yup
+      .string()
+      .min(3)
+      .max(60)
+      .required('Date of birth is a required field'),
+    university: yup
+      .string()
+      .min(3)
+      .max(60)
+      .required('Name of institution/university is a required field'),
+    field_major: yup
+      .string()
+      .min(3)
+      .max(60)
+      .required('Field Major is a required field'),
+    sex: yup.string().min(3).max(60).required('Gender is a required field'),
+    citizenship: yup
+      .string()
+      .min(3)
+      .max(60)
+      .required('Citizenship is a required field'),
+    education_level: yup
+      .string()
+      .min(3)
+      .max(60)
+      .required('Education level is a required field'),
+    coding_prof: yup
+      .string()
+      .min(3)
+      .max(60)
+      .required('Coding Proficiency is a required field'),
   });
 
   const initialValues: MyFormValues = {
+    full_name: '',
     dob: '',
-    gender: '',
+    sex: '',
     citizenship: '',
-    noiu: '',
-    major: '',
-    educationLevel: '',
-    codingProf: '',
+    university: '',
+    field_major: '',
+    education_level: '',
+    coding_prof: '',
   };
 
   return (
@@ -103,24 +150,28 @@ const FormPersonalDetails = ({ nextStep, prevStep }: Props) => {
 
           <Container w="100%" py="30px">
             <Formik
-              // validationSchema={schema}
+              validationSchema={schema}
               initialValues={initialValues}
-              validator={() => {}}
               onSubmit={(data) => {
-                let mergedData = { ...data, ...CNData };
-                console.log(mergedData);
+                updateReg(data);
+                fetch(formStore.register_state);
               }}
             >
               {(props) => (
                 // eslint-disable-next-line
                 <Form>
-                  {/* {console.log(props)} */}
                   <VStack spacing={8}>
+                    <Field
+                      label="Full Name "
+                      name="full_name"
+                      placeholder=""
+                      component={CNTextFormField}
+                    />
                     <SimpleGrid
                       columns={3}
                       spacing={4}
                       w="100%"
-                      alignItems="center"
+                      alignItems="flex-start"
                     >
                       <Field
                         label="Date of birth "
@@ -134,7 +185,7 @@ const FormPersonalDetails = ({ nextStep, prevStep }: Props) => {
                       />
                       <Field
                         label="Gender:"
-                        name="gender"
+                        name="sex"
                         placeholder="Select"
                         options={[
                           {
@@ -142,7 +193,7 @@ const FormPersonalDetails = ({ nextStep, prevStep }: Props) => {
                             value: 'male',
                           },
                           {
-                            label: 'female',
+                            label: 'Female',
                             value: 'female',
                           },
                           {
@@ -154,9 +205,6 @@ const FormPersonalDetails = ({ nextStep, prevStep }: Props) => {
                             value: 'not-say',
                           },
                         ]}
-                        onSelect={(name, value) => {
-                          updateValues(name, value);
-                        }}
                         component={CNSelectDropdownField}
                       />
                       <Field
@@ -173,49 +221,59 @@ const FormPersonalDetails = ({ nextStep, prevStep }: Props) => {
                             value: 'international',
                           },
                         ]}
-                        onSelect={(name, value) => {
-                          updateValues(name, value);
-                        }}
                         component={CNSelectDropdownField}
                       />
                     </SimpleGrid>
 
                     <Field
                       label="Name of institution/university: "
-                      name="noiu"
+                      name="university"
                       placeholder="Multimedia University"
                       component={CNTextFormField}
                     />
                     <Field
                       label="Field Major: "
-                      name="major"
+                      name="field_major"
                       placeholder="Computer Science/Data Science/Artificial Intelligence"
                       component={CNTextFormField}
                     />
                     <Field
                       label="Level of education: "
-                      name="educationLevel"
+                      name="education_level"
                       placeholder="Selelct level of education"
                       options={[
                         {
-                          label: 'Malaysian',
-                          value: 'malaysian',
+                          label: 'A" level',
+                          value: 'a-level',
                         },
                         {
-                          label: 'International',
-                          value: 'international',
+                          label: 'Pre-U',
+                          value: 'pre-u',
+                        },
+                        {
+                          label: 'Diploma/Advancd Diploma',
+                          value: 'diploma',
+                        },
+                        {
+                          label: 'Bachelor"s degree',
+                          value: 'degree',
+                        },
+                        {
+                          label: 'Master/PHD',
+                          value: 'master',
                         },
                       ]}
-                      onSelect={(name, value) => {
-                        updateValues(name, value);
-                      }}
                       component={CNSelectDropdownField}
                     />
                     <Field
                       label="Coding proficiency: "
-                      name="codingProf"
+                      name="coding_prof"
                       placeholder="Select coding proficiency"
                       options={[
+                        {
+                          label: 'Novice',
+                          value: 'novice',
+                        },
                         {
                           label: 'Beginner',
                           value: 'beginner',
@@ -225,17 +283,18 @@ const FormPersonalDetails = ({ nextStep, prevStep }: Props) => {
                           value: 'intermediate',
                         },
                         {
+                          label: 'Skillful',
+                          value: 'skillful',
+                        },
+                        {
                           label: 'Expert',
                           value: 'expert',
                         },
                       ]}
-                      onSelect={(name, value) => {
-                        updateValues(name, value);
-                      }}
                       component={CNSelectDropdownField}
                     />
                   </VStack>
-                  <HStack mt="50px" mb="50px">
+                  <HStack mt="50px" mb="80px">
                     <PrimaryButton
                       borderRadius="8px"
                       w="100%"
@@ -245,10 +304,9 @@ const FormPersonalDetails = ({ nextStep, prevStep }: Props) => {
                         e.preventDefault();
                         //eslint-disable-next-line
                         props.submitForm();
-                        // nextStep();
                       }}
                     >
-                      Next
+                      {signUpLoading ? () => <Spinner size="xs" /> : 'Next'}
                     </PrimaryButton>
                   </HStack>
                 </Form>

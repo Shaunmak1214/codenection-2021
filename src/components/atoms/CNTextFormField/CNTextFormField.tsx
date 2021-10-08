@@ -79,7 +79,7 @@ const CNTextFormField = ({
           )}
         </InputGroup>
 
-        <FormErrorMessage fontSieze="sm">{errorText}</FormErrorMessage>
+        <FormErrorMessage fontSize="sm">{errorText}</FormErrorMessage>
       </FormControl>
     </VStack>
   );

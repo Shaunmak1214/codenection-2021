@@ -1,13 +1,26 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Formik, Form, Field } from 'formik';
 
-import { Text, Spinner } from '@chakra-ui/react';
+import { Text, Spinner, useToast } from '@chakra-ui/react';
 import { VStack, Container, HStack, Box } from '@chakra-ui/layout';
 
 import { CNTextFormField, SecondaryText, PrimaryButton } from '../../atoms';
 
 const FormTeamDetails = () => {
+  const toast = useToast();
+
+  useEffect(() => {
+    toast({
+      title: 'Account created!',
+      description: "We've created your account for you.",
+      status: 'success',
+      position: 'top-right',
+      duration: 9000,
+      isClosable: true,
+    });
+  }, [toast]);
+
   return (
     <VStack h="100%" w="50%">
       <motion.div
@@ -147,6 +160,7 @@ const FormTeamDetails = () => {
 
                 <PrimaryButton
                   mt="50px"
+                  mb="50px"
                   w="100%"
                   borderRadius="12px"
                   border="none"
