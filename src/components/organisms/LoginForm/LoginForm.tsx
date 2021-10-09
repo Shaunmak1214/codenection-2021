@@ -43,7 +43,12 @@ const LoginForm = () => {
               alignItems="center"
               mb="20px"
             >
-              <Image src={CodeNectionLogo} w="70px" h="70px" />
+              <Image
+                src={CodeNectionLogo}
+                w="70px"
+                h="70px"
+                onClick={() => (window.location.href = '/')}
+              />
               <Box
                 boxShadow="0px 4px 10px rgba(159, 159, 159, 0.25)"
                 borderRadius="10px"
