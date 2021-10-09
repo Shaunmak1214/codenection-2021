@@ -6,7 +6,7 @@ import Lottie from 'react-lottie';
 import { Text, Spinner, useToast, Input } from '@chakra-ui/react';
 import { VStack, Container, HStack, Box, SimpleGrid } from '@chakra-ui/layout';
 
-import { SecondaryText, PrimaryButton, JoinTeamButton } from '../../atoms';
+import { SecondaryText, PrimaryButton, GradientButton } from '../../atoms';
 import { CNModal, JoinTeamTextField } from '../../molecules';
 
 import useAxios from '../../../hooks/useAxios';
@@ -234,6 +234,7 @@ const FormTeamDetails = () => {
             bgColor="#407DC1"
             mt="40px !important"
             borderRadius="8px"
+            isLoading={verifyLoading ? true : false}
             onClick={() => {
               submitVerify();
             }}
@@ -307,8 +308,6 @@ const FormTeamDetails = () => {
                       onSubmit={(data) => console.log(data)}
                     >
                       {() => (
-                        // eslint-disable-next-line
-
                         <Form style={{ width: '100%' }}>
                           <JoinTeamTextField />
                         </Form>
@@ -339,7 +338,15 @@ const FormTeamDetails = () => {
                     </PrimaryButton>
                   </VStack>
 
-                  <JoinTeamButton w="100%">Create Team</JoinTeamButton>
+                  <GradientButton
+                    onClick={() => {
+                      window.location.href = '/dashboard';
+                    }}
+                    w="100%"
+                    mt="50px !important"
+                  >
+                    Continue
+                  </GradientButton>
                 </VStack>
               </VStack>
             </Container>

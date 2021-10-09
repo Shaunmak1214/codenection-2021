@@ -13,6 +13,7 @@ import {
   SecondaryButton,
   HeaderButton,
   JoinTeamButton,
+  GradientButton,
 } from './Buttons/Buttons';
 import { BadgeImg, SponsorImg } from './SponsorAtom/SponsorAtom';
 import CircleStep from './CircleStep/CircleStep';
@@ -21,6 +22,7 @@ export {
   PrimaryButton,
   JoinTeamButton,
   SecondaryButton,
+  GradientButton,
   CNSpacer,
   PrimaryText,
   SecondaryText,
