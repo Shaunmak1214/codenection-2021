@@ -9,7 +9,7 @@ const PrimaryButton = ({ ...props }) => {
     <Button
       borderRadius="0"
       border="2px solid #FFFFFF"
-      bg="transparent"
+      bg="#002A97"
       color="#FFFFFF"
       px="10"
       py="20px"

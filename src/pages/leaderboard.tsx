@@ -10,9 +10,8 @@ import {
   Heading,
 } from '@chakra-ui/layout';
 
-import CNHoverableAvatarGroup from '../components/organisms/HoverableAvatarGroup';
-import CNSpacer from '../components/atoms/CNSpacer';
-import { CNChooser } from '../components/atoms/CNChooser';
+import { CNChooser, CNSpacer } from '../components/atoms';
+import { CNHoverableAvatarGroup } from '../components/organisms';
 
 const Index = () => {
   const leaderboardData = [
@@ -149,7 +148,7 @@ const Index = () => {
           <CNSpacer size="5xs" />
 
           <VStack className="leaderboard-row" w="100%">
-            {leaderboardData.map((data, idx) => (
+            {leaderboardData.map((data) => (
               <HStack
                 className="table-row"
                 w="100%"
@@ -167,7 +166,7 @@ const Index = () => {
                   boxShadow: ' 0px 2px 20px rgba(182, 182, 182, 0.25);',
                 }}
                 transition="all 0.2s ease-in-out"
-                key={idx}
+                key={data.idx}
               >
                 <Box textAlign="center" w="15%">
                   <Text>{data.idx}</Text>
@@ -192,12 +191,15 @@ const Index = () => {
                     data={[
                       {
                         uni: 'https://www.mmu.edu.my/favicon.ico',
+                        membersName: 'Shaun Mak',
                       },
                       {
                         uni: 'https://www.mmu.edu.my/favicon.ico',
+                        membersName: 'WOW Mak',
                       },
                       {
                         uni: 'https://www.mmu.edu.my/favicon.ico',
+                        membersName: 'Jason Tan',
                       },
                     ]}
                   />

@@ -1,19 +1,25 @@
 import React from 'react';
 
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Switch } from 'react-router-dom';
 import * as Screens from './pages';
-import { Header } from './components/organisms';
+import { CNRoutes } from './hoc';
 function App() {
   return (
     <Router forceRefresh={true}>
-      <Header />
+      {/* <Header /> */}
       <Switch>
-        <Route exact path="/" component={Screens.Landing}></Route>
-        <Route
+        <CNRoutes header exact path="/" component={Screens.Landing}></CNRoutes>
+        <CNRoutes
+          header
           exact
           path="/leaderboard"
           component={Screens.Leaderboard}
-        ></Route>
+        ></CNRoutes>
+        <CNRoutes
+          exact
+          path="/register"
+          component={Screens.Register}
+        ></CNRoutes>
       </Switch>
     </Router>
   );
