@@ -1,7 +1,11 @@
 <h1 align="center">
-  <a href="#"><img src="https://res.cloudinary.com/shaun-storage/image/upload/v1630294835/barcamp-logo_3_p7gvhg.png" alt="CodeNection 2021" width="100%"></a>
+  <a href="#"><img src="https://res.cloudinary.com/shaun-storage/image/upload/v1632304658/1050x1050-CodeNection_Vertical_Logo_Ori_oaahp6.png" alt="CodeNection-2021" width="200"></a>
+  <br>
 </h1>
 
+## CODENECTION 2021 Web App
+
+---
 <p align="center">
   <!-- <a href="https://discord.gg/ZegqCBr"><img src="https://img.shields.io/discord/612704110008991783" alt="discord"></a> -->
   <a href="https://github.com/standard/standard/actions/workflows/test-internal.yml"><img src="https://github.com/standard/standard/actions/workflows/test-internal.yml/badge.svg?branch=master" alt="Internal tests"></a>
