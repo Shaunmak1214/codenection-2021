@@ -7,7 +7,9 @@ import {
   FormTeamDetails,
   FormUserDetails,
 } from './RegisterForm';
+import LoginForm from './LoginForm/LoginForm';
 import CNHoverableAvatarGroup from './CNHoverableAvatarGroup/CNHoverableAvatarGroup';
+import DashboardSection from './DashboardSection/DashboardSection';
 export {
   CountDownSection,
   Header,
@@ -17,4 +19,6 @@ export {
   FormUserDetails,
   FormPersonalDetails,
   CNHoverableAvatarGroup,
+  LoginForm,
+  DashboardSection,
 };

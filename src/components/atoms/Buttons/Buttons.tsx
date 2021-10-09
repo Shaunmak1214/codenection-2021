@@ -47,6 +47,23 @@ const SecondaryButton = ({ ...props }) => {
   );
 };
 
+const JoinTeamButton = ({ ...props }) => {
+  const children: React.ReactNode = props.children;
+
+  return (
+    <Button
+      borderRadius="18px"
+      border="none"
+      bgColor="#50C0D9"
+      _hover={{ bg: '#147186' }}
+      color="#FFFFFF"
+      {...props}
+    >
+      <Text>{children}</Text>
+    </Button>
+  );
+};
+
 const HeaderButton = React.forwardRef((props: any, ref: any) => (
   <Button
     borderRadius="5px"
@@ -76,4 +93,8 @@ HeaderButton.propTypes = {
   ref: PropTypes.any,
 };
 
-export { PrimaryButton, SecondaryButton, HeaderButton };
+JoinTeamButton.propTypes = {
+  children: PropTypes.node.isRequired,
+};
+
+export { PrimaryButton, SecondaryButton, HeaderButton, JoinTeamButton };
