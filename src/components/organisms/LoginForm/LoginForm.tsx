@@ -32,7 +32,7 @@ const LoginForm = () => {
   return (
     <VStack h="100%" w="50%">
       <motion.div
-        initial={{ opacity: 0, x: 75 }}
+        initial={{ opacity: 0, x: -75 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.5 }}
       >
