@@ -5,8 +5,10 @@ import React from 'react';
 import * as yup from 'yup';
 import { motion } from 'framer-motion';
 import { Formik, Form, Field } from 'formik';
+import { useDispatch } from 'react-redux';
+import { LOGIN } from '../../../reducers/authSlice';
 
-import { Text, Image, Spinner, useToast } from '@chakra-ui/react';
+import { Text, Image, useToast } from '@chakra-ui/react';
 import { VStack, Container, HStack, Box, SimpleGrid } from '@chakra-ui/layout';
 
 import {
@@ -43,14 +45,49 @@ const FormPersonalDetails = ({
   nextStep,
   prevStep,
   updateReg,
+  // eslint-disable-next-line
   formStore,
 }: Props) => {
+  const dispatch = useDispatch();
+
+  // eslint-disable-next-line
   const { loading: signUpLoading, fetch } = useAxios(
     { url: '/auth/signup', method: 'POST' },
     (err, data) => {
       if (err) {
+        console.log(err);
         toast({
           title: 'Email already existed',
+          description: err.data.message,
+          status: 'error',
+          position: 'top-right',
+          duration: 90000,
+          isClosable: true,
+        });
+      } else {
+        console.log(data);
+        dispatch(
+          LOGIN({
+            accessToken: data.data.token,
+            user: data.data.newUser,
+          }),
+        );
+
+        sendEmail({
+          email: data.data.newUser.email,
+        });
+      }
+    },
+  );
+
+  // eslint-disable-next-line
+  const { loading: emailSendingLoading, fetch: sendEmail } = useAxios(
+    { url: '/verify/', method: 'POST' },
+    (err, data) => {
+      if (err) {
+        console.log(err);
+        toast({
+          title: 'Verification email not sent',
           description: err.data.message,
           status: 'error',
           position: 'top-right',
@@ -154,7 +191,11 @@ const FormPersonalDetails = ({
               initialValues={initialValues}
               onSubmit={(data) => {
                 updateReg(data);
-                fetch(formStore.register_state);
+                console.log(formStore.register_state);
+                fetch({
+                  ...formStore.register_state,
+                  ...data,
+                });
               }}
             >
               {(props) => (
@@ -300,13 +341,16 @@ const FormPersonalDetails = ({
                       w="100%"
                       _hover={{ bg: '#000000' }}
                       type="submit"
+                      isLoading={
+                        signUpLoading || emailSendingLoading ? true : false
+                      }
                       onClick={(e) => {
                         e.preventDefault();
                         //eslint-disable-next-line
                         props.submitForm();
                       }}
                     >
-                      {signUpLoading ? () => <Spinner size="xs" /> : 'Next'}
+                      Next
                     </PrimaryButton>
                   </HStack>
                 </Form>
