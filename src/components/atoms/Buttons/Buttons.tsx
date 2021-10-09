@@ -47,6 +47,43 @@ const SecondaryButton = ({ ...props }) => {
   );
 };
 
+const JoinTeamButton = ({ ...props }) => {
+  const children: React.ReactNode = props.children;
+
+  return (
+    <Button
+      borderRadius="18px"
+      border="none"
+      bgColor="#50C0D9"
+      _hover={{ bg: '#147186' }}
+      color="#FFFFFF"
+      {...props}
+    >
+      <Text>{children}</Text>
+    </Button>
+  );
+};
+
+const GradientButton = ({ ...props }) => {
+  const children: React.ReactNode = props.children;
+
+  return (
+    <Button
+      borderRadius="12px"
+      py="25px"
+      border="none"
+      bg="linear-gradient(90deg, #407DC1 0%, #92ECE9 100%);"
+      _hover={{ bg: 'linear-gradient(90deg, #11437A 0%, #388B88 100%);' }}
+      _active={{ bg: 'linear-gradient(90deg, #01060C 0%, #000000 100%);' }}
+      color="#FFFFFF"
+      transition="all 0.3s ease"
+      {...props}
+    >
+      <Text>{children}</Text>
+    </Button>
+  );
+};
+
 const HeaderButton = React.forwardRef((props: any, ref: any) => (
   <Button
     borderRadius="5px"
@@ -76,4 +113,18 @@ HeaderButton.propTypes = {
   ref: PropTypes.any,
 };
 
-export { PrimaryButton, SecondaryButton, HeaderButton };
+JoinTeamButton.propTypes = {
+  children: PropTypes.node.isRequired,
+};
+
+GradientButton.propTypes = {
+  children: PropTypes.node.isRequired,
+};
+
+export {
+  PrimaryButton,
+  SecondaryButton,
+  HeaderButton,
+  JoinTeamButton,
+  GradientButton,
+};

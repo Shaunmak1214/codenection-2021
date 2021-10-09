@@ -1,13 +1,13 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
-import { Formik, Form, Field } from 'formik';
+import { Formik, Form } from 'formik';
 import Lottie from 'react-lottie';
 
 import { Text, Spinner, useToast, Input } from '@chakra-ui/react';
 import { VStack, Container, HStack, Box, SimpleGrid } from '@chakra-ui/layout';
 
-import { CNTextFormField, SecondaryText, PrimaryButton } from '../../atoms';
-import { CNModal } from '../../molecules';
+import { SecondaryText, PrimaryButton, GradientButton } from '../../atoms';
+import { CNModal, JoinTeamTextField } from '../../molecules';
 
 import useAxios from '../../../hooks/useAxios';
 
@@ -234,6 +234,7 @@ const FormTeamDetails = () => {
             bgColor="#407DC1"
             mt="40px !important"
             borderRadius="8px"
+            isLoading={verifyLoading ? true : false}
             onClick={() => {
               submitVerify();
             }}
@@ -301,58 +302,14 @@ const FormTeamDetails = () => {
                     mt="20px"
                   >
                     <Formik
-                      // validationSchema={schema}
                       initialValues={{
                         teamCode: '',
                       }}
-                      onSubmit={(data) => {
-                        let mergedData = { ...data };
-                        console.log(mergedData);
-                      }}
+                      onSubmit={(data) => console.log(data)}
                     >
                       {() => (
-                        // eslint-disable-next-line
-
                         <Form style={{ width: '100%' }}>
-                          <HStack
-                            w="100%"
-                            d="flex"
-                            justifyContent="center"
-                            alignItems="center"
-                            position="relative"
-                          >
-                            <Field
-                              name="teamCode"
-                              label=""
-                              placeholder="Team Code"
-                              border="none"
-                              backgroundColor="white"
-                              w="100%"
-                              borderRadius="20px"
-                              py="28px"
-                              component={CNTextFormField}
-                            />
-
-                            <PrimaryButton
-                              d="flex"
-                              position="absolute"
-                              top="18px"
-                              right="10px"
-                              w="150px"
-                              borderRadius="12px"
-                              border="none"
-                              bgColor="#50C0D9"
-                              padding="10px 10px"
-                              justifyContent="center"
-                              alignItems="center"
-                              height="35px !important"
-                              fontSize="14px"
-                              _hover={{ bg: '#147186' }}
-                              zIndex="10"
-                            >
-                              Join Team
-                            </PrimaryButton>
-                          </HStack>
+                          <JoinTeamTextField />
                         </Form>
                       )}
                     </Formik>
@@ -366,8 +323,6 @@ const FormTeamDetails = () => {
                       }}
                     >
                       <Box w="25%" h="1px" bgColor="#8C8C8C" />
-
-                      <Text>or </Text>
 
                       <Box w="25%" h="1px" bgColor="#8C8C8C" />
                     </HStack>
@@ -383,22 +338,15 @@ const FormTeamDetails = () => {
                     </PrimaryButton>
                   </VStack>
 
-                  <PrimaryButton
-                    mt="50px"
-                    mb="50px"
-                    w="100%"
-                    borderRadius="12px"
-                    border="none"
-                    bg="linear-gradient(90deg, #407DC1 0%, #92ECE9 100%);"
-                    _hover={{
-                      bg: 'linear-gradient(90deg, #004391 0%, #005754 100%);',
+                  <GradientButton
+                    onClick={() => {
+                      window.location.href = '/dashboard';
                     }}
-                    paddingTop="8px !important"
-                    paddingBottom="8px !important"
-                    transition="all 0.3s ease-in-out"
+                    w="100%"
+                    mt="50px !important"
                   >
-                    COMPLETE
-                  </PrimaryButton>
+                    Continue
+                  </GradientButton>
                 </VStack>
               </VStack>
             </Container>
