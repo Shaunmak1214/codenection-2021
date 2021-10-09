@@ -8,19 +8,21 @@ function App() {
     <Router forceRefresh={true}>
       {/* <Header /> */}
       <Switch>
-        <CNRoutes header exact path="/" component={Screens.Landing}></CNRoutes>
+        <CNRoutes header exact path="/" component={Screens.Landing} />
         <CNRoutes
           header
           exact
           path="/leaderboard"
           component={Screens.Leaderboard}
-        ></CNRoutes>
+        />
+        <CNRoutes exact path="/register" component={Screens.Register} />
+        <CNRoutes exact path="/login" component={Screens.Login} />
         <CNRoutes
           exact
-          path="/register"
-          component={Screens.Register}
-        ></CNRoutes>
-        <CNRoutes exact path="/login" component={Screens.Login}></CNRoutes>
+          path="/dashboard"
+          header
+          component={Screens.Dashboard}
+        />
       </Switch>
     </Router>
   );

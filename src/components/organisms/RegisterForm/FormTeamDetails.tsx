@@ -1,11 +1,11 @@
 import React, { useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Formik, Form, Field } from 'formik';
-
+import { Formik, Form } from 'formik';
+import { JoinTeamTextField } from '../../molecules';
 import { Text, Spinner, useToast } from '@chakra-ui/react';
 import { VStack, Container, HStack, Box } from '@chakra-ui/layout';
 
-import { CNTextFormField, SecondaryText, PrimaryButton } from '../../atoms';
+import { SecondaryText, PrimaryButton, JoinTeamButton } from '../../atoms';
 
 const FormTeamDetails = () => {
   const toast = useToast();
@@ -89,45 +89,7 @@ const FormTeamDetails = () => {
                       // eslint-disable-next-line
 
                       <Form style={{ width: '100%' }}>
-                        <HStack
-                          w="100%"
-                          d="flex"
-                          justifyContent="center"
-                          alignItems="center"
-                          position="relative"
-                        >
-                          <Field
-                            name="teamCode"
-                            label=""
-                            placeholder="Team Code"
-                            border="none"
-                            backgroundColor="white"
-                            w="100%"
-                            borderRadius="20px"
-                            py="28px"
-                            component={CNTextFormField}
-                          />
-
-                          <PrimaryButton
-                            d="flex"
-                            position="absolute"
-                            top="18px"
-                            right="10px"
-                            w="150px"
-                            borderRadius="12px"
-                            border="none"
-                            bgColor="#50C0D9"
-                            padding="10px 10px"
-                            justifyContent="center"
-                            alignItems="center"
-                            height="35px !important"
-                            fontSize="14px"
-                            _hover={{ bg: '#147186' }}
-                            zIndex="50"
-                          >
-                            Join Team
-                          </PrimaryButton>
-                        </HStack>
+                        <JoinTeamTextField />
                       </Form>
                     )}
                   </Formik>
@@ -147,15 +109,7 @@ const FormTeamDetails = () => {
                     <Box w="25%" h="1px" bgColor="#8C8C8C" />
                   </HStack>
 
-                  <PrimaryButton
-                    w="100%"
-                    borderRadius="12px"
-                    border="none"
-                    bgColor="#50C0D9"
-                    _hover={{ bg: '#147186' }}
-                  >
-                    Create Team
-                  </PrimaryButton>
+                  <JoinTeamButton w="100%">Create Team</JoinTeamButton>
                 </VStack>
 
                 <PrimaryButton
