@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import CNAvatar from '../../atoms/MembersAvatar';
-import CNHoverModal from '../../atoms/CNHoverModal';
+import { CNAvatar, CNHoverModal } from '../../atoms';
 import { Box } from '@chakra-ui/layout';
 
 const Index = ({ ...props }) => {

@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import CNHoverableAvatar from '../../molecules/HoverableAvatar';
+import { CNHoverableAvatar } from '../../molecules';
 import { Flex } from '@chakra-ui/layout';
 
 interface IHoverableAvatarGroupProps {
@@ -13,7 +13,11 @@ const Index: React.FC<IHoverableAvatarGroupProps> = ({ data }) => {
     <>
       <Flex w="100%" flexDir="row" justifyContent="center">
         {data.map((item: any, idx: any) => (
-          <CNHoverableAvatar key={idx} uni={item.uni} />
+          <CNHoverableAvatar
+            key={idx}
+            uni={item.uni}
+            memberName={item.membersName}
+          />
         ))}
       </Flex>
     </>

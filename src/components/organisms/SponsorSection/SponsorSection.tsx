@@ -1,7 +1,7 @@
 import React from 'react';
 import { Center, Container } from '@chakra-ui/layout';
 import { SponsorsBlock } from '../../molecules';
-import { SecondaryText } from '../../atoms/Text';
+import { SecondaryText } from '../../atoms/';
 import {
   TitleSponsor,
   PlatinumSponsor,

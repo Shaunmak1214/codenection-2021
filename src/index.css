@@ -7,3 +7,27 @@
   font-weight: normal;
   font-style: normal;
 }
+
+.icon-green {
+  fill: #4eff9f;
+}
+
+.icon-green path {
+  fill: #4eff9f;
+}
+
+.icon-white {
+  fill: #ffffff;
+}
+
+.icon-white path {
+  fill: #ffffff;
+}
+
+.icon-gray {
+  fill: #407dc1;
+}
+
+.icon-gray path {
+  fill: #407dc1;
+}

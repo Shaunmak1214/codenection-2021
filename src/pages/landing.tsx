@@ -1,6 +1,6 @@
 import React from 'react';
 import { Container, HStack, Box } from '@chakra-ui/layout';
-import { PrimaryButton } from '../components/atoms/Buttons';
+import { PrimaryButton } from '../components/atoms/';
 import { Image, Heading } from '@chakra-ui/react';
 import { CNLanding } from '../assets';
 import { CountDownSection, SponsorSection } from '../components/organisms';
@@ -33,7 +33,12 @@ const Landing: React.FC = () => {
           <PrimaryText>across Malaysia</PrimaryText>
 
           <CNSpacer size="sm" />
-          <PrimaryButton zIndex="20">Register Now</PrimaryButton>
+          <PrimaryButton
+            zIndex="20"
+            onClick={() => (window.location.href = '/register')}
+          >
+            Register Now
+          </PrimaryButton>
         </Container>
         <LandingImgRenderer />
       </HStack>
