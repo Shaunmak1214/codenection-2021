@@ -3,7 +3,7 @@ import { Link } from '@chakra-ui/react';
 import { Box, Center, Container, Grid } from '@chakra-ui/layout';
 import { PrimaryText } from '../../atoms';
 
-import RuleBlock from '../../molecules/RulesBlock/index';
+import { RulesBlock } from '../../molecules';
 
 const RuleSection = () => {
   return (
@@ -19,32 +19,32 @@ const RuleSection = () => {
           RULES
         </PrimaryText>
         <Grid templateColumns="repeat(3, 1fr)" gap={6} fontSize="lg" mx="50px">
-          <RuleBlock
+          <RulesBlock
             ruleTitle="Number of team member"
             ruleDesc="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
               eiusmod tempor incididunt ut labore et dolore magna aliqua."
           />
-          <RuleBlock
+          <RulesBlock
             ruleTitle="Number of team member"
             ruleDesc="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
               eiusmod tempor incididunt ut labore et dolore magna aliqua."
           />
-          <RuleBlock
+          <RulesBlock
             ruleTitle="Number of team member"
             ruleDesc="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
               eiusmod tempor incididunt ut labore et dolore magna aliqua."
           />
-          <RuleBlock
+          <RulesBlock
             ruleTitle="Number of team member"
             ruleDesc="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
               eiusmod tempor incididunt ut labore et dolore magna aliqua."
           />
-          <RuleBlock
+          <RulesBlock
             ruleTitle="Number of team member"
             ruleDesc="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
               eiusmod tempor incididunt ut labore et dolore magna aliqua."
           />
-          <RuleBlock
+          <RulesBlock
             ruleTitle="Number of team member"
             ruleDesc="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
               eiusmod tempor incididunt ut labore et dolore magna aliqua."

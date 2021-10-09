@@ -4,12 +4,7 @@ import PropTypes from 'prop-types';
 import { PrimaryText } from '../../atoms';
 import { Box } from '@chakra-ui/layout';
 
-// interface Props {
-//   ruleTitle: string;
-//   ruleDesc: string;
-// }
-
-const RuleBlock = ({ ...props }) => {
+const RulesBlock = ({ ...props }) => {
   const { ruleTitle, ruleDesc } = props;
   return (
     <Box bg="#0079FF" minH="100px" borderRadius="5px" p="30px">
@@ -21,9 +16,9 @@ const RuleBlock = ({ ...props }) => {
   );
 };
 
-RuleBlock.propTypes = {
+RulesBlock.propTypes = {
   ruleTitle: PropTypes.string,
   ruleDesc: PropTypes.string,
 };
 
-export default RuleBlock;
+export default RulesBlock;
