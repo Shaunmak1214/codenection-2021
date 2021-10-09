@@ -1,33 +1,21 @@
 import React from 'react';
-import { VStack, Container, Box } from '@chakra-ui/layout';
+import { VStack, Container, Box, HStack } from '@chakra-ui/layout';
 import { Text, Link, Image } from '@chakra-ui/react';
 import { Formik, Form, Field } from 'formik';
 import { CNTextFormField, PrimaryButton, SecondaryText } from '../../atoms';
-import { EmailIcon, PasswordIcon, HomeIcon } from '../../../assets';
+import {
+  EmailIcon,
+  PasswordIcon,
+  HomeIcon,
+  CodeNectionLogo,
+} from '../../../assets';
 import * as yup from 'yup';
 import { motion } from 'framer-motion';
-
 interface MyFormValues {
   email: string;
   password: string;
-  confirmPassword: string;
 }
-
-interface reduxProps {
-  email: string;
-  password: string;
-}
-interface Props {
-  nextStep: () => void;
-  updateReg: (values: reduxProps) => void;
-  formStore: any;
-}
-
-const FormUserDetails = ({ nextStep, updateReg }: Props) => {
-  const continueNext = () => {
-    nextStep();
-  };
-
+const LoginForm = () => {
   const schema = yup.object({
     email: yup.string().min(3).max(60).required('Email is a required field'),
 
@@ -36,17 +24,11 @@ const FormUserDetails = ({ nextStep, updateReg }: Props) => {
       .min(3)
       .max(60)
       .required('Password is a required field'),
-    confirmPassword: yup
-      .string()
-      .oneOf([yup.ref('password'), null], 'Password not match')
-      .required('Confirm Password is a required field'),
   });
   const initialValues: MyFormValues = {
     email: '',
     password: '',
-    confirmPassword: '',
   };
-
   return (
     <VStack h="100%" w="50%">
       <motion.div
@@ -55,27 +37,32 @@ const FormUserDetails = ({ nextStep, updateReg }: Props) => {
         transition={{ duration: 0.5 }}
       >
         <Container w="550px" maxW="container.form">
-          <Container>
-            <Box
-              boxShadow="0px 4px 10px rgba(159, 159, 159, 0.25)"
-              borderRadius="10px"
-              w="40px"
-              h="40px"
-              d="flex"
-              justifyContent="center"
+          <Container mb="25px">
+            <HStack
+              justifyContent="space-between"
               alignItems="center"
-              my="50px"
-              cursor="pointer"
-              onClick={() => (window.location.href = '/')}
+              mb="20px"
             >
-              <Image src={HomeIcon} />
-            </Box>
-            <Text color="#5B5B5B">Step 1</Text>
+              <Image src={CodeNectionLogo} w="70px" h="70px" />
+              <Box
+                boxShadow="0px 4px 10px rgba(159, 159, 159, 0.25)"
+                borderRadius="10px"
+                w="50px"
+                h="50px"
+                d="flex"
+                justifyContent="center"
+                alignItems="center"
+                cursor="pointer"
+                onClick={() => (window.location.href = '/')}
+              >
+                <Image src={HomeIcon} />
+              </Box>
+            </HStack>
             <SecondaryText fontWeight="bold" fontSize="4xl">
-              Create Your Account
+              Login
             </SecondaryText>
             <Text color="#5B5B5B">
-              Set up your CodeNector account to participate the contest
+              Welcome CodeNector! Please login to your account.
             </Text>
           </Container>
 
@@ -84,16 +71,12 @@ const FormUserDetails = ({ nextStep, updateReg }: Props) => {
               validationSchema={schema}
               initialValues={initialValues}
               onSubmit={(data) => {
-                updateReg({
-                  email: data.email,
-                  password: data.password,
-                });
-                continueNext();
+                console.log(data);
               }}
             >
               {() => (
                 <Form>
-                  <VStack spacing={8}>
+                  <VStack spacing={9}>
                     <Field
                       label="Student Email: "
                       name="email"
@@ -110,15 +93,12 @@ const FormUserDetails = ({ nextStep, updateReg }: Props) => {
                       component={CNTextFormField}
                       type="password"
                     />
-                    <Field
-                      label="Confirmation Password: "
-                      name="confirmPassword"
-                      leftIcon={PasswordIcon}
-                      placeholder="*********"
-                      component={CNTextFormField}
-                      type="password"
-                    />
                   </VStack>
+                  <Box d="flex" justifyContent="flex-end" mt="15px">
+                    {' '}
+                    <Link color="#002A97">Forgot Password?</Link>
+                  </Box>
+
                   <PrimaryButton
                     mt="35px"
                     borderRadius="8px"
@@ -126,15 +106,15 @@ const FormUserDetails = ({ nextStep, updateReg }: Props) => {
                     _hover={{ bg: '#000000' }}
                     type="submit"
                   >
-                    Next
+                    Login
                   </PrimaryButton>
                 </Form>
               )}
             </Formik>
             <SecondaryText pt="15px" pl="5px">
-              Already have an account?{' '}
-              <Link fontWeight="bold" color="#002A97" href="/login">
-                Log in
+              Don&apos;t have an account yet?
+              <Link pl="5px" fontWeight="bold" color="#002A97" href="/register">
+                Register here
               </Link>
             </SecondaryText>
           </Container>
@@ -144,4 +124,4 @@ const FormUserDetails = ({ nextStep, updateReg }: Props) => {
   );
 };
 
-export default FormUserDetails;
+export default LoginForm;

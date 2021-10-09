@@ -20,6 +20,7 @@ function App() {
           path="/register"
           component={Screens.Register}
         ></CNRoutes>
+        <CNRoutes exact path="/login" component={Screens.Login}></CNRoutes>
       </Switch>
     </Router>
   );
