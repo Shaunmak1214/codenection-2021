@@ -18,7 +18,18 @@ const RuleSection = () => {
         >
           RULES
         </PrimaryText>
-        <Grid templateColumns="repeat(3, 1fr)" gap={6} fontSize="lg" mx="50px">
+        <Grid
+          templateColumns={{
+            sm: 'repeat(1, 1fr)',
+            md: 'repeat(2, 1fr)',
+            lg: 'repeat(2, 1fr)',
+            xl: 'repeat(3, 1fr)',
+            base: 'repeat(1, 1fr)',
+          }}
+          gap={6}
+          fontSize="lg"
+          mx="50px"
+        >
           <RulesBlock
             ruleTitle="Number of team member"
             ruleDesc="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
