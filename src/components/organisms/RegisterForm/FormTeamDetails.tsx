@@ -138,12 +138,7 @@ const FormTeamDetails = () => {
   return (
     <>
       {!verified ? (
-        <CNModal
-          w="550px"
-          justifyContent="center"
-          alignItems="center"
-          textAlign="center"
-        >
+        <CNModal blur={true}>
           <Lottie
             options={EmailLoader}
             height={125}
