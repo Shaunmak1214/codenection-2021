@@ -14,8 +14,10 @@ import { motion } from 'framer-motion';
 interface MyFormValues {
   email: string;
   password: string;
+  confirmPassword: string;
 }
-const LoginForm = () => {
+
+const ResetPasswordForm = () => {
   const schema = yup.object({
     email: yup.string().min(3).max(60).required('Email is a required field'),
 
@@ -24,10 +26,15 @@ const LoginForm = () => {
       .min(3)
       .max(60)
       .required('Password is a required field'),
+    confirmPassword: yup
+      .string()
+      .oneOf([yup.ref('password'), null], 'Password not match')
+      .required('Confirm Password is a required field'),
   });
   const initialValues: MyFormValues = {
     email: '',
     password: '',
+    confirmPassword: '',
   };
   return (
     <VStack h="100%" w="50%">
@@ -64,10 +71,10 @@ const LoginForm = () => {
               </Box>
             </HStack>
             <SecondaryText fontWeight="bold" fontSize="4xl">
-              Login
+              Create a New Password
             </SecondaryText>
             <Text color="#5B5B5B">
-              Welcome CodeNector! Please login to your account.
+              Please enter a new password to reset it.
             </Text>
           </Container>
 
@@ -98,13 +105,16 @@ const LoginForm = () => {
                       component={CNTextFormField}
                       type="password"
                     />
+
+                    <Field
+                      label="Confirmation Password: "
+                      name="password"
+                      leftIcon={PasswordIcon}
+                      placeholder="*********"
+                      component={CNTextFormField}
+                      type="password"
+                    />
                   </VStack>
-                  <Box d="flex" justifyContent="flex-end" mt="15px">
-                    {' '}
-                    <Link color="#002A97" href="/reset-password">
-                      Forgot Password?
-                    </Link>
-                  </Box>
 
                   <PrimaryButton
                     mt="35px"
@@ -113,15 +123,15 @@ const LoginForm = () => {
                     _hover={{ bg: '#000000' }}
                     type="submit"
                   >
-                    Login
+                    Reset Password
                   </PrimaryButton>
                 </Form>
               )}
             </Formik>
             <SecondaryText pt="15px" pl="5px">
-              Don&apos;t have an account yet?
-              <Link pl="5px" fontWeight="bold" color="#002A97" href="/register">
-                Register here
+              Already have an account?
+              <Link pl="5px" fontWeight="bold" color="#002A97" href="/login">
+                Log in
               </Link>
             </SecondaryText>
           </Container>
@@ -131,4 +141,4 @@ const LoginForm = () => {
   );
 };
 
-export default LoginForm;
+export default ResetPasswordForm;

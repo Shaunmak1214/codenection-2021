@@ -48,7 +48,7 @@ const Header = () => {
         ref={headerSticky}
         w="100%"
         py="10px"
-        zIndex="50"
+        zIndex="150"
         position="fixed"
         transition="150ms cubic-bezier(0.215,0.61,0.355,1);"
         color="#FFFFFF"
