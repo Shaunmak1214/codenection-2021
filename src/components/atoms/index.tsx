@@ -5,6 +5,7 @@ import CNSelectDropdownField from './CNSelectDropdownField/CNSelectDropdownField
 import CNChooser from './CNChooser/CNChooser';
 import CNAvatar from './CNMembersAvatar/CNMembersAvatar';
 import CNHoverModal from './CNHoverModal/CNHoverModal';
+import CNDatePicker from './CNDatePicker/CNDatePicker';
 
 import StepperBox from './StepperBox/StepperBox';
 import { PrimaryText, SecondaryText } from './Text/Text';
@@ -37,4 +38,5 @@ export {
   CNChooser,
   CNAvatar,
   CNHoverModal,
+  CNDatePicker,
 };
