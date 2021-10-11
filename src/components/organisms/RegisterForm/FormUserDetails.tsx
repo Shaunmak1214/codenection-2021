@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { VStack, Container, Box } from '@chakra-ui/layout';
-import { Text, Link, Image } from '@chakra-ui/react';
+import { VStack, Container } from '@chakra-ui/layout';
+import { Text, Link } from '@chakra-ui/react';
 import { Formik, Form, Field } from 'formik';
 import { CNTextFormField, PrimaryButton, SecondaryText } from '../../atoms';
 import { EmailIcon, PasswordIcon, HomeIcon } from '../../../assets';
