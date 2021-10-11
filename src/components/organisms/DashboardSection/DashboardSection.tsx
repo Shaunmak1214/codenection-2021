@@ -13,11 +13,14 @@ import { useCNModal } from '../../../hooks';
 import { FilePond, registerPlugin } from 'react-filepond';
 import FilePondPluginImageExifOrientation from 'filepond-plugin-image-exif-orientation';
 import FilePondPluginImagePreview from 'filepond-plugin-image-preview';
+import FilePondPluginFileValidateType from 'filepond-plugin-file-validate-type';
+
 import 'filepond/dist/filepond.min.css';
 const DashboardSection = () => {
   registerPlugin(
     FilePondPluginImageExifOrientation,
     FilePondPluginImagePreview,
+    FilePondPluginFileValidateType,
   );
 
   const [files, setFiles] = React.useState([]);
@@ -32,9 +35,14 @@ const DashboardSection = () => {
 
   return (
     <>
-      <CNModal onClose={handleResumeClose} modalIsOpen={resumeOpen}>
+      <CNModal
+        onClose={handleResumeClose}
+        modalIsOpen={resumeOpen}
+        successText="Upload"
+      >
         <FilePond
           style={{ width: '300px', height: '300px' }}
+          acceptedFileTypes={['application/pdf']}
           //@ts-ignore
           onupdatefiles={setFiles}
           files={files}

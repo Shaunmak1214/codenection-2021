@@ -87,7 +87,12 @@ const Header = () => {
               <Link>
                 <Text>Sponsors</Text>
               </Link>
-              <HeaderButton ref={buttonRef}>Login/Register</HeaderButton>
+              <HeaderButton
+                onClick={() => (window.location.href = '/login')}
+                ref={buttonRef}
+              >
+                Login/Register
+              </HeaderButton>
             </HStack>
           </SimpleGrid>
         </Container>

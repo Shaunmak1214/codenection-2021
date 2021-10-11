@@ -5,6 +5,7 @@ import CNHoverableAvatar from './CNHoverableAvatar/CNHoverableAvatar';
 import DashboardCard from './DashboardCard/DashboardCard';
 import JoinTeamTextField from './JoinTeamTextField/JoinTeamTextField';
 import CNModal from './CNModal/CNModal';
+import BoxIcons from './BoxIcons/BoxIcons';
 export {
   CountDownBlock,
   SponsorsBlock,
@@ -13,4 +14,5 @@ export {
   DashboardCard,
   JoinTeamTextField,
   CNModal,
+  BoxIcons,
 };
