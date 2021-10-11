@@ -1,8 +1,9 @@
 import React from 'react';
-import { VStack, Container, Box, HStack } from '@chakra-ui/layout';
+import { VStack, Container, HStack } from '@chakra-ui/layout';
 import { Text, Link, Image } from '@chakra-ui/react';
 import { Formik, Form, Field } from 'formik';
 import { CNTextFormField, PrimaryButton, SecondaryText } from '../../atoms';
+import { BoxIcons } from '../../molecules';
 import {
   EmailIcon,
   PasswordIcon,
@@ -15,6 +16,7 @@ interface MyFormValues {
   email: string;
   password: string;
   confirmPassword: string;
+  emailCode: string;
 }
 
 const ResetPasswordForm = () => {
@@ -30,11 +32,17 @@ const ResetPasswordForm = () => {
       .string()
       .oneOf([yup.ref('password'), null], 'Password not match')
       .required('Confirm Password is a required field'),
+    emailCode: yup
+      .string()
+      .min(3)
+      .max(60)
+      .required('Email Verification is a required field'),
   });
   const initialValues: MyFormValues = {
     email: '',
     password: '',
     confirmPassword: '',
+    emailCode: '',
   };
   return (
     <VStack h="100%" w="50%">
@@ -43,8 +51,8 @@ const ResetPasswordForm = () => {
         animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.5 }}
       >
-        <Container w="550px" maxW="container.form">
-          <Container mb="25px">
+        <Container w="550px" maxW="container.form" py="25px">
+          <Container py="20px">
             <HStack
               justifyContent="space-between"
               alignItems="center"
@@ -56,19 +64,10 @@ const ResetPasswordForm = () => {
                 h="70px"
                 onClick={() => (window.location.href = '/')}
               />
-              <Box
-                boxShadow="0px 4px 10px rgba(159, 159, 159, 0.25)"
-                borderRadius="10px"
-                w="50px"
-                h="50px"
-                d="flex"
-                justifyContent="center"
-                alignItems="center"
-                cursor="pointer"
+              <BoxIcons
+                icon={HomeIcon}
                 onClick={() => (window.location.href = '/')}
-              >
-                <Image src={HomeIcon} />
-              </Box>
+              />
             </HStack>
             <SecondaryText fontWeight="bold" fontSize="4xl">
               Create a New Password
@@ -108,11 +107,21 @@ const ResetPasswordForm = () => {
 
                     <Field
                       label="Confirmation Password: "
-                      name="password"
+                      name="confirmPassword"
                       leftIcon={PasswordIcon}
                       placeholder="*********"
                       component={CNTextFormField}
                       type="password"
+                    />
+
+                    <Field
+                      label="Email Verification Code: "
+                      name="emailCode"
+                      leftIcon={PasswordIcon}
+                      placeholder="*********"
+                      component={CNTextFormField}
+                      type="password"
+                      sendCodeBtn
                     />
                   </VStack>
 

@@ -3,6 +3,7 @@ import { VStack, Container, Box, HStack } from '@chakra-ui/layout';
 import { Text, Link, Image } from '@chakra-ui/react';
 import { Formik, Form, Field } from 'formik';
 import { CNTextFormField, PrimaryButton, SecondaryText } from '../../atoms';
+import { BoxIcons } from '../../molecules';
 import {
   EmailIcon,
   PasswordIcon,
@@ -49,19 +50,10 @@ const LoginForm = () => {
                 h="70px"
                 onClick={() => (window.location.href = '/')}
               />
-              <Box
-                boxShadow="0px 4px 10px rgba(159, 159, 159, 0.25)"
-                borderRadius="10px"
-                w="50px"
-                h="50px"
-                d="flex"
-                justifyContent="center"
-                alignItems="center"
-                cursor="pointer"
+              <BoxIcons
+                icon={HomeIcon}
                 onClick={() => (window.location.href = '/')}
-              >
-                <Image src={HomeIcon} />
-              </Box>
+              />
             </HStack>
             <SecondaryText fontWeight="bold" fontSize="4xl">
               Login

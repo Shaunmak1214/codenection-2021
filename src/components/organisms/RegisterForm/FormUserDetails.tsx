@@ -1,9 +1,10 @@
 import React from 'react';
-import { VStack, Container, Box } from '@chakra-ui/layout';
-import { Text, Link, Image } from '@chakra-ui/react';
+import { VStack, Container } from '@chakra-ui/layout';
+import { Text, Link } from '@chakra-ui/react';
 import { Formik, Form, Field } from 'formik';
 import { CNTextFormField, PrimaryButton, SecondaryText } from '../../atoms';
 import { EmailIcon, PasswordIcon, HomeIcon } from '../../../assets';
+import { BoxIcons } from '../../molecules';
 import * as yup from 'yup';
 import { motion } from 'framer-motion';
 
@@ -56,20 +57,11 @@ const FormUserDetails = ({ nextStep, updateReg }: Props) => {
       >
         <Container w="550px" maxW="container.form">
           <Container>
-            <Box
-              boxShadow="0px 4px 10px rgba(159, 159, 159, 0.25)"
-              borderRadius="10px"
-              w="40px"
-              h="40px"
-              d="flex"
-              justifyContent="center"
-              alignItems="center"
-              my="50px"
-              cursor="pointer"
+            <BoxIcons
+              icon={HomeIcon}
               onClick={() => (window.location.href = '/')}
-            >
-              <Image src={HomeIcon} />
-            </Box>
+            />
+
             <Text color="#5B5B5B">Step 1</Text>
             <SecondaryText fontWeight="bold" fontSize="4xl">
               Create Your Account

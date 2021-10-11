@@ -5,9 +5,9 @@ import { Image } from '@chakra-ui/react';
 import { PrimaryText } from '../components/atoms';
 const ResetPassword = () => {
   return (
-    <HStack>
+    <HStack alignItems="flex-start">
       <ResetPasswordForm />
-      <Center h="100vh" w="50%" bg="#002A97">
+      <Center h="100vh" w="50%" bg="#002A97" position="sticky" top="0px">
         <Container maxW="container.xl">
           <VStack>
             <Image />
