@@ -98,6 +98,22 @@ const HeaderButton = React.forwardRef((props: any, ref: any) => (
   </Button>
 ));
 
+const MutedButton = ({ ...props }) => {
+  const children: React.ReactNode = props.children;
+  return (
+    <Button
+      bg="#C4C4C4"
+      _hover={{ bg: '#000000', color: '#FFFFFF' }}
+      borderRadius="5px"
+      px="10"
+      py="20px"
+      {...props}
+    >
+      <Text>{children}</Text>
+    </Button>
+  );
+};
+
 HeaderButton.displayName = 'HeaderButton';
 
 PrimaryButton.propTypes = {
@@ -113,6 +129,10 @@ HeaderButton.propTypes = {
   ref: PropTypes.any,
 };
 
+MutedButton.propTypes = {
+  children: PropTypes.node.isRequired,
+};
+
 JoinTeamButton.propTypes = {
   children: PropTypes.node.isRequired,
 };
@@ -126,5 +146,6 @@ export {
   SecondaryButton,
   HeaderButton,
   JoinTeamButton,
+  MutedButton,
   GradientButton,
 };
