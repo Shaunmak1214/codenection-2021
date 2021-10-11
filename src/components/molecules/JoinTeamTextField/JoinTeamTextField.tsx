@@ -39,7 +39,7 @@ const JoinTeamTextField: React.FC = () => {
         height="35px !important"
         fontSize="14px"
         _hover={{ bg: '#147186' }}
-        zIndex="50"
+        zIndex="49"
       >
         Join Team
       </PrimaryButton>

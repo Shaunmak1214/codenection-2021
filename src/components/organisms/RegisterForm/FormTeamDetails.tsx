@@ -9,8 +9,9 @@ import { VStack, Container, HStack, Box, SimpleGrid } from '@chakra-ui/layout';
 import {
   SecondaryText,
   PrimaryButton,
-  JoinTeamButton,
+  GradientButton,
   InputField,
+  JoinTeamButton,
 } from '../../atoms';
 import { CNModal, JoinTeamTextField } from '../../molecules';
 
@@ -240,6 +241,7 @@ const FormTeamDetails = () => {
             bgColor="#407DC1"
             mt="40px !important"
             borderRadius="8px"
+            isLoading={verifyLoading ? true : false}
             onClick={() => {
               submitVerify();
             }}
@@ -313,8 +315,6 @@ const FormTeamDetails = () => {
                       onSubmit={(data) => console.log(data)}
                     >
                       {() => (
-                        // eslint-disable-next-line
-
                         <Form style={{ width: '100%' }}>
                           <JoinTeamTextField />
                         </Form>
@@ -334,7 +334,7 @@ const FormTeamDetails = () => {
                       <Box w="25%" h="1px" bgColor="#8C8C8C" />
                     </HStack>
 
-                    <PrimaryButton
+                    <JoinTeamButton
                       w="100%"
                       borderRadius="12px"
                       border="none"
@@ -342,10 +342,18 @@ const FormTeamDetails = () => {
                       _hover={{ bg: '#147186' }}
                     >
                       Create Team
-                    </PrimaryButton>
+                    </JoinTeamButton>
                   </VStack>
 
-                  <JoinTeamButton w="100%">Create Team</JoinTeamButton>
+                  <GradientButton
+                    onClick={() => {
+                      window.location.href = '/dashboard';
+                    }}
+                    w="100%"
+                    mt="50px !important"
+                  >
+                    Continue
+                  </GradientButton>
                 </VStack>
               </VStack>
             </Container>
