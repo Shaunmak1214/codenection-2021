@@ -14,10 +14,12 @@ import {
   SecondaryButton,
   HeaderButton,
   JoinTeamButton,
+  MutedButton,
   GradientButton,
 } from './Buttons/Buttons';
 import { BadgeImg, SponsorImg } from './SponsorAtom/SponsorAtom';
 import CircleStep from './CircleStep/CircleStep';
+import { InputField } from './InputField/InputField';
 
 export {
   PrimaryButton,
@@ -39,4 +41,6 @@ export {
   CNAvatar,
   CNHoverModal,
   CNDatePicker,
+  MutedButton,
+  InputField,
 };

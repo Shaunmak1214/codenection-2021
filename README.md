@@ -6,6 +6,7 @@
 ## CODENECTION 2021 Web App
 
 ---
+
 <p align="center">
   <!-- <a href="https://discord.gg/ZegqCBr"><img src="https://img.shields.io/discord/612704110008991783" alt="discord"></a> -->
   <a href="https://github.com/standard/standard/actions/workflows/test-internal.yml"><img src="https://github.com/standard/standard/actions/workflows/test-internal.yml/badge.svg?branch=master" alt="Internal tests"></a>
