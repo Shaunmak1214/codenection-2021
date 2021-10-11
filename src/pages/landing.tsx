@@ -6,6 +6,7 @@ import { CNLanding } from '../assets';
 import { CountDownSection, SponsorSection } from '../components/organisms';
 import { CNSpacer } from '../components/atoms';
 import { PrimaryText } from '../components/atoms';
+import RuleSection from '../components/organisms/RulesSection';
 
 const Landing: React.FC = () => {
   const LandingImgRenderer = () => {
@@ -26,10 +27,12 @@ const Landing: React.FC = () => {
           </PrimaryText>
 
           <CNSpacer size="sm" />
+
           <PrimaryText>
             {' '}
             Free to all universities and colleges students
           </PrimaryText>
+
           <PrimaryText>across Malaysia</PrimaryText>
 
           <CNSpacer size="sm" />
@@ -44,6 +47,7 @@ const Landing: React.FC = () => {
       </HStack>
       <CountDownSection />
       <Box w="100%" h="1000px"></Box>
+      <RuleSection />
       <SponsorSection />
     </>
   );
