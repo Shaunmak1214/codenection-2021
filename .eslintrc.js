@@ -37,6 +37,12 @@ module.exports = {
     'import/prefer-default-export': 'off',
     'unused-imports/no-unused-imports': 'error',
     useTabs: 0,
+    'prettier/prettier': [
+      'error',
+      {
+        endOfLine: 'auto',
+      },
+    ],
   },
   overrides: [
     {
