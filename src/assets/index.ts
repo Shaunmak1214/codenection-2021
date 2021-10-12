@@ -31,6 +31,8 @@ import ResumeImg from './svgs/ResumeImg.svg';
 import CreateTeamImg from './svgs/CreateTeamImg.svg';
 import ProfileImg from './svgs/ProfileImg.svg';
 import JoinTeamImg from './svgs/JoinTeamImg.svg';
+import ArrowForwardIcon from './svgs/ArrowForwardIcon.svg';
+import { ReactComponent as HelpIcon } from './svgs/HelpIcon.svg';
 
 export {
   CNLanding,
@@ -63,4 +65,6 @@ export {
   ProfileImg,
   CreateTeamImg,
   JoinTeamImg,
+  ArrowForwardIcon,
+  HelpIcon,
 };

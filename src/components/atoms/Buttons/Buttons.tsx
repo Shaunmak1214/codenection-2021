@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import PropTypes from 'prop-types';
 import { Button, Text } from '@chakra-ui/react';
 
@@ -98,6 +98,44 @@ const HeaderButton = React.forwardRef((props: any, ref: any) => (
   </Button>
 ));
 
+const FaqButton = ({ ...props }) => {
+  const children: React.ReactNode = props.children;
+  let txtRef = useRef(null);
+  const { selected } = props;
+  console.log({ selected });
+  return (
+    <Button
+      borderRadius="3xl"
+      px={12}
+      variant="outlined"
+      //color={selected ? '#ffffff' : '#002A97'}
+      border="1px solid #002A97"
+      //bg="#ffffff"
+      bg={selected ? '#002A97' : 'none'}
+      onMouseOver={() => {
+        if (selected) return;
+        // @ts-ignore
+        txtRef.current.style.color = '#ffffff';
+      }}
+      onMouseLeave={() => {
+        if (selected) return;
+        // @ts-ignore
+        txtRef.current.style.color = '#002A97';
+      }}
+      //_hover={{ bg: '#002A97', color: '#ffffff' }}
+      {...props}
+    >
+      <Text
+        ref={txtRef}
+        color={selected ? 'white' : '#002A97'}
+        fontFamily="Raleway"
+      >
+        {children}
+      </Text>
+    </Button>
+  );
+};
+
 const MutedButton = ({ ...props }) => {
   const children: React.ReactNode = props.children;
   return (
@@ -141,6 +179,11 @@ GradientButton.propTypes = {
   children: PropTypes.node.isRequired,
 };
 
+FaqButton.propTypes = {
+  children: PropTypes.node.isRequired,
+  selected: PropTypes.string,
+};
+
 export {
   PrimaryButton,
   SecondaryButton,
@@ -148,4 +191,5 @@ export {
   JoinTeamButton,
   MutedButton,
   GradientButton,
+  FaqButton,
 };
