@@ -8,18 +8,19 @@ import { Formik, Form, Field } from 'formik';
 import { useDispatch } from 'react-redux';
 import { LOGIN } from '../../../reducers/authSlice';
 
-import { Text, Image, useToast } from '@chakra-ui/react';
-import { VStack, Container, HStack, Box, SimpleGrid } from '@chakra-ui/layout';
+import { Text, useToast } from '@chakra-ui/react';
+import { VStack, Container, HStack, SimpleGrid } from '@chakra-ui/layout';
 
 import {
   CNTextFormField,
   SecondaryText,
   PrimaryButton,
   CNSelectDropdownField,
+  CNDatePicker,
 } from '../../atoms';
 
 import useAxios from '../../../hooks/useAxios';
-
+import { BoxIcons } from '../../molecules';
 import { BackIcon } from '../../.././assets';
 
 interface MyFormValues {
@@ -158,24 +159,8 @@ const FormPersonalDetails = ({
       >
         <Container w="550px" maxW="container.form">
           <Container>
-            <Box
-              boxShadow="0px 4px 10px rgba(159, 159, 159, 0.25)"
-              borderRadius="10px"
-              w="35px"
-              h="35px"
-              d="flex"
-              justifyContent="center"
-              alignItems="center"
-              my="50px"
-              cursor="pointer"
-              onClick={prevStep}
-              _hover={{
-                transform: 'scale(1.1)',
-                transition: 'all .3s ease-in-out',
-              }}
-            >
-              <Image src={BackIcon} ml="-2px" />
-            </Box>
+            <BoxIcons icon={BackIcon} onClick={prevStep} />
+
             <Text color="#5B5B5B">Step 2</Text>
             <SecondaryText fontWeight="bold" fontSize="4xl">
               Build your profile
@@ -191,9 +176,9 @@ const FormPersonalDetails = ({
               initialValues={initialValues}
               onSubmit={(data) => {
                 updateReg(data);
-                console.log(formStore.register_state);
                 fetch({
-                  ...formStore.register_state,
+                  email: formStore.register_state.email,
+                  password: formStore.register_state.password,
                   ...data,
                 });
               }}
@@ -220,9 +205,12 @@ const FormPersonalDetails = ({
                         px="3"
                         py="0"
                         borderRadius="8px"
-                        placeholder="DD / MM / YY"
+                        placeholderText="DD / MM / YY"
                         type="string"
-                        component={CNTextFormField}
+                        borderColor="#E2E8F0 !important"
+                        // eslint-disable-next-line
+                        selectedDate={props.values.dob}
+                        component={CNDatePicker}
                       />
                       <Field
                         label="Gender:"
