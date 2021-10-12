@@ -16,6 +16,7 @@ import {
   SecondaryText,
   PrimaryButton,
   CNSelectDropdownField,
+  CNDatePicker,
 } from '../../atoms';
 
 import useAxios from '../../../hooks/useAxios';
@@ -175,9 +176,9 @@ const FormPersonalDetails = ({
               initialValues={initialValues}
               onSubmit={(data) => {
                 updateReg(data);
-                console.log(formStore.register_state);
                 fetch({
-                  ...formStore.register_state,
+                  email: formStore.register_state.email,
+                  password: formStore.register_state.password,
                   ...data,
                 });
               }}
@@ -204,8 +205,12 @@ const FormPersonalDetails = ({
                         px="3"
                         py="0"
                         borderRadius="8px"
-                        placeholder="DD / MM / YY"
-                        component={CNTextFormField}
+                        placeholderText="DD / MM / YY"
+                        type="string"
+                        borderColor="#E2E8F0 !important"
+                        // eslint-disable-next-line
+                        selectedDate={props.values.dob}
+                        component={CNDatePicker}
                       />
                       <Field
                         label="Gender:"
