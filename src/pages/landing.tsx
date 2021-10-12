@@ -6,8 +6,8 @@ import { CNLanding } from '../assets';
 import { CountDownSection, SponsorSection } from '../components/organisms';
 import { CNSpacer } from '../components/atoms';
 import { PrimaryText } from '../components/atoms';
-import RuleSection from '../components/organisms/RulesSection';
-import FaqSection from '../components/organisms/FaqSection';
+import RuleSection from '../components/organisms/RuleSection';
+import { FaqSection } from '../components/organisms';
 
 const Landing: React.FC = () => {
   const LandingImgRenderer = () => {
