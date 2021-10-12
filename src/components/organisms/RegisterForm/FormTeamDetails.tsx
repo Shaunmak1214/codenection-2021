@@ -3,10 +3,16 @@ import { motion } from 'framer-motion';
 import { Formik, Form } from 'formik';
 import Lottie from 'react-lottie';
 
-import { Text, Spinner, useToast, Input } from '@chakra-ui/react';
+import { Text, Spinner, useToast } from '@chakra-ui/react';
 import { VStack, Container, HStack, Box, SimpleGrid } from '@chakra-ui/layout';
 
-import { SecondaryText, PrimaryButton, GradientButton } from '../../atoms';
+import {
+  SecondaryText,
+  PrimaryButton,
+  GradientButton,
+  InputField,
+  JoinTeamButton,
+} from '../../atoms';
 import { CNModal, JoinTeamTextField } from '../../molecules';
 
 import useAxios from '../../../hooks/useAxios';
@@ -138,12 +144,7 @@ const FormTeamDetails = () => {
   return (
     <>
       {!verified ? (
-        <CNModal
-          w="550px"
-          justifyContent="center"
-          alignItems="center"
-          textAlign="center"
-        >
+        <CNModal blur>
           <Lottie
             options={EmailLoader}
             height={125}
@@ -174,7 +175,13 @@ const FormTeamDetails = () => {
             justifyContent="center"
             className="flex justify-center"
           >
-            <Input
+            <InputField ref={firstNum} inputId="first" />
+            <InputField ref={SecNum} inputId="second" />
+            <InputField ref={thirdNum} inputId="third" />
+            <InputField ref={forthNum} inputId="fourth" />
+            <InputField ref={fifthNum} inputId="fifth" />
+            <InputField ref={sixthNum} inputId="sixth" />
+            {/* <Input
               textAlign="center"
               p="0px 6px !important"
               w="45px"
@@ -227,7 +234,7 @@ const FormTeamDetails = () => {
               id="sixth"
               ref={sixthNum}
               boxShadow="0px 5px 6px rgba(185, 185, 185, 0.25);"
-            />
+            /> */}
           </SimpleGrid>
 
           <PrimaryButton
@@ -327,7 +334,7 @@ const FormTeamDetails = () => {
                       <Box w="25%" h="1px" bgColor="#8C8C8C" />
                     </HStack>
 
-                    <PrimaryButton
+                    <JoinTeamButton
                       w="100%"
                       borderRadius="12px"
                       border="none"
@@ -335,7 +342,7 @@ const FormTeamDetails = () => {
                       _hover={{ bg: '#147186' }}
                     >
                       Create Team
-                    </PrimaryButton>
+                    </JoinTeamButton>
                   </VStack>
 
                   <GradientButton

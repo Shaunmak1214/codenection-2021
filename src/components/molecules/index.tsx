@@ -5,6 +5,7 @@ import CNHoverableAvatar from './CNHoverableAvatar/CNHoverableAvatar';
 import DashboardCard from './DashboardCard/DashboardCard';
 import JoinTeamTextField from './JoinTeamTextField/JoinTeamTextField';
 import CNModal from './CNModal/CNModal';
+import BoxIcons from './BoxIcons/BoxIcons';
 import RulesBlock from './RulesBlock';
 import FaqBlock from './FaqBlock';
 export {
@@ -15,6 +16,7 @@ export {
   DashboardCard,
   JoinTeamTextField,
   CNModal,
+  BoxIcons,
   RulesBlock,
   FaqBlock,
 };
