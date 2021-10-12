@@ -74,6 +74,9 @@ const CNModal = ({
               initial="hidden"
               animate="visible"
               exit="exit"
+              style={{
+                height: '100%',
+              }}
             >
               <Box
                 d="flex"
