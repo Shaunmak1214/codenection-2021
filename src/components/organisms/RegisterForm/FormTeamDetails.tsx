@@ -1,10 +1,17 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
-import { Formik, Form } from 'formik';
+import { Formik, Form, Field } from 'formik';
 import Lottie from 'react-lottie';
 
-import { Text, Spinner, useToast } from '@chakra-ui/react';
-import { VStack, Container, HStack, Box, SimpleGrid } from '@chakra-ui/layout';
+import { Text, Spinner, useToast, FormLabel } from '@chakra-ui/react';
+import {
+  VStack,
+  Container,
+  HStack,
+  Box,
+  SimpleGrid,
+  Flex,
+} from '@chakra-ui/layout';
 
 import {
   SecondaryText,
@@ -12,6 +19,8 @@ import {
   GradientButton,
   InputField,
   JoinTeamButton,
+  CNTextFormField,
+  CNSelectFormField,
 } from '../../atoms';
 import { CNModal, JoinTeamTextField } from '../../molecules';
 
@@ -25,6 +34,7 @@ const FormTeamDetails = () => {
   const authStore: authTypes = store.getState().auth;
   const toast = useToast();
   const [verified, setVerified] = useState(false);
+  const [teamModalIsOpen, setTeamModalIsOpen] = useState(false);
 
   // eslint-disable-next-line
   const { loading: verifyLoading, fetch: verify } = useAxios(
@@ -181,60 +191,6 @@ const FormTeamDetails = () => {
             <InputField ref={forthNum} inputId="fourth" />
             <InputField ref={fifthNum} inputId="fifth" />
             <InputField ref={sixthNum} inputId="sixth" />
-            {/* <Input
-              textAlign="center"
-              p="0px 6px !important"
-              w="45px"
-              type="text"
-              id="first"
-              ref={firstNum}
-              boxShadow="0px 5px 6px rgba(185, 185, 185, 0.25);"
-            />
-            <Input
-              textAlign="center"
-              p="0px 6px !important"
-              w="45px"
-              type="text"
-              id="second"
-              ref={SecNum}
-              boxShadow="0px 5px 6px rgba(185, 185, 185, 0.25);"
-            />
-            <Input
-              textAlign="center"
-              p="0px 6px !important"
-              w="45px"
-              type="text"
-              id="third"
-              ref={thirdNum}
-              boxShadow="0px 5px 6px rgba(185, 185, 185, 0.25);"
-            />
-            <Input
-              textAlign="center"
-              p="0px 6px !important"
-              w="45px"
-              type="text"
-              id="fourth"
-              ref={forthNum}
-              boxShadow="0px 5px 6px rgba(185, 185, 185, 0.25);"
-            />
-            <Input
-              textAlign="center"
-              p="0px 6px !important"
-              w="45px"
-              type="text"
-              id="fifth"
-              ref={fifthNum}
-              boxShadow="0px 5px 6px rgba(185, 185, 185, 0.25);"
-            />
-            <Input
-              textAlign="center"
-              p="0px 6px !important"
-              w="45px"
-              type="text"
-              id="sixth"
-              ref={sixthNum}
-              boxShadow="0px 5px 6px rgba(185, 185, 185, 0.25);"
-            /> */}
           </SimpleGrid>
 
           <PrimaryButton
@@ -249,6 +205,81 @@ const FormTeamDetails = () => {
             Confirm
           </PrimaryButton>
           <Text fontSize="15px">Didn{"'"}t recieve any code? Resend</Text>
+        </CNModal>
+      ) : (
+        <></>
+      )}
+
+      {teamModalIsOpen ? (
+        <CNModal
+          blur
+          modalIsOpen={teamModalIsOpen}
+          onClose={() => {
+            setTeamModalIsOpen(false);
+          }}
+        >
+          <Flex w="100%" justifyContent="flex-start">
+            <Text fontSize="35px" fontWeight="600">
+              Create Team
+            </Text>
+          </Flex>
+
+          <Box w="100%" h="200px"></Box>
+
+          <Formik
+            initialValues={{
+              name: '',
+              teamName: '',
+              hackerrankUsername: '',
+            }}
+            onSubmit={(data) => console.log(data)}
+          >
+            {() => (
+              <Form style={{ width: '100%' }}>
+                <VStack spacing={7} w="100%">
+                  <VStack spacing={2} alignItems="flex-start" w="100%">
+                    <FormLabel>Select Event: </FormLabel>
+                    <Field
+                      display={
+                        <Flex justifyContent="flex-start">
+                          Closed Category (Open to MMU only)
+                        </Flex>
+                      }
+                      name="event"
+                      value="closed"
+                      component={CNSelectFormField}
+                    />
+                    <Field
+                      display={
+                        <Flex justifyContent="flex-start">
+                          Open Category (Open to all universities including MMU)
+                        </Flex>
+                      }
+                      name="event"
+                      value="open"
+                      component={CNSelectFormField}
+                    />
+                  </VStack>
+
+                  <Field
+                    type="string"
+                    name="teamName"
+                    label="Team Name:"
+                    placeholder="Team Name"
+                    component={CNTextFormField}
+                  />
+
+                  <Field
+                    type="string"
+                    label="Hackerrank Username:"
+                    name="hackerrankUsername"
+                    placeholder=""
+                    component={CNTextFormField}
+                  />
+                </VStack>
+              </Form>
+            )}
+          </Formik>
         </CNModal>
       ) : (
         <></>
@@ -340,6 +371,9 @@ const FormTeamDetails = () => {
                       border="none"
                       bgColor="#50C0D9"
                       _hover={{ bg: '#147186' }}
+                      onClick={() => {
+                        setTeamModalIsOpen(true);
+                      }}
                     >
                       Create Team
                     </JoinTeamButton>
