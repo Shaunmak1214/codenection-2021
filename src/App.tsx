@@ -23,6 +23,11 @@ function App() {
           header
           component={Screens.Dashboard}
         />
+        <CNRoutes
+          exact
+          path="/reset-password"
+          component={Screens.ResetPassword}
+        />
       </Switch>
     </Router>
   );

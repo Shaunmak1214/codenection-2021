@@ -132,6 +132,22 @@ const FaqButton = ({ ...props }) => {
       >
         {children}
       </Text>
+      </Button>
+  );
+};
+
+const MutedButton = ({ ...props }) => {
+  const children: React.ReactNode = props.children;
+  return (
+    <Button
+      bg="#C4C4C4"
+      _hover={{ bg: '#000000', color: '#FFFFFF' }}
+      borderRadius="5px"
+      px="10"
+      py="20px"
+      {...props}
+    >
+      <Text>{children}</Text>
     </Button>
   );
 };
@@ -149,6 +165,10 @@ SecondaryButton.propTypes = {
 HeaderButton.propTypes = {
   children: PropTypes.node.isRequired,
   ref: PropTypes.any,
+};
+
+MutedButton.propTypes = {
+  children: PropTypes.node.isRequired,
 };
 
 JoinTeamButton.propTypes = {
@@ -169,6 +189,7 @@ export {
   SecondaryButton,
   HeaderButton,
   JoinTeamButton,
+  MutedButton,
   GradientButton,
   FaqButton,
 };
