@@ -6,6 +6,7 @@ import DashboardCard from './DashboardCard/DashboardCard';
 import JoinTeamTextField from './JoinTeamTextField/JoinTeamTextField';
 import CNModal from './CNModal/CNModal';
 import RulesBlock from './RulesBlock';
+import FaqBlock from './FaqBlock';
 export {
   CountDownBlock,
   SponsorsBlock,
@@ -15,4 +16,5 @@ export {
   JoinTeamTextField,
   CNModal,
   RulesBlock,
+  FaqBlock,
 };

@@ -71,6 +71,8 @@ const FaqBlock = () => {
   return (
     <>
       <HStack w="100%" spacing="25" justifyContent="center" mb="35">
+        {/* if
+        ghfhg */}
         <FaqButton selected="" value="All" onClick={handleCategory}>
           All
         </FaqButton>

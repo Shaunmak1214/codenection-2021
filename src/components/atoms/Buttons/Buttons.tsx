@@ -101,8 +101,9 @@ const HeaderButton = React.forwardRef((props: any, ref: any) => (
 const FaqButton = ({ ...props }) => {
   const children: React.ReactNode = props.children;
   let txtRef = useRef(null);
-  const { selected } = props;
-  console.log({ selected });
+  const { selected, value } = props;
+  //const [sl, setSl] = useState('All');
+  console.log({ value, selected });
   return (
     <Button
       borderRadius="3xl"
@@ -162,6 +163,7 @@ GradientButton.propTypes = {
 FaqButton.propTypes = {
   children: PropTypes.node.isRequired,
   selected: PropTypes.string,
+  value: PropTypes.string,
 };
 
 export {
