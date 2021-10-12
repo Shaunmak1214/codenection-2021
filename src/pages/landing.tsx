@@ -7,6 +7,7 @@ import { CountDownSection, SponsorSection } from '../components/organisms';
 import { CNSpacer } from '../components/atoms';
 import { PrimaryText } from '../components/atoms';
 import RuleSection from '../components/organisms/RulesSection';
+import FaqSection from '../components/organisms/FaqSection';
 
 const Landing: React.FC = () => {
   const LandingImgRenderer = () => {
@@ -48,6 +49,7 @@ const Landing: React.FC = () => {
       <CountDownSection />
       <Box w="100%" h="1000px"></Box>
       <RuleSection />
+      <FaqSection />
       <SponsorSection />
     </>
   );
