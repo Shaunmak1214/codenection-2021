@@ -132,7 +132,7 @@ const FaqButton = ({ ...props }) => {
       >
         {children}
       </Text>
-      </Button>
+    </Button>
   );
 };
 
