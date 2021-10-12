@@ -12,6 +12,8 @@ import CNHoverableAvatarGroup from './CNHoverableAvatarGroup/CNHoverableAvatarGr
 import DashboardSection from './DashboardSection/DashboardSection';
 import RuleSection from './RuleSection';
 import FaqSection from './FaqSection';
+import ResetPasswordForm from './ResetPasswordForm/ResetPasswordForm';
+
 export {
   CountDownSection,
   Header,
@@ -25,4 +27,5 @@ export {
   DashboardSection,
   RuleSection,
   FaqSection,
+  ResetPasswordForm,
 };

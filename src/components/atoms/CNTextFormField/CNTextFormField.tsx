@@ -9,10 +9,11 @@ import {
   FormLabel,
   FormErrorMessage,
   Image,
+  Box,
 } from '@chakra-ui/react';
 import { ShowIcon, HideIcon } from '../../../assets';
 import PropTypes from 'prop-types';
-
+import { PrimaryButton } from '..';
 import React from 'react';
 import { getIn } from 'formik';
 interface Props {
@@ -22,6 +23,7 @@ interface Props {
   field?: any;
   type?: string;
   placeholder?: string;
+  sendCodeBtn?: boolean;
 }
 
 const CNTextFormField = ({
@@ -30,6 +32,7 @@ const CNTextFormField = ({
   label,
   leftIcon,
   type,
+  sendCodeBtn = false,
   ...props
 }: Props) => {
   const textRef = React.useRef<any>(null);
@@ -69,14 +72,40 @@ const CNTextFormField = ({
             {...field}
             {...props}
           />
-          {type === 'password' && (
+          {type === 'password' && sendCodeBtn ? (
+            <InputRightElement
+              pt="8px"
+              pr="10px"
+              children={
+                <>
+                  <Box d="flex" mr="100px">
+                    <Image ref={imgRef} src={ShowIcon} />
+                    <PrimaryButton
+                      bg="#BBE7FF"
+                      border="none"
+                      borderRadius="8px"
+                      color="#000000"
+                      py="0"
+                      px="8"
+                      h="35px"
+                      ml="30px"
+                      _hover={{ border: 'none' }}
+                    >
+                      Send
+                    </PrimaryButton>
+                  </Box>
+                </>
+              }
+              onClick={handleClick}
+            />
+          ) : type === 'password' ? (
             <InputRightElement
               pt="8px"
               pr="10px"
               children={<Image ref={imgRef} src={ShowIcon} />}
               onClick={handleClick}
             />
-          )}
+          ) : null}
         </InputGroup>
 
         <FormErrorMessage fontSize="sm">{errorText}</FormErrorMessage>
@@ -92,6 +121,7 @@ CNTextFormField.propTypes = {
   label: PropTypes.any,
   leftIcon: PropTypes.string,
   type: PropTypes.string,
+  sendCodeBtn: PropTypes.bool,
 };
 
 export default CNTextFormField;
