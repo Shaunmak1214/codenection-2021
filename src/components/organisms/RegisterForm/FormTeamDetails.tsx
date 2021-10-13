@@ -1,17 +1,10 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
-import { Formik, Form, Field } from 'formik';
+import { Formik, Form } from 'formik';
 import Lottie from 'react-lottie';
 
-import { Text, Spinner, useToast, FormLabel } from '@chakra-ui/react';
-import {
-  VStack,
-  Container,
-  HStack,
-  Box,
-  SimpleGrid,
-  Flex,
-} from '@chakra-ui/layout';
+import { Text, Spinner, useToast } from '@chakra-ui/react';
+import { VStack, Container, HStack, Box, SimpleGrid } from '@chakra-ui/layout';
 
 import {
   SecondaryText,
@@ -19,13 +12,11 @@ import {
   GradientButton,
   InputField,
   JoinTeamButton,
-  CNTextFormField,
-  CNSelectFormField,
 } from '../../atoms';
 import { CNModal, JoinTeamTextField } from '../../molecules';
+import { CreateTeamModal } from '../../organisms';
 
 import useAxios from '../../../hooks/useAxios';
-
 import { EmailLoader } from '../../../constants';
 import store from '../../../store';
 import authTypes from '../../../types/auth.types';
@@ -210,80 +201,12 @@ const FormTeamDetails = () => {
         <></>
       )}
 
-      {teamModalIsOpen ? (
-        <CNModal
-          blur
-          modalIsOpen={teamModalIsOpen}
-          onClose={() => {
-            setTeamModalIsOpen(false);
-          }}
-        >
-          <Flex w="100%" justifyContent="flex-start">
-            <Text fontSize="35px" fontWeight="600">
-              Create Team
-            </Text>
-          </Flex>
-
-          <Box w="100%" h="200px"></Box>
-
-          <Formik
-            initialValues={{
-              name: '',
-              teamName: '',
-              hackerrankUsername: '',
-            }}
-            onSubmit={(data) => console.log(data)}
-          >
-            {() => (
-              <Form style={{ width: '100%' }}>
-                <VStack spacing={7} w="100%">
-                  <VStack spacing={2} alignItems="flex-start" w="100%">
-                    <FormLabel>Select Event: </FormLabel>
-                    <Field
-                      display={
-                        <Flex justifyContent="flex-start">
-                          Closed Category (Open to MMU only)
-                        </Flex>
-                      }
-                      name="event"
-                      value="closed"
-                      component={CNSelectFormField}
-                    />
-                    <Field
-                      display={
-                        <Flex justifyContent="flex-start">
-                          Open Category (Open to all universities including MMU)
-                        </Flex>
-                      }
-                      name="event"
-                      value="open"
-                      component={CNSelectFormField}
-                    />
-                  </VStack>
-
-                  <Field
-                    type="string"
-                    name="teamName"
-                    label="Team Name:"
-                    placeholder="Team Name"
-                    component={CNTextFormField}
-                  />
-
-                  <Field
-                    type="string"
-                    label="Hackerrank Username:"
-                    name="hackerrankUsername"
-                    placeholder=""
-                    component={CNTextFormField}
-                  />
-                </VStack>
-              </Form>
-            )}
-          </Formik>
-        </CNModal>
-      ) : (
-        <></>
-      )}
+      <CreateTeamModal
+        isOpen={teamModalIsOpen}
+        onClose={() => {
+          setTeamModalIsOpen(false);
+        }}
+      />
 
       <VStack h="100%" w="50%">
         <motion.div
