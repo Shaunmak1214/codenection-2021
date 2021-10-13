@@ -6,7 +6,7 @@ import { CloseIcon } from '@chakra-ui/icons';
 
 import { AnimatePresence, motion } from 'framer-motion';
 
-import { MutedButton, PrimaryButton, CNSpacer } from '../../atoms';
+import { MutedButton, PrimaryButton } from '../../atoms';
 
 interface Props {
   onClose?: () => void;
@@ -76,6 +76,7 @@ const CNModal = ({
               exit="exit"
               style={{
                 height: '100%',
+                maxHeight: '70%',
               }}
             >
               <Box
@@ -92,7 +93,6 @@ const CNModal = ({
                   icon={<CloseIcon w="12px" h="12px" />}
                 />
               </Box>
-              <CNSpacer size="sm" />
               {children}
 
               <Flex
