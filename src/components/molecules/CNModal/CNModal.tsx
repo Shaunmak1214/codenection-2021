@@ -3,10 +3,10 @@ import PropTypes from 'prop-types';
 import { Flex, Box } from '@chakra-ui/layout';
 import { IconButton } from '@chakra-ui/react';
 import { CloseIcon } from '@chakra-ui/icons';
-
+import { CNSpacer } from '../../atoms';
 import { AnimatePresence, motion } from 'framer-motion';
 
-import { MutedButton, PrimaryButton, CNSpacer } from '../../atoms';
+import { MutedButton, PrimaryButton } from '../../atoms';
 
 interface Props {
   onClose?: () => void;
@@ -76,6 +76,10 @@ const CNModal = ({
               initial="hidden"
               animate="visible"
               exit="exit"
+              style={{
+                height: '100%',
+                maxHeight: '70%',
+              }}
             >
               {!disableButton && (
                 <Box
@@ -95,6 +99,20 @@ const CNModal = ({
               )}
 
               <CNSpacer size="sm" />
+              <Box
+                d="flex"
+                position="absolute"
+                top="30px"
+                right="30px"
+                justifyContent="flex-end"
+                onClick={onClose}
+              >
+                <IconButton
+                  variant="ghost"
+                  aria-label="Close modal"
+                  icon={<CloseIcon w="12px" h="12px" />}
+                />
+              </Box>
               {children}
               {!disableButton && (
                 <Flex
