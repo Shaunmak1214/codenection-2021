@@ -13,6 +13,7 @@ import DashboardSection from './DashboardSection/DashboardSection';
 import RuleSection from './RuleSection';
 import FaqSection from './FaqSection';
 import ResetPasswordForm from './ResetPasswordForm/ResetPasswordForm';
+import CreateTeamModal from './CreateTeamModal/CreateTeamModal';
 
 export {
   CountDownSection,
@@ -28,4 +29,5 @@ export {
   RuleSection,
   FaqSection,
   ResetPasswordForm,
+  CreateTeamModal,
 };
