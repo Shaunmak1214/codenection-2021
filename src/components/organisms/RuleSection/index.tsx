@@ -1,7 +1,8 @@
 import React from 'react';
-import { Link } from '@chakra-ui/react';
-import { Box, Center, Container, Grid } from '@chakra-ui/layout';
+import { Text, Link } from '@chakra-ui/react';
+import { Box, Center, Container, Grid, HStack } from '@chakra-ui/layout';
 import { PrimaryText } from '../../atoms';
+import { RightArrow } from '../../../assets';
 
 import { RulesBlock } from '../../molecules';
 
@@ -61,12 +62,20 @@ const RuleSection = () => {
               eiusmod tempor incididunt ut labore et dolore magna aliqua."
           />
         </Grid>
-        <Box mt="40px" mx="50px" textAlign="right">
+        <HStack
+          spacing="10px"
+          mt="40px"
+          mx="50px"
+          justifyContent="flex-end"
+          textAlign="right"
+        >
           <Link color="#FFFFFF" href="#">
-            Read more
+            <Box d="flex" justifyContent="center" alignItems="center">
+              <Text mr={6}>Read more</Text>
+              <RightArrow />
+            </Box>
           </Link>
-          {/* <Image w="100%" src={rightArrow} alt="right arrow" /> */}
-        </Box>
+        </HStack>
       </Container>
     </Center>
   );
