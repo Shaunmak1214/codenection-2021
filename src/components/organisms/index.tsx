@@ -11,6 +11,7 @@ import LoginForm from './LoginForm/LoginForm';
 import CNHoverableAvatarGroup from './CNHoverableAvatarGroup/CNHoverableAvatarGroup';
 import DashboardSection from './DashboardSection/DashboardSection';
 import ResetPasswordForm from './ResetPasswordForm/ResetPasswordForm';
+import CreateTeamModal from './CreateTeamModal/CreateTeamModal';
 
 export {
   CountDownSection,
@@ -24,4 +25,5 @@ export {
   LoginForm,
   DashboardSection,
   ResetPasswordForm,
+  CreateTeamModal,
 };

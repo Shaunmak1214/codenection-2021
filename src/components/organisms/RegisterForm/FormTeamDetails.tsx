@@ -13,6 +13,7 @@ import {
   JoinTeamButton,
 } from '../../atoms';
 import { CNModal, JoinTeamTextField } from '../../molecules';
+import { CreateTeamModal } from '../../organisms';
 
 import { EmailLoader } from '../../../constants';
 import store from '../../../store';
@@ -22,6 +23,7 @@ const FormTeamDetails = () => {
   const authStore: authTypes = store.getState().auth;
   const toast = useToast();
   const [verified, setVerified] = useState(false);
+  const [teamModalIsOpen, setTeamModalIsOpen] = useState(false);
   const { isOpen } = useCNModal({
     initialState: true,
   });
@@ -247,6 +249,13 @@ const FormTeamDetails = () => {
         <></>
       )}
 
+      <CreateTeamModal
+        isOpen={teamModalIsOpen}
+        onClose={() => {
+          setTeamModalIsOpen(false);
+        }}
+      />
+
       <VStack h="100%" w="50%">
         <motion.div
           initial={{ opacity: 0, x: 75 }}
@@ -333,6 +342,9 @@ const FormTeamDetails = () => {
                       border="none"
                       bgColor="#50C0D9"
                       _hover={{ bg: '#147186' }}
+                      onClick={() => {
+                        setTeamModalIsOpen(true);
+                      }}
                     >
                       Create Team
                     </JoinTeamButton>
