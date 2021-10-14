@@ -74,7 +74,9 @@ const FaqBlock = () => {
                           <AddIcon w={2} h={2} />
                         )}
                       </AccordionButton>
-                      <AccordionPanel pb="4">{data.ans}</AccordionPanel>
+                      <AccordionPanel pb="4" color="#5A5A5A">
+                        {data.ans}
+                      </AccordionPanel>
                     </>
                   )}
                 </AccordionItem>
