@@ -1,13 +1,16 @@
 import React from 'react';
 import { Center, Container, SimpleGrid } from '@chakra-ui/layout';
 import { DashboardCard, JoinTeamTextField, CNModal } from '../../molecules';
+import { Box } from '@chakra-ui/react';
 import {
   ResumeImg,
   ProfileImg,
   JoinTeamImg,
   CreateTeamImg,
+  // FolderOpen,
+  // FolderClose,
 } from '../../../assets';
-import { PrimaryButton, JoinTeamButton } from '../../atoms';
+import { PrimaryButton, JoinTeamButton, SecondaryText } from '../../atoms';
 import { Formik, Form } from 'formik';
 import { useCNModal } from '../../../hooks';
 import { FilePond, registerPlugin } from 'react-filepond';
@@ -40,15 +43,25 @@ const DashboardSection = () => {
         modalIsOpen={resumeOpen}
         successText="Upload"
       >
+        <Box py="25px">
+          <SecondaryText fontSize="3xl" fontWeight="bold">
+            Upload your resume
+          </SecondaryText>
+          <SecondaryText fontSize="sm" opacity=".7">
+            FIle should be in pdf & less than 10 MB
+          </SecondaryText>
+        </Box>
         <FilePond
           style={{ width: '300px', height: '300px' }}
           acceptedFileTypes={['application/pdf']}
           //@ts-ignore
           onupdatefiles={setFiles}
+          maxFileSize="10MB"
+          maxFiles={1}
           files={files}
           allowReorder={true}
           allowMultiple={true}
-          labelIdle='Drag & Drop your files or <span class="filepond--label-action">Browse</span>'
+          labelIdle='<div class="folder-image"></div><div class="drop-area-label"><h2 class="drop-area-text">Drag & Drop your files</h2> <h2 class="or-label"> <span>OR</span></h2><a class="filepond--label-action">Browse</a></div>'
         />
       </CNModal>
       <Center h="100%" py="150px">

@@ -33,6 +33,8 @@ import ProfileImg from './svgs/ProfileImg.svg';
 import JoinTeamImg from './svgs/JoinTeamImg.svg';
 import ArrowForwardIcon from './svgs/ArrowForwardIcon.svg';
 import { ReactComponent as HelpIcon } from './svgs/HelpIcon.svg';
+import FolderOpen from './svgs/FolderOpen.svg';
+import FolderClose from './svgs/FolderClose.svg';
 
 export {
   CNLanding,
@@ -67,4 +69,6 @@ export {
   JoinTeamImg,
   ArrowForwardIcon,
   HelpIcon,
+  FolderClose,
+  FolderOpen,
 };
