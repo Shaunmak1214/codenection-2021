@@ -3,6 +3,7 @@ import { Text, Link } from '@chakra-ui/react';
 import { Box, Center, Container, Grid, HStack } from '@chakra-ui/layout';
 import { PrimaryText } from '../../atoms';
 import { RightArrow } from '../../../assets';
+import { RulesData } from '../../../data/RulesData';
 
 import { RulesBlock } from '../../molecules';
 
@@ -31,36 +32,15 @@ const RuleSection = () => {
           fontSize="lg"
           mx="50px"
         >
-          <RulesBlock
-            ruleTitle="Number of team member"
-            ruleDesc="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua."
-          />
-          <RulesBlock
-            ruleTitle="Number of team member"
-            ruleDesc="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua."
-          />
-          <RulesBlock
-            ruleTitle="Number of team member"
-            ruleDesc="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua."
-          />
-          <RulesBlock
-            ruleTitle="Number of team member"
-            ruleDesc="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua."
-          />
-          <RulesBlock
-            ruleTitle="Number of team member"
-            ruleDesc="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua."
-          />
-          <RulesBlock
-            ruleTitle="Number of team member"
-            ruleDesc="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua."
-          />
+          {RulesData.map((data) => {
+            return (
+              <RulesBlock
+                key={data.idx}
+                ruleTitle={data.title}
+                ruleDesc={data.desc}
+              />
+            );
+          })}
         </Grid>
         <HStack
           spacing="10px"
