@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Center, Container, SimpleGrid } from '@chakra-ui/layout';
 import { DashboardCard, JoinTeamTextField, CNModal } from '../../molecules';
 import {
@@ -8,6 +8,7 @@ import {
   CreateTeamImg,
 } from '../../../assets';
 import { PrimaryButton, JoinTeamButton } from '../../atoms';
+import { CreateTeamModal } from '../../organisms';
 import { Formik, Form } from 'formik';
 import { useCNModal } from '../../../hooks';
 import { FilePond, registerPlugin } from 'react-filepond';
@@ -17,6 +18,8 @@ import FilePondPluginFileValidateType from 'filepond-plugin-file-validate-type';
 
 import 'filepond/dist/filepond.min.css';
 const DashboardSection = () => {
+  const [teamModalIsOpen, setTeamModalIsOpen] = useState(false);
+
   registerPlugin(
     FilePondPluginImageExifOrientation,
     FilePondPluginImagePreview,
@@ -35,6 +38,12 @@ const DashboardSection = () => {
 
   return (
     <>
+      <CreateTeamModal
+        isOpen={teamModalIsOpen}
+        onClose={() => {
+          setTeamModalIsOpen(false);
+        }}
+      />
       <CNModal
         onClose={handleResumeClose}
         modalIsOpen={resumeOpen}
@@ -92,7 +101,14 @@ const DashboardSection = () => {
               marginLeft="-85px"
             >
               {' '}
-              <JoinTeamButton w="80%">Create Team</JoinTeamButton>
+              <JoinTeamButton
+                w="80%"
+                onClick={() => {
+                  setTeamModalIsOpen(true);
+                }}
+              >
+                Create Team
+              </JoinTeamButton>
             </DashboardCard>
             <DashboardCard
               title="Upload your Resume"

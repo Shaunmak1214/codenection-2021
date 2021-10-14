@@ -14,9 +14,9 @@ import {
   JoinTeamButton,
 } from '../../atoms';
 import { CNModal, JoinTeamTextField } from '../../molecules';
+import { CreateTeamModal } from '../../organisms';
 
 import useAxios from '../../../hooks/useAxios';
-
 import { EmailLoader } from '../../../constants';
 import store from '../../../store';
 import authTypes from '../../../types/auth.types';
@@ -25,6 +25,7 @@ const FormTeamDetails = () => {
   const authStore: authTypes = store.getState().auth;
   const toast = useToast();
   const [verified, setVerified] = useState(false);
+  const [teamModalIsOpen, setTeamModalIsOpen] = useState(false);
 
   // eslint-disable-next-line
   const { loading: verifyLoading, fetch: verify } = useAxios(
@@ -181,60 +182,6 @@ const FormTeamDetails = () => {
             <InputField ref={forthNum} inputId="fourth" />
             <InputField ref={fifthNum} inputId="fifth" />
             <InputField ref={sixthNum} inputId="sixth" />
-            {/* <Input
-              textAlign="center"
-              p="0px 6px !important"
-              w="45px"
-              type="text"
-              id="first"
-              ref={firstNum}
-              boxShadow="0px 5px 6px rgba(185, 185, 185, 0.25);"
-            />
-            <Input
-              textAlign="center"
-              p="0px 6px !important"
-              w="45px"
-              type="text"
-              id="second"
-              ref={SecNum}
-              boxShadow="0px 5px 6px rgba(185, 185, 185, 0.25);"
-            />
-            <Input
-              textAlign="center"
-              p="0px 6px !important"
-              w="45px"
-              type="text"
-              id="third"
-              ref={thirdNum}
-              boxShadow="0px 5px 6px rgba(185, 185, 185, 0.25);"
-            />
-            <Input
-              textAlign="center"
-              p="0px 6px !important"
-              w="45px"
-              type="text"
-              id="fourth"
-              ref={forthNum}
-              boxShadow="0px 5px 6px rgba(185, 185, 185, 0.25);"
-            />
-            <Input
-              textAlign="center"
-              p="0px 6px !important"
-              w="45px"
-              type="text"
-              id="fifth"
-              ref={fifthNum}
-              boxShadow="0px 5px 6px rgba(185, 185, 185, 0.25);"
-            />
-            <Input
-              textAlign="center"
-              p="0px 6px !important"
-              w="45px"
-              type="text"
-              id="sixth"
-              ref={sixthNum}
-              boxShadow="0px 5px 6px rgba(185, 185, 185, 0.25);"
-            /> */}
           </SimpleGrid>
 
           <PrimaryButton
@@ -253,6 +200,13 @@ const FormTeamDetails = () => {
       ) : (
         <></>
       )}
+
+      <CreateTeamModal
+        isOpen={teamModalIsOpen}
+        onClose={() => {
+          setTeamModalIsOpen(false);
+        }}
+      />
 
       <VStack h="100%" w="50%">
         <motion.div
@@ -340,6 +294,9 @@ const FormTeamDetails = () => {
                       border="none"
                       bgColor="#50C0D9"
                       _hover={{ bg: '#147186' }}
+                      onClick={() => {
+                        setTeamModalIsOpen(true);
+                      }}
                     >
                       Create Team
                     </JoinTeamButton>

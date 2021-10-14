@@ -10,7 +10,6 @@ interface Props {
   form: any;
   children: any;
   field: any;
-
   display: string;
 }
 
