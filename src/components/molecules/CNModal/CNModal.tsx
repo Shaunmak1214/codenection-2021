@@ -10,11 +10,12 @@ import { MutedButton, PrimaryButton, CNSpacer } from '../../atoms';
 
 interface Props {
   onClose?: () => void;
-  modalIsOpen?: boolean;
+  modalIsOpen: boolean;
   children?: any;
   blur?: boolean;
   mutedText?: string;
   successText?: string;
+  disableButton?: boolean;
 }
 const modalAnimation = {
   hidden: {
@@ -49,6 +50,7 @@ const CNModal = ({
   blur = false,
   onClose,
   modalIsOpen,
+  disableButton = false,
   ...props
 }: Props) => {
   const children: React.ReactNode = props.children;
@@ -75,38 +77,42 @@ const CNModal = ({
               animate="visible"
               exit="exit"
             >
-              <Box
-                d="flex"
-                position="absolute"
-                top="30px"
-                right="30px"
-                justifyContent="flex-end"
-                onClick={onClose}
-              >
-                <IconButton
-                  variant="ghost"
-                  aria-label="Close modal"
-                  icon={<CloseIcon w="12px" h="12px" />}
-                />
-              </Box>
+              {!disableButton && (
+                <Box
+                  d="flex"
+                  position="absolute"
+                  top="30px"
+                  right="30px"
+                  justifyContent="flex-end"
+                  onClick={onClose}
+                >
+                  <IconButton
+                    variant="ghost"
+                    aria-label="Close modal"
+                    icon={<CloseIcon w="12px" h="12px" />}
+                  />
+                </Box>
+              )}
+
               <CNSpacer size="sm" />
               {children}
-
-              <Flex
-                flexDir={['column', 'column', 'row']}
-                justifyContent="space-between"
-                w="60%"
-                pt="15px"
-              >
-                <MutedButton onClick={onClose}>{mutedText}</MutedButton>
-                <PrimaryButton
-                  border="none"
-                  borderRadius="5px"
-                  _hover={{ border: 'none', bg: '#000000' }}
+              {!disableButton && (
+                <Flex
+                  flexDir={['column', 'column', 'row']}
+                  justifyContent="space-between"
+                  w="60%"
+                  pt="15px"
                 >
-                  {successText}
-                </PrimaryButton>
-              </Flex>
+                  <MutedButton onClick={onClose}>{mutedText}</MutedButton>
+                  <PrimaryButton
+                    border="none"
+                    borderRadius="5px"
+                    _hover={{ border: 'none', bg: '#000000' }}
+                  >
+                    {successText}
+                  </PrimaryButton>
+                </Flex>
+              )}
             </motion.div>
           </>
         )}
@@ -122,6 +128,7 @@ CNModal.propTypes = {
   blur: PropTypes.bool,
   mutedText: PropTypes.string,
   successText: PropTypes.string,
+  disableButton: PropTypes.bool,
 };
 
 export default CNModal;
