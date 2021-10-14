@@ -1,6 +1,8 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
+import { LOGIN } from '../../../reducers/authSlice';
 import { VStack, Container, Box, HStack } from '@chakra-ui/layout';
-import { Text, Link, Image } from '@chakra-ui/react';
+import { Text, Link, Image, useToast } from '@chakra-ui/react';
 import { Formik, Form, Field } from 'formik';
 import { CNTextFormField, PrimaryButton, SecondaryText } from '../../atoms';
 import { BoxIcons } from '../../molecules';
@@ -12,24 +14,62 @@ import {
 } from '../../../assets';
 import * as yup from 'yup';
 import { motion } from 'framer-motion';
+import useAxios from '../../../hooks/useAxios';
 interface MyFormValues {
   email: string;
   password: string;
 }
 const LoginForm = () => {
+  const dispatch = useDispatch();
+  const toast = useToast();
+
+  const { loading, fetch } = useAxios(
+    {
+      url: '/auth/login',
+      method: 'post',
+    },
+    (err, data) => {
+      if (err) {
+        console.log(err);
+        toast({
+          title: 'Login failed',
+          description: '',
+          status: 'error',
+          position: 'top-right',
+          duration: 90000,
+          isClosable: true,
+        });
+      } else {
+        console.log(data);
+        dispatch(
+          LOGIN({
+            // @ts-ignore
+            user: data.data.user,
+            // @ts-ignore
+            accessToken: data.data.token,
+            refreshToken: '',
+          }),
+        );
+
+        window.location.href = '/dashboard';
+      }
+    },
+  );
+
   const schema = yup.object({
     email: yup.string().min(3).max(60).required('Email is a required field'),
-
     password: yup
       .string()
       .min(3)
       .max(60)
       .required('Password is a required field'),
   });
+
   const initialValues: MyFormValues = {
     email: '',
     password: '',
   };
+
   return (
     <VStack h="100%" w="50%">
       <motion.div
@@ -68,7 +108,7 @@ const LoginForm = () => {
               validationSchema={schema}
               initialValues={initialValues}
               onSubmit={(data) => {
-                console.log(data);
+                fetch(data);
               }}
             >
               {() => (
@@ -103,6 +143,7 @@ const LoginForm = () => {
                     borderRadius="8px"
                     w="100%"
                     _hover={{ bg: '#000000' }}
+                    isLoading={loading ? true : false}
                     type="submit"
                   >
                     Login
