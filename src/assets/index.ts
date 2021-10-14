@@ -33,6 +33,7 @@ import ProfileImg from './svgs/ProfileImg.svg';
 import JoinTeamImg from './svgs/JoinTeamImg.svg';
 import ArrowForwardIcon from './svgs/ArrowForwardIcon.svg';
 import { ReactComponent as HelpIcon } from './svgs/HelpIcon.svg';
+import { ReactComponent as RightArrow } from './svgs/RightArrow.svg';
 
 export {
   CNLanding,
@@ -67,4 +68,5 @@ export {
   JoinTeamImg,
   ArrowForwardIcon,
   HelpIcon,
+  RightArrow,
 };

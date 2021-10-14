@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { Button, Text } from '@chakra-ui/react';
 
@@ -100,39 +100,19 @@ const HeaderButton = React.forwardRef((props: any, ref: any) => (
 
 const FaqButton = ({ ...props }) => {
   const children: React.ReactNode = props.children;
-  let txtRef = useRef(null);
-  const { selected, value } = props;
-  //const [sl, setSl] = useState('All');
-  console.log({ value, selected });
+  const { selected } = props;
   return (
     <Button
       borderRadius="3xl"
       px={12}
       variant="outlined"
-      //color={selected ? '#ffffff' : '#002A97'}
       border="1px solid #002A97"
-      //bg="#ffffff"
       bg={selected ? '#002A97' : 'none'}
-      onMouseOver={() => {
-        if (selected) return;
-        // @ts-ignore
-        txtRef.current.style.color = '#ffffff';
-      }}
-      onMouseLeave={() => {
-        if (selected) return;
-        // @ts-ignore
-        txtRef.current.style.color = '#002A97';
-      }}
-      //_hover={{ bg: '#002A97', color: '#ffffff' }}
+      color={selected ? '#FFFFFF' : '#002A97'}
+      _hover={{ bg: '#002A97', color: '#FFFFFF' }}
       {...props}
     >
-      <Text
-        ref={txtRef}
-        color={selected ? 'white' : '#002A97'}
-        fontFamily="Raleway"
-      >
-        {children}
-      </Text>
+      <Text fontFamily="Raleway">{children}</Text>
     </Button>
   );
 };
@@ -183,7 +163,6 @@ GradientButton.propTypes = {
 FaqButton.propTypes = {
   children: PropTypes.node.isRequired,
   selected: PropTypes.string,
-  value: PropTypes.string,
 };
 
 export {
