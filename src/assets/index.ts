@@ -33,6 +33,7 @@ import ProfileImg from './svgs/ProfileImg.svg';
 import JoinTeamImg from './svgs/JoinTeamImg.svg';
 import ArrowForwardIcon from './svgs/ArrowForwardIcon.svg';
 import { ReactComponent as HelpIcon } from './svgs/HelpIcon.svg';
+import { ReactComponent as RightArrow } from './svgs/RightArrow.svg';
 import FolderOpen from './svgs/FolderOpen.svg';
 import FolderClose from './svgs/FolderClose.svg';
 
@@ -69,6 +70,7 @@ export {
   JoinTeamImg,
   ArrowForwardIcon,
   HelpIcon,
+  RightArrow,
   FolderClose,
   FolderOpen,
 };

@@ -2,7 +2,7 @@ import React from 'react';
 import { Box, Center, Container } from '@chakra-ui/layout';
 
 import { SecondaryText } from '../../atoms';
-import FaqBlock from '../../molecules/FaqBlock';
+import { FaqBlock } from '../../molecules';
 
 const FaqSection = () => {
   return (

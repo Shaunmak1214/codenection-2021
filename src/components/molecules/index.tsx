@@ -7,6 +7,7 @@ import JoinTeamTextField from './JoinTeamTextField/JoinTeamTextField';
 import CNModal from './CNModal/CNModal';
 import BoxIcons from './BoxIcons/BoxIcons';
 import RulesBlock from './RulesBlock';
+import FaqBlock from './FaqBlock';
 export {
   CountDownBlock,
   SponsorsBlock,
@@ -17,4 +18,5 @@ export {
   CNModal,
   BoxIcons,
   RulesBlock,
+  FaqBlock,
 };

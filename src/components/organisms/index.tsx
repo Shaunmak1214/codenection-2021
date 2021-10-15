@@ -10,6 +10,8 @@ import {
 import LoginForm from './LoginForm/LoginForm';
 import CNHoverableAvatarGroup from './CNHoverableAvatarGroup/CNHoverableAvatarGroup';
 import DashboardSection from './DashboardSection/DashboardSection';
+import RuleSection from './RuleSection';
+import FaqSection from './FaqSection';
 import ResetPasswordForm from './ResetPasswordForm/ResetPasswordForm';
 import CreateTeamModal from './CreateTeamModal/CreateTeamModal';
 
@@ -24,6 +26,8 @@ export {
   CNHoverableAvatarGroup,
   LoginForm,
   DashboardSection,
+  RuleSection,
+  FaqSection,
   ResetPasswordForm,
   CreateTeamModal,
 };
