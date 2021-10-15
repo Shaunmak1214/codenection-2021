@@ -19,7 +19,6 @@ import {
 } from './Buttons/Buttons';
 import { BadgeImg, SponsorImg } from './SponsorAtom/SponsorAtom';
 import CircleStep from './CircleStep/CircleStep';
-import { InputField } from './InputField/InputField';
 
 export {
   PrimaryButton,
@@ -42,5 +41,4 @@ export {
   CNHoverModal,
   CNDatePicker,
   MutedButton,
-  InputField,
 };
