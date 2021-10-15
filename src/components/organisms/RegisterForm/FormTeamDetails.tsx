@@ -3,30 +3,30 @@ import { motion } from 'framer-motion';
 import { Formik, Form } from 'formik';
 import Lottie from 'react-lottie';
 
-import { Text, Spinner, useToast } from '@chakra-ui/react';
+import { Text, Spinner, useToast, Input } from '@chakra-ui/react';
 import { VStack, Container, HStack, Box, SimpleGrid } from '@chakra-ui/layout';
 
 import {
   SecondaryText,
   PrimaryButton,
   GradientButton,
-  InputField,
   JoinTeamButton,
 } from '../../atoms';
 import { CNModal, JoinTeamTextField } from '../../molecules';
 import { CreateTeamModal } from '../../organisms';
 
-import useAxios from '../../../hooks/useAxios';
 import { EmailLoader } from '../../../constants';
 import store from '../../../store';
 import authTypes from '../../../types/auth.types';
-
+import { useCNModal, useAxios } from '../../../hooks';
 const FormTeamDetails = () => {
   const authStore: authTypes = store.getState().auth;
   const toast = useToast();
   const [verified, setVerified] = useState(false);
   const [teamModalIsOpen, setTeamModalIsOpen] = useState(false);
-
+  const { isOpen } = useCNModal({
+    initialState: true,
+  });
   // eslint-disable-next-line
   const { loading: verifyLoading, fetch: verify } = useAxios(
     {
@@ -145,7 +145,7 @@ const FormTeamDetails = () => {
   return (
     <>
       {!verified ? (
-        <CNModal blur>
+        <CNModal blur disableButton modalIsOpen={isOpen}>
           <Lottie
             options={EmailLoader}
             height={125}
@@ -176,12 +176,60 @@ const FormTeamDetails = () => {
             justifyContent="center"
             className="flex justify-center"
           >
-            <InputField ref={firstNum} inputId="first" />
-            <InputField ref={SecNum} inputId="second" />
-            <InputField ref={thirdNum} inputId="third" />
-            <InputField ref={forthNum} inputId="fourth" />
-            <InputField ref={fifthNum} inputId="fifth" />
-            <InputField ref={sixthNum} inputId="sixth" />
+            <Input
+              textAlign="center"
+              p="0px 6px !important"
+              w="45px"
+              type="text"
+              id="first"
+              ref={firstNum}
+              boxShadow="0px 5px 6px rgba(185, 185, 185, 0.25);"
+            />
+            <Input
+              textAlign="center"
+              p="0px 6px !important"
+              w="45px"
+              type="text"
+              id="second"
+              ref={SecNum}
+              boxShadow="0px 5px 6px rgba(185, 185, 185, 0.25);"
+            />
+            <Input
+              textAlign="center"
+              p="0px 6px !important"
+              w="45px"
+              type="text"
+              id="third"
+              ref={thirdNum}
+              boxShadow="0px 5px 6px rgba(185, 185, 185, 0.25);"
+            />
+            <Input
+              textAlign="center"
+              p="0px 6px !important"
+              w="45px"
+              type="text"
+              id="fourth"
+              ref={forthNum}
+              boxShadow="0px 5px 6px rgba(185, 185, 185, 0.25);"
+            />
+            <Input
+              textAlign="center"
+              p="0px 6px !important"
+              w="45px"
+              type="text"
+              id="fifth"
+              ref={fifthNum}
+              boxShadow="0px 5px 6px rgba(185, 185, 185, 0.25);"
+            />
+            <Input
+              textAlign="center"
+              p="0px 6px !important"
+              w="45px"
+              type="text"
+              id="sixth"
+              ref={sixthNum}
+              boxShadow="0px 5px 6px rgba(185, 185, 185, 0.25);"
+            />
           </SimpleGrid>
 
           <PrimaryButton
