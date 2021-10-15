@@ -44,8 +44,65 @@
 .filepond--drop-label {
   height: 300px;
   cursor: pointer;
-  border: 1px dotted #000000;
-  background-color: white;
+  border: 2px dashed #aacaff;
+  background-color: #fbfbff;
+  border-radius: 20px;
+}
+
+.filepond--panel-root {
+  background-color: #ffffff;
+}
+
+.filepond--label-action {
+  background: #4453f9;
+  color: #ffffff;
+  padding: 10px;
+  width: 125px;
+  margin-top: 10px;
+  border-radius: 10px;
+  text-decoration: none;
+  transition: 0s background-color;
+}
+
+.filepond--label-action:hover {
+  transition-delay: 0.05s;
+  background-color: #3041fc;
+}
+
+.drop-area-label {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  cursor: pointer;
+}
+
+.folder-image {
+  height: 75px;
+  background-position: center;
+  background-image: url(./assets/svgs/FolderOpen.svg);
+  background-repeat: no-repeat;
+  margin-bottom: 20px;
+  cursor: pointer;
+}
+
+.drop-area-text {
+  font-weight: 500;
+}
+
+.or-label {
+  width: 80%;
+  text-align: center;
+  border-bottom: 1px solid #b8c6da;
+  line-height: 0.1em;
+  margin: 10px 0 20px;
+  color: #b8c6da;
+  padding-top: 18px;
+}
+
+.or-label > span {
+  background: #fbfbff;
+  padding: 0 10px;
 }
 
 .CNModal {
