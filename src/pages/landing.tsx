@@ -1,13 +1,17 @@
 import React from 'react';
 import { Container, HStack, Box } from '@chakra-ui/layout';
-import { PrimaryButton } from '../components/atoms/';
 import { Image, Heading } from '@chakra-ui/react';
+
+import { PrimaryButton, PrimaryText, CNSpacer } from '../components/atoms';
+import {
+  FaqSection,
+  RuleSection,
+  SponsorSection,
+  CountDownSection,
+  AboutSection,
+} from '../components/organisms';
+
 import { CNLanding } from '../assets';
-import { CountDownSection, SponsorSection } from '../components/organisms';
-import { CNSpacer } from '../components/atoms';
-import { PrimaryText } from '../components/atoms';
-import RuleSection from '../components/organisms/RuleSection';
-import { FaqSection } from '../components/organisms';
 
 const Landing: React.FC = () => {
   const LandingImgRenderer = () => {
@@ -47,7 +51,8 @@ const Landing: React.FC = () => {
         <LandingImgRenderer />
       </HStack>
       <CountDownSection />
-      <Box w="100%" h="1000px"></Box>
+      <Box w="100%" h="300px"></Box>
+      <AboutSection />
       <RuleSection />
       <FaqSection />
       <SponsorSection />

@@ -12,6 +12,7 @@ import CNHoverableAvatarGroup from './CNHoverableAvatarGroup/CNHoverableAvatarGr
 import DashboardSection from './DashboardSection/DashboardSection';
 import RuleSection from './RuleSection';
 import FaqSection from './FaqSection';
+import AboutSection from './AboutSection/AboutSection';
 import ResetPasswordForm from './ResetPasswordForm/ResetPasswordForm';
 import CreateTeamModal from './CreateTeamModal/CreateTeamModal';
 
@@ -26,6 +27,7 @@ export {
   CNHoverableAvatarGroup,
   LoginForm,
   DashboardSection,
+  AboutSection,
   RuleSection,
   FaqSection,
   ResetPasswordForm,
