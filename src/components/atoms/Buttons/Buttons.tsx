@@ -121,8 +121,8 @@ const MutedButton = ({ ...props }) => {
   const children: React.ReactNode = props.children;
   return (
     <Button
-      bg="#C4C4C4"
-      _hover={{ bg: '#000000', color: '#FFFFFF' }}
+      bg="#F5F5F5"
+      _hover={{ bg: '#C4C4C4', color: '#000000' }}
       borderRadius="5px"
       px="10"
       py="20px"

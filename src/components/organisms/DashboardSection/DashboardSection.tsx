@@ -7,8 +7,6 @@ import {
   ProfileImg,
   JoinTeamImg,
   CreateTeamImg,
-  // FolderOpen,
-  // FolderClose,
 } from '../../../assets';
 import { PrimaryButton, JoinTeamButton, SecondaryText } from '../../atoms';
 
@@ -52,6 +50,7 @@ const DashboardSection = () => {
         onClose={handleResumeClose}
         modalIsOpen={resumeOpen}
         successText="Upload"
+        CTAIsCenter={true}
       >
         <Box py="25px">
           <SecondaryText fontSize="3xl" fontWeight="bold">
