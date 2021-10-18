@@ -2,11 +2,10 @@ import React from 'react';
 
 import { BrowserRouter as Router, Switch } from 'react-router-dom';
 import * as Screens from './pages';
-import { CNRoutes } from './hoc';
+import CNRoutes from './hoc/CNRoutes';
 function App() {
   return (
     <Router forceRefresh={true}>
-      {/* <Header /> */}
       <Switch>
         <CNRoutes header exact path="/" component={Screens.Landing} />
         <CNRoutes
@@ -22,12 +21,21 @@ function App() {
           path="/dashboard"
           header
           component={Screens.Dashboard}
+          isProtected
         />
         <CNRoutes
           exact
           path="/reset-password"
           component={Screens.ResetPassword}
         />
+        <CNRoutes
+          exact
+          header
+          path="/edit-profile"
+          component={Screens.Profile}
+        />
+
+        <CNRoutes exact header path="*" component={Screens.Landing} />
       </Switch>
     </Router>
   );

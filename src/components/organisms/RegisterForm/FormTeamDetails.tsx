@@ -332,7 +332,7 @@ const FormTeamDetails = () => {
                       }}
                     >
                       <Box w="25%" h="1px" bgColor="#8C8C8C" />
-
+                      <Text>OR</Text>
                       <Box w="25%" h="1px" bgColor="#8C8C8C" />
                     </HStack>
 
