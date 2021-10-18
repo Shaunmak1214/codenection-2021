@@ -20,6 +20,7 @@ interface Props {
 const modalAnimation = {
   hidden: {
     x: '-50%',
+    y: '-50%',
     scale: 0.8,
     opacity: 0,
     transition: {
@@ -28,6 +29,8 @@ const modalAnimation = {
   },
 
   visible: {
+    x: '-50%',
+    y: '-50%',
     scale: 1,
     opacity: 1,
     transition: {
@@ -36,6 +39,8 @@ const modalAnimation = {
   },
 
   exit: {
+    x: '-50%',
+    y: '-50%',
     scale: 0,
     opacity: 0,
     transition: {
