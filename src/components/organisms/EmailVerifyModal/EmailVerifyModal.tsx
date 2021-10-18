@@ -133,7 +133,6 @@ const EmailVerifyModal = ({
   };
 
   function OTPInput() {
-    console.log('qwe');
     const inputs = document.querySelectorAll('#otp > *[id]');
     for (let i = 0; i < inputs.length; i++) {
       inputs[i].addEventListener('keyup', function (event) {

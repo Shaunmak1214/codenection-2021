@@ -1,6 +1,10 @@
 import React, { useEffect, useState } from 'react';
+import * as yup from 'yup';
+
+import { useToast } from '@chakra-ui/react';
 import { Center, Container, SimpleGrid } from '@chakra-ui/layout';
 import { Box } from '@chakra-ui/react';
+
 import { FilePond, registerPlugin } from 'react-filepond';
 import FilePondPluginImageExifOrientation from 'filepond-plugin-image-exif-orientation';
 import FilePondPluginImagePreview from 'filepond-plugin-image-preview';
@@ -11,9 +15,12 @@ import { CreateTeamModal, EmailVerifyModal } from '../../organisms';
 import { DashboardCard, JoinTeamTextField, CNModal } from '../../molecules';
 import { Formik, Form, Field } from 'formik';
 
+import { useDispatch } from 'react-redux';
+import { UPDATE } from '../../../reducers/authSlice';
+
 import store from '../../../store';
 import authTypes from '../../../types/auth.types';
-import { useCNModal } from '../../../hooks';
+import { useCNModal, useAxios } from '../../../hooks';
 import {
   ResumeImg,
   ProfileImg,
@@ -24,7 +31,9 @@ import {
 import 'filepond/dist/filepond.min.css';
 
 const DashboardSection = () => {
+  const toast = useToast();
   const authStore: authTypes = store.getState().auth;
+  const dispatch = useDispatch();
   const [teamModalIsOpen, setTeamModalIsOpen] = useState(false);
 
   registerPlugin(
@@ -50,6 +59,60 @@ const DashboardSection = () => {
   } = useCNModal({
     initialState: false,
   });
+
+  const joinTeamSchema = yup.object({
+    teamCode: yup
+      .string()
+      .min(6, 'Team code must be at least 6 characters')
+      .max(6, 'Team code must be at least 6 characters')
+      .required('Team code is required'),
+  });
+
+  // eslint-disable-next-line
+  const { loading: joinTeamLoading, fetch: joinTeam } = useAxios(
+    {
+      url: '/team/join',
+      method: 'POST',
+      headers: {
+        Authorization: `Bearer ${authStore.accessToken}`,
+      },
+    },
+    // eslint-disable-next-line
+    (err, data) => {
+      if (err) {
+        console.log(err);
+        toast({
+          title: 'Failed to join team',
+          // @ts-ignore
+          description: err.data.message,
+          status: 'error',
+          position: 'top-right',
+          duration: 10000,
+          isClosable: true,
+        });
+      } else {
+        toast({
+          title: 'Join Team Success',
+          // @ts-ignore
+          description: 'You have successfully joined the team',
+          status: 'success',
+          position: 'top-right',
+          duration: 10000,
+          isClosable: true,
+        });
+        dispatch(
+          UPDATE({
+            ...authStore.user,
+            // @ts-ignore
+            team_id: data.data.team_id,
+          }),
+        );
+        setTimeout(() => {
+          window.location.href = '/dashboard';
+        }, 3000);
+      }
+    },
+  );
 
   useEffect(() => {
     // @ts-ignore
@@ -119,16 +182,20 @@ const DashboardSection = () => {
               bgColor="#D9F1F6"
             >
               <Formik
-                // validationSchema={schema}
+                validationSchema={joinTeamSchema}
                 initialValues={{
                   teamCode: '',
                 }}
                 onSubmit={(data) => {
-                  console.log(data);
+                  joinTeam({
+                    code: data.teamCode,
+                    // @ts-ignore
+                    user_id: authStore.user.id,
+                  });
                 }}
               >
-                {() => (
-                  <Form style={{ width: '80%', marginTop: '-10px' }}>
+                {(props) => (
+                  <Form style={{ width: '90%' }}>
                     <Field
                       name="teamCode"
                       label=""
@@ -138,6 +205,11 @@ const DashboardSection = () => {
                       w="100%"
                       borderRadius="20px"
                       py="28px"
+                      isLoading={joinTeamLoading}
+                      onSubmit={() => {
+                        // eslint-disable-next-line
+                        props.submitForm();
+                      }}
                       component={JoinTeamTextField}
                     />
                   </Form>

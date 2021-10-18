@@ -14,8 +14,11 @@ interface Props {
   mutedText?: string;
   successText?: string;
   disableButton?: boolean;
+  disableCloseButton?: boolean;
   maxHeight?: string;
   CTAIsCenter?: boolean;
+  onPrimaryClick?: () => void;
+  primaryButtonFormId?: string;
 }
 const modalAnimation = {
   hidden: {
@@ -41,11 +44,11 @@ const modalAnimation = {
   exit: {
     x: '-50%',
     y: '-50%',
-    scale: 0,
+    scale: 0.8,
     opacity: 0,
     transition: {
-      delay: 0.5,
-      duration: 0.5,
+      delay: 0.15,
+      duration: 0.15,
     },
   },
 };
@@ -56,12 +59,19 @@ const CNModal = ({
   onClose,
   modalIsOpen,
   disableButton = false,
+  disableCloseButton = disableButton,
   CTAIsCenter = false,
+  onPrimaryClick,
   ...props
 }: Props) => {
   const children: React.ReactNode = props.children;
 
-  if (!modalIsOpen) return null;
+  const handlePrimaryClick = () => {
+    if (onPrimaryClick) {
+      onPrimaryClick();
+    }
+  };
+
   return (
     <>
       <AnimatePresence exitBeforeEnter={true}>
@@ -87,7 +97,7 @@ const CNModal = ({
               }}
               {...props}
             >
-              {!disableButton && (
+              {!disableCloseButton && (
                 <Box
                   d="flex"
                   position="absolute"
@@ -120,6 +130,9 @@ const CNModal = ({
                     border="none"
                     borderRadius="5px"
                     _hover={{ border: 'none', bg: '#000000' }}
+                    onClick={() => {
+                      handlePrimaryClick();
+                    }}
                   >
                     {successText}
                   </PrimaryButton>

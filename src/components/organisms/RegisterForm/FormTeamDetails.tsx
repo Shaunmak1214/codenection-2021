@@ -22,7 +22,6 @@ import { TickIcon } from '../../../assets';
 const FormTeamDetails = () => {
   const authStore: authTypes = store.getState().auth;
   const toast = useToast();
-  // eslint-disable-next-line
   const dispatch = useDispatch();
   const [teamModalIsOpen, setTeamModalIsOpen] = useState(false);
 
@@ -81,8 +80,9 @@ const FormTeamDetails = () => {
             team_id: data.data.team_id,
           }),
         );
-
-        window.location.href = '/dashboard';
+        setTimeout(() => {
+          window.location.href = '/dashboard';
+        }, 3000);
       }
     },
   );
