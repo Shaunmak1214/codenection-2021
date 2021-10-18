@@ -4,4 +4,5 @@ export default interface authInitialState {
   accessToken: string;
   refreshToken: string;
   register_state: object | null;
+  permission_level: number;
 }

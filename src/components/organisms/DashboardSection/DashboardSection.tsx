@@ -1,25 +1,30 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Center, Container, SimpleGrid } from '@chakra-ui/layout';
-import { DashboardCard, JoinTeamTextField, CNModal } from '../../molecules';
 import { Box } from '@chakra-ui/react';
+import { FilePond, registerPlugin } from 'react-filepond';
+import FilePondPluginImageExifOrientation from 'filepond-plugin-image-exif-orientation';
+import FilePondPluginImagePreview from 'filepond-plugin-image-preview';
+import FilePondPluginFileValidateType from 'filepond-plugin-file-validate-type';
+
+import { PrimaryButton, JoinTeamButton, SecondaryText } from '../../atoms';
+import { CreateTeamModal, EmailVerifyModal } from '../../organisms';
+import { DashboardCard, JoinTeamTextField, CNModal } from '../../molecules';
+import { Formik, Form } from 'formik';
+
+import store from '../../../store';
+import authTypes from '../../../types/auth.types';
+import { useCNModal } from '../../../hooks';
 import {
   ResumeImg,
   ProfileImg,
   JoinTeamImg,
   CreateTeamImg,
 } from '../../../assets';
-import { PrimaryButton, JoinTeamButton, SecondaryText } from '../../atoms';
-
-import { CreateTeamModal } from '../../organisms';
-import { Formik, Form } from 'formik';
-import { useCNModal } from '../../../hooks';
-import { FilePond, registerPlugin } from 'react-filepond';
-import FilePondPluginImageExifOrientation from 'filepond-plugin-image-exif-orientation';
-import FilePondPluginImagePreview from 'filepond-plugin-image-preview';
-import FilePondPluginFileValidateType from 'filepond-plugin-file-validate-type';
 
 import 'filepond/dist/filepond.min.css';
+
 const DashboardSection = () => {
+  const authStore: authTypes = store.getState().auth;
   const [teamModalIsOpen, setTeamModalIsOpen] = useState(false);
 
   registerPlugin(
@@ -38,6 +43,21 @@ const DashboardSection = () => {
     initialState: false,
   });
 
+  const {
+    isOpen: emailVerifierOpen,
+    handleModalClose: handleEmailVerifierClose,
+    handleModalOpen: handleEmailVerifierOpen,
+  } = useCNModal({
+    initialState: false,
+  });
+
+  useEffect(() => {
+    // @ts-ignore
+    if (authStore.user!.permission_level <= 1) {
+      handleEmailVerifierOpen();
+    }
+  });
+
   return (
     <>
       <CreateTeamModal
@@ -46,6 +66,8 @@ const DashboardSection = () => {
           setTeamModalIsOpen(false);
         }}
       />
+
+      {/* resume uploader modal */}
       <CNModal
         onClose={handleResumeClose}
         modalIsOpen={resumeOpen}
@@ -73,6 +95,14 @@ const DashboardSection = () => {
           labelIdle='<div class="folder-image"></div><div class="drop-area-label"><h2 class="drop-area-text">Drag & Drop your files</h2> <h2 class="or-label"> <span>OR</span></h2><a class="filepond--label-action">Browse</a></div>'
         />
       </CNModal>
+
+      {/* Email Verification Modal */}
+      <EmailVerifyModal
+        isOpen={emailVerifierOpen}
+        onClose={handleEmailVerifierClose}
+        sendable={true}
+      />
+
       <Center h="100%" py="150px">
         <Container maxW="container.lg">
           <SimpleGrid
@@ -98,8 +128,6 @@ const DashboardSection = () => {
                 }}
               >
                 {() => (
-                  // eslint-disable-next-line
-
                   <Form style={{ width: '80%', marginTop: '-10px' }}>
                     <JoinTeamTextField />
                   </Form>
