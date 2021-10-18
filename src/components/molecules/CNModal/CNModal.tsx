@@ -53,7 +53,6 @@ const CNModal = ({
   mutedText = 'Close',
   successText = 'Proceed',
   blur = false,
-  maxHeight = '70%',
   onClose,
   modalIsOpen,
   disableButton = false,
@@ -85,7 +84,6 @@ const CNModal = ({
               exit="exit"
               style={{
                 height: '100%',
-                maxHeight: maxHeight,
               }}
               {...props}
             >

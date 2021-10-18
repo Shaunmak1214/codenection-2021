@@ -16,7 +16,7 @@ interface ModalProps {
 const CreateTeamModal = ({ isOpen, onClose, ...props }: ModalProps) => {
   return (
     <CNModal blur modalIsOpen={isOpen} onClose={onClose} {...props}>
-      <Flex w="100%" justifyContent="flex-start">
+      <Flex w="100%" justifyContent="flex-start" mb="20px">
         <Text fontSize="35px" fontWeight="600">
           Create Team
         </Text>

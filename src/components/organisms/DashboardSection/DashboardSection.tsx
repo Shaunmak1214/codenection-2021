@@ -9,7 +9,7 @@ import FilePondPluginFileValidateType from 'filepond-plugin-file-validate-type';
 import { PrimaryButton, JoinTeamButton, SecondaryText } from '../../atoms';
 import { CreateTeamModal, EmailVerifyModal } from '../../organisms';
 import { DashboardCard, JoinTeamTextField, CNModal } from '../../molecules';
-import { Formik, Form } from 'formik';
+import { Formik, Form, Field } from 'formik';
 
 import store from '../../../store';
 import authTypes from '../../../types/auth.types';
@@ -129,7 +129,17 @@ const DashboardSection = () => {
               >
                 {() => (
                   <Form style={{ width: '80%', marginTop: '-10px' }}>
-                    <JoinTeamTextField />
+                    <Field
+                      name="teamCode"
+                      label=""
+                      placeholder="Team Code"
+                      border="none"
+                      backgroundColor="white"
+                      w="100%"
+                      borderRadius="20px"
+                      py="28px"
+                      component={JoinTeamTextField}
+                    />
                   </Form>
                 )}
               </Formik>
