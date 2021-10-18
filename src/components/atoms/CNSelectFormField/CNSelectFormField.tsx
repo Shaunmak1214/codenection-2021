@@ -30,7 +30,7 @@ const CNSelectFormField = ({
   };
 
   useEffect(() => {
-    form.setFieldValue(field.name, value);
+    form.setFieldValue(field.name, selected);
   }, [selected]);
 
   return (
