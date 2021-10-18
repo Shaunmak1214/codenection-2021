@@ -19,7 +19,7 @@ import {
 } from './Buttons/Buttons';
 import { BadgeImg, SponsorImg } from './SponsorAtom/SponsorAtom';
 import CircleStep from './CircleStep/CircleStep';
-
+import ProfileBoxTitle from './ProfileBoxTitle/ProfileBoxTitle';
 export {
   PrimaryButton,
   JoinTeamButton,
@@ -40,5 +40,6 @@ export {
   CNAvatar,
   CNHoverModal,
   CNDatePicker,
+  ProfileBoxTitle,
   MutedButton,
 };

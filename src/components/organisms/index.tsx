@@ -12,7 +12,7 @@ import CNHoverableAvatarGroup from './CNHoverableAvatarGroup/CNHoverableAvatarGr
 import DashboardSection from './DashboardSection/DashboardSection';
 import ResetPasswordForm from './ResetPasswordForm/ResetPasswordForm';
 import CreateTeamModal from './CreateTeamModal/CreateTeamModal';
-
+import { EditPersonal, EditJob, EditEducation, EditOther } from './EditProfile';
 export {
   CountDownSection,
   Header,
@@ -26,4 +26,8 @@ export {
   DashboardSection,
   ResetPasswordForm,
   CreateTeamModal,
+  EditPersonal,
+  EditJob,
+  EditEducation,
+  EditOther,
 };

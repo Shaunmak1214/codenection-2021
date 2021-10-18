@@ -3,13 +3,12 @@ import axios from 'axios';
 import { API_URL } from '../constants/';
 import PropTypes from 'prop-types';
 // eslint-disable-next-line no-unused-vars
-type onUpdate = (err: object | null, res: object | null) => any;
+type onUpdate = (err: object | null, res: any | null) => any;
 
 axios.defaults.baseURL = API_URL;
 const useAxios = (axiosParams: object, onUpdate: onUpdate) => {
   const [loading, setLoading] = useState<boolean>(false);
-
-  const fetchData = (data: object | null) => {
+  const fetchData = (data?: object | null) => {
     setLoading(true);
     axios
       .request({

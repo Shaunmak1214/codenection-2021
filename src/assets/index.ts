@@ -35,7 +35,7 @@ import ArrowForwardIcon from './svgs/ArrowForwardIcon.svg';
 import { ReactComponent as HelpIcon } from './svgs/HelpIcon.svg';
 import FolderOpen from './svgs/FolderOpen.svg';
 import FolderClose from './svgs/FolderClose.svg';
-
+import EditProfileIcon from './svgs/EditProfileIcon.svg';
 export {
   CNLanding,
   CodeNectionLogo,
@@ -71,4 +71,5 @@ export {
   HelpIcon,
   FolderClose,
   FolderOpen,
+  EditProfileIcon,
 };

@@ -7,7 +7,7 @@ import { CountDownBlock } from '../../molecules';
 
 const CountDownSection = () => {
   const { daysRef, hoursRef, minutesRef, secondsRef } = useCountDown(
-    'October 15, 2021 00:00:00',
+    'October 30, 2021 00:00:00',
   );
   return (
     <>

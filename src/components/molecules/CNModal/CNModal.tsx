@@ -99,20 +99,7 @@ const CNModal = ({
               )}
 
               <CNSpacer size="sm" />
-              <Box
-                d="flex"
-                position="absolute"
-                top="30px"
-                right="30px"
-                justifyContent="flex-end"
-                onClick={onClose}
-              >
-                <IconButton
-                  variant="ghost"
-                  aria-label="Close modal"
-                  icon={<CloseIcon w="12px" h="12px" />}
-                />
-              </Box>
+
               {children}
               {!disableButton && (
                 <Flex
