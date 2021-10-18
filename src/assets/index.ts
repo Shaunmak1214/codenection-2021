@@ -5,6 +5,8 @@ import PlatinumBG from './jpgs-pngs/PlatinumBG.png';
 import GoldBG from './jpgs-pngs/GoldBG.png';
 import SilverBG from './jpgs-pngs/SilverBG.png';
 import BronzeBG from './jpgs-pngs/BronzeBG.png';
+import GrayBox from './jpgs-pngs/gray.png';
+import TickIcon from './jpgs-pngs/solid-tick.png';
 
 //svgs
 import CNLanding from './svgs/CNLanding.svg';
@@ -33,6 +35,7 @@ import ProfileImg from './svgs/ProfileImg.svg';
 import JoinTeamImg from './svgs/JoinTeamImg.svg';
 import ArrowForwardIcon from './svgs/ArrowForwardIcon.svg';
 import { ReactComponent as HelpIcon } from './svgs/HelpIcon.svg';
+import { ReactComponent as RightArrow } from './svgs/RightArrow.svg';
 import FolderOpen from './svgs/FolderOpen.svg';
 import FolderClose from './svgs/FolderClose.svg';
 import EditProfileIcon from './svgs/EditProfileIcon.svg';
@@ -69,7 +72,10 @@ export {
   JoinTeamImg,
   ArrowForwardIcon,
   HelpIcon,
+  RightArrow,
   FolderClose,
   FolderOpen,
   EditProfileIcon,
+  GrayBox,
+  TickIcon,
 };

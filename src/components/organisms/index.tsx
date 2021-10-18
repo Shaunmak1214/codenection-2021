@@ -10,9 +10,14 @@ import {
 import LoginForm from './LoginForm/LoginForm';
 import CNHoverableAvatarGroup from './CNHoverableAvatarGroup/CNHoverableAvatarGroup';
 import DashboardSection from './DashboardSection/DashboardSection';
+import RuleSection from './RuleSection';
+import FaqSection from './FaqSection';
+import AboutSection from './AboutSection/AboutSection';
 import ResetPasswordForm from './ResetPasswordForm/ResetPasswordForm';
 import CreateTeamModal from './CreateTeamModal/CreateTeamModal';
 import { EditPersonal, EditJob, EditEducation, EditOther } from './EditProfile';
+import EmailVerifyModal from './EmailVerifyModal/EmailVerifyModal';
+
 export {
   CountDownSection,
   Header,
@@ -24,10 +29,14 @@ export {
   CNHoverableAvatarGroup,
   LoginForm,
   DashboardSection,
+  AboutSection,
+  RuleSection,
+  FaqSection,
   ResetPasswordForm,
   CreateTeamModal,
   EditPersonal,
   EditJob,
-  EditEducation,
   EditOther,
+  EmailVerifyModal,
+  EditEducation,
 };

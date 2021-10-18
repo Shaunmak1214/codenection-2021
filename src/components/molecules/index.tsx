@@ -8,6 +8,7 @@ import CNModal from './CNModal/CNModal';
 import BoxIcons from './BoxIcons/BoxIcons';
 import RulesBlock from './RulesBlock';
 import ProfileBlock from './ProfileBlock/ProfileBlock';
+import FaqBlock from './FaqBlock';
 export {
   CountDownBlock,
   SponsorsBlock,
@@ -19,4 +20,5 @@ export {
   BoxIcons,
   RulesBlock,
   ProfileBlock,
+  FaqBlock,
 };

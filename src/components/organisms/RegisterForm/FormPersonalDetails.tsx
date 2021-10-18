@@ -280,7 +280,7 @@ const FormPersonalDetails = ({
                           value: 'pre-u',
                         },
                         {
-                          label: 'Diploma/Advancd Diploma',
+                          label: 'Diploma/Advanced Diploma',
                           value: 'diploma',
                         },
                         {

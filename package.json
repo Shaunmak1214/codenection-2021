@@ -17,6 +17,7 @@
     "@types/react-dom": "^17.0.0",
     "@types/react-redux": "^7.1.18",
     "@typescript-eslint/parser": "^4.32.0",
+    "aos": "^2.3.4",
     "axios": "^0.21.4",
     "chakra-react-select": "^1.2.2",
     "filepond": "^4.30.3",
@@ -67,6 +68,7 @@
     ]
   },
   "devDependencies": {
+    "@types/aos": "^3.0.4",
     "@types/js-cookie": "^2.2.7",
     "@types/lodash.uniqueid": "^4.0.6",
     "@types/react-datepicker": "^4.1.7",
