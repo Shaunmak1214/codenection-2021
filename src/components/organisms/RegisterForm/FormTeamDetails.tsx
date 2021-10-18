@@ -33,9 +33,9 @@ const FormTeamDetails = () => {
       url: '/verify/verify',
       method: 'POST',
     },
+    // eslint-disable-next-line
     (err, data) => {
       if (err) {
-        console.log(err);
         toast({
           title: 'Error',
           description: 'Verify code is incorrect',
@@ -44,7 +44,6 @@ const FormTeamDetails = () => {
           isClosable: true,
         });
       } else {
-        console.log(data);
         toast({
           title: 'Success',
           description: 'Verify code is correct',

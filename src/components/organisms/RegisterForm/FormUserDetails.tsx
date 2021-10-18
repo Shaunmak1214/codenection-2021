@@ -7,9 +7,7 @@ import { EmailIcon, PasswordIcon, HomeIcon } from '../../../assets';
 import { BoxIcons } from '../../molecules';
 import * as yup from 'yup';
 import { motion } from 'framer-motion';
-import { useDebouncedCallback } from 'use-debounce';
-
-import axios from 'axios';
+import { genericEmail } from '../../../data/emailData';
 
 interface MyFormValues {
   email: string;
@@ -35,12 +33,7 @@ const FormUserDetails = ({ nextStep, updateReg }: Props) => {
   };
 
   const schema = yup.object({
-    email: yup
-      .string()
-      .email('Please enter a valid email')
-      .min(3)
-      .max(60)
-      .required('Email is a required email'),
+    email: yup.string().min(3).max(60).required('Email is a required email'),
 
     password: yup
       .string()
@@ -59,26 +52,24 @@ const FormUserDetails = ({ nextStep, updateReg }: Props) => {
   };
 
   // Debounce callback
-  const debounced = useDebouncedCallback(
-    // function
-    (value) => {
-      if (value.includes('@')) {
-        const emailDomain = value.split('@')[1];
-        console.log(emailDomain);
-        axios
-          .get(
-            `https://email-domain-verifier.herokuapp.com/getData?domain=${emailDomain}&type=name`,
-          )
-          .then((res) => {
-            console.log(res.data);
-          })
-          .catch((err) => {
-            console.log(err);
-          });
-      }
-    },
-    800,
-  );
+  // const debounced = useDebouncedCallback(
+  //   // function
+  //   (value) => {
+  //     if (value.includes('@')) {
+  //       let domain = value.split('@')[1];
+  //       console.log('ho');
+  //       if (genericEmail.includes(domain)) {
+  //         console.log('nope');
+  //         let error = 'Please use your real email';
+  //         return error;
+  //       } else {
+  //         console.log('ok');
+  //         return true;
+  //       }
+  //     }
+  //   },
+  //   800,
+  // );
 
   return (
     <VStack h="100%" w="50%">
@@ -124,8 +115,17 @@ const FormUserDetails = ({ nextStep, updateReg }: Props) => {
                       name="email"
                       leftIcon={EmailIcon}
                       placeholder="xxxx@student.mmu.edu.my"
+                      validate={(value: any) => {
+                        if (value.includes('@')) {
+                          let domain = value.split('@')[1];
+                          if (genericEmail.includes(domain)) {
+                            let error = 'Please use your student email';
+                            return error;
+                          }
+                        }
+                      }}
                       onChange={(e: any) => {
-                        debounced(e.target.value);
+                        // debounced(e.target.value);
                         setEmailInput(e.target.value);
                         // eslint-disable-next-line
                         props.setFieldValue('email', e.target.value);

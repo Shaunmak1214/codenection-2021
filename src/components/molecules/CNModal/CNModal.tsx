@@ -3,9 +3,7 @@ import PropTypes from 'prop-types';
 import { Flex, Box } from '@chakra-ui/layout';
 import { IconButton } from '@chakra-ui/react';
 import { CloseIcon } from '@chakra-ui/icons';
-import { CNSpacer } from '../../atoms';
 import { AnimatePresence, motion } from 'framer-motion';
-
 import { MutedButton, PrimaryButton } from '../../atoms';
 
 interface Props {
@@ -16,6 +14,8 @@ interface Props {
   mutedText?: string;
   successText?: string;
   disableButton?: boolean;
+  maxHeight?: string;
+  CTAIsCenter?: boolean;
 }
 const modalAnimation = {
   hidden: {
@@ -48,9 +48,11 @@ const CNModal = ({
   mutedText = 'Close',
   successText = 'Proceed',
   blur = false,
+  maxHeight = '70%',
   onClose,
   modalIsOpen,
   disableButton = false,
+  CTAIsCenter = false,
   ...props
 }: Props) => {
   const children: React.ReactNode = props.children;
@@ -78,8 +80,9 @@ const CNModal = ({
               exit="exit"
               style={{
                 height: '100%',
-                maxHeight: '70%',
+                maxHeight: maxHeight,
               }}
+              {...props}
             >
               {!disableButton && (
                 <Box
@@ -98,31 +101,19 @@ const CNModal = ({
                 </Box>
               )}
 
-              <CNSpacer size="sm" />
-              <Box
-                d="flex"
-                position="absolute"
-                top="30px"
-                right="30px"
-                justifyContent="flex-end"
-                onClick={onClose}
-              >
-                <IconButton
-                  variant="ghost"
-                  aria-label="Close modal"
-                  icon={<CloseIcon w="12px" h="12px" />}
-                />
-              </Box>
               {children}
               {!disableButton && (
                 <Flex
                   flexDir={['column', 'column', 'row']}
-                  justifyContent="space-between"
-                  w="60%"
+                  justifyContent={CTAIsCenter ? 'center' : 'flex-end'}
+                  alignSelf="flex-end"
+                  w="100%"
                   pt="15px"
+                  mt="15px"
                 >
                   <MutedButton onClick={onClose}>{mutedText}</MutedButton>
                   <PrimaryButton
+                    ml="20px"
                     border="none"
                     borderRadius="5px"
                     _hover={{ border: 'none', bg: '#000000' }}
@@ -140,6 +131,7 @@ const CNModal = ({
 };
 
 CNModal.propTypes = {
+  maxHeight: PropTypes.string,
   children: PropTypes.node.isRequired,
   onClose: PropTypes.func,
   modalIsOpen: PropTypes.bool,
