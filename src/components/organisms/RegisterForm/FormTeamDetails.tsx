@@ -1,6 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Formik, Form } from 'formik';
+import { Formik, Form, Field } from 'formik';
+import * as yup from 'yup';
+
+import { useDispatch } from 'react-redux';
+import { UPDATE } from '../../../reducers/authSlice';
 
 import { Text, useToast, Image } from '@chakra-ui/react';
 import { VStack, Container, HStack, Box } from '@chakra-ui/layout';
@@ -11,13 +15,15 @@ import { CreateTeamModal, EmailVerifyModal } from '../../organisms';
 
 import store from '../../../store';
 import authTypes from '../../../types/auth.types';
-import { useCNModal } from '../../../hooks';
+import { useCNModal, useAxios } from '../../../hooks';
 
 import { TickIcon } from '../../../assets';
 
 const FormTeamDetails = () => {
   const authStore: authTypes = store.getState().auth;
   const toast = useToast();
+  // eslint-disable-next-line
+  const dispatch = useDispatch();
   const [teamModalIsOpen, setTeamModalIsOpen] = useState(false);
 
   const {
@@ -27,6 +33,59 @@ const FormTeamDetails = () => {
   } = useCNModal({
     initialState: false,
   });
+
+  const joinTeamSchema = yup.object({
+    teamCode: yup
+      .string()
+      .min(6, 'Team code must be at least 6 characters')
+      .max(6, 'Team code must be at least 6 characters')
+      .required('Team code is required'),
+  });
+
+  // eslint-disable-next-line
+  const { loading: joinTeamLoading, fetch: joinTeam } = useAxios(
+    {
+      url: '/team/join',
+      method: 'POST',
+      headers: {
+        Authorization: `Bearer ${authStore.accessToken}`,
+      },
+    },
+    // eslint-disable-next-line
+    (err, data) => {
+      if (err) {
+        console.log(err);
+        toast({
+          title: 'Failed to join team',
+          // @ts-ignore
+          description: err.data.message,
+          status: 'error',
+          position: 'top-right',
+          duration: 10000,
+          isClosable: true,
+        });
+      } else {
+        toast({
+          title: 'Join Team Success',
+          // @ts-ignore
+          description: 'You have successfully joined the team',
+          status: 'success',
+          position: 'top-right',
+          duration: 10000,
+          isClosable: true,
+        });
+        dispatch(
+          UPDATE({
+            ...authStore.user,
+            // @ts-ignore
+            team_id: data.data.team_id,
+          }),
+        );
+
+        window.location.href = '/dashboard';
+      }
+    },
+  );
 
   useEffect(() => {
     toast({
@@ -51,7 +110,8 @@ const FormTeamDetails = () => {
     if (authStore.user!.permission_level <= 1) {
       handleEmailVerifierOpen();
     }
-  }, [toast, handleEmailVerifierOpen, authStore.user]);
+    // eslint-disable-next-line
+  }, []);
 
   return (
     <>
@@ -124,14 +184,36 @@ const FormTeamDetails = () => {
                     mt="20px"
                   >
                     <Formik
+                      validationSchema={joinTeamSchema}
                       initialValues={{
                         teamCode: '',
                       }}
-                      onSubmit={(data) => console.log(data)}
+                      onSubmit={(data) => {
+                        joinTeam({
+                          code: data.teamCode,
+                          // @ts-ignore
+                          user_id: authStore.user.id,
+                        });
+                      }}
                     >
-                      {() => (
+                      {(props) => (
                         <Form style={{ width: '100%' }}>
-                          <JoinTeamTextField />
+                          <Field
+                            name="teamCode"
+                            label=""
+                            placeholder="Team Code"
+                            border="none"
+                            backgroundColor="white"
+                            w="100%"
+                            borderRadius="20px"
+                            py="28px"
+                            isLoading={joinTeamLoading}
+                            onSubmit={() => {
+                              // eslint-disable-next-line
+                              props.submitForm();
+                            }}
+                            component={JoinTeamTextField}
+                          />
                         </Form>
                       )}
                     </Formik>
