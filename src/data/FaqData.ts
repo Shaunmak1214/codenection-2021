@@ -1,10 +1,3 @@
-//import { string } from 'yup/lib/locale';
-
-// interface FaqObj {
-//   category: string;
-//   details: data[];
-// }
-
 interface Data {
   All: FaqObject[];
   General: FaqObject[];
@@ -18,6 +11,34 @@ interface FaqObject {
   question: string;
   ans: string;
 }
+
+interface FaqCategory {
+  idx: number;
+  category: string;
+}
+
+const FaqCategories: FaqCategory[] = [
+  {
+    idx: 0,
+    category: 'All',
+  },
+  {
+    idx: 1,
+    category: 'General',
+  },
+  {
+    idx: 2,
+    category: 'Registration',
+  },
+  {
+    idx: 3,
+    category: 'Login',
+  },
+  {
+    idx: 4,
+    category: 'Team',
+  },
+];
 
 const FaqData: Data = {
   All: [
@@ -122,4 +143,4 @@ const FaqData: Data = {
   ],
 };
 
-export { FaqData };
+export { FaqData, FaqCategories };
