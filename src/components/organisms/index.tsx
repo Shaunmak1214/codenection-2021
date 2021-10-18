@@ -15,6 +15,7 @@ import FaqSection from './FaqSection';
 import AboutSection from './AboutSection/AboutSection';
 import ResetPasswordForm from './ResetPasswordForm/ResetPasswordForm';
 import CreateTeamModal from './CreateTeamModal/CreateTeamModal';
+import EmailVerifyModal from './EmailVerifyModal/EmailVerifyModal';
 
 export {
   CountDownSection,
@@ -32,4 +33,5 @@ export {
   FaqSection,
   ResetPasswordForm,
   CreateTeamModal,
+  EmailVerifyModal,
 };

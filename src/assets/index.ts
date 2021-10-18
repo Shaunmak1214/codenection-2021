@@ -6,6 +6,7 @@ import GoldBG from './jpgs-pngs/GoldBG.png';
 import SilverBG from './jpgs-pngs/SilverBG.png';
 import BronzeBG from './jpgs-pngs/BronzeBG.png';
 import GrayBox from './jpgs-pngs/gray.png';
+import TickIcon from './jpgs-pngs/solid-tick.png';
 
 //svgs
 import CNLanding from './svgs/CNLanding.svg';
@@ -75,4 +76,5 @@ export {
   FolderClose,
   FolderOpen,
   GrayBox,
+  TickIcon,
 };
