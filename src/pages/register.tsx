@@ -28,7 +28,7 @@ const Register = () => {
       }),
     );
   };
-  const [step, setStep] = useState<number>(3);
+  const [step, setStep] = useState<number>(1);
 
   const nextStep = () => {
     setStep((currentStep) => currentStep + 1);
