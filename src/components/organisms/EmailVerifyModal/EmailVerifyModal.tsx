@@ -35,11 +35,12 @@ const EmailVerifyModal = ({
   // eslint-disable-next-line
   const { loading: verifyLoading, fetch: verify } = useAxios(
     {
-      url: '/verify/verify',
+      url: '/verify',
       method: 'POST',
     },
     // eslint-disable-next-line
     (err, data) => {
+      console.log(data);
       if (err) {
         toast({
           title: 'Error',

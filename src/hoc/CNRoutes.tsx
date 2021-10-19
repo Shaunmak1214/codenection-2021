@@ -2,10 +2,11 @@ import React, { useEffect } from 'react';
 import { Route, Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import * as Comp from '../components/organisms';
-import { useAxios } from '../hooks';
 import store from '../store';
 import { useDispatch } from 'react-redux';
 import { LOGOUT } from '../reducers/authSlice';
+import axios from 'axios';
+import { API_URL } from '../constants';
 
 interface Props {
   header?: boolean;
@@ -26,32 +27,27 @@ const CNRoutes = ({
   const dispatch = useDispatch();
   const logout = () => {
     dispatch(LOGOUT());
-    window.location.href = '/login';
   };
 
-  // eslint-disable-next-line no-unused-vars
-  const { fetch: verifyUser } = useAxios(
-    {
-      method: 'get',
-      url: '/auth',
-      headers: {
-        Authorization: `Bearer ${authState.accessToken}`,
-      },
-    },
-    (err, res) => {
-      if (err) {
-        logout();
-      } else {
-        if (res.status === 200 || res.status === 204 || res.status === 203) {
+  useEffect(() => {
+    axios
+      .get(`${API_URL}/auth`, {
+        headers: {
+          Authorization: `Bearer ${authState.accessToken}`,
+        },
+      })
+      .then((res) => {
+        if (res.status === 200 || res.status === 203 || res.status === 204) {
           return;
         } else {
           logout();
         }
-      }
-    },
-  );
-
-  useEffect(() => {});
+      })
+      .catch((err) => {
+        console.log(err);
+        logout();
+      });
+  });
 
   return (
     <Route
