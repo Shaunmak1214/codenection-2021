@@ -66,7 +66,6 @@ const FormPersonalDetails = ({
           isClosable: true,
         });
       } else {
-        console.log(data);
         dispatch(
           LOGIN({
             accessToken: data.data.token,
@@ -84,6 +83,7 @@ const FormPersonalDetails = ({
   // eslint-disable-next-line
   const { loading: emailSendingLoading, fetch: sendEmail } = useAxios(
     { url: '/verify/', method: 'POST' },
+    // eslint-disable-next-line
     (err, data) => {
       if (err) {
         console.log(err);
@@ -96,7 +96,6 @@ const FormPersonalDetails = ({
           isClosable: true,
         });
       } else {
-        console.log(data);
         nextStep();
       }
     },

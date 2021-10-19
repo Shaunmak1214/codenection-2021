@@ -51,26 +51,6 @@ const FormUserDetails = ({ nextStep, updateReg }: Props) => {
     confirmPassword: '',
   };
 
-  // Debounce callback
-  // const debounced = useDebouncedCallback(
-  //   // function
-  //   (value) => {
-  //     if (value.includes('@')) {
-  //       let domain = value.split('@')[1];
-  //       console.log('ho');
-  //       if (genericEmail.includes(domain)) {
-  //         console.log('nope');
-  //         let error = 'Please use your real email';
-  //         return error;
-  //       } else {
-  //         console.log('ok');
-  //         return true;
-  //       }
-  //     }
-  //   },
-  //   800,
-  // );
-
   return (
     <VStack h="100%" w="50%">
       <motion.div

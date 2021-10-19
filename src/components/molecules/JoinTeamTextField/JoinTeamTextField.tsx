@@ -1,9 +1,30 @@
 import React from 'react';
+import { HStack } from '@chakra-ui/layout';
+
 import { PrimaryButton } from '../../atoms';
 import { CNTextFormField } from '../../atoms';
-import { HStack } from '@chakra-ui/layout';
-import { Field } from 'formik';
-const JoinTeamTextField: React.FC = () => {
+
+interface Props {
+  isLoading?: boolean;
+  onSubmit: () => void;
+  label: string;
+  leftIcon?: string;
+  form?: any;
+  field?: any;
+  type?: string;
+  placeholder?: string;
+}
+
+const JoinTeamBlock = ({
+  onSubmit,
+  isLoading = false,
+  form,
+  field,
+  label,
+  placeholder,
+  type,
+  ...props
+}: Props) => {
   return (
     <HStack
       w="100%"
@@ -12,16 +33,13 @@ const JoinTeamTextField: React.FC = () => {
       alignItems="center"
       position="relative"
     >
-      <Field
-        name="teamCode"
-        label=""
-        placeholder="Team Code"
-        border="none"
-        backgroundColor="white"
-        w="100%"
-        borderRadius="20px"
-        py="28px"
-        component={CNTextFormField}
+      <CNTextFormField
+        form={form}
+        field={field}
+        label={label}
+        placeholder={placeholder}
+        type={type}
+        {...props}
       />
 
       <PrimaryButton
@@ -40,6 +58,8 @@ const JoinTeamTextField: React.FC = () => {
         fontSize="14px"
         _hover={{ bg: '#147186' }}
         zIndex="49"
+        isLoading={isLoading}
+        onClick={onSubmit}
       >
         Join Team
       </PrimaryButton>
@@ -47,4 +67,4 @@ const JoinTeamTextField: React.FC = () => {
   );
 };
 
-export default JoinTeamTextField;
+export default JoinTeamBlock;
