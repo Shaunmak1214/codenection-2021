@@ -3,6 +3,9 @@ import React from 'react';
 import { BrowserRouter as Router, Switch } from 'react-router-dom';
 import * as Screens from './pages';
 import { CNRoutes } from './hoc';
+
+import { Footer } from './components/organisms';
+
 function App() {
   return (
     <Router forceRefresh={true}>
@@ -29,6 +32,7 @@ function App() {
           component={Screens.ResetPassword}
         />
       </Switch>
+      <Footer />
     </Router>
   );
 }
