@@ -26,9 +26,9 @@ export const formSlice = createSlice({
     },
     CLEARREG: (state) => {
       state.isPopulated = false;
-      state.register_state = null;
+      state.register_state = {};
       cookie.set('formIsPopulatedCN', JSON.stringify(false));
-      cookie.set('registerStateCN', JSON.stringify(null));
+      cookie.set('registerStateCN', JSON.stringify({}));
     },
   },
 });

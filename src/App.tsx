@@ -7,14 +7,19 @@ function App() {
   return (
     <Router forceRefresh={true}>
       <Switch>
-        <CNRoutes header exact path="/" component={Screens.Landing} />
+        <CNRoutes clearForm header exact path="/" component={Screens.Landing} />
         <CNRoutes
           header
           exact
           path="/leaderboard"
           component={Screens.Leaderboard}
         />
-        <CNRoutes exact path="/register" component={Screens.Register} />
+        <CNRoutes
+          clearForm={false}
+          exact
+          path="/register"
+          component={Screens.Register}
+        />
         <CNRoutes exact path="/login" component={Screens.Login} />
         <CNRoutes
           exact

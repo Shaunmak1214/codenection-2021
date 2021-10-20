@@ -3,7 +3,7 @@ import axios from 'axios';
 import { API_URL } from '../constants/';
 import PropTypes from 'prop-types';
 // eslint-disable-next-line no-unused-vars
-type onUpdate = (err: object | null, res: any | null) => any;
+type onUpdate = (err: object | null | any, res: any | null) => any;
 
 axios.defaults.baseURL = API_URL;
 const useAxios = (axiosParams: object, onUpdate: onUpdate) => {

@@ -40,8 +40,9 @@ const LoginForm = () => {
     },
     (err, data) => {
       if (err) {
+        console.log(err.data.message);
         toast({
-          title: 'Login failed',
+          title: err.data.message,
           description: '',
           status: 'error',
           position: 'top-right',
