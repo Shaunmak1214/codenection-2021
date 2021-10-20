@@ -8,7 +8,6 @@ import { BoxIcons } from '../../molecules';
 import * as yup from 'yup';
 import { motion } from 'framer-motion';
 import { genericEmail } from '../../../data/emailData';
-
 interface MyFormValues {
   email: string;
   password: string;
@@ -17,17 +16,30 @@ interface MyFormValues {
 
 interface reduxProps {
   email: string;
-  password: string;
 }
+
 interface Props {
   nextStep: () => void;
   updateReg: (values: reduxProps) => void;
   formStore: any;
+  prev: any;
+  setPassword: any;
 }
 
-const FormUserDetails = ({ nextStep, updateReg }: Props) => {
-  const [emailInput, setEmailInput] = useState('');
+const FormUserDetails = ({
+  nextStep,
+  updateReg,
+  formStore,
+  prev,
+  setPassword,
+}: Props) => {
+  const [formInput, setFormInput] = useState({
+    email: formStore!.register_state.email,
+  });
 
+  const handleOnChange = (e: any) => {
+    setFormInput({ ...formInput, [e.target.name]: e.target.value });
+  };
   const continueNext = () => {
     nextStep();
   };
@@ -46,7 +58,7 @@ const FormUserDetails = ({ nextStep, updateReg }: Props) => {
       .required('Confirm Password is a required field'),
   });
   const initialValues: MyFormValues = {
-    email: '',
+    email: formStore!.register_state.email,
     password: '',
     confirmPassword: '',
   };
@@ -54,7 +66,7 @@ const FormUserDetails = ({ nextStep, updateReg }: Props) => {
   return (
     <VStack h="100%" w="50%">
       <motion.div
-        initial={{ opacity: 0, x: 75 }}
+        initial={{ opacity: 0, x: prev ? -75 : 75 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.5 }}
       >
@@ -81,8 +93,8 @@ const FormUserDetails = ({ nextStep, updateReg }: Props) => {
               onSubmit={(data) => {
                 updateReg({
                   email: data.email,
-                  password: data.password,
                 });
+                setPassword(data.password);
                 continueNext();
               }}
             >
@@ -90,23 +102,25 @@ const FormUserDetails = ({ nextStep, updateReg }: Props) => {
                 <Form>
                   <VStack spacing={8}>
                     <Field
-                      value={emailInput}
+                      value={formInput.email}
                       label="Student Email: "
                       name="email"
                       leftIcon={EmailIcon}
                       placeholder="xxxx@student.mmu.edu.my"
                       validate={(value: any) => {
-                        if (value.includes('@')) {
-                          let domain = value.split('@')[1];
-                          if (genericEmail.includes(domain)) {
-                            let error = 'Please use your student email';
-                            return error;
+                        if (value) {
+                          if (value.includes('@')) {
+                            let domain = value.split('@')[1];
+                            if (genericEmail.includes(domain)) {
+                              let error = 'Please use your student email';
+                              return error;
+                            }
                           }
                         }
                       }}
                       onChange={(e: any) => {
                         // debounced(e.target.value);
-                        setEmailInput(e.target.value);
+                        handleOnChange(e);
                         // eslint-disable-next-line
                         props.setFieldValue('email', e.target.value);
                       }}

@@ -5,6 +5,7 @@ import * as Comp from '../components/organisms';
 import store from '../store';
 import { useDispatch } from 'react-redux';
 import { LOGOUT } from '../reducers/authSlice';
+import { CLEARREG } from '../reducers/formSlice';
 import axios from 'axios';
 import { API_URL } from '../constants';
 
@@ -15,12 +16,14 @@ interface Props {
   isProtected?: boolean;
   exact: boolean;
   path: string;
+  clearForm?: boolean;
 }
 
 const CNRoutes = ({
   header,
   isProtected = false,
   component: Component,
+  clearForm = true,
   ...rest
 }: Props) => {
   const authState = store.getState().auth;
@@ -28,6 +31,13 @@ const CNRoutes = ({
   const logout = () => {
     dispatch(LOGOUT());
   };
+  const clearreg = () => {
+    dispatch(CLEARREG());
+  };
+
+  if (clearForm) {
+    clearreg();
+  }
 
   useEffect(() => {
     axios

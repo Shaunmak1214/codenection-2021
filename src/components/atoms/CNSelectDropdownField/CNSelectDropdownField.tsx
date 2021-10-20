@@ -15,6 +15,7 @@ interface Props {
   value?: string;
   field?: any;
   form?: any;
+  updateReg: (values: any) => void;
 }
 
 const CNSelectDropdownField = ({
@@ -22,6 +23,7 @@ const CNSelectDropdownField = ({
   form,
   label,
   value,
+
   ...props
 }: Props) => {
   const errorText: string =

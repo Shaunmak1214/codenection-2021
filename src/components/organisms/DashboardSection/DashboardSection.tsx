@@ -116,7 +116,7 @@ const DashboardSection = () => {
 
   useEffect(() => {
     // @ts-ignore
-    if (authStore.user!.permission_level <= 1) {
+    if (authStore.user!.permission_level < 1) {
       handleEmailVerifierOpen();
     }
   });
@@ -263,6 +263,7 @@ const DashboardSection = () => {
                 borderRadius="18px"
                 _hover={{ bg: '#000000' }}
                 border="none"
+                onClick={() => (window.location.href = '/edit-profile')}
               >
                 Complete Profile
               </PrimaryButton>

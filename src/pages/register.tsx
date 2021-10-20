@@ -28,14 +28,24 @@ const Register = () => {
       }),
     );
   };
+
+  const [password, setPassword] = useState<string>('');
+
+  const clearReg = () => {
+    dispatch(CLEARREG());
+  };
   const [step, setStep] = useState<number>(1);
+
+  const [prev, setPrev] = useState<boolean>(false);
 
   const nextStep = () => {
     setStep((currentStep) => currentStep + 1);
+    setPrev(false);
   };
 
   const prevStep = () => {
     setStep((currentStep) => currentStep - 1);
+    setPrev(true);
   };
 
   const UserForm = () => {
@@ -46,6 +56,8 @@ const Register = () => {
             nextStep={nextStep}
             updateReg={updateReg}
             formStore={formStore}
+            prev={prev}
+            setPassword={setPassword}
           />
         );
 
@@ -55,7 +67,9 @@ const Register = () => {
             nextStep={nextStep}
             prevStep={prevStep}
             updateReg={updateReg}
+            clearReg={clearReg}
             formStore={formStore}
+            password={password}
           />
         );
       case 3:
