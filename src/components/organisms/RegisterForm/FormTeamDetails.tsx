@@ -53,7 +53,6 @@ const FormTeamDetails = () => {
     // eslint-disable-next-line
     (err, data) => {
       if (err) {
-        console.log(err);
         toast({
           title: 'Failed to join team',
           // @ts-ignore

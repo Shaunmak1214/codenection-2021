@@ -47,7 +47,6 @@ const CreateTeamModal = ({ isOpen, onClose, ...props }: ModalProps) => {
     },
     (err, data) => {
       if (err) {
-        console.log(err);
         toast({
           title: 'Failed to create team',
           // @ts-ignore

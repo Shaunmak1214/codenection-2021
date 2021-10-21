@@ -7,7 +7,7 @@ function App() {
   return (
     <Router forceRefresh={true}>
       <Switch>
-        <CNRoutes clearForm header exact path="/" component={Screens.Landing} />
+        <CNRoutes header exact path="/" component={Screens.Landing} />
         <CNRoutes
           header
           exact

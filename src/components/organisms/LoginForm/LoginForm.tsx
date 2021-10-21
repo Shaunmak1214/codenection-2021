@@ -40,7 +40,6 @@ const LoginForm = () => {
     },
     (err, data) => {
       if (err) {
-        console.log(err.data.message);
         toast({
           title: err.data.message,
           description: '',
@@ -75,7 +74,6 @@ const LoginForm = () => {
     // eslint-disable-next-line
     (err, data) => {
       if (err) {
-        console.log(err);
         toast({
           title: 'Forgot Password Failed',
           // @ts-ignore

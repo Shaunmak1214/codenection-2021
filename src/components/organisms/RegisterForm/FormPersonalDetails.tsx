@@ -69,7 +69,6 @@ const FormPersonalDetails = ({
     { url: '/auth/signup', method: 'POST' },
     (err, data) => {
       if (err) {
-        console.log(err);
         toast({
           title: 'Email already existed',
           description: err.data.message,
@@ -79,7 +78,6 @@ const FormPersonalDetails = ({
           isClosable: true,
         });
       } else {
-        console.log(data);
         dispatch(
           LOGIN({
             accessToken: data.data.token,
@@ -199,8 +197,7 @@ const FormPersonalDetails = ({
               initialValues={initialValues}
               onSubmit={(data) => {
                 updateReg(data);
-                console.log(data);
-                console.log(password);
+
                 fetch({
                   email: formStore.register_state.email,
                   password: password,
