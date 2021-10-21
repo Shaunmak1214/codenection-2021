@@ -9,6 +9,7 @@ import {
   SponsorSection,
   CountDownSection,
   AboutSection,
+  LeaderboardSection,
 } from '../components/organisms';
 
 import { CNLanding } from '../assets';
@@ -53,6 +54,7 @@ const Landing: React.FC = () => {
       <CountDownSection />
       <Box w="100%" h="300px"></Box>
       <AboutSection />
+      <LeaderboardSection />
       <RuleSection />
       <FaqSection />
       <SponsorSection />
