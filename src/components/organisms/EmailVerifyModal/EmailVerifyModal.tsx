@@ -82,7 +82,6 @@ const EmailVerifyModal = ({
     // eslint-disable-next-line
     (err, data) => {
       if (err) {
-        console.log(err);
         toast({
           title: 'Verification code not sent',
           // @ts-ignore

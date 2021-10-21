@@ -53,8 +53,9 @@ const CNRoutes = ({
           logout();
         }
       })
+
+      // eslint-disable-next-line no-unused-vars
       .catch((err) => {
-        console.log(err);
         logout();
       });
   });
