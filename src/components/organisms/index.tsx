@@ -10,6 +10,7 @@ import {
 import LoginForm from './LoginForm/LoginForm';
 import CNHoverableAvatarGroup from './CNHoverableAvatarGroup/CNHoverableAvatarGroup';
 import DashboardSection from './DashboardSection/DashboardSection';
+import LeaderboardSection from './LeaderboardSection/LeaderboardSection';
 import RuleSection from './RuleSection';
 import FaqSection from './FaqSection';
 import AboutSection from './AboutSection/AboutSection';
@@ -29,6 +30,7 @@ export {
   CNHoverableAvatarGroup,
   LoginForm,
   DashboardSection,
+  LeaderboardSection,
   AboutSection,
   RuleSection,
   FaqSection,
