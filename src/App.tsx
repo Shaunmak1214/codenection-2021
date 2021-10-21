@@ -3,6 +3,9 @@ import React from 'react';
 import { BrowserRouter as Router, Switch } from 'react-router-dom';
 import * as Screens from './pages';
 import CNRoutes from './hoc/CNRoutes';
+
+import { Footer } from './components/organisms';
+
 function App() {
   return (
     <Router forceRefresh={true}>
@@ -42,6 +45,7 @@ function App() {
 
         <CNRoutes exact header path="*" component={Screens.Landing} />
       </Switch>
+      <Footer />
     </Router>
   );
 }

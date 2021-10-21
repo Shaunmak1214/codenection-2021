@@ -6,12 +6,12 @@ import GoldBG from './jpgs-pngs/GoldBG.png';
 import SilverBG from './jpgs-pngs/SilverBG.png';
 import BronzeBG from './jpgs-pngs/BronzeBG.png';
 import GrayBox from './jpgs-pngs/gray.png';
-import TickIcon from './jpgs-pngs/solid-tick.png';
 
 //svgs
 import CNLanding from './svgs/CNLanding.svg';
 import CodeNectionText from './svgs/CodeNectionText.svg';
 import CodeNectionLogo from './svgs/CodeNectionLogo.svg';
+import { ReactComponent as CodeNectionLogoImg } from './svgs/CodeNectionLogo.svg';
 import TitleBadge from './svgs/TitleBadge.svg';
 import PlatinumBadge from './svgs/PlatinumBadge.svg';
 import GoldBadge from './svgs/GoldBadge.svg';
@@ -39,6 +39,14 @@ import { ReactComponent as RightArrow } from './svgs/RightArrow.svg';
 import FolderOpen from './svgs/FolderOpen.svg';
 import FolderClose from './svgs/FolderClose.svg';
 import EditProfileIcon from './svgs/EditProfileIcon.svg';
+import { ReactComponent as ArrowRight } from './svgs/arrow-right.svg';
+import TickIcon from './svgs/solid-tick.svg';
+import { ReactComponent as ITS } from './svgs/its.svg';
+import { ReactComponent as Email } from './svgs/email.svg';
+import { ReactComponent as Discord } from './svgs/discord.svg';
+import { ReactComponent as Instagram } from './svgs/instagram.svg';
+import { ReactComponent as Facebook } from './svgs/facebook.svg';
+
 export {
   CNLanding,
   CodeNectionLogo,
@@ -78,4 +86,11 @@ export {
   EditProfileIcon,
   GrayBox,
   TickIcon,
+  ArrowRight,
+  ITS,
+  Email,
+  Discord,
+  Instagram,
+  Facebook,
+  CodeNectionLogoImg,
 };
