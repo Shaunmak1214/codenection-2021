@@ -13,6 +13,7 @@ import DashboardSection from './DashboardSection/DashboardSection';
 import RuleSection from './RuleSection';
 import FaqSection from './FaqSection';
 import AboutSection from './AboutSection/AboutSection';
+import Footer from './FooterSection/footer';
 import ResetPasswordForm from './ResetPasswordForm/ResetPasswordForm';
 import CreateTeamModal from './CreateTeamModal/CreateTeamModal';
 import EmailVerifyModal from './EmailVerifyModal/EmailVerifyModal';
@@ -34,4 +35,5 @@ export {
   ResetPasswordForm,
   CreateTeamModal,
   EmailVerifyModal,
+  Footer,
 };
