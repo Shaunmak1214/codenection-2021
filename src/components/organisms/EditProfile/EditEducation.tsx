@@ -2,7 +2,11 @@ import React from 'react';
 import { ProfileBlock } from '../../molecules';
 import { Formik, Form, Field } from 'formik';
 import * as yup from 'yup';
-import { CNTextFormField } from '../../atoms';
+import {
+  CNTextFormField,
+  CNSelectDropdownField,
+  CNDatePicker,
+} from '../../atoms';
 import UserInfo from '../../../types/user.type';
 
 interface Props {
@@ -75,17 +79,39 @@ const EditEducation = ({
             />
             <Field
               name="field_major"
-              placeholder=""
+              placeholder={props.values.field_major}
               component={CNTextFormField}
               customlabel="Field major"
               userData={userInfo.field_major}
-              value={props.values.field_major}
               onChange={props.handleChange}
+              value={props.values.field_major}
             />
             <Field
               name="education_level"
-              placeholder=""
-              component={CNTextFormField}
+              placeholder={props.values.education_level}
+              options={[
+                {
+                  label: 'A" level',
+                  value: 'a-level',
+                },
+                {
+                  label: 'Pre-U',
+                  value: 'pre-u',
+                },
+                {
+                  label: 'Diploma/Advanced Diploma',
+                  value: 'diploma',
+                },
+                {
+                  label: 'Bachelor"s degree',
+                  value: 'degree',
+                },
+                {
+                  label: 'Master/PHD',
+                  value: 'master',
+                },
+              ]}
+              component={CNSelectDropdownField}
               customlabel="Level of education"
               userData={userInfo.education_level}
               onChange={props.handleChange}
@@ -93,8 +119,30 @@ const EditEducation = ({
             />
             <Field
               name="coding_prof"
-              placeholder=""
-              component={CNTextFormField}
+              placeholder={props.values.coding_prof}
+              options={[
+                {
+                  label: 'Novice',
+                  value: 'novice',
+                },
+                {
+                  label: 'Beginner',
+                  value: 'beginner',
+                },
+                {
+                  label: 'Intermediate',
+                  value: 'intermediate',
+                },
+                {
+                  label: 'Skillful',
+                  value: 'skillful',
+                },
+                {
+                  label: 'Expert',
+                  value: 'expert',
+                },
+              ]}
+              component={CNSelectDropdownField}
               customlabel="Coding proficiency"
               userData={userInfo.coding_prof}
               value={props.values.coding}
@@ -111,12 +159,12 @@ const EditEducation = ({
             />
             <Field
               name="expected_graduation"
-              placeholder=""
-              component={CNTextFormField}
+              formInputName="expected_graduation"
+              placeholder="Expected date of graduation"
+              selectedDate={Date.parse(props.values.expected_graduation)}
+              component={CNDatePicker}
               customlabel="Expected graduation date"
               userData={userInfo.expected_graduation}
-              value={props.values.expected_graduation}
-              onChange={props.handleChange}
             />
           </ProfileBlock>
         </Form>
