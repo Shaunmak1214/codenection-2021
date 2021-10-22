@@ -12,13 +12,14 @@ import {
 } from '../components/organisms';
 import { HStack } from '@chakra-ui/layout';
 import store from '../store';
-
+import { Redirect } from 'react-router';
 import '../register.css';
 
 const Register = () => {
   const dispatch = useDispatch();
   const formStore = store.getState().form;
 
+  const authStore = store.getState().auth;
   // will be passed down to children to execute the action
   const updateReg = (data: any) => {
     dispatch(
@@ -79,6 +80,9 @@ const Register = () => {
     }
   };
 
+  if (authStore.isAuthenticated) {
+    return <Redirect to="/dashboard" />;
+  }
   return (
     <HStack alignItems="flex-start">
       <RegisterIndicator currentStep={step} />

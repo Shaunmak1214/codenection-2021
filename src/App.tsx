@@ -4,8 +4,6 @@ import { BrowserRouter as Router, Switch } from 'react-router-dom';
 import * as Screens from './pages';
 import CNRoutes from './hoc/CNRoutes';
 
-import { Footer } from './components/organisms';
-
 function App() {
   return (
     <Router forceRefresh={true}>
@@ -21,9 +19,15 @@ function App() {
           clearForm={false}
           exact
           path="/register"
+          footer={false}
           component={Screens.Register}
         />
-        <CNRoutes exact path="/login" component={Screens.Login} />
+        <CNRoutes
+          exact
+          footer={false}
+          path="/login"
+          component={Screens.Login}
+        />
         <CNRoutes
           exact
           path="/dashboard"
@@ -34,10 +38,12 @@ function App() {
         <CNRoutes
           exact
           path="/reset-password"
+          footer={false}
           component={Screens.ResetPassword}
         />
         <CNRoutes
           exact
+          isProtected
           header
           path="/edit-profile"
           component={Screens.Profile}
@@ -45,7 +51,6 @@ function App() {
 
         <CNRoutes exact header path="*" component={Screens.Landing} />
       </Switch>
-      <Footer />
     </Router>
   );
 }

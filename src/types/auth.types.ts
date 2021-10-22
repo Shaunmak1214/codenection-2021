@@ -1,5 +1,5 @@
 export default interface authInitialState {
-  user: { email: string } | null;
+  user: { email: string; id: number } | null;
   id: string | null;
   isAuthenticated: boolean;
   accessToken: string;
