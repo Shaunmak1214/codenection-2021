@@ -116,7 +116,7 @@ const DashboardSection = () => {
 
   useEffect(() => {
     // @ts-ignore
-    if (authStore.user!.permission_level <= 1) {
+    if (authStore.user!.permission_level < 1) {
       handleEmailVerifierOpen();
     }
   });
