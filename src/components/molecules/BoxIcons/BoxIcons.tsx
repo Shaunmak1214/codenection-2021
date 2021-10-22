@@ -5,7 +5,8 @@ interface Props {
   icon: string;
   onClick: any;
 }
-const BoxIcons = ({ icon, onClick, ...props }: Props) => {
+const BoxIcons = (props: Props) => {
+  const { icon, onClick, ...rest } = props;
   return (
     <Box
       boxShadow="0px 4px 10px rgba(159, 159, 159, 0.25)"
@@ -22,7 +23,7 @@ const BoxIcons = ({ icon, onClick, ...props }: Props) => {
         transition: 'all .3s ease-in-out',
       }}
       onClick={onClick}
-      {...props}
+      {...rest}
     >
       <Image src={icon} />
     </Box>
@@ -30,5 +31,9 @@ const BoxIcons = ({ icon, onClick, ...props }: Props) => {
 };
 BoxIcons.propTypes = {
   icon: PropTypes.string,
+  mr: PropTypes.string,
+  my: PropTypes.string,
+  w: PropTypes.string,
+  h: PropTypes.string,
 };
 export default BoxIcons;

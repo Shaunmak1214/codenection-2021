@@ -80,7 +80,6 @@ const DashboardSection = () => {
     // eslint-disable-next-line
     (err, data) => {
       if (err) {
-        console.log(err);
         toast({
           title: 'Failed to join team',
           // @ts-ignore
@@ -263,6 +262,7 @@ const DashboardSection = () => {
                 borderRadius="18px"
                 _hover={{ bg: '#000000' }}
                 border="none"
+                onClick={() => (window.location.href = '/edit-profile')}
               >
                 Complete Profile
               </PrimaryButton>

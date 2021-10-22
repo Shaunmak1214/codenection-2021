@@ -17,6 +17,7 @@ import AboutSection from './AboutSection/AboutSection';
 import Footer from './FooterSection/footer';
 import ResetPasswordForm from './ResetPasswordForm/ResetPasswordForm';
 import CreateTeamModal from './CreateTeamModal/CreateTeamModal';
+import { EditPersonal, EditJob, EditEducation, EditOther } from './EditProfile';
 import EmailVerifyModal from './EmailVerifyModal/EmailVerifyModal';
 
 export {
@@ -36,6 +37,10 @@ export {
   FaqSection,
   ResetPasswordForm,
   CreateTeamModal,
+  EditPersonal,
+  EditJob,
+  EditOther,
   EmailVerifyModal,
+  EditEducation,
   Footer,
 };

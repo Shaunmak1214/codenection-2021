@@ -38,6 +38,7 @@ import { ReactComponent as HelpIcon } from './svgs/HelpIcon.svg';
 import { ReactComponent as RightArrow } from './svgs/RightArrow.svg';
 import FolderOpen from './svgs/FolderOpen.svg';
 import FolderClose from './svgs/FolderClose.svg';
+import EditProfileIcon from './svgs/EditProfileIcon.svg';
 import { ReactComponent as ArrowRight } from './svgs/arrow-right.svg';
 import TickIcon from './svgs/solid-tick.svg';
 import { ReactComponent as ITS } from './svgs/its.svg';
@@ -85,6 +86,7 @@ export {
   RightArrow,
   FolderClose,
   FolderOpen,
+  EditProfileIcon,
   GrayBox,
   TickIcon,
   ArrowRight,
