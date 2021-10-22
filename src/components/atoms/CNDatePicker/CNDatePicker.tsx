@@ -18,6 +18,7 @@ interface Props {
   field?: any;
   selectedDate: Date | undefined;
   showPopperArrow?: boolean;
+  updateReg: (values: any) => void;
 }
 
 const CNDatePicker = ({

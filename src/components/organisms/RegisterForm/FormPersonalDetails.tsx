@@ -1,7 +1,7 @@
 /* eslint-disabled */
 // @ts-nocheck
 
-import React from 'react';
+import React, { useState } from 'react';
 import * as yup from 'yup';
 import { motion } from 'framer-motion';
 import { Formik, Form, Field } from 'formik';
@@ -38,7 +38,9 @@ interface Props {
   nextStep: () => void;
   prevStep: () => void;
   updateReg: (values: MyFormValues) => void;
+  clearReg: () => void;
   formStore: any;
+  password: string;
 }
 
 // eslint-disable-next-line
@@ -46,17 +48,27 @@ const FormPersonalDetails = ({
   nextStep,
   prevStep,
   updateReg,
+  clearReg,
   // eslint-disable-next-line
   formStore,
+  password,
 }: Props) => {
   const dispatch = useDispatch();
+  const [formInput, setFormInput] = useState<MyFormValues>({
+    full_name: formStore!.register_state.full_name,
+    university: formStore!.register_state.university,
+    field_major: formStore!.register_state.field_major,
+  });
+
+  const handleOnChange = (e: any) => {
+    setFormInput({ ...formInput, [e.target.name]: e.target.value });
+  };
 
   // eslint-disable-next-line
   const { loading: signUpLoading, fetch } = useAxios(
     { url: '/auth/signup', method: 'POST' },
     (err, data) => {
       if (err) {
-        console.log(err);
         toast({
           title: 'Email already existed',
           description: err.data.message,
@@ -86,7 +98,6 @@ const FormPersonalDetails = ({
     // eslint-disable-next-line
     (err, data) => {
       if (err) {
-        console.log(err);
         toast({
           title: 'Verification email not sent',
           description: err.data.message,
@@ -139,12 +150,12 @@ const FormPersonalDetails = ({
   });
 
   const initialValues: MyFormValues = {
-    full_name: '',
+    full_name: formStore!.register_state.full_name,
     dob: '',
     sex: '',
     citizenship: '',
-    university: '',
-    field_major: '',
+    university: formStore!.register_state.university,
+    field_major: formStore!.register_state.field_major,
     education_level: '',
     coding_prof: '',
   };
@@ -158,7 +169,18 @@ const FormPersonalDetails = ({
       >
         <Container w="550px" maxW="container.form">
           <Container>
-            <BoxIcons icon={BackIcon} onClick={prevStep} />
+            <BoxIcons
+              icon={BackIcon}
+              onClick={() => {
+                updateReg({
+                  full_name: formInput.full_name,
+                  university: formInput.university,
+                  field_major: formInput.field_major,
+                });
+
+                prevStep();
+              }}
+            />
 
             <Text color="#5B5B5B">Step 2</Text>
             <SecondaryText fontWeight="bold" fontSize="4xl">
@@ -175,11 +197,13 @@ const FormPersonalDetails = ({
               initialValues={initialValues}
               onSubmit={(data) => {
                 updateReg(data);
+
                 fetch({
                   email: formStore.register_state.email,
-                  password: formStore.register_state.password,
+                  password: password,
                   ...data,
                 });
+                clearReg();
               }}
             >
               {(props) => (
@@ -190,7 +214,13 @@ const FormPersonalDetails = ({
                       label="Full Name "
                       name="full_name"
                       placeholder=""
+                      value={formInput.full_name}
                       component={CNTextFormField}
+                      onChange={(e: any) => {
+                        handleOnChange(e);
+                        // eslint-disable-next-line
+                        props.setFieldValue('full_name', e.target.value);
+                      }}
                     />
                     <SimpleGrid
                       columns={3}
@@ -207,6 +237,7 @@ const FormPersonalDetails = ({
                         placeholderText="DD / MM / YY"
                         type="string"
                         borderColor="#E2E8F0 !important"
+                        value={formInput.dob}
                         // eslint-disable-next-line
                         selectedDate={props.values.dob}
                         component={CNDatePicker}
@@ -258,12 +289,24 @@ const FormPersonalDetails = ({
                       name="university"
                       placeholder="Multimedia University"
                       component={CNTextFormField}
+                      value={formInput.university}
+                      onChange={(e: any) => {
+                        handleOnChange(e);
+                        // eslint-disable-next-line
+                        props.setFieldValue('university', e.target.value);
+                      }}
                     />
                     <Field
                       label="Field Major: "
                       name="field_major"
                       placeholder="Computer Science/Data Science/Artificial Intelligence"
                       component={CNTextFormField}
+                      value={formInput.field_major}
+                      onChange={(e: any) => {
+                        handleOnChange(e);
+                        // eslint-disable-next-line
+                        props.setFieldValue('field_major', e.target.value);
+                      }}
                     />
                     <Field
                       label="Level of education: "
@@ -293,6 +336,7 @@ const FormPersonalDetails = ({
                       ]}
                       component={CNSelectDropdownField}
                     />
+
                     <Field
                       label="Coding proficiency: "
                       name="coding_prof"

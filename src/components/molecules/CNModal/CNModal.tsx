@@ -4,7 +4,7 @@ import { Flex, Box } from '@chakra-ui/layout';
 import { IconButton } from '@chakra-ui/react';
 import { CloseIcon } from '@chakra-ui/icons';
 import { AnimatePresence, motion } from 'framer-motion';
-import { MutedButton, PrimaryButton } from '../../atoms';
+import { MutedButton, PrimaryButton, CNSpacer } from '../../atoms';
 
 interface Props {
   onClose?: () => void;
@@ -113,6 +113,8 @@ const CNModal = ({
                   />
                 </Box>
               )}
+
+              <CNSpacer size="sm" />
 
               {children}
               {!disableButton && (

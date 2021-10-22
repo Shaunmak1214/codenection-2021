@@ -5,7 +5,7 @@ import authTypes from '../types/auth.types';
 const initialState = {
   user:
     cookie.get('userCN') !== undefined ? JSON.parse(cookie.get('userCN')!) : {},
-  isAuthenticated: cookie.get('isAuthenticatedCN') ? true : false,
+  isAuthenticated: cookie.get('accessTokenCN') ? true : false,
   accessToken: cookie.get('accessTokenCN') ? cookie.get('accessTokenCN') : '',
   refreshToken: cookie.get('refreshTokenCN')
     ? cookie.get('refreshTokenCN')

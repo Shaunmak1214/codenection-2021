@@ -2,14 +2,13 @@ import React from 'react';
 
 import { BrowserRouter as Router, Switch } from 'react-router-dom';
 import * as Screens from './pages';
-import { CNRoutes } from './hoc';
+import CNRoutes from './hoc/CNRoutes';
 
 import { Footer } from './components/organisms';
 
 function App() {
   return (
     <Router forceRefresh={true}>
-      {/* <Header /> */}
       <Switch>
         <CNRoutes header exact path="/" component={Screens.Landing} />
         <CNRoutes
@@ -18,19 +17,33 @@ function App() {
           path="/leaderboard"
           component={Screens.Leaderboard}
         />
-        <CNRoutes exact path="/register" component={Screens.Register} />
+        <CNRoutes
+          clearForm={false}
+          exact
+          path="/register"
+          component={Screens.Register}
+        />
         <CNRoutes exact path="/login" component={Screens.Login} />
         <CNRoutes
           exact
           path="/dashboard"
           header
           component={Screens.Dashboard}
+          isProtected
         />
         <CNRoutes
           exact
           path="/reset-password"
           component={Screens.ResetPassword}
         />
+        <CNRoutes
+          exact
+          header
+          path="/edit-profile"
+          component={Screens.Profile}
+        />
+
+        <CNRoutes exact header path="*" component={Screens.Landing} />
       </Switch>
       <Footer />
     </Router>

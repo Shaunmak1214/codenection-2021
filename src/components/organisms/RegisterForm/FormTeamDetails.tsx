@@ -53,7 +53,6 @@ const FormTeamDetails = () => {
     // eslint-disable-next-line
     (err, data) => {
       if (err) {
-        console.log(err);
         toast({
           title: 'Failed to join team',
           // @ts-ignore
@@ -227,7 +226,7 @@ const FormTeamDetails = () => {
                       }}
                     >
                       <Box w="25%" h="1px" bgColor="#8C8C8C" />
-
+                      <Text>OR</Text>
                       <Box w="25%" h="1px" bgColor="#8C8C8C" />
                     </HStack>
 
