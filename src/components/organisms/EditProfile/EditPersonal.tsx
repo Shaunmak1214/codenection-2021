@@ -52,7 +52,6 @@ const EditPersonal = ({
           citizenship: userInfo.citizenship,
         }}
         onSubmit={(data) => {
-          console.log(data);
           updateUser(data);
         }}
         enableReinitialize

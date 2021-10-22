@@ -7,10 +7,10 @@ import {
   Box,
   SimpleGrid,
 } from '@chakra-ui/react';
-import { Text } from '@chakra-ui/react';
+import { Text, Button } from '@chakra-ui/react';
 import { BoxIcons } from '../../molecules';
 import { EditProfileIcon, SaveIcon, ReturnIcon } from '../../../assets';
-import { PrimaryButton, ProfileBoxTitle } from '../../atoms';
+import { ProfileBoxTitle } from '../../atoms';
 import { Spinner } from '@chakra-ui/react';
 import PropTypes from 'prop-types';
 
@@ -23,11 +23,14 @@ interface Props {
   setEdit?: any;
   updateLoading?: boolean;
 }
+
 const ProfileBlock = ({
   edit,
+  // eslint-disable-next-line no-unused-vars
   updateUser,
   title,
   profileLoading,
+  // eslint-disable-next-line no-unused-vars
   updateLoading,
   setEdit,
   // eslint-disable-next-line no-unused-vars
@@ -35,7 +38,6 @@ const ProfileBlock = ({
   ...props
 }: Props) => {
   const children = props.children;
-
   return (
     <Center>
       <Container mt="35px" maxW="800px" w="750px">
@@ -59,30 +61,28 @@ const ProfileBlock = ({
                     <BoxIcons
                       icon={ReturnIcon}
                       onClick={() => setEdit(!edit)}
-                      mr="25px"
+                      mr="20px"
                       my="0"
                       w="42px"
                       h="42px"
                     />{' '}
-                    <BoxIcons
-                      icon={SaveIcon}
-                      onClick={() => setEdit(!edit)}
-                      bg="#96E5F1"
-                      mr="25px"
-                      my="0"
-                      w="42px"
-                      h="42px"
-                    />{' '}
-                    <PrimaryButton
-                      bg="#3CCD94"
-                      color="#FFFFFF"
+                    <Button
+                      _hover={{
+                        transform: 'scale(1.1)',
+                        transition: 'all .3s ease-in-out',
+                      }}
+                      boxShadow="0px 4px 10px rgba(159, 159, 159, 0.25)"
                       borderRadius="10px"
+                      bg="#96E5F1"
                       type="submit"
-                      _hover={{ bg: '#36B381' }}
-                      onClick={updateUser}
-                    >
-                      {updateLoading ? <Spinner /> : 'Save'}
-                    </PrimaryButton>
+                      bgImage={updateLoading ? 'none' : SaveIcon}
+                      bgRepeat="no-repeat"
+                      w="42px"
+                      h="42px"
+                      backgroundPosition="center"
+                      backgroundSize="25px 25px"
+                      isLoading={updateLoading}
+                    ></Button>
                   </HStack>
                 </>
               ) : (

@@ -41,7 +41,6 @@ const EditOther = ({
         size: userInfo.size,
       }}
       onSubmit={(data) => {
-        console.log(data);
         updateUser(data);
       }}
       enableReinitialize
