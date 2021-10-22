@@ -35,5 +35,6 @@ BoxIcons.propTypes = {
   my: PropTypes.string,
   w: PropTypes.string,
   h: PropTypes.string,
+  bg: PropTypes.string,
 };
 export default BoxIcons;
