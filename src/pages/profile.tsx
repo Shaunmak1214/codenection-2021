@@ -11,26 +11,26 @@ import store from '../store';
 
 import authTypes from '../types/auth.types';
 interface UserProps {
-  full_name: string;
-  email: string;
-  dob: string;
-  gender: string;
-  citizenship: string;
-  university: string;
-  field_major: string;
-  education_level: string;
-  coding_prof: string;
-  gpa: string;
-  expected_graduation: string;
-  interest_job_position: string;
-  resume: string;
-  address: string;
-  size: string;
+  full_name?: string;
+  email?: string;
+  dob?: string;
+  gender?: string;
+  citizenship?: string;
+  university?: string;
+  field_major?: string;
+  education_level?: string;
+  coding_prof?: string;
+  gpa?: string;
+  expected_graduation?: string;
+  interest_job_position?: string;
+  resume?: string;
+  address?: string;
+  size?: string;
 }
 const Index = () => {
   const toast = useToast();
   const authStore: authTypes = store.getState().auth;
-  const [edit, setEdit] = useState(false);
+
   // eslint-disable-next-line no-unused-vars
   const [userInfo, setUserInfo] = useState<UserProps>({
     full_name: '',
@@ -60,7 +60,6 @@ const Index = () => {
     },
     (err, data) => {
       if (err) {
-        console.log(err);
         return;
       } else {
         setUserInfo({
@@ -93,7 +92,6 @@ const Index = () => {
       },
     },
     (err, data) => {
-      console.log(data);
       if (err) {
         toast({
           title: 'Failed to update profile',
@@ -104,7 +102,8 @@ const Index = () => {
           isClosable: true,
         });
       } else if (data) {
-        console.log(data);
+        const updatedData: UserProps = JSON.parse(data.config.data);
+
         toast({
           title: 'Profile Updated',
           description: 'You have successfully updated your profile',
@@ -113,10 +112,22 @@ const Index = () => {
           duration: 10000,
           isClosable: true,
         });
-        setEdit(false);
+        setUserInfo({
+          ...userInfo,
+          ...updatedData,
+        });
+        setEditPersonal(false);
+        setEditEducation(false);
+        setEditJob(false);
+        setEditOthers(false);
       }
     },
   );
+
+  const [editPersonal, setEditPersonal] = useState(false);
+  const [editEducation, setEditEducation] = useState(false);
+  const [editJob, setEditJob] = useState(false);
+  const [editOthers, setEditOthers] = useState(false);
 
   useEffect(() => {
     fetchUserInfo();
@@ -135,8 +146,8 @@ const Index = () => {
               userInfo={userInfo}
               profileLoading={profileLoading}
               updateUser={updateUser}
-              edit={edit}
-              setEdit={setEdit}
+              edit={editPersonal}
+              setEdit={setEditPersonal}
               updateLoading={updateLoading}
             />
             <EditEducation
@@ -144,24 +155,24 @@ const Index = () => {
               updateLoading={updateLoading}
               profileLoading={profileLoading}
               updateUser={updateUser}
-              edit={edit}
-              setEdit={setEdit}
+              edit={editEducation}
+              setEdit={setEditEducation}
             />
             <EditJob
               userInfo={userInfo}
               updateLoading={updateLoading}
               profileLoading={profileLoading}
               updateUser={updateUser}
-              edit={edit}
-              setEdit={setEdit}
+              edit={editJob}
+              setEdit={setEditJob}
             />
             <EditOther
               userInfo={userInfo}
               updateLoading={updateLoading}
               profileLoading={profileLoading}
               updateUser={updateUser}
-              edit={edit}
-              setEdit={setEdit}
+              edit={editOthers}
+              setEdit={setEditOthers}
             />
           </VStack>
         </HStack>

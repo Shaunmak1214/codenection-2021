@@ -6,6 +6,7 @@ import GoldBG from './jpgs-pngs/GoldBG.png';
 import SilverBG from './jpgs-pngs/SilverBG.png';
 import BronzeBG from './jpgs-pngs/BronzeBG.png';
 import GrayBox from './jpgs-pngs/gray.png';
+import SaveProfile from './jpgs-pngs/SavePng.png';
 
 //svgs
 import CNLanding from './svgs/CNLanding.svg';
@@ -96,5 +97,6 @@ export {
   Facebook,
   CodeNectionLogoImg,
   ReturnIcon,
+  SaveProfile,
   SaveIcon,
 };

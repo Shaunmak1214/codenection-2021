@@ -49,7 +49,6 @@ const CNRoutes = ({
       })
       .then((res) => {
         if (res.status == 200 || res.status === 203 || res.status === 204) {
-          console.log('refresh ok');
           dispatch(
             LOGIN({
               user: res.data.user,
@@ -73,8 +72,6 @@ const CNRoutes = ({
       })
       .then((res) => {
         if (res.status === 200 || res.status === 203 || res.status === 204) {
-          console.log(authState.accessToken);
-          console.log('access ok');
           return;
         } else {
           logout();

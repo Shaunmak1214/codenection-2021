@@ -29,8 +29,8 @@ const EditJob = ({
     values: any;
   }
   const schema = yup.object({
-    full_name: yup.string().required('fullname'),
-    email: yup.string().required('email'),
+    interest_job_position: yup.string().required('job'),
+    resume: yup.string().required('resume'),
   });
 
   return (
@@ -41,7 +41,6 @@ const EditJob = ({
         resume: userInfo.resume,
       }}
       onSubmit={(data) => {
-        console.log(data);
         updateUser(data);
       }}
       enableReinitialize
