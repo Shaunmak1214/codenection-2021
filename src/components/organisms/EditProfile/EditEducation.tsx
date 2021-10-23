@@ -38,8 +38,12 @@ const EditEducation = ({
   }
 
   const schema = yup.object({
-    full_name: yup.string().required('fullname'),
-    email: yup.string().required('email'),
+    university: yup.string().required('university'),
+    field_major: yup.string().required('field_major'),
+    education_level: yup.string().required('education_level'),
+    coding_prof: yup.string().required('coding proficiency'),
+    gpa: yup.string().nullable(true),
+    expected_graduation: yup.string().nullable(true),
   });
 
   return (
