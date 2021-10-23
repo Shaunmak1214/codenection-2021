@@ -5,9 +5,18 @@ import {
   EditOther,
   EditEducation,
 } from '../components/organisms';
-import { Center, Container, HStack, VStack, useToast } from '@chakra-ui/react';
+import {
+  Center,
+  Container,
+  HStack,
+  VStack,
+  useToast,
+  Text,
+  Box,
+} from '@chakra-ui/react';
 import { useAxios } from '../hooks';
 import store from '../store';
+import { TeamBlocks } from '../components/molecules';
 
 import authTypes from '../types/auth.types';
 interface UserProps {
@@ -127,8 +136,14 @@ const Index = () => {
     <Center py="150px">
       <Container maxW="container.xl">
         <HStack>
-          <Container>
-            <h1>testin</h1>
+          <Container mr="40px">
+            <Box>
+              <Text fontSize="2xl" fontWeight="bold">
+                YOUR TEAM
+              </Text>
+              <TeamBlocks category="closed" />
+              <TeamBlocks />
+            </Box>
           </Container>
           <VStack>
             <EditPersonal
