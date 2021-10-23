@@ -133,3 +133,14 @@
   align-items: center;
   background: rgba(31, 48, 65, 0.5);
 }
+
+
+.otpInput {
+  width: 3rem !important;
+  height: 3rem;
+  margin: 0 1rem;
+  font-size: 2rem;
+  text-align: center;
+  border-radius: 4px;
+  border: 1px solid rgba(0, 0, 0, 0.3);
+}

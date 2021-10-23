@@ -15,7 +15,7 @@ import { CreateTeamModal, EmailVerifyModal } from '../../organisms';
 
 import store from '../../../store';
 import authTypes from '../../../types/auth.types';
-import { useCNModal, useAxios } from '../../../hooks';
+import { useAxios } from '../../../hooks';
 
 import { TickIcon } from '../../../assets';
 
@@ -24,14 +24,7 @@ const FormTeamDetails = () => {
   const toast = useToast();
   const dispatch = useDispatch();
   const [teamModalIsOpen, setTeamModalIsOpen] = useState(false);
-
-  const {
-    isOpen: emailVerifierOpen,
-    handleModalClose: handleEmailVerifierClose,
-    handleModalOpen: handleEmailVerifierOpen,
-  } = useCNModal({
-    initialState: false,
-  });
+  const [emailVerifyModalIsOpen, setEmailVerifyModalIsOpen] = useState(false);
 
   const joinTeamSchema = yup.object({
     teamCode: yup
@@ -107,8 +100,15 @@ const FormTeamDetails = () => {
 
     // @ts-ignore
     if (authStore.user!.permission_level <= 1) {
-      handleEmailVerifierOpen();
+      setEmailVerifyModalIsOpen(true);
     }
+
+    // eslint-disable-next-line
+  }, [toast]);
+
+  useEffect(() => {
+    setEmailVerifyModalIsOpen(true);
+
     // eslint-disable-next-line
   }, []);
 
@@ -116,8 +116,10 @@ const FormTeamDetails = () => {
     <>
       {/* Email Verification Modal */}
       <EmailVerifyModal
-        isOpen={emailVerifierOpen}
-        onClose={handleEmailVerifierClose}
+        isOpen={emailVerifyModalIsOpen}
+        onClose={() => {
+          setEmailVerifyModalIsOpen(false);
+        }}
       />
 
       {/* Team Modal */}

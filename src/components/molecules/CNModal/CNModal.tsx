@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { Flex, Box } from '@chakra-ui/layout';
 import { IconButton } from '@chakra-ui/react';
@@ -19,6 +19,7 @@ interface Props {
   CTAIsCenter?: boolean;
   centerSpacing?: boolean;
   onPrimaryClick?: () => void;
+  onRenderUpdate?: () => void;
   primaryButtonFormId?: string;
   theme?: any;
 }
@@ -66,6 +67,7 @@ const CNModal = ({
   onPrimaryClick,
   centerSpacing = true,
   theme,
+  onRenderUpdate,
   ...props
 }: Props) => {
   const children: React.ReactNode = props.children;
@@ -75,6 +77,14 @@ const CNModal = ({
       onPrimaryClick();
     }
   };
+
+  // temp fix
+  useEffect(() => {
+    if (onRenderUpdate) {
+      onRenderUpdate();
+    }
+    // eslint-disable-next-line
+  }, [modalIsOpen]);
 
   return (
     <>

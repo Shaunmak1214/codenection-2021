@@ -35,7 +35,7 @@ const Register = () => {
   const clearReg = () => {
     dispatch(CLEARREG());
   };
-  const [step, setStep] = useState<number>(1);
+  const [step, setStep] = useState<number>(3);
 
   const [prev, setPrev] = useState<boolean>(false);
 
