@@ -52,6 +52,8 @@ import SaveIcon from './svgs/SaveIcon.svg';
 import { ReactComponent as DiscordBlue } from './svgs/discord-blue.svg';
 import { ReactComponent as InstagramBlue } from './svgs/instagram-blue.svg';
 import { ReactComponent as FacebookBlue } from './svgs/facebook-blue.svg';
+import LeaderIcon from './svgs/LeaderIcon.svg';
+import MemberIcon from './svgs/MemberIcon.svg';
 
 export {
   CNLanding,
@@ -105,4 +107,6 @@ export {
   DiscordBlue,
   InstagramBlue,
   FacebookBlue,
+  LeaderIcon,
+  MemberIcon,
 };
