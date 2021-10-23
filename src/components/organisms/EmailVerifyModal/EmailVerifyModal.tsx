@@ -2,18 +2,26 @@ import React, { useEffect, useRef, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import Lottie from 'react-lottie';
 
-import { Text, useToast, Link, Box, SimpleGrid, Input } from '@chakra-ui/react';
+import {
+  Text,
+  useToast,
+  Link,
+  Box,
+  SimpleGrid,
+  Input,
+  IconButton,
+} from '@chakra-ui/react';
 import { VStack } from '@chakra-ui/layout';
+import { ChevronLeftIcon } from '@chakra-ui/icons';
 
 import { PrimaryButton, SecondaryText } from '../../atoms';
-import { CNModal, BoxIcons } from '../../molecules';
+import { CNModal } from '../../molecules';
 
 import { LOGIN } from '../../../reducers/authSlice';
 import store from '../../../store';
 import authTypes from '../../../types/auth.types';
 import { EmailLoader, Warning } from '../../../constants';
 import { useAxios } from '../../../hooks';
-import { BackIcon } from '../../.././assets';
 
 interface ModalProps {
   isOpen: boolean;
@@ -221,8 +229,10 @@ const EmailVerifyModal = ({
           >
             {sendable ? (
               <Box position="absolute" top="-10px" left="15px">
-                <BoxIcons
-                  icon={BackIcon}
+                <IconButton
+                  variant="ghost"
+                  aria-label="Back"
+                  icon={<ChevronLeftIcon w="25px" h="25px" />}
                   onClick={() => {
                     setStep(1);
                   }}

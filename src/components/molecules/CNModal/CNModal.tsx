@@ -99,6 +99,7 @@ const CNModal = ({
               style={{
                 padding: '2rem',
                 backgroundColor: theme === 'discord' ? '#5865F2' : '#fff',
+                transition: 'height 0.3s ease-in-out',
               }}
               {...props}
             >
