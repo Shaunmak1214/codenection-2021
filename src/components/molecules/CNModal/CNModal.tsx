@@ -19,6 +19,7 @@ interface Props {
   CTAIsCenter?: boolean;
   onPrimaryClick?: () => void;
   primaryButtonFormId?: string;
+  style?: any;
 }
 const modalAnimation = {
   hidden: {
@@ -62,6 +63,7 @@ const CNModal = ({
   disableCloseButton = disableButton,
   CTAIsCenter = false,
   onPrimaryClick,
+  style,
   ...props
 }: Props) => {
   const children: React.ReactNode = props.children;
@@ -94,6 +96,8 @@ const CNModal = ({
               exit="exit"
               style={{
                 height: '100%',
+                ...style,
+                backgroundColor: '#5865F2',
               }}
               {...props}
             >
@@ -114,7 +118,7 @@ const CNModal = ({
                 </Box>
               )}
 
-              <CNSpacer size="sm" />
+              <CNSpacer size="xs" />
 
               {children}
               {!disableButton && (
