@@ -40,6 +40,7 @@ const DashboardSection = () => {
   const authStore: authTypes = store.getState().auth;
   const dispatch = useDispatch();
   const [teamModalIsOpen, setTeamModalIsOpen] = useState(false);
+  const [discordModalIsOpen, setDiscordModalIsOpen] = useState(false);
 
   registerPlugin(
     FilePondPluginImageExifOrientation,
@@ -134,11 +135,21 @@ const DashboardSection = () => {
         },
       }),
     );
-  });
+
+    setDiscordModalIsOpen(
+      // @ts-ignore
+      store.getState().advert.find((ad) => ad.id === 1)!.count < 3
+        ? true
+        : false,
+    );
+
+    // eslint-disable-next-line
+  }, [setDiscordModalIsOpen]);
 
   return (
     <>
-      <AdvertisementModal />
+      {discordModalIsOpen && <AdvertisementModal />}
+
       <CreateTeamModal
         isOpen={teamModalIsOpen}
         onClose={() => {
