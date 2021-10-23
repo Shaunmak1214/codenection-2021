@@ -80,9 +80,12 @@ const Register = () => {
     }
   };
 
-  if (authStore.isAuthenticated) {
-    return <Redirect to="/dashboard" />;
+  if (authStore.user) {
+    if (authStore!.user!.permission_level > 0) {
+      return <Redirect to="/dashboard" />;
+    }
   }
+
   return (
     <HStack alignItems="flex-start">
       <RegisterIndicator currentStep={step} />
