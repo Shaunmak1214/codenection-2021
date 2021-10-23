@@ -25,10 +25,7 @@ const AdvertisementModal = () => {
       disableCloseButton={false}
       onClose={onClose}
       centerSpacing={false}
-      // @ts-ignore
-      style={{
-        background: '#5865F2 !important',
-      }}
+      theme="discord"
     >
       <VStack h="100%" w="100%" justifyContent="flex-start">
         <HStack>

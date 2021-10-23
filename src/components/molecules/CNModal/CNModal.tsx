@@ -20,7 +20,7 @@ interface Props {
   centerSpacing?: boolean;
   onPrimaryClick?: () => void;
   primaryButtonFormId?: string;
-  style?: any;
+  theme?: any;
 }
 const modalAnimation = {
   hidden: {
@@ -65,7 +65,7 @@ const CNModal = ({
   CTAIsCenter = false,
   onPrimaryClick,
   centerSpacing = true,
-  style,
+  theme,
   ...props
 }: Props) => {
   const children: React.ReactNode = props.children;
@@ -97,10 +97,8 @@ const CNModal = ({
               animate="visible"
               exit="exit"
               style={{
-                height: '100%',
                 padding: '2rem',
-                ...style,
-                backgroundColor: '#5865F2',
+                backgroundColor: theme === 'discord' ? '#5865F2' : '#fff',
               }}
               {...props}
             >
@@ -116,6 +114,9 @@ const CNModal = ({
                   <IconButton
                     variant="ghost"
                     aria-label="Close modal"
+                    _hover={{
+                      bg: theme === 'discord' ? '#3945C9' : '#F5F5F5',
+                    }}
                     icon={<CloseIcon w="12px" h="12px" />}
                   />
                 </Box>
