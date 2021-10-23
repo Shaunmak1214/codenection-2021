@@ -12,6 +12,7 @@ import 'react-datepicker/dist/react-datepicker.css';
 import '../../../assets/css/date-picker.css';
 
 interface Props {
+  formInputName?: string;
   isClearable?: boolean;
   label: string;
   form?: any;
@@ -23,6 +24,7 @@ interface Props {
 
 const CNDatePicker = ({
   selectedDate,
+  formInputName,
   label,
   form,
   field,
@@ -35,7 +37,7 @@ const CNDatePicker = ({
 
   const onChange = (date: Date | [Date | null, Date | null] | null) => {
     // eslint-disable-next-line
-    form.setFieldValue('dob', date);
+    form.setFieldValue(formInputName, date);
   };
 
   return (
