@@ -29,8 +29,8 @@ const EditOther = ({
     values: any;
   }
   const schema = yup.object({
-    full_name: yup.string().required('fullname'),
-    email: yup.string().required('email'),
+    address: yup.string().nullable(true),
+    size: yup.string().nullable(true),
   });
 
   return (
