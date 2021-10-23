@@ -2,8 +2,8 @@ import React, { useEffect, useRef, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import Lottie from 'react-lottie';
 
-import { Text, Input, useToast, Link, Box } from '@chakra-ui/react';
-import { SimpleGrid, VStack } from '@chakra-ui/layout';
+import { Text, useToast, Link, Box, SimpleGrid, Input } from '@chakra-ui/react';
+import { VStack } from '@chakra-ui/layout';
 
 import { PrimaryButton, SecondaryText } from '../../atoms';
 import { CNModal, BoxIcons } from '../../molecules';
@@ -132,32 +132,22 @@ const EmailVerifyModal = ({
     });
   };
 
-  function OTPInput() {
-    const inputs = document.querySelectorAll('#otp > *[id]');
+  function OTPInputFunc() {
+    const inputs = document.querySelectorAll<HTMLInputElement>('#otp > *[id]');
     for (let i = 0; i < inputs.length; i++) {
-      inputs[i].addEventListener('keyup', function (event) {
-        // @ts-ignore
+      inputs[i].addEventListener('keydown', function (event: any) {
         if (event.key === 'Backspace') {
-          // @ts-ignore
           inputs[i].value = '';
-          // @ts-ignore
           if (i !== 0) inputs[i - 1].focus();
         } else {
-          // @ts-ignore
           if (i === inputs.length - 1 && inputs[i].value !== '') {
             return true;
-            // @ts-ignore
           } else if (event.keyCode > 47 && event.keyCode < 58) {
-            // @ts-ignore
             inputs[i].value = event.key;
-            // @ts-ignore
             if (i !== inputs.length - 1) inputs[i + 1].focus();
             event.preventDefault();
-            // @ts-ignore
           } else if (event.keyCode > 64 && event.keyCode < 91) {
-            // @ts-ignore
             inputs[i].value = String.fromCharCode(event.keyCode);
-            // @ts-ignore
             if (i !== inputs.length - 1) inputs[i + 1].focus();
             event.preventDefault();
           }
@@ -171,7 +161,7 @@ const EmailVerifyModal = ({
   }, [setStep, sendable]);
 
   useEffect(() => {
-    OTPInput();
+    OTPInputFunc();
   }, [step]);
 
   return (
@@ -279,6 +269,8 @@ const EmailVerifyModal = ({
                 type="text"
                 id="first"
                 ref={firstNum}
+                maxLength={1}
+                keyboardType="number-pad"
                 boxShadow="0px 5px 6px rgba(185, 185, 185, 0.25);"
               />
               <Input
@@ -288,6 +280,8 @@ const EmailVerifyModal = ({
                 type="text"
                 id="second"
                 ref={SecNum}
+                maxLength={1}
+                keyboardType="number-pad"
                 boxShadow="0px 5px 6px rgba(185, 185, 185, 0.25);"
               />
               <Input
@@ -297,6 +291,8 @@ const EmailVerifyModal = ({
                 type="text"
                 id="third"
                 ref={thirdNum}
+                maxLength={1}
+                keyboardType="number-pad"
                 boxShadow="0px 5px 6px rgba(185, 185, 185, 0.25);"
               />
               <Input
@@ -306,6 +302,8 @@ const EmailVerifyModal = ({
                 type="text"
                 id="fourth"
                 ref={forthNum}
+                maxLength={1}
+                keyboardType="number-pad"
                 boxShadow="0px 5px 6px rgba(185, 185, 185, 0.25);"
               />
               <Input
@@ -315,6 +313,8 @@ const EmailVerifyModal = ({
                 type="text"
                 id="fifth"
                 ref={fifthNum}
+                maxLength={1}
+                keyboardType="number-pad"
                 boxShadow="0px 5px 6px rgba(185, 185, 185, 0.25);"
               />
               <Input
@@ -324,6 +324,8 @@ const EmailVerifyModal = ({
                 type="text"
                 id="sixth"
                 ref={sixthNum}
+                maxLength={1}
+                keyboardType="number-pad"
                 boxShadow="0px 5px 6px rgba(185, 185, 185, 0.25);"
               />
             </SimpleGrid>

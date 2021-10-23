@@ -49,6 +49,9 @@ import { ReactComponent as Instagram } from './svgs/instagram.svg';
 import { ReactComponent as Facebook } from './svgs/facebook.svg';
 import ReturnIcon from './svgs/ReturnIcon.svg';
 import SaveIcon from './svgs/SaveIcon.svg';
+import { ReactComponent as DiscordBlue } from './svgs/discord-blue.svg';
+import { ReactComponent as InstagramBlue } from './svgs/instagram-blue.svg';
+import { ReactComponent as FacebookBlue } from './svgs/facebook-blue.svg';
 
 export {
   CNLanding,
@@ -99,4 +102,7 @@ export {
   ReturnIcon,
   SaveProfile,
   SaveIcon,
+  DiscordBlue,
+  InstagramBlue,
+  FacebookBlue,
 };
