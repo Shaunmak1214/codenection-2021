@@ -9,7 +9,8 @@ if (advertsArr.length > 0) {
   advertsArr.forEach((advert: adTypes) => {
     initialState.push({
       id: advert.id || '',
-      count: advert.count || 0,
+      // count: advert.count || 0,
+      count: 0,
       latestPopupDateTime: advert.latestPopupDateTime || '',
       neverShowPopup: advert.neverShowPopup || false,
     });
@@ -29,13 +30,6 @@ export const advertSlice = createSlice({
         JSON.stringify([initialState, action.payload.advert]),
       );
     },
-    // REMOVE: (state) => {
-    //   state.user = null;
-    //   state.accessToken = '';
-    //   state.refreshToken = '';
-    //   state.isAuthenticated = false;
-    //   cookie.set('userCN', JSON.stringify(null));
-    // },
     UPDATEAD: (state, action) => {
       let target = state.find((x) => x.id === action.payload.advert.id);
       if (target) {
@@ -49,10 +43,6 @@ export const advertSlice = createSlice({
         );
       }
     },
-    // REGISTERSTATE: (state, action) => {
-    //   state.register_state = action.payload;
-    //   cookie.set('register_stateCN', JSON.stringify(action.payload));
-    // },
   },
 });
 

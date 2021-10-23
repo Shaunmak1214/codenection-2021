@@ -17,6 +17,7 @@ interface Props {
   disableCloseButton?: boolean;
   maxHeight?: string;
   CTAIsCenter?: boolean;
+  centerSpacing?: boolean;
   onPrimaryClick?: () => void;
   primaryButtonFormId?: string;
   style?: any;
@@ -63,6 +64,7 @@ const CNModal = ({
   disableCloseButton = disableButton,
   CTAIsCenter = false,
   onPrimaryClick,
+  centerSpacing = true,
   style,
   ...props
 }: Props) => {
@@ -96,6 +98,7 @@ const CNModal = ({
               exit="exit"
               style={{
                 height: '100%',
+                padding: '2rem',
                 ...style,
                 backgroundColor: '#5865F2',
               }}
@@ -105,8 +108,8 @@ const CNModal = ({
                 <Box
                   d="flex"
                   position="absolute"
-                  top="30px"
-                  right="30px"
+                  top="25px"
+                  right="25px"
                   justifyContent="flex-end"
                   onClick={onClose}
                 >
@@ -118,7 +121,7 @@ const CNModal = ({
                 </Box>
               )}
 
-              <CNSpacer size="xs" />
+              {centerSpacing && <CNSpacer size="xs" />}
 
               {children}
               {!disableButton && (

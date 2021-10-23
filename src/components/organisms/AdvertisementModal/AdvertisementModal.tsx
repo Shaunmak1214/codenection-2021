@@ -24,6 +24,7 @@ const AdvertisementModal = () => {
       modalIsOpen={isOpen}
       disableCloseButton={false}
       onClose={onClose}
+      centerSpacing={false}
       // @ts-ignore
       style={{
         background: '#5865F2 !important',
@@ -37,7 +38,7 @@ const AdvertisementModal = () => {
           </PrimaryText>
         </HStack>
 
-        <CNSpacer size="4xs" />
+        <CNSpacer size="3xs" />
 
         <Lottie
           options={DiscordInv}
@@ -51,8 +52,9 @@ const AdvertisementModal = () => {
           color="white"
           borderColor="white"
           _hover={{
-            color: '#0016e5',
-            borderColor: '#0016e5',
+            color: '#F6F6F6',
+            borderColor: '#2C2F33',
+            bgColor: '#2C2F33',
           }}
           borderRadius="12px"
           onClick={() => {
