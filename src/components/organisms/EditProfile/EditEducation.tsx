@@ -58,6 +58,7 @@ const EditEducation = ({
         expected_graduation: userInfo.expected_graduation,
       }}
       onSubmit={(data) => {
+        console.log(data);
         updateUser(data);
       }}
       enableReinitialize
