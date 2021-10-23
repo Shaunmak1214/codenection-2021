@@ -14,7 +14,7 @@ interface UserProps {
   full_name?: string;
   email?: string;
   dob?: string;
-  gender?: string;
+  sex?: string;
   citizenship?: string;
   university?: string;
   field_major?: string;
@@ -36,7 +36,7 @@ const Index = () => {
     full_name: '',
     email: '',
     dob: '',
-    gender: '',
+    sex: '',
     citizenship: '',
     university: '',
     field_major: '',
@@ -62,21 +62,10 @@ const Index = () => {
       if (err) {
         return;
       } else {
+        const userData = data.data;
+        console.log(userData);
         setUserInfo({
-          full_name: data.data.full_name,
-          email: data.data.email,
-          dob: data.data.dob,
-          gender: data.data.sex,
-          citizenship: data.data.citizenship,
-          university: data.data.university,
-          field_major: data.data.field_major,
-          education_level: data.data.education_level,
-          coding_prof: data.data.coding_prof,
-          gpa: data.data.gpa,
-          expected_graduation: data.data.expected_graduation,
-          interest_job_position: data.data.interest_job_position,
-          resume: data.data.resume,
-          address: data.data.address,
+          ...userData,
           size: 'S',
         });
       }

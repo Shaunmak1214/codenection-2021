@@ -2,7 +2,7 @@ export default interface UserInfo {
   full_name?: string;
   email?: string;
   dob?: string;
-  gender?: string;
+  sex?: string;
   citizenship?: string;
   university?: string;
   field_major?: string;

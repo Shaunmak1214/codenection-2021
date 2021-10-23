@@ -31,7 +31,7 @@ const EditPersonal = ({
     full_name: string;
     email: string;
     dob: string;
-    gender: string;
+    sex: string;
     citizenship: string;
     handleChange: any;
   }
@@ -40,7 +40,7 @@ const EditPersonal = ({
     full_name: yup.string().required('fullname'),
     email: yup.string().required('email'),
     dob: yup.string().required('dob'),
-    gender: yup.string().required('gender'),
+    sex: yup.string().required('gender'),
     citizenship: yup.string().required('citzentship'),
   });
 
@@ -52,7 +52,7 @@ const EditPersonal = ({
           full_name: userInfo.full_name,
           email: userInfo.email,
           dob: userInfo.dob,
-          gender: userInfo.gender,
+          sex: userInfo.sex,
           citizenship: userInfo.citizenship,
         }}
         onSubmit={(data) => {
@@ -100,7 +100,7 @@ const EditPersonal = ({
               />
               <Field
                 name="sex"
-                placeholder={props.values.gender}
+                placeholder={props.values.sex}
                 options={[
                   {
                     label: 'Male',
@@ -121,7 +121,7 @@ const EditPersonal = ({
                 ]}
                 component={CNSelectDropdownField}
                 customlabel="Gender"
-                userData={userInfo.gender}
+                userData={userInfo.sex}
                 onChange={props.handleChange}
               />
               <Field
