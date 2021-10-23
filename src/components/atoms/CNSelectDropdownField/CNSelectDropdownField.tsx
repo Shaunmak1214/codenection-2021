@@ -38,7 +38,6 @@ const CNSelectDropdownField = ({
       <FormControl isInvalid={errorText ? true : false}>
         <FormLabel>{label}</FormLabel>
         <Select
-          // {...field}
           {...props}
           // @ts-ignore
           onChange={handleSelect}

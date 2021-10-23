@@ -2,7 +2,11 @@ import React from 'react';
 import { ProfileBlock } from '../../molecules';
 import { Formik, Form, Field } from 'formik';
 import * as yup from 'yup';
-import { CNTextFormField } from '../../atoms';
+import {
+  CNTextFormField,
+  CNDatePicker,
+  CNSelectDropdownField,
+} from '../../atoms';
 import UserInfo from '../../../types/user.type';
 interface Props {
   profileLoading?: boolean;
@@ -87,29 +91,55 @@ const EditPersonal = ({
 
               <Field
                 name="dob"
-                placeholder=""
-                component={CNTextFormField}
+                formInputName="dob"
+                placeholder="Date of birth"
+                selectedDate={Date.parse(props.values.dob)}
+                component={CNDatePicker}
                 customlabel="Date of birth"
                 userData={userInfo.dob}
-                value={props.values.dob}
-                onChange={props.handleChange}
               />
               <Field
-                name="gender"
-                placeholder=""
-                component={CNTextFormField}
+                name="sex"
+                placeholder={props.values.gender}
+                options={[
+                  {
+                    label: 'Male',
+                    value: 'male',
+                  },
+                  {
+                    label: 'Female',
+                    value: 'female',
+                  },
+                  {
+                    label: 'Others',
+                    value: 'others',
+                  },
+                  {
+                    label: 'Rather not say',
+                    value: 'not-say',
+                  },
+                ]}
+                component={CNSelectDropdownField}
                 customlabel="Gender"
                 userData={userInfo.gender}
-                value={props.values.gender}
                 onChange={props.handleChange}
               />
               <Field
                 name="citizenship"
-                placeholder=""
-                component={CNTextFormField}
+                placeholder={props.values.citizenship}
+                options={[
+                  {
+                    label: 'Malaysian',
+                    value: 'malaysian',
+                  },
+                  {
+                    label: 'International',
+                    value: 'international',
+                  },
+                ]}
+                component={CNSelectDropdownField}
                 customlabel="Citizenship"
                 userData={userInfo.citizenship}
-                value={props.values.citizenship}
                 onChange={props.handleChange}
               />
             </ProfileBlock>

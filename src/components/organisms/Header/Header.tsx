@@ -5,7 +5,14 @@ import { HeaderButton } from '../../atoms';
 import { CodeNectionLogo, CodeNectionText } from '../../../assets';
 import { useRef, useEffect } from 'react';
 
+import store from '../../../store';
+import { useDispatch } from 'react-redux';
+import { LOGOUT } from '../../../reducers/authSlice';
+
 const Header = () => {
+  const authState = store.getState().auth;
+  const dispatch = useDispatch();
+
   const headerSticky = useRef<any | null>(null);
   const buttonRef = React.createRef<HTMLButtonElement>();
 
@@ -17,6 +24,11 @@ const Header = () => {
     } else {
       stickyToggle(false);
     }
+  };
+
+  const logout = () => {
+    dispatch(LOGOUT());
+    window.location.href = '/';
   };
 
   const stickyToggle = (status: boolean) => {
@@ -87,12 +99,23 @@ const Header = () => {
               <Link>
                 <Text>Sponsors</Text>
               </Link>
-              <HeaderButton
-                onClick={() => (window.location.href = '/login')}
-                ref={buttonRef}
-              >
-                Login/Register
-              </HeaderButton>
+              {authState.isAuthenticated ? (
+                <HeaderButton
+                  onClick={() => {
+                    logout();
+                  }}
+                  ref={buttonRef}
+                >
+                  Logout
+                </HeaderButton>
+              ) : (
+                <HeaderButton
+                  onClick={() => (window.location.href = '/login')}
+                  ref={buttonRef}
+                >
+                  Login/Register
+                </HeaderButton>
+              )}
             </HStack>
           </SimpleGrid>
         </Container>

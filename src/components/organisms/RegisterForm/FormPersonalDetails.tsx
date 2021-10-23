@@ -230,6 +230,7 @@ const FormPersonalDetails = ({
                     >
                       <Field
                         label="Date of birth "
+                        formInputName="dob"
                         name="dob"
                         px="3"
                         py="0"

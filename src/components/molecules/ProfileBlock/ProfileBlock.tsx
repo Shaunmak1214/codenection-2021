@@ -34,7 +34,6 @@ const ProfileBlock = ({
   updateLoading,
   setEdit,
   // eslint-disable-next-line no-unused-vars
-
   ...props
 }: Props) => {
   const children = props.children;
@@ -114,7 +113,12 @@ const ProfileBlock = ({
                 {React.Children.map(children, (child) => {
                   return (
                     <>
-                      <SimpleGrid columns={2} spacing={0} margin="30px auto">
+                      <SimpleGrid
+                        columns={2}
+                        spacing={0}
+                        margin="30px auto"
+                        alignItems="center"
+                      >
                         <Text color="#002A97" fontSize="lg" fontWeight="bold">
                           {child.props.customlabel}
                         </Text>
@@ -126,10 +130,13 @@ const ProfileBlock = ({
                         ) : (
                           <>
                             <Box>
-                              {' '}
                               <Text fontSize="lg">
                                 {child.props.userData === null
                                   ? '-'
+                                  : child.props.name == 'dob'
+                                  ? new Date(
+                                      `${child.props.userData}`,
+                                    ).toLocaleDateString('en-US')
                                   : child.props.userData}
                               </Text>
                             </Box>
