@@ -199,6 +199,7 @@ Props) => {
               onSubmit={(data) => {
                 updateReg(data);
 
+                console.log(data);
                 fetch({
                   email: formStore.register_state.email,
                   // password: password,

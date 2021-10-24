@@ -32,7 +32,7 @@ interface Props {
 }
 
 const FormUserDetails = (props: Props) => {
-  const { nextStep, updateReg, formStore, prev, setPassword } = props;
+  const { nextStep, updateReg, formStore, prev } = props;
 
   const toast = useToast();
   const [formInput, setFormInput] = useState({
@@ -126,7 +126,7 @@ const FormUserDetails = (props: Props) => {
                 updateReg({
                   email: data.email,
                 });
-                setPassword(data.password);
+
                 checkExists();
               }}
             >
