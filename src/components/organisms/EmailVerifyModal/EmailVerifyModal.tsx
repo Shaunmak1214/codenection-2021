@@ -146,7 +146,6 @@ const EmailVerifyModal = ({
 
   function OTPInputFunc() {
     const inputs = document.querySelectorAll<HTMLInputElement>('#otp > *[id]');
-    console.log(inputs);
     for (let i = 0; i < inputs.length; i++) {
       let isCtrl = false;
       inputs[i].addEventListener('keydown', async function (event: any) {
