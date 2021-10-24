@@ -23,7 +23,7 @@ const Register = () => {
 
   const [step, setStep] = useState<number>(1);
   const [prev, setPrev] = useState<boolean>(false);
-  const [password, setPassword] = useState<string>('');
+  // const [password, setPassword] = useState<string>('');
 
   // will be passed down to children to execute the action
   const handleUpdateReg = (data: any) => {
@@ -35,11 +35,10 @@ const Register = () => {
     );
   };
 
-  const handleSetPassword = useCallback((pass) => {
-    setPassword(pass);
-  }, []);
-
-  const passRef = useRef(null);
+  let passwordSave: string = '';
+  // const handleSetPassword = useCallback((pass) => {
+  //   setPassword(pass);
+  // }, []);
 
   const clearReg = () => {
     dispatch(CLEARREG());
@@ -64,7 +63,7 @@ const Register = () => {
             updateReg={handleUpdateReg}
             formStore={formStore}
             prev={prev}
-            setPassword={handleSetPassword}
+            passwordSave={passwordSave}
           />
         );
 
@@ -76,7 +75,7 @@ const Register = () => {
             updateReg={handleUpdateReg}
             clearReg={clearReg}
             formStore={formStore}
-            password={password}
+            passwordSave={passwordSave}
           />
         );
       case 3:
