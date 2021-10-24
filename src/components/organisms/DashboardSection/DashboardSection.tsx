@@ -130,18 +130,17 @@ const DashboardSection = () => {
         advert: {
           id: 1,
           // @ts-ignore
-          count: store.getState().advert.find((ad) => ad.id === 1)!.count + 1,
+          // count: store.getState().advert.find((ad) => ad.id === 1)!.count + 1,
           latestPopupDateTime: new Date(),
         },
       }),
     );
 
-    setDiscordModalIsOpen(
-      // @ts-ignore
-      store.getState().advert.find((ad) => ad.id === 1)!.count < 3
-        ? true
-        : false,
-    );
+    setDiscordModalIsOpen(true);
+    // @ts-ignore
+    // store.getState().advert.find((ad) => ad.id === 1)!.count < 3
+    //   ? true
+    //   : false,
 
     // eslint-disable-next-line
   }, [setDiscordModalIsOpen]);
