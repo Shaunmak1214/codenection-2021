@@ -51,8 +51,8 @@ const FormPersonalDetails = ({
   clearReg,
   // eslint-disable-next-line
   formStore,
-}: // password,
-Props) => {
+  password,
+}: Props) => {
   const dispatch = useDispatch();
   const [formInput, setFormInput] = useState<MyFormValues>({
     full_name: formStore!.register_state.full_name,
@@ -202,7 +202,7 @@ Props) => {
                 console.log(data);
                 fetch({
                   email: formStore.register_state.email,
-                  // password: password,
+                  password: password,
                   ...data,
                 });
                 clearReg();
