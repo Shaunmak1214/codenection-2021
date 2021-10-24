@@ -9,7 +9,7 @@ interface Props {
 const TeamBlocks = ({ category = 'open' }: Props) => {
   return (
     <Box
-      mt="40px"
+      mt="20px"
       borderRadius="15px"
       bg={category === 'closed' ? '#F1FFFF' : '#EEF6FF'}
       boxShadow={
@@ -18,6 +18,7 @@ const TeamBlocks = ({ category = 'open' }: Props) => {
           : '0px 8px 20px rgba(0, 120, 255, 0.25)'
       }
       py="25px"
+      mb="35px"
     >
       <VStack>
         <HStack mt="15px">
@@ -57,7 +58,10 @@ const TeamBlocks = ({ category = 'open' }: Props) => {
               Multimedia Team
             </Text>
             <TeamMember leader category={category} member={'Ong Sin Yin'} />
-            <TeamMember category={category} member={'Mak Yen Wei'} />
+            <TeamMember
+              category={category}
+              member={'Mohammed AL Horani Sharaf Eldeen Sami'}
+            />
             <TeamMember category={category} member={'Teoh Sing Jian'} />
           </VStack>
         </Container>

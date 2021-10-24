@@ -126,6 +126,7 @@ const Index = () => {
   const [editEducation, setEditEducation] = useState(false);
   const [editJob, setEditJob] = useState(false);
   const [editOthers, setEditOthers] = useState(false);
+  const firstLetter = authStore!.user!.full_name[0];
 
   useEffect(() => {
     fetchUserInfo();
@@ -135,8 +136,39 @@ const Index = () => {
   return (
     <Center py="150px">
       <Container maxW="container.xl">
-        <HStack>
-          <Container mr="40px">
+        <HStack alignItems="none">
+          <Container mr="40px" mt="38px">
+            <Box mb="100px">
+              <Box
+                bg="#0099B8"
+                w="150px"
+                h="140px"
+                textAlign="center"
+                d="flex"
+                borderRadius="8px"
+                justifyContent="center"
+                alignItems="center"
+              >
+                <Text fontSize="80px" color="#FFFFFF" textTransform="uppercase">
+                  {firstLetter}
+                </Text>
+              </Box>
+
+              <Text fontSize="xl" mt="20px" fontWeight="bold">
+                {authStore!.user!.full_name}
+              </Text>
+            </Box>
+            <Box mb="80px" mt="50px">
+              <Text fontSize="2xl" fontWeight="bold" mb="15px">
+                EMAIL STATUS
+              </Text>
+              <Box
+                boxShadow="0px 8px 20px rgba(132, 132, 132, 0.25)"
+                borderRadius="10px"
+                w="340px"
+                h="240px"
+              ></Box>
+            </Box>
             <Box>
               <Text fontSize="2xl" fontWeight="bold">
                 YOUR TEAM
