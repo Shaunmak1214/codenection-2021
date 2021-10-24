@@ -10,8 +10,8 @@ interface Props {
 
 const TeamMember = ({ leader = false, category, member }: Props) => {
   return (
-    <HStack textAlign="center" alignItems="center" w="80%">
-      <Box d="flex" justifyContent="flex-start" w="25%" alignItems="flex-start">
+    <HStack textAlign="center" w="80%" pb="10px" alignItems="none">
+      <Box d="flex" justifyContent="flex-start" w="10%" alignItems="flex-start">
         {' '}
         <Box
           bg={category === 'closed' ? '#0099B8' : '#0078FF'}
@@ -27,8 +27,8 @@ const TeamMember = ({ leader = false, category, member }: Props) => {
         </Box>
       </Box>
 
-      <Box textAlign="center" w="105px">
-        <Text>{member}</Text>
+      <Box textAlign="center" w="195px">
+        <Text fontWeight="bold">{member}</Text>
       </Box>
     </HStack>
   );

@@ -29,8 +29,8 @@ const EditJob = ({
     values: any;
   }
   const schema = yup.object({
-    interest_job_position: yup.string().required('job'),
-    resume: yup.string().required('resume'),
+    interest_job_position: yup.string().nullable(true),
+    resume: yup.string().nullable(true),
   });
 
   return (
