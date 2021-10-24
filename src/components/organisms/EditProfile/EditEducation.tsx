@@ -97,23 +97,23 @@ const EditEducation = ({
               options={[
                 {
                   label: 'A" level',
-                  value: 'a-level',
+                  value: 'A-level',
                 },
                 {
                   label: 'Pre-U',
-                  value: 'pre-u',
+                  value: 'Pre-u',
                 },
                 {
                   label: 'Diploma/Advanced Diploma',
-                  value: 'diploma',
+                  value: 'Diploma',
                 },
                 {
                   label: 'Bachelor"s degree',
-                  value: 'degree',
+                  value: 'Degree',
                 },
                 {
                   label: 'Master/PHD',
-                  value: 'master',
+                  value: 'Master',
                 },
               ]}
               component={CNSelectDropdownField}
@@ -128,23 +128,23 @@ const EditEducation = ({
               options={[
                 {
                   label: 'Novice',
-                  value: 'novice',
+                  value: 'Novice',
                 },
                 {
                   label: 'Beginner',
-                  value: 'beginner',
+                  value: 'Beginner',
                 },
                 {
                   label: 'Intermediate',
-                  value: 'intermediate',
+                  value: 'Intermediate',
                 },
                 {
                   label: 'Skillful',
-                  value: 'skillful',
+                  value: 'Skillful',
                 },
                 {
                   label: 'Expert',
-                  value: 'expert',
+                  value: 'Expert',
                 },
               ]}
               component={CNSelectDropdownField}
