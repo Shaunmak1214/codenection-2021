@@ -39,5 +39,5 @@ TeamMember.propTypes = {
   leader: PropTypes.bool,
   member: PropTypes.string,
 };
-
+React.memo(TeamMember);
 export default TeamMember;

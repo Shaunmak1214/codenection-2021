@@ -74,6 +74,35 @@ const DashboardSection = () => {
       .required('Team code is required'),
   });
 
+  // const { loading: resumeUploadLoading, fetch: resumeUpload } = useAxios(
+  //   {
+  //     url: '/resume/',
+  //     method: 'POST',
+  //     headers: {
+  //       Authorization: `Bearer ${authStore.accessToken}`,
+  //     },
+  //   },
+  //   (err, data) => {
+  //     if (err) {
+  //       toast({
+  //         title: 'Failed to upload resume',
+  //         description: err.data.message,
+  //         position: 'top-right',
+  //         duration: 100000,
+  //         isClosable: true,
+  //       });
+  //     } else {
+  //       toast({
+  //         title: 'Resume upload success',
+  //         description: 'You have successfully uploaded your resume',
+  //         position: 'top-right',
+  //         duration: 100000,
+  //         isClosable: true,
+  //       });
+  //     }
+  //   },
+  // );
+
   // eslint-disable-next-line
   const { loading: joinTeamLoading, fetch: joinTeam } = useAxios(
     {
@@ -105,6 +134,7 @@ const DashboardSection = () => {
           duration: 10000,
           isClosable: true,
         });
+
         dispatch(
           UPDATE({
             ...authStore.user,
@@ -112,9 +142,7 @@ const DashboardSection = () => {
             team_id: data.data.team_id,
           }),
         );
-        setTimeout(() => {
-          window.location.href = '/dashboard';
-        }, 3000);
+        window.location.reload();
       }
     },
   );
