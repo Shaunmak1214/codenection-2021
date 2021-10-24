@@ -19,7 +19,7 @@ interface Props {
   CTAIsCenter?: boolean;
   centerSpacing?: boolean;
   onPrimaryClick?: () => void;
-  onRenderUpdate?: () => void;
+  onRenderUpdate?: (modalIsOpen: boolean) => void;
   primaryButtonFormId?: string;
   theme?: any;
 }
@@ -81,7 +81,7 @@ const CNModal = ({
   // temp fix
   useEffect(() => {
     if (onRenderUpdate) {
-      onRenderUpdate();
+      onRenderUpdate(modalIsOpen);
     }
     // eslint-disable-next-line
   }, [modalIsOpen]);

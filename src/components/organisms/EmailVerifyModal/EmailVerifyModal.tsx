@@ -213,8 +213,10 @@ const EmailVerifyModal = ({
       blur
       disableButton
       modalIsOpen={isOpen}
-      onRenderUpdate={() => {
-        OTPInputFunc();
+      onRenderUpdate={(modalIsOpen) => {
+        if (modalIsOpen) {
+          OTPInputFunc();
+        }
       }}
     >
       {step === 1 ? (
