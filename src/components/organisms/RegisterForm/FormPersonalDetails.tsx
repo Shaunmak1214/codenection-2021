@@ -40,7 +40,7 @@ interface Props {
   updateReg: (values: MyFormValues) => void;
   clearReg: () => void;
   formStore: any;
-  passwordSave?: string;
+  password: any;
 }
 
 // eslint-disable-next-line
@@ -51,7 +51,7 @@ const FormPersonalDetails = ({
   clearReg,
   // eslint-disable-next-line
   formStore,
-  passwordSave,
+  password,
 }: Props) => {
   const dispatch = useDispatch();
   const [formInput, setFormInput] = useState<MyFormValues>({
@@ -198,11 +198,9 @@ const FormPersonalDetails = ({
               initialValues={initialValues}
               onSubmit={(data) => {
                 updateReg(data);
-                console.log(data);
-                console.log(passwordSave);
                 fetch({
                   email: formStore.register_state.email,
-                  password: passwordSave,
+                  password: password,
                   ...data,
                 });
                 clearReg();
