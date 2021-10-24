@@ -53,6 +53,12 @@ const Register = () => {
     setPrev(true);
   };
 
+  if (authStore.user) {
+    if (authStore.user.permission_level > 1) {
+      return <Redirect to="/dashboard" />;
+    }
+  }
+
   return (
     <HStack alignItems="flex-start">
       <RegisterIndicator currentStep={step} />
