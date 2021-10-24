@@ -1,6 +1,6 @@
 /* eslint-disable */
 
-import React from 'react';
+import React, { useCallback } from 'react';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { CLEARREG, UPDATEREG } from '../reducers/formSlice';
@@ -14,30 +14,34 @@ import { HStack } from '@chakra-ui/layout';
 import store from '../store';
 import { Redirect } from 'react-router';
 import '../register.css';
+import '../wdyr';
 
 const Register = () => {
   const dispatch = useDispatch();
   const formStore = store.getState().form;
-
   const authStore = store.getState().auth;
+
+  const [step, setStep] = useState<number>(1);
+  const [prev, setPrev] = useState<boolean>(false);
+  const [password, setPassword] = useState<string>('');
+
   // will be passed down to children to execute the action
-  const updateReg = (data: any) => {
+  const handleUpdateReg = useCallback((data: any) => {
     dispatch(
       UPDATEREG({
         ...formStore.register_state,
         ...data,
       }),
     );
-  };
+  }, []);
 
-  const [password, setPassword] = useState<string>('');
+  const handleSetPassword = useCallback((pass) => {
+    setPassword(pass);
+  }, []);
 
   const clearReg = () => {
     dispatch(CLEARREG());
   };
-  const [step, setStep] = useState<number>(3);
-
-  const [prev, setPrev] = useState<boolean>(false);
 
   const nextStep = () => {
     setStep((currentStep) => currentStep + 1);
@@ -55,10 +59,10 @@ const Register = () => {
         return (
           <FormUserDetails
             nextStep={nextStep}
-            updateReg={updateReg}
+            updateReg={handleUpdateReg}
             formStore={formStore}
             prev={prev}
-            setPassword={setPassword}
+            setPassword={handleSetPassword}
           />
         );
 
@@ -67,7 +71,7 @@ const Register = () => {
           <FormPersonalDetails
             nextStep={nextStep}
             prevStep={prevStep}
-            updateReg={updateReg}
+            updateReg={handleUpdateReg}
             clearReg={clearReg}
             formStore={formStore}
             password={password}
@@ -94,4 +98,6 @@ const Register = () => {
     </HStack>
   );
 };
+
+Register.whyDidYouRender = true;
 export default Register;
