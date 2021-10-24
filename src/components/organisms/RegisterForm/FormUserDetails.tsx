@@ -28,17 +28,13 @@ interface Props {
   updateReg: (values: reduxProps) => void;
   formStore?: any;
   prev: any;
-  passwordSave?: string;
+  setPassword?: any;
 }
 
-const FormUserDetails = ({
-  nextStep,
-  updateReg,
-  formStore,
-  prev,
+const FormUserDetails = (props: Props) => {
   // eslint-disable-next-line no-unused-vars
-  passwordSave,
-}: Props) => {
+  const { nextStep, updateReg, formStore, prev, setPassword } = props;
+
   const toast = useToast();
   const [formInput, setFormInput] = useState({
     email: formStore!.register_state.email,
@@ -131,12 +127,7 @@ const FormUserDetails = ({
                 updateReg({
                   email: data.email,
                 });
-                console.log(data);
-                // @ts-ignore
-                // eslint-disable-next-line no-const-assign
-                // passwordSave = data.password;
-
-                passwordSave = data.password;
+                setPassword(data.password);
                 checkExists();
               }}
             >
