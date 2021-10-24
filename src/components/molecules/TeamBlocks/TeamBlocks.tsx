@@ -17,7 +17,7 @@ interface Props {
 }
 
 const TeamBlocks = ({ teamLoading, teamInfo, category = 'open' }: Props) => {
-  console.log(teamInfo);
+  console.log(teamInfo.length);
   return (
     <Box
       mt="20px"
@@ -36,7 +36,7 @@ const TeamBlocks = ({ teamLoading, teamInfo, category = 'open' }: Props) => {
           <Box h="210px" justifyContent="center" alignItems="center" d="flex">
             <Spinner size="xl" />
           </Box>
-        ) : teamInfo ? (
+        ) : Object.keys(teamInfo).length > 0 ? (
           <>
             {' '}
             <HStack mt="15px">
