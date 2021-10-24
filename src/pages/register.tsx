@@ -26,14 +26,14 @@ const Register = () => {
   const [password, setPassword] = useState<string>('');
 
   // will be passed down to children to execute the action
-  const handleUpdateReg = useCallback((data: any) => {
+  const handleUpdateReg = (data: any) => {
     dispatch(
       UPDATEREG({
         ...formStore.register_state,
         ...data,
       }),
     );
-  }, []);
+  };
 
   const handleSetPassword = useCallback((pass) => {
     setPassword(pass);
