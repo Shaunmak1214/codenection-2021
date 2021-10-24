@@ -1,6 +1,6 @@
 /* eslint-disable */
 
-import React, { useCallback } from 'react';
+import React, { useCallback, useRef } from 'react';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { CLEARREG, UPDATEREG } from '../reducers/formSlice';
@@ -38,6 +38,8 @@ const Register = () => {
   const handleSetPassword = useCallback((pass) => {
     setPassword(pass);
   }, []);
+
+  const passRef = useRef(null);
 
   const clearReg = () => {
     dispatch(CLEARREG());
