@@ -59,6 +59,7 @@ const FormPersonalDetails = ({
     university: formStore!.register_state.university,
     field_major: formStore!.register_state.field_major,
   });
+  console.log(password);
 
   const handleOnChange = (e: any) => {
     setFormInput({ ...formInput, [e.target.name]: e.target.value });
