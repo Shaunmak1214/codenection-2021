@@ -1,6 +1,6 @@
 /* eslint-disable */
 
-import React, { useCallback, useRef } from 'react';
+import React, { useCallback, createContext, useRef } from 'react';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { CLEARREG, UPDATEREG } from '../reducers/formSlice';
@@ -26,14 +26,14 @@ const Register = () => {
   const [password, setPassword] = useState<string>('');
 
   // will be passed down to children to execute the action
-  const handleUpdateReg = useCallback((data: any) => {
+  const handleUpdateReg = (data: any) => {
     dispatch(
       UPDATEREG({
         ...formStore.register_state,
         ...data,
       }),
     );
-  }, []);
+  };
 
   const handleSetPassword = useCallback((pass) => {
     setPassword(pass);
@@ -101,5 +101,4 @@ const Register = () => {
   );
 };
 
-Register.whyDidYouRender = true;
 export default Register;
