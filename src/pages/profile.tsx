@@ -74,7 +74,6 @@ const Index = () => {
         return;
       } else {
         const userData = data.data;
-        console.log(userData);
         setUserInfo({
           ...userData,
           size: 'S',
