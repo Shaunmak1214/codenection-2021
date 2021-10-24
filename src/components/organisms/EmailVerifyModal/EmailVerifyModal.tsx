@@ -2,18 +2,26 @@ import React, { useEffect, useRef, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import Lottie from 'react-lottie';
 
-import { Text, useToast, Link, Box, SimpleGrid, Input } from '@chakra-ui/react';
+import {
+  Text,
+  useToast,
+  Link,
+  Box,
+  SimpleGrid,
+  Input,
+  IconButton,
+} from '@chakra-ui/react';
 import { VStack } from '@chakra-ui/layout';
+import { ChevronLeftIcon } from '@chakra-ui/icons';
 
 import { PrimaryButton, SecondaryText } from '../../atoms';
-import { CNModal, BoxIcons } from '../../molecules';
+import { CNModal } from '../../molecules';
 
 import { LOGIN } from '../../../reducers/authSlice';
 import store from '../../../store';
 import authTypes from '../../../types/auth.types';
 import { EmailLoader, Warning } from '../../../constants';
 import { useAxios } from '../../../hooks';
-import { BackIcon } from '../../.././assets';
 
 interface ModalProps {
   isOpen: boolean;
@@ -132,13 +140,42 @@ const EmailVerifyModal = ({
     });
   };
 
+  function isNumeric(value: string) {
+    return /^-?\d+$/.test(value);
+  }
+
   function OTPInputFunc() {
     const inputs = document.querySelectorAll<HTMLInputElement>('#otp > *[id]');
+    console.log(inputs);
     for (let i = 0; i < inputs.length; i++) {
-      inputs[i].addEventListener('keydown', function (event: any) {
+      let isCtrl = false;
+      inputs[i].addEventListener('keydown', async function (event: any) {
+        if (event.keyCode === 17 || event.keyCode === 91) isCtrl = true;
         if (event.key === 'Backspace') {
           inputs[i].value = '';
           if (i !== 0) inputs[i - 1].focus();
+        } else if (event.keyCode === 86 && isCtrl) {
+          event.preventDefault();
+
+          const text = await navigator.clipboard.readText();
+          if (isNumeric(text)) {
+            for (let h = 0; h < text.length; h++) {
+              inputs[h].value = text.charAt(h);
+
+              if (h === inputs.length - 1) {
+                return;
+              }
+            }
+          } else {
+            toast({
+              title: 'Pasting error',
+              description: 'You can only paste a series of number',
+              status: 'error',
+              position: 'top-right',
+              duration: 2000,
+              isClosable: true,
+            });
+          }
         } else {
           if (i === inputs.length - 1 && inputs[i].value !== '') {
             return true;
@@ -153,15 +190,21 @@ const EmailVerifyModal = ({
           }
         }
       });
+
+      inputs[i].addEventListener('keyup', function (event: any) {
+        if (event.keyCode === 17) isCtrl = false;
+      });
     }
   }
 
   useEffect(() => {
     sendable ? setStep(1) : setStep(2);
+    // eslint-disable-next-line
   }, [setStep, sendable]);
 
   useEffect(() => {
     OTPInputFunc();
+    // eslint-disable-next-line
   }, [step]);
 
   return (
@@ -170,6 +213,11 @@ const EmailVerifyModal = ({
       blur
       disableButton
       modalIsOpen={isOpen}
+      onRenderUpdate={(modalIsOpen) => {
+        if (modalIsOpen) {
+          OTPInputFunc();
+        }
+      }}
     >
       {step === 1 ? (
         <VStack height="100%" w="100%" justifyContent="center">
@@ -221,8 +269,10 @@ const EmailVerifyModal = ({
           >
             {sendable ? (
               <Box position="absolute" top="-10px" left="15px">
-                <BoxIcons
-                  icon={BackIcon}
+                <IconButton
+                  variant="ghost"
+                  aria-label="Back"
+                  icon={<ChevronLeftIcon w="25px" h="25px" />}
                   onClick={() => {
                     setStep(1);
                   }}
@@ -360,5 +410,7 @@ const EmailVerifyModal = ({
     </CNModal>
   );
 };
+
+React.memo(EmailVerifyModal);
 
 export default EmailVerifyModal;

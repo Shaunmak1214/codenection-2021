@@ -40,7 +40,7 @@ interface Props {
   updateReg: (values: MyFormValues) => void;
   clearReg: () => void;
   formStore: any;
-  password: string;
+  password: any;
 }
 
 // eslint-disable-next-line
@@ -69,8 +69,9 @@ const FormPersonalDetails = ({
     { url: '/auth/signup', method: 'POST' },
     (err, data) => {
       if (err) {
+        console.log(err);
         toast({
-          title: 'Email already existed',
+          title: 'Sign Up Failed',
           description: err.data.message,
           status: 'error',
           position: 'top-right',
@@ -197,7 +198,6 @@ const FormPersonalDetails = ({
               initialValues={initialValues}
               onSubmit={(data) => {
                 updateReg(data);
-
                 fetch({
                   email: formStore.register_state.email,
                   password: password,
@@ -230,6 +230,7 @@ const FormPersonalDetails = ({
                     >
                       <Field
                         label="Date of birth "
+                        formInputName="dob"
                         name="dob"
                         px="3"
                         py="0"
@@ -249,19 +250,19 @@ const FormPersonalDetails = ({
                         options={[
                           {
                             label: 'Male',
-                            value: 'male',
+                            value: 'Male',
                           },
                           {
                             label: 'Female',
-                            value: 'female',
+                            value: 'Female',
                           },
                           {
                             label: 'Others',
-                            value: 'others',
+                            value: 'Others',
                           },
                           {
                             label: 'Rather not say',
-                            value: 'not-say',
+                            value: 'Not-Say',
                           },
                         ]}
                         component={CNSelectDropdownField}
@@ -273,11 +274,11 @@ const FormPersonalDetails = ({
                         options={[
                           {
                             label: 'Malaysian',
-                            value: 'malaysian',
+                            value: 'Malaysian',
                           },
                           {
                             label: 'International',
-                            value: 'international',
+                            value: 'International',
                           },
                         ]}
                         component={CNSelectDropdownField}
@@ -315,23 +316,23 @@ const FormPersonalDetails = ({
                       options={[
                         {
                           label: 'A" level',
-                          value: 'a-level',
+                          value: 'A-level',
                         },
                         {
                           label: 'Pre-U',
-                          value: 'pre-u',
+                          value: 'Pre-u',
                         },
                         {
                           label: 'Diploma/Advanced Diploma',
-                          value: 'diploma',
+                          value: 'Diploma',
                         },
                         {
                           label: 'Bachelor"s degree',
-                          value: 'degree',
+                          value: 'Degree',
                         },
                         {
                           label: 'Master/PHD',
-                          value: 'master',
+                          value: 'Master',
                         },
                       ]}
                       component={CNSelectDropdownField}
@@ -344,23 +345,23 @@ const FormPersonalDetails = ({
                       options={[
                         {
                           label: 'Novice',
-                          value: 'novice',
+                          value: 'Novice',
                         },
                         {
                           label: 'Beginner',
-                          value: 'beginner',
+                          value: 'Beginner',
                         },
                         {
                           label: 'Intermediate',
-                          value: 'intermediate',
+                          value: 'Intermediate',
                         },
                         {
                           label: 'Skillful',
-                          value: 'skillful',
+                          value: 'Skillful',
                         },
                         {
                           label: 'Expert',
-                          value: 'expert',
+                          value: 'Expert',
                         },
                       ]}
                       component={CNSelectDropdownField}

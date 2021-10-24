@@ -6,6 +6,7 @@ import GoldBG from './jpgs-pngs/GoldBG.png';
 import SilverBG from './jpgs-pngs/SilverBG.png';
 import BronzeBG from './jpgs-pngs/BronzeBG.png';
 import GrayBox from './jpgs-pngs/gray.png';
+import SaveProfile from './jpgs-pngs/SavePng.png';
 
 //svgs
 import CNLanding from './svgs/CNLanding.svg';
@@ -46,9 +47,13 @@ import { ReactComponent as Email } from './svgs/email.svg';
 import { ReactComponent as Discord } from './svgs/discord.svg';
 import { ReactComponent as Instagram } from './svgs/instagram.svg';
 import { ReactComponent as Facebook } from './svgs/facebook.svg';
+import ReturnIcon from './svgs/ReturnIcon.svg';
+import SaveIcon from './svgs/SaveIcon.svg';
 import { ReactComponent as DiscordBlue } from './svgs/discord-blue.svg';
 import { ReactComponent as InstagramBlue } from './svgs/instagram-blue.svg';
 import { ReactComponent as FacebookBlue } from './svgs/facebook-blue.svg';
+import LeaderIcon from './svgs/LeaderIcon.svg';
+import MemberIcon from './svgs/MemberIcon.svg';
 
 export {
   CNLanding,
@@ -96,7 +101,12 @@ export {
   Instagram,
   Facebook,
   CodeNectionLogoImg,
+  ReturnIcon,
+  SaveProfile,
+  SaveIcon,
   DiscordBlue,
   InstagramBlue,
   FacebookBlue,
+  LeaderIcon,
+  MemberIcon,
 };

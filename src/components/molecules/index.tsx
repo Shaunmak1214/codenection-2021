@@ -9,6 +9,8 @@ import BoxIcons from './BoxIcons/BoxIcons';
 import RulesBlock from './RulesBlock';
 import ProfileBlock from './ProfileBlock/ProfileBlock';
 import FaqBlock from './FaqBlock';
+import TeamBlocks from './TeamBlocks/TeamBlocks';
+
 export {
   CountDownBlock,
   SponsorsBlock,
@@ -21,4 +23,5 @@ export {
   RulesBlock,
   ProfileBlock,
   FaqBlock,
+  TeamBlocks,
 };

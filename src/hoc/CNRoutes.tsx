@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import * as Comp from '../components/organisms';
 import store from '../store';
 import { useDispatch } from 'react-redux';
-import { LOGOUT } from '../reducers/authSlice';
+import { LOGIN, LOGOUT } from '../reducers/authSlice';
 import { CLEARREG } from '../reducers/formSlice';
 import axios from 'axios';
 import { API_URL } from '../constants';
@@ -16,6 +16,7 @@ interface Props {
   isProtected?: boolean;
   exact: boolean;
   path: string;
+  footer?: boolean;
   clearForm?: boolean;
 }
 
@@ -24,6 +25,7 @@ const CNRoutes = ({
   isProtected = false,
   component: Component,
   clearForm = true,
+  footer = true,
   ...rest
 }: Props) => {
   const authState = store.getState().auth;
@@ -31,6 +33,7 @@ const CNRoutes = ({
   const logout = () => {
     dispatch(LOGOUT());
   };
+
   const clearreg = () => {
     dispatch(CLEARREG());
   };
@@ -38,6 +41,31 @@ const CNRoutes = ({
   if (clearForm) {
     clearreg();
   }
+
+  const refreshTokenExchange = () => {
+    axios
+      .post(`${API_URL}/auth/refresh`, {
+        refreshToken: authState.refreshToken,
+      })
+      .then((res) => {
+        if (res.status == 200 || res.status === 203 || res.status === 204) {
+          dispatch(
+            LOGIN({
+              user: res.data.user,
+              accessToken: res.data.token,
+              refreshToken: res.data.refreshToken,
+            }),
+          );
+          window.location.reload();
+        } else {
+          logout();
+        }
+      })
+      // eslint-disable-next-line no-unused-vars
+      .catch((err) => {
+        logout();
+      });
+  };
 
   useEffect(() => {
     axios
@@ -56,7 +84,7 @@ const CNRoutes = ({
 
       // eslint-disable-next-line no-unused-vars
       .catch((err) => {
-        logout();
+        refreshTokenExchange();
       });
   });
 
@@ -75,6 +103,7 @@ const CNRoutes = ({
             <>
               {header && <Comp.Header />}
               <Component {...props} />
+              {footer && <Comp.Footer />}
             </>
           );
         }

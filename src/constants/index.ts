@@ -1,6 +1,7 @@
 import EmailGifData from '../assets/lottie/verify-email-gif.json';
 import WarningGifData from '../assets/lottie/warning.json';
 import BuildingData from '../assets/lottie/building.json';
+import DiscordInvData from '../assets/lottie/discord-inv.json';
 
 export const EmailLoader = {
   loop: true,
@@ -24,6 +25,15 @@ export const Building = {
   loop: true,
   autoplay: true,
   animationData: BuildingData,
+  rendererSettings: {
+    preserveAspectRatio: 'xMidYMid slice',
+  },
+};
+
+export const DiscordInv = {
+  loop: true,
+  autoplay: true,
+  animationData: DiscordInvData,
   rendererSettings: {
     preserveAspectRatio: 'xMidYMid slice',
   },

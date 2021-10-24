@@ -3,7 +3,15 @@ import { LoginForm } from '../components/organisms';
 import { HStack, VStack, Center, Container } from '@chakra-ui/layout';
 import { Image } from '@chakra-ui/react';
 import { PrimaryText } from '../components/atoms';
+import store from '../store';
+import { Redirect } from 'react-router';
 const Login = () => {
+  const authStore = store.getState().auth;
+
+  if (authStore.isAuthenticated) {
+    return <Redirect to="/dashboard" />;
+  }
+
   return (
     <HStack>
       <LoginForm />

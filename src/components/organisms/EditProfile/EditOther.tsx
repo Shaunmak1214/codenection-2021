@@ -1,66 +1,83 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { ProfileBlock } from '../../molecules';
 import { Formik, Form, Field } from 'formik';
 import * as yup from 'yup';
 import { CNTextFormField } from '../../atoms';
-import { User } from '../../../data/userData';
-const EditOther = () => {
+import UserInfo from '../../../types/user.type';
+
+interface Props {
+  profileLoading?: boolean;
+  loading?: boolean;
+  userInfo: UserInfo;
+  updateUser: (data: any) => void;
+  edit?: boolean;
+  setEdit?: any;
+  updateLoading: boolean;
+}
+const EditOther = ({
+  edit,
+  setEdit,
+  userInfo,
+  profileLoading,
+  updateLoading,
+  updateUser,
+}: Props) => {
   interface FormValues {
     address: string;
     size: string;
+    handleChange: any;
+    values: any;
   }
   const schema = yup.object({
-    full_name: yup.string().required('fullname'),
-    email: yup.string().required('email'),
+    address: yup.string().nullable(true),
+    size: yup.string().nullable(true),
   });
 
-  const [formValues, setFormValues] = useState<FormValues>({
-    address: User[0].address,
-    size: User[0].size,
-  });
-
-  const handleOnChange = (e: any) => {
-    setFormValues({ ...formValues, [e.target.name]: e.target.value });
-  };
   return (
     <Formik
       validationSchema={schema}
       initialValues={{
-        full_name: '',
-        email: '',
+        address: userInfo.address,
+        size: userInfo.size,
       }}
-      onSubmit={(data) => console.log(data)}
+      onSubmit={(data) => {
+        updateUser(data);
+      }}
+      enableReinitialize
     >
-      {() => (
+      {(props: FormValues) => (
         <Form>
-          {User.map((user) => {
-            return (
-              <ProfileBlock key={user.id} title={'Other Details'}>
-                <Field
-                  name="address"
-                  placeholder=""
-                  value={formValues.address}
-                  onChange={handleOnChange}
-                  component={CNTextFormField}
-                  customlabel="Delivery location/address"
-                  userData={user.address}
-                />
-                <Field
-                  name="size"
-                  placeholder=""
-                  component={CNTextFormField}
-                  customlabel="Shirt size"
-                  userData={user.size}
-                  value={formValues.size}
-                  onChange={handleOnChange}
-                />
-              </ProfileBlock>
-            );
-          })}
+          <ProfileBlock
+            updateUser={updateUser}
+            profileLoading={profileLoading}
+            updateLoading={updateLoading}
+            edit={edit}
+            setEdit={setEdit}
+            title={'Other Details'}
+          >
+            <Field
+              name="address"
+              placeholder=""
+              value={props.values.address}
+              onChange={props.handleChange}
+              component={CNTextFormField}
+              customlabel="Delivery location/address"
+              userData={userInfo.address}
+            />
+            <Field
+              name="size"
+              placeholder=""
+              component={CNTextFormField}
+              customlabel="Shirt size"
+              userData={userInfo.size}
+              value={props.values.size}
+              onChange={props.handleChange}
+            />
+          </ProfileBlock>
         </Form>
       )}
     </Formik>
   );
 };
-
+React.memo(EditOther);
 export default EditOther;
