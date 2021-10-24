@@ -104,19 +104,19 @@ const EditPersonal = ({
                 options={[
                   {
                     label: 'Male',
-                    value: 'male',
+                    value: 'Male',
                   },
                   {
                     label: 'Female',
-                    value: 'female',
+                    value: 'Female',
                   },
                   {
                     label: 'Others',
-                    value: 'others',
+                    value: 'Others',
                   },
                   {
                     label: 'Rather not say',
-                    value: 'not-say',
+                    value: 'Not-Say',
                   },
                 ]}
                 component={CNSelectDropdownField}
@@ -130,11 +130,11 @@ const EditPersonal = ({
                 options={[
                   {
                     label: 'Malaysian',
-                    value: 'malaysian',
+                    value: 'Malaysian',
                   },
                   {
                     label: 'International',
-                    value: 'international',
+                    value: 'International',
                   },
                 ]}
                 component={CNSelectDropdownField}
