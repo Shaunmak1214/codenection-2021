@@ -1,6 +1,6 @@
 /* eslint-disable */
 
-import React, { useCallback, createContext } from 'react';
+import React, { useCallback, useEffect } from 'react';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { CLEARREG, UPDATEREG } from '../reducers/formSlice';
@@ -53,37 +53,6 @@ const Register = () => {
     setPrev(true);
   };
 
-  const UserForm = () => {
-    switch (step) {
-      case 1:
-        return (
-          <FormUserDetails
-            nextStep={nextStep}
-            updateReg={handleUpdateReg}
-            formStore={formStore}
-            prev={prev}
-            setPassword={handleSetPassword}
-          />
-        );
-
-      case 2:
-        return (
-          <FormPersonalDetails
-            nextStep={nextStep}
-            prevStep={prevStep}
-            updateReg={handleUpdateReg}
-            clearReg={clearReg}
-            formStore={formStore}
-            password={password}
-          />
-        );
-      case 3:
-        return <FormTeamDetails />;
-      default:
-        break;
-    }
-  };
-
   if (authStore.user) {
     if (authStore!.user!.permission_level > 0) {
       return <Redirect to="/dashboard" />;
@@ -93,8 +62,28 @@ const Register = () => {
   return (
     <HStack alignItems="flex-start">
       <RegisterIndicator currentStep={step} />
-      {/* @ts-ignore */}
-      <UserForm />
+      {step == 1 && (
+        <FormUserDetails
+          nextStep={nextStep}
+          updateReg={handleUpdateReg}
+          formStore={formStore}
+          prev={prev}
+          setPassword={handleSetPassword}
+        />
+      )}
+
+      {step == 2 && (
+        <FormPersonalDetails
+          nextStep={nextStep}
+          prevStep={prevStep}
+          updateReg={handleUpdateReg}
+          clearReg={clearReg}
+          formStore={formStore}
+          password={password}
+        />
+      )}
+
+      {step == 3 && <FormTeamDetails />}
     </HStack>
   );
 };
