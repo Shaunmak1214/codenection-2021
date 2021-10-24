@@ -1,5 +1,12 @@
 import React from 'react';
-import { Box, VStack, HStack, Container, Text } from '@chakra-ui/react';
+import {
+  Box,
+  VStack,
+  HStack,
+  Container,
+  Text,
+  Spinner,
+} from '@chakra-ui/react';
 import TeamMember from '../TeamMember/TeamMember';
 import PropTypes from 'prop-types';
 
@@ -24,10 +31,12 @@ const TeamBlocks = ({ teamLoading, teamInfo, category = 'open' }: Props) => {
       py="25px"
       mb="35px"
     >
-      <VStack>
+      <VStack h="205px">
         {teamLoading ? (
-          <h1>Loading</h1>
-        ) : (
+          <Box h="210px" justifyContent="center" alignItems="center" d="flex">
+            <Spinner size="xl" />
+          </Box>
+        ) : teamInfo ? (
           <>
             {' '}
             <HStack mt="15px">
@@ -81,6 +90,8 @@ const TeamBlocks = ({ teamLoading, teamInfo, category = 'open' }: Props) => {
               </VStack>
             </Container>
           </>
+        ) : (
+          <h1>No Team Yet</h1>
         )}
       </VStack>
     </Box>
