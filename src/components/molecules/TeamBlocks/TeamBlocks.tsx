@@ -66,12 +66,18 @@ const TeamBlocks = ({ teamLoading, teamInfo, category = 'open' }: Props) => {
                 >
                   {teamInfo.team_name}
                 </Text>
-                <TeamMember leader category={category} member={teamInfo.id} />
                 <TeamMember
+                  leader
                   category={category}
-                  member={'Mohammed AL Horani Sharaf Eldeen Sami'}
+                  member={teamInfo.team_lead?.full_name || ''}
                 />
-                <TeamMember category={category} member={'Teoh Sing Jian'} />{' '}
+                {teamInfo.team_members?.map((member: any, idx: any) => (
+                  <TeamMember
+                    key={idx}
+                    category={category}
+                    member={member.full_name}
+                  />
+                ))}
               </VStack>
             </Container>
           </>
