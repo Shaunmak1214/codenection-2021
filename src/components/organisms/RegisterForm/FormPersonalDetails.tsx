@@ -40,7 +40,7 @@ interface Props {
   updateReg: (values: MyFormValues) => void;
   clearReg: () => void;
   formStore: any;
-  password: string;
+  password?: string;
 }
 
 // eslint-disable-next-line
@@ -51,8 +51,8 @@ const FormPersonalDetails = ({
   clearReg,
   // eslint-disable-next-line
   formStore,
-  password,
-}: Props) => {
+}: // password,
+Props) => {
   const dispatch = useDispatch();
   const [formInput, setFormInput] = useState<MyFormValues>({
     full_name: formStore!.register_state.full_name,
@@ -69,8 +69,9 @@ const FormPersonalDetails = ({
     { url: '/auth/signup', method: 'POST' },
     (err, data) => {
       if (err) {
+        console.log(err);
         toast({
-          title: 'Email already existed',
+          title: 'Sign Up Failed',
           description: err.data.message,
           status: 'error',
           position: 'top-right',
@@ -200,7 +201,7 @@ const FormPersonalDetails = ({
 
                 fetch({
                   email: formStore.register_state.email,
-                  password: password,
+                  // password: password,
                   ...data,
                 });
                 clearReg();
