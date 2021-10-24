@@ -18,6 +18,7 @@ interface Props {
   maxHeight?: string;
   CTAIsCenter?: boolean;
   centerSpacing?: boolean;
+  isPrimaryLoading?: boolean;
   onPrimaryClick?: () => void;
   onRenderUpdate?: (modalIsOpen: boolean) => void;
   primaryButtonFormId?: string;
@@ -64,6 +65,7 @@ const CNModal = ({
   disableButton = false,
   disableCloseButton = disableButton,
   CTAIsCenter = false,
+  isPrimaryLoading = false,
   onPrimaryClick,
   centerSpacing = true,
   theme,
@@ -154,6 +156,7 @@ const CNModal = ({
                     onClick={() => {
                       handlePrimaryClick();
                     }}
+                    isLoading={isPrimaryLoading}
                   >
                     {successText}
                   </PrimaryButton>

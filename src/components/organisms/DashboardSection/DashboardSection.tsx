@@ -39,6 +39,8 @@ const DashboardSection = () => {
   const toast = useToast();
   const authStore: authTypes = store.getState().auth;
   const dispatch = useDispatch();
+
+  const [files, setFiles] = useState([]);
   const [teamModalIsOpen, setTeamModalIsOpen] = useState(false);
   const [discordModalIsOpen, setDiscordModalIsOpen] = useState(false);
 
@@ -47,8 +49,6 @@ const DashboardSection = () => {
     FilePondPluginImagePreview,
     FilePondPluginFileValidateType,
   );
-
-  const [files, setFiles] = React.useState([]);
 
   const {
     isOpen: resumeOpen,
@@ -74,34 +74,39 @@ const DashboardSection = () => {
       .required('Team code is required'),
   });
 
-  // const { loading: resumeUploadLoading, fetch: resumeUpload } = useAxios(
-  //   {
-  //     url: '/resume/',
-  //     method: 'POST',
-  //     headers: {
-  //       Authorization: `Bearer ${authStore.accessToken}`,
-  //     },
-  //   },
-  //   (err, data) => {
-  //     if (err) {
-  //       toast({
-  //         title: 'Failed to upload resume',
-  //         description: err.data.message,
-  //         position: 'top-right',
-  //         duration: 100000,
-  //         isClosable: true,
-  //       });
-  //     } else {
-  //       toast({
-  //         title: 'Resume upload success',
-  //         description: 'You have successfully uploaded your resume',
-  //         position: 'top-right',
-  //         duration: 100000,
-  //         isClosable: true,
-  //       });
-  //     }
-  //   },
-  // );
+  const { loading: resumeUploadLoading, fetch: resumeUpload } = useAxios(
+    {
+      url: '/resume/',
+      method: 'POST',
+      headers: {
+        Authorization: `Bearer ${authStore.accessToken}`,
+        'Content-Type': 'multipart/form-data',
+      },
+    },
+    // eslint-disable-next-line
+    (err, data) => {
+      if (err) {
+        console.log(err);
+        toast({
+          title: 'Failed to upload resume',
+          status: 'error',
+          description: err.data.message,
+          position: 'top-right',
+          duration: 100000,
+          isClosable: true,
+        });
+      } else {
+        toast({
+          title: 'Resume upload success',
+          description: 'You have successfully uploaded your resume',
+          status: 'success',
+          position: 'top-right',
+          duration: 100000,
+          isClosable: true,
+        });
+      }
+    },
+  );
 
   // eslint-disable-next-line
   const { loading: joinTeamLoading, fetch: joinTeam } = useAxios(
@@ -190,6 +195,25 @@ const DashboardSection = () => {
         modalIsOpen={resumeOpen}
         successText="Upload"
         CTAIsCenter={true}
+        isPrimaryLoading={resumeUploadLoading}
+        onPrimaryClick={() => {
+          if (files[0]) {
+            let bodyFormData = new FormData();
+            // @ts-ignore
+            bodyFormData.append('file', files[0]!.file);
+            bodyFormData.append('user_id', `${authStore.user!.id}`);
+            resumeUpload(bodyFormData);
+          } else {
+            toast({
+              title: 'No resume uplaoded',
+              description: 'Please upload your resume',
+              status: 'warning',
+              position: 'top-right',
+              duration: 100000,
+              isClosable: true,
+            });
+          }
+        }}
       >
         <Box py="25px">
           <SecondaryText fontSize="3xl" fontWeight="bold">
@@ -200,11 +224,11 @@ const DashboardSection = () => {
           </SecondaryText>
         </Box>
         <FilePond
-          style={{ width: '300px', height: '300px' }}
+          style={{ width: '300px', height: '150px' }}
           acceptedFileTypes={['application/pdf']}
           //@ts-ignore
           onupdatefiles={setFiles}
-          maxFileSize="10MB"
+          maxFileSize="5MB"
           maxFiles={1}
           files={files}
           allowReorder={true}
