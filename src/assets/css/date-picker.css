@@ -132,3 +132,7 @@
 .react-datepicker__close-icon::after:hover {
   color: hsl(0, 0%, 70%);
 }
+
+.css-fr5foa-placeholder{
+  color: #000000 !important;
+}

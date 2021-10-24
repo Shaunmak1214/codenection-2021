@@ -19,6 +19,7 @@ import ResetPasswordForm from './ResetPasswordForm/ResetPasswordForm';
 import CreateTeamModal from './CreateTeamModal/CreateTeamModal';
 import { EditPersonal, EditJob, EditEducation, EditOther } from './EditProfile';
 import EmailVerifyModal from './EmailVerifyModal/EmailVerifyModal';
+import AdvertisementModal from './AdvertisementModal/AdvertisementModal';
 
 export {
   CountDownSection,
@@ -37,6 +38,7 @@ export {
   FaqSection,
   ResetPasswordForm,
   CreateTeamModal,
+  AdvertisementModal,
   EditPersonal,
   EditJob,
   EditOther,

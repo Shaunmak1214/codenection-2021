@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { Flex, Box } from '@chakra-ui/layout';
 import { IconButton } from '@chakra-ui/react';
@@ -17,8 +17,11 @@ interface Props {
   disableCloseButton?: boolean;
   maxHeight?: string;
   CTAIsCenter?: boolean;
+  centerSpacing?: boolean;
   onPrimaryClick?: () => void;
+  onRenderUpdate?: (modalIsOpen: boolean) => void;
   primaryButtonFormId?: string;
+  theme?: any;
 }
 const modalAnimation = {
   hidden: {
@@ -62,6 +65,9 @@ const CNModal = ({
   disableCloseButton = disableButton,
   CTAIsCenter = false,
   onPrimaryClick,
+  centerSpacing = true,
+  theme,
+  onRenderUpdate,
   ...props
 }: Props) => {
   const children: React.ReactNode = props.children;
@@ -71,6 +77,14 @@ const CNModal = ({
       onPrimaryClick();
     }
   };
+
+  // temp fix
+  useEffect(() => {
+    if (onRenderUpdate) {
+      onRenderUpdate(modalIsOpen);
+    }
+    // eslint-disable-next-line
+  }, [modalIsOpen]);
 
   return (
     <>
@@ -93,7 +107,9 @@ const CNModal = ({
               animate="visible"
               exit="exit"
               style={{
-                height: '100%',
+                padding: '2rem',
+                backgroundColor: theme === 'discord' ? '#5865F2' : '#fff',
+                transition: 'height 0.3s ease-in-out',
               }}
               {...props}
             >
@@ -101,20 +117,23 @@ const CNModal = ({
                 <Box
                   d="flex"
                   position="absolute"
-                  top="30px"
-                  right="30px"
+                  top="25px"
+                  right="25px"
                   justifyContent="flex-end"
                   onClick={onClose}
                 >
                   <IconButton
                     variant="ghost"
                     aria-label="Close modal"
+                    _hover={{
+                      bg: theme === 'discord' ? '#3945C9' : '#F5F5F5',
+                    }}
                     icon={<CloseIcon w="12px" h="12px" />}
                   />
                 </Box>
               )}
 
-              <CNSpacer size="sm" />
+              {centerSpacing && <CNSpacer size="xs" />}
 
               {children}
               {!disableButton && (

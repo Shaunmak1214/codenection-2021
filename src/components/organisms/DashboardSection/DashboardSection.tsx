@@ -11,12 +11,17 @@ import FilePondPluginImagePreview from 'filepond-plugin-image-preview';
 import FilePondPluginFileValidateType from 'filepond-plugin-file-validate-type';
 
 import { PrimaryButton, JoinTeamButton, SecondaryText } from '../../atoms';
-import { CreateTeamModal, EmailVerifyModal } from '../../organisms';
+import {
+  CreateTeamModal,
+  EmailVerifyModal,
+  AdvertisementModal,
+} from '../../organisms';
 import { DashboardCard, JoinTeamTextField, CNModal } from '../../molecules';
 import { Formik, Form, Field } from 'formik';
 
 import { useDispatch } from 'react-redux';
 import { UPDATE } from '../../../reducers/authSlice';
+import { UPDATEAD } from '../../../reducers/advertSlice';
 
 import store from '../../../store';
 import authTypes from '../../../types/auth.types';
@@ -35,6 +40,7 @@ const DashboardSection = () => {
   const authStore: authTypes = store.getState().auth;
   const dispatch = useDispatch();
   const [teamModalIsOpen, setTeamModalIsOpen] = useState(false);
+  const [discordModalIsOpen, setDiscordModalIsOpen] = useState(false);
 
   registerPlugin(
     FilePondPluginImageExifOrientation,
@@ -118,10 +124,31 @@ const DashboardSection = () => {
     if (authStore.user!.permission_level < 1) {
       handleEmailVerifierOpen();
     }
-  });
+
+    dispatch(
+      UPDATEAD({
+        advert: {
+          id: 1,
+          // @ts-ignore
+          // count: store.getState().advert.find((ad) => ad.id === 1)!.count + 1,
+          latestPopupDateTime: new Date(),
+        },
+      }),
+    );
+
+    setDiscordModalIsOpen(true);
+    // @ts-ignore
+    // store.getState().advert.find((ad) => ad.id === 1)!.count < 3
+    //   ? true
+    //   : false,
+
+    // eslint-disable-next-line
+  }, [setDiscordModalIsOpen]);
 
   return (
     <>
+      {discordModalIsOpen && <AdvertisementModal />}
+
       <CreateTeamModal
         isOpen={teamModalIsOpen}
         onClose={() => {

@@ -1,6 +1,7 @@
 import React from 'react';
 import { Box, Image } from '@chakra-ui/react';
 import PropTypes from 'prop-types';
+
 interface Props {
   icon: string;
   onClick: any;
@@ -25,7 +26,7 @@ const BoxIcons = (props: Props) => {
       onClick={onClick}
       {...rest}
     >
-      <Image src={icon} />
+      <Image w="25px" h="25px" src={icon} />
     </Box>
   );
 };
@@ -35,5 +36,6 @@ BoxIcons.propTypes = {
   my: PropTypes.string,
   w: PropTypes.string,
   h: PropTypes.string,
+  bg: PropTypes.string,
 };
 export default BoxIcons;

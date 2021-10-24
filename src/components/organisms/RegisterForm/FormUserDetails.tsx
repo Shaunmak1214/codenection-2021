@@ -1,13 +1,18 @@
 import React, { useState } from 'react';
 import { VStack, Container } from '@chakra-ui/layout';
-import { Text, Link } from '@chakra-ui/react';
+import { Text, Link, useToast } from '@chakra-ui/react';
 import { Formik, Form, Field } from 'formik';
-import { CNTextFormField, PrimaryButton, SecondaryText } from '../../atoms';
-import { EmailIcon, PasswordIcon, HomeIcon } from '../../../assets';
-import { BoxIcons } from '../../molecules';
 import * as yup from 'yup';
 import { motion } from 'framer-motion';
+
+import { CNTextFormField, PrimaryButton, SecondaryText } from '../../atoms';
+import { BoxIcons } from '../../molecules';
+
+import { EmailIcon, PasswordIcon, HomeIcon } from '../../../assets';
+
+import { useAxios } from '../../../hooks';
 import { genericEmail } from '../../../data/emailData';
+
 interface MyFormValues {
   email: string;
   password: string;
@@ -21,18 +26,16 @@ interface reduxProps {
 interface Props {
   nextStep: () => void;
   updateReg: (values: reduxProps) => void;
-  formStore: any;
+  formStore?: any;
   prev: any;
-  setPassword: any;
+  setPassword?: any;
 }
 
-const FormUserDetails = ({
-  nextStep,
-  updateReg,
-  formStore,
-  prev,
-  setPassword,
-}: Props) => {
+const FormUserDetails = (props: Props) => {
+  // eslint-disable-next-line no-unused-vars
+  const { nextStep, updateReg, formStore, prev, setPassword } = props;
+
+  const toast = useToast();
   const [formInput, setFormInput] = useState({
     email: formStore!.register_state.email,
   });
@@ -62,6 +65,36 @@ const FormUserDetails = ({
     password: '',
     confirmPassword: '',
   };
+
+  // eslint-disable-next-line
+  const { loading: checkExistsLoading, fetch: checkExists } = useAxios(
+    { url: `/user/exists/${formInput.email}`, method: 'GET' },
+    (err, data) => {
+      if (err) {
+        if (err.status === 204) {
+          continueNext();
+        } else {
+          toast({
+            title: 'There"s an erorr while checking email',
+            description: err.data.message,
+            status: 'error',
+            position: 'top-right',
+            duration: 90000,
+            isClosable: true,
+          });
+        }
+      } else {
+        toast({
+          title: 'Email already existed',
+          description: data.message,
+          status: 'error',
+          position: 'top-right',
+          duration: 90000,
+          isClosable: true,
+        });
+      }
+    },
+  );
 
   return (
     <VStack h="100%" w="50%">
@@ -95,7 +128,7 @@ const FormUserDetails = ({
                   email: data.email,
                 });
                 setPassword(data.password);
-                continueNext();
+                checkExists();
               }}
             >
               {(props) => (
@@ -150,6 +183,7 @@ const FormUserDetails = ({
                     w="100%"
                     _hover={{ bg: '#000000' }}
                     type="submit"
+                    isLoading={checkExistsLoading}
                   >
                     Next
                   </PrimaryButton>
@@ -168,5 +202,7 @@ const FormUserDetails = ({
     </VStack>
   );
 };
+
+React.memo(FormUserDetails);
 
 export default FormUserDetails;
