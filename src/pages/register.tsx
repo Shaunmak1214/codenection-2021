@@ -1,6 +1,6 @@
 /* eslint-disable */
 
-import React, { useCallback } from 'react';
+import React, { useCallback, createContext } from 'react';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { CLEARREG, UPDATEREG } from '../reducers/formSlice';
@@ -99,5 +99,4 @@ const Register = () => {
   );
 };
 
-Register.whyDidYouRender = true;
 export default Register;
