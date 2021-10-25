@@ -147,7 +147,7 @@ const DashboardSection = () => {
             team_id: data.data.team_id,
           }),
         );
-        window.location.reload();
+        // window.location.reload();
       }
     },
   );

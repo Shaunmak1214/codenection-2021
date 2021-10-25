@@ -109,59 +109,66 @@ const CNModal = ({
               animate="visible"
               exit="exit"
               style={{
-                padding: '2rem',
                 backgroundColor: theme === 'discord' ? '#5865F2' : '#fff',
                 transition: 'height 0.3s ease-in-out',
+                maxHeight: '95%',
               }}
               {...props}
             >
-              {!disableCloseButton && (
-                <Box
-                  d="flex"
-                  position="absolute"
-                  top="25px"
-                  right="25px"
-                  justifyContent="flex-end"
-                  onClick={onClose}
-                >
-                  <IconButton
-                    variant="ghost"
-                    aria-label="Close modal"
-                    _hover={{
-                      bg: theme === 'discord' ? '#3945C9' : '#F5F5F5',
-                    }}
-                    icon={<CloseIcon w="12px" h="12px" />}
-                  />
-                </Box>
-              )}
-
               {centerSpacing && <CNSpacer size="xs" />}
-
-              {children}
-              {!disableButton && (
-                <Flex
-                  flexDir={['column', 'column', 'row']}
-                  justifyContent={CTAIsCenter ? 'center' : 'flex-end'}
-                  alignSelf="flex-end"
-                  w="100%"
-                  pt="15px"
-                  mt="15px"
-                >
-                  <MutedButton onClick={onClose}>{mutedText}</MutedButton>
-                  <PrimaryButton
-                    ml="20px"
-                    border="none"
-                    borderRadius="5px"
-                    _hover={{ border: 'none', bg: '#000000' }}
-                    onClick={() => {
-                      handlePrimaryClick();
-                    }}
-                    isLoading={isPrimaryLoading}
+              <Box
+                className="CNModal-content"
+                w="100%"
+                h="100%"
+                overflowY="scroll"
+                padding="1.5rem"
+              >
+                {!disableCloseButton && (
+                  <Box
+                    d="flex"
+                    position="absolute"
+                    top="35px"
+                    right="35px"
+                    justifyContent="flex-end"
+                    onClick={onClose}
                   >
-                    {successText}
-                  </PrimaryButton>
-                </Flex>
-              )}
+                    <IconButton
+                      variant="ghost"
+                      aria-label="Close modal"
+                      _hover={{
+                        bg: theme === 'discord' ? '#3945C9' : '#F5F5F5',
+                      }}
+                      icon={<CloseIcon w="12px" h="12px" />}
+                    />
+                  </Box>
+                )}
+
+                {children}
+                {!disableButton && (
+                  <Flex
+                    flexDir={['column', 'column', 'row']}
+                    justifyContent={CTAIsCenter ? 'center' : 'flex-end'}
+                    alignSelf="flex-end"
+                    w="100%"
+                    pt="15px"
+                    mt="15px"
+                  >
+                    <MutedButton onClick={onClose}>{mutedText}</MutedButton>
+                    <PrimaryButton
+                      ml="20px"
+                      border="none"
+                      borderRadius="5px"
+                      _hover={{ border: 'none', bg: '#000000' }}
+                      onClick={() => {
+                        handlePrimaryClick();
+                      }}
+                      isLoading={isPrimaryLoading}
+                    >
+                      {successText}
+                    </PrimaryButton>
+                  </Flex>
+                )}
+              </Box>
             </motion.div>
           </>
         )}

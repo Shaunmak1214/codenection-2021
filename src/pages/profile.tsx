@@ -34,7 +34,7 @@ interface UserProps {
   interest_job_position?: string;
   resume?: string;
   address?: string;
-  size?: string;
+  shirt_size?: string;
 }
 const Index = () => {
   const toast = useToast();
@@ -56,7 +56,7 @@ const Index = () => {
     interest_job_position: '',
     resume: '',
     address: '',
-    size: '',
+    shirt_size: '',
   });
 
   const [teamInfo, setTeamInfo] = useState({});
@@ -74,9 +74,9 @@ const Index = () => {
         return;
       } else {
         const userData = data.data;
+        console.log(userData);
         setUserInfo({
           ...userData,
-          size: 'S',
         });
       }
     },
