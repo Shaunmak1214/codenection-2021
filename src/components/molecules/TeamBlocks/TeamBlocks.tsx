@@ -28,10 +28,10 @@ const TeamBlocks = ({ teamLoading, teamInfo, category = 'open' }: Props) => {
           ? '0px 8px 20px rgba(0, 131, 124, 0.25)'
           : '0px 8px 20px rgba(0, 120, 255, 0.25)'
       }
-      py="25px"
+      py="30px"
       mb="35px"
     >
-      <VStack h="205px">
+      <VStack minH="205px">
         {teamLoading ? (
           <Box h="210px" justifyContent="center" alignItems="center" d="flex">
             <Spinner size="xl" />
@@ -39,7 +39,7 @@ const TeamBlocks = ({ teamLoading, teamInfo, category = 'open' }: Props) => {
         ) : Object.keys(teamInfo).length > 0 ? (
           <>
             {' '}
-            <HStack mt="15px">
+            <HStack py="5px">
               <Box
                 py="3px"
                 px="25px"
@@ -78,7 +78,7 @@ const TeamBlocks = ({ teamLoading, teamInfo, category = 'open' }: Props) => {
                 <TeamMember
                   leader
                   category={category}
-                  member={teamInfo.team_lead?.full_name || ''}
+                  member={teamInfo.team_lead.full_name}
                 />
                 {teamInfo.team_members?.map((member: any, idx: any) => (
                   <TeamMember

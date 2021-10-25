@@ -58,7 +58,6 @@ const EditEducation = ({
         expected_graduation: userInfo.expected_graduation,
       }}
       onSubmit={(data) => {
-        console.log(data);
         updateUser(data);
       }}
       enableReinitialize
@@ -69,6 +68,7 @@ const EditEducation = ({
             updateUser={updateUser}
             profileLoading={profileLoading}
             updateLoading={updateLoading}
+            formikProps={props}
             edit={edit}
             setEdit={setEdit}
             title={'Education Details'}
