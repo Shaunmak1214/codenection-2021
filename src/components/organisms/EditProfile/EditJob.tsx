@@ -53,6 +53,7 @@ const EditJob = ({
             updateLoading={updateLoading}
             edit={edit}
             setEdit={setEdit}
+            formikProps={props}
             title={'Job preferences'}
           >
             <Field
