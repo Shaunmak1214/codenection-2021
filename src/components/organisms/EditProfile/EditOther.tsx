@@ -53,6 +53,7 @@ const EditOther = ({
             updateLoading={updateLoading}
             edit={edit}
             setEdit={setEdit}
+            formikProps={props}
             title={'Other Details'}
           >
             <Field
