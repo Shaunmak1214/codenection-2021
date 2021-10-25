@@ -1,19 +1,22 @@
 import React from 'react';
 import { HStack, Container, Center, SimpleGrid } from '@chakra-ui/layout';
-import { Image, Link, Text } from '@chakra-ui/react';
+import { Image, Link, Text, Box, VStack } from '@chakra-ui/react';
 import { HeaderButton } from '../../atoms';
-import { CodeNectionLogo, CodeNectionText } from '../../../assets';
+
 import { useRef, useEffect } from 'react';
 
 import store from '../../../store';
 import { useDispatch } from 'react-redux';
 import { LOGOUT } from '../../../reducers/authSlice';
 
+import { CodeNectionLogo, CodeNectionText, DownIcon } from '../../../assets';
+
 const Header = () => {
   const authState = store.getState().auth;
   const dispatch = useDispatch();
 
   const headerSticky = useRef<any | null>(null);
+  const moreHover = useRef<any | null>(null);
   const buttonRef = React.createRef<HTMLButtonElement>();
 
   const handleScroll = (e: any) => {
@@ -26,6 +29,16 @@ const Header = () => {
     }
   };
 
+  const moreToggle = (status: string) => {
+    if (moreHover.current && status === 'in') {
+      moreHover.current.style.visibility = 'visible';
+      moreHover.current.style.opacity = '1';
+    } else if (moreHover.current && status === 'out') {
+      moreHover.current.style.visibility = 'hidden';
+      moreHover.current.style.opacity = '0';
+    }
+  };
+
   const logout = () => {
     dispatch(LOGOUT());
     window.location.href = '/';
@@ -35,13 +48,17 @@ const Header = () => {
     if (status) {
       headerSticky.current!.style!.background = '#FFFFFF';
       headerSticky.current!.style!.color = '#000000';
-      buttonRef.current!.style!.color = '#FFFFFF';
-      buttonRef.current!.style!.background = '#002A97';
+      if (buttonRef.current) {
+        buttonRef.current!.style!.color = '#FFFFFF';
+        buttonRef.current!.style!.background = '#002A97';
+      }
     } else {
       headerSticky.current!.style!.background = '#002A97';
       headerSticky.current!.style!.color = '#FFFFFF';
-      buttonRef.current!.style!.color = '#002A97';
-      buttonRef.current!.style!.background = '#FFFFFF';
+      if (buttonRef.current) {
+        buttonRef.current!.style!.color = '#002A97';
+        buttonRef.current!.style!.background = '#FFFFFF';
+      }
     }
   };
 
@@ -65,7 +82,7 @@ const Header = () => {
         transition="150ms cubic-bezier(0.215,0.61,0.355,1);"
         color="#FFFFFF"
       >
-        <Container maxW="1500px">
+        <Container maxW="1350px">
           <SimpleGrid columns={3} justifyItems="center" alignItems="center">
             <HStack w="100%" justifyContent="space-between" alignItems="center">
               <Image
@@ -97,17 +114,65 @@ const Header = () => {
                 <Text>Rules & FAQ</Text>
               </Link>
               <Link>
-                <Text>Sponsors</Text>
+                <Text>Sponsors & Partners</Text>
               </Link>
               {authState.isAuthenticated ? (
-                <HeaderButton
-                  onClick={() => {
-                    logout();
-                  }}
-                  ref={buttonRef}
-                >
-                  Logout
-                </HeaderButton>
+                <>
+                  <Box
+                    py="5"
+                    position="relative"
+                    onMouseOver={() => {
+                      moreToggle('in');
+                    }}
+                    onMouseLeave={() => {
+                      moreToggle('out');
+                    }}
+                  >
+                    <Text fontSize="sm" d="flex" alignItems="center">
+                      MORE
+                      <Image
+                        src={DownIcon}
+                        height="12px"
+                        width="12px"
+                        ml="5px"
+                      />
+                    </Text>
+                    <VStack
+                      className="more-hover"
+                      ref={moreHover}
+                      visibility="hidden"
+                      opacity="0"
+                      position="absolute"
+                      top="70px"
+                      right="0px"
+                      w="150px"
+                      bg="rgba(255, 255, 255, 0.98)"
+                      boxShadow="0px 16px 40px rgba(165, 165, 165, 0.25)"
+                      py="4"
+                      px="2"
+                      borderRadius="4px"
+                      transition="visibility 0.2s ease-in-out, opacity 0.2s ease-in-out"
+                      zIndex="50"
+                      cursor="pointer"
+                    >
+                      <Link href="/dashboard" py="3">
+                        <Text color="black" fontSize="sm">
+                          Dashboard
+                        </Text>
+                      </Link>
+                      <Link href="/edit-profile" py="3">
+                        <Text color="black" fontSize="sm">
+                          Profile
+                        </Text>
+                      </Link>
+                      <Link onClick={logout} py="3">
+                        <Text color="black" fontSize="sm">
+                          Log Out
+                        </Text>
+                      </Link>
+                    </VStack>
+                  </Box>
+                </>
               ) : (
                 <HeaderButton
                   onClick={() => (window.location.href = '/login')}

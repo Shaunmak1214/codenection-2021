@@ -30,7 +30,7 @@ const EditOther = ({
   }
   const schema = yup.object({
     address: yup.string().nullable(true),
-    size: yup.string().nullable(true),
+    shirt_size: yup.string().nullable(true),
   });
 
   return (
@@ -38,7 +38,8 @@ const EditOther = ({
       validationSchema={schema}
       initialValues={{
         address: userInfo.address,
-        size: userInfo.size,
+        // @ts-ignore
+        size: userInfo.shirt_size,
       }}
       onSubmit={(data) => {
         updateUser(data);
@@ -66,12 +67,13 @@ const EditOther = ({
               userData={userInfo.address}
             />
             <Field
-              name="size"
+              name="shirt_size"
               placeholder=""
               component={CNTextFormField}
               customlabel="Shirt size"
-              userData={userInfo.size}
-              value={props.values.size}
+              // @ts-ignore
+              userData={userInfo.shirt_size}
+              value={props.values.shirt_size}
               onChange={props.handleChange}
             />
           </ProfileBlock>
