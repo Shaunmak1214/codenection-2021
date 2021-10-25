@@ -194,6 +194,7 @@ const DashboardSection = () => {
         onClose={handleResumeClose}
         modalIsOpen={resumeOpen}
         successText="Upload"
+        centerSpacing={false}
         CTAIsCenter={true}
         isPrimaryLoading={resumeUploadLoading}
         onPrimaryClick={() => {
@@ -224,7 +225,6 @@ const DashboardSection = () => {
           </SecondaryText>
         </Box>
         <FilePond
-          style={{ width: '300px', height: '150px' }}
           acceptedFileTypes={['application/pdf']}
           //@ts-ignore
           onupdatefiles={setFiles}
