@@ -8,12 +8,18 @@ type onUpdate = (err: object | null | any, res: any | null) => any;
 axios.defaults.baseURL = API_URL;
 const useAxios = (axiosParams: object, onUpdate: onUpdate) => {
   const [loading, setLoading] = useState<boolean>(false);
+
+  const config = {
+    onUploadProgress: (progressEvent: any) => console.log(progressEvent.loaded),
+  };
+
   const fetchData = (data?: object | null) => {
     setLoading(true);
     axios
       .request({
         ...axiosParams,
         data: data ? data : null,
+        ...config,
       })
       .then((res) => {
         if (res.status === 200 || res.status === 201 || res.status === 203) {
