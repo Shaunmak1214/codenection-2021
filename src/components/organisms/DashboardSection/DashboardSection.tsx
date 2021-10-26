@@ -10,13 +10,23 @@ import FilePondPluginImageExifOrientation from 'filepond-plugin-image-exif-orien
 import FilePondPluginImagePreview from 'filepond-plugin-image-preview';
 import FilePondPluginFileValidateType from 'filepond-plugin-file-validate-type';
 
-import { PrimaryButton, JoinTeamButton, SecondaryText } from '../../atoms';
+import {
+  PrimaryButton,
+  JoinTeamButton,
+  SecondaryText,
+  CNSpacer,
+} from '../../atoms';
 import {
   CreateTeamModal,
   EmailVerifyModal,
   AdvertisementModal,
 } from '../../organisms';
-import { DashboardCard, JoinTeamTextField, CNModal } from '../../molecules';
+import {
+  DashboardCard,
+  JoinTeamTextField,
+  CNModal,
+  PublicTeamList,
+} from '../../molecules';
 import { Formik, Form, Field } from 'formik';
 
 import { useDispatch } from 'react-redux';
@@ -252,7 +262,6 @@ const DashboardSection = () => {
             justifyItems="center"
             alignItems="center"
           >
-            {' '}
             <DashboardCard
               title="Join a Team"
               des="Enter a team code that gets from your leader to join the team"
@@ -267,8 +276,7 @@ const DashboardSection = () => {
                 onSubmit={(data) => {
                   joinTeam({
                     code: data.teamCode,
-                    // @ts-ignore
-                    user_id: authStore.user.id,
+                    user_id: authStore!.user!.id,
                   });
                 }}
               >
@@ -347,6 +355,8 @@ const DashboardSection = () => {
               </PrimaryButton>
             </DashboardCard>
           </SimpleGrid>
+          <CNSpacer size="md" />
+          <PublicTeamList />
         </Container>
       </Center>
     </>
