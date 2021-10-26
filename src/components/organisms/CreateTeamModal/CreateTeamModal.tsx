@@ -60,7 +60,6 @@ const CreateTeamModal = ({ isOpen, onClose, ...props }: ModalProps) => {
         console.log(err);
         toast({
           title: 'Failed to create team',
-          // @ts-ignore
           description: err.data.message,
           status: 'error',
           position: 'top-right',
@@ -70,7 +69,6 @@ const CreateTeamModal = ({ isOpen, onClose, ...props }: ModalProps) => {
       } else {
         toast({
           title: 'Create Team Success',
-          // @ts-ignore
           description: 'You have successfully created the team',
           status: 'success',
           position: 'top-right',
@@ -80,8 +78,7 @@ const CreateTeamModal = ({ isOpen, onClose, ...props }: ModalProps) => {
         dispatch(
           UPDATE({
             ...authStore.user,
-            // @ts-ignore
-            team_id: data.data.id,
+            team_id: data.data!.id,
           }),
         );
 
@@ -129,15 +126,14 @@ const CreateTeamModal = ({ isOpen, onClose, ...props }: ModalProps) => {
             is_external: data.is_external,
             hackerrank_username: data.hackerrankUsername,
             contact_info: data.contactInfo,
-            // @ts-ignore
-            user_id: authStore.user.id,
+            user_id: authStore!.user!.id,
             visible: data.visible,
           };
 
           createTeam(teamData);
         }}
       >
-        {() => (
+        {(props) => (
           <Form style={{ width: '100%' }}>
             <VStack spacing={7} w="100%">
               <VStack spacing={2} alignItems="flex-start" w="100%">
@@ -159,16 +155,50 @@ const CreateTeamModal = ({ isOpen, onClose, ...props }: ModalProps) => {
                           Open Category (Open to all universities including MMU)
                         </Flex>
                       }
+                      defaultSelected={true}
                       name="is_external"
                       component={CNSelectFormField}
                     />
 
-                    {/* <Text fontSize="sm" color="#E53E3E" fontWeight="500" mt={4}>
-                      Please select at least 1 event
-                    </Text> */}
+                    {props!.values!.is_internal === false &&
+                    props!.values!.is_external === false ? (
+                      <Text
+                        fontSize="sm"
+                        color="#E53E3E"
+                        fontWeight="500"
+                        mt={4}
+                      >
+                        Please select at least 1 event
+                      </Text>
+                    ) : (
+                      <></>
+                    )}
                   </>
                 ) : (
-                  <></>
+                  <>
+                    <FormLabel>Select Event: </FormLabel>
+                    <Field
+                      display={
+                        <Flex justifyContent="flex-start">
+                          Open Category (Open to all universities including MMU)
+                        </Flex>
+                      }
+                      name="is_external"
+                      defaultSelected={true}
+                      disabled={true}
+                      onDisabledClick={() => {
+                        toast({
+                          title: 'Failed to de-select',
+                          description: 'At least 1 event have to be selected',
+                          status: 'warning',
+                          position: 'top-right',
+                          duration: 5000,
+                          isClosable: true,
+                        });
+                      }}
+                      component={CNSelectFormField}
+                    />
+                  </>
                 )}
               </VStack>
 
@@ -227,6 +257,12 @@ const CreateTeamModal = ({ isOpen, onClose, ...props }: ModalProps) => {
                   ml="20px"
                   border="none"
                   borderRadius="5px"
+                  disabled={
+                    props!.values!.is_internal === false &&
+                    props!.values!.is_external === false
+                      ? true
+                      : false
+                  }
                   isLoading={createTeamLoading}
                   _hover={{ border: 'none', bg: '#000000' }}
                 >

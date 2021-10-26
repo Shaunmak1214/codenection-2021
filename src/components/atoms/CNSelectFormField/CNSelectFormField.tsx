@@ -5,24 +5,32 @@ import { HStack, Box, Center } from '@chakra-ui/react';
 import PropTypes from 'prop-types';
 
 interface Props {
-  value: string;
-  onSelect?: (value: any, selected: any) => void;
   form: any;
-  children: any;
   field: any;
+  children: any;
+  value?: string;
   display: string;
+  defaultSelected?: boolean;
+  disabled?: boolean;
+  onSelect?: (value: any, selected: any) => void;
+  onDisabledClick?: () => void;
 }
 
-const CNSelectFormField = ({
-  value,
-  form,
-  field,
-  onSelect,
-  children,
-  display,
-  ...props
-}: Props) => {
-  const [selected, setSelected] = React.useState(false);
+const CNSelectFormField = (props: Props) => {
+  let {
+    form,
+    field,
+    children,
+    value,
+    display,
+    defaultSelected = false,
+    disabled,
+    onSelect,
+    onDisabledClick,
+    ...rest
+  } = props;
+
+  const [selected, setSelected] = React.useState(defaultSelected);
   const selectableRef = useRef(null);
 
   const handleSelect = () => {
@@ -41,15 +49,21 @@ const CNSelectFormField = ({
         w="100%"
         p={4}
         justifyContent="space-between"
-        bg={selected ? '#1050A0' : 'transparent'}
-        color={selected ? 'white' : 'black'}
         border="1px solid #E9E9E9;"
         borderRadius="8px"
         mb="3"
-        cursor="pointer"
         transition="all 0.1s ease-in-out"
-        onClick={() => handleSelect()}
-        {...props}
+        bg={selected ? '#1050A0' : 'transparent'}
+        color={selected ? 'white' : 'black'}
+        cursor={disabled ? 'not-allowed' : 'pointer'}
+        onClick={() => {
+          if (disabled) {
+            if (onDisabledClick) onDisabledClick();
+            return;
+          }
+          handleSelect();
+        }}
+        {...rest}
       >
         <Box width="90%">{display}</Box>
         <Center width="10%">
@@ -87,15 +101,5 @@ const CNSelectFormField = ({
 };
 
 React.memo(CNSelectFormField);
-
-CNSelectFormField.propTypes = {
-  value: PropTypes.string.isRequired,
-  selected: PropTypes.bool,
-  children: PropTypes.node,
-  onSelect: PropTypes.func,
-  props: PropTypes.node,
-  form: PropTypes.any,
-  field: PropTypes.any,
-};
 
 export default CNSelectFormField;
