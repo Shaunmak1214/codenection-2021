@@ -30,7 +30,7 @@ const RuleSection = () => {
           }}
           gap={6}
           fontSize="lg"
-          mx="50px"
+          mx={'25px'}
         >
           {RulesData.map((data) => {
             return (

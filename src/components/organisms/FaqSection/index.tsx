@@ -16,7 +16,7 @@ const FaqSection = () => {
         >
           FAQ
         </SecondaryText>
-        <Box justifyContent="center" px="35">
+        <Box justifyContent="center" px="15">
           <FaqBlock />
         </Box>
       </Container>

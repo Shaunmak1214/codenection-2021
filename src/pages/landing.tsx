@@ -4,12 +4,12 @@ import { Image, Heading } from '@chakra-ui/react';
 
 import { PrimaryButton, PrimaryText, CNSpacer } from '../components/atoms';
 import {
-  FaqSection,
   RuleSection,
-  SponsorSection,
+  FaqSection,
   CountDownSection,
   AboutSection,
   LeaderboardSection,
+  SponsorSection,
 } from '../components/organisms';
 
 import { CNLanding } from '../assets';
@@ -35,7 +35,6 @@ const Landing: React.FC = () => {
           <CNSpacer size="sm" />
 
           <PrimaryText>
-            {' '}
             Free to all universities and colleges students
           </PrimaryText>
 

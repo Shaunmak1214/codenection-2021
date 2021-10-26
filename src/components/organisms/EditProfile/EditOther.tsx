@@ -1,8 +1,9 @@
 import React from 'react';
-import { ProfileBlock } from '../../molecules';
 import { Formik, Form, Field } from 'formik';
 import * as yup from 'yup';
-import { CNTextFormField } from '../../atoms';
+
+import { ProfileBlock } from '../../molecules';
+import { CNTextFormField, CNSelectDropdownField } from '../../atoms';
 import UserInfo from '../../../types/user.type';
 
 interface Props {
@@ -67,12 +68,29 @@ const EditOther = ({
             />
             <Field
               name="shirt_size"
-              placeholder=""
-              component={CNTextFormField}
+              placeholder={props.values.shirt_size}
+              options={[
+                {
+                  label: 'XS',
+                  value: 'XS',
+                },
+                {
+                  label: 'S',
+                  value: 'S',
+                },
+                {
+                  label: 'M',
+                  value: 'M',
+                },
+                {
+                  label: 'L',
+                  value: 'L',
+                },
+              ]}
               customlabel="Shirt size"
               userData={userInfo.shirt_size}
-              value={props.values.shirt_size}
               onChange={props.handleChange}
+              component={CNSelectDropdownField}
             />
           </ProfileBlock>
         </Form>

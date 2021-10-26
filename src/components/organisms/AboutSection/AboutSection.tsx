@@ -9,24 +9,29 @@ import { GrayBox } from '../../../assets';
 
 const AboutSection = () => {
   return (
-    <Center py="50px">
+    <Center py={['10px', '20px', '50px']}>
       <Flex
         flexDirection={['column', 'column', 'row']}
         maxW="container.lg"
         w="100%"
-        py="50px"
         justifyContent="flex-start"
         alignItems="flex-start"
       >
-        <Center w="50%" h="auto">
+        <Center w={['100%', '100%', '50%']} h="auto">
           <Image src={GrayBox} alt="Gray" />
         </Center>
 
-        <VStack w="50%" h="100%" alignItems="flex-start" px="3" py="2">
+        <VStack
+          w={['100%', '100%', '50%']}
+          h="100%"
+          alignItems={['center', 'center', 'flex-start']}
+          px="3"
+          py={['5', '5', '2']}
+        >
           <SecondaryText fontSize="2xl" fontWeight="bold">
             ABOUT
           </SecondaryText>
-          <SecondaryText>
+          <SecondaryText textAlign={['center', 'center', 'left']}>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
             eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
             ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
