@@ -1,13 +1,14 @@
 import React from 'react';
-import { ProfileBlock } from '../../molecules';
+import { Text } from '@chakra-ui/react';
 import { Formik, Form, Field } from 'formik';
 import * as yup from 'yup';
+
 import {
   CNTextFormField,
   CNDatePicker,
   CNSelectDropdownField,
 } from '../../atoms';
-import { Text } from '@chakra-ui/react';
+import { ProfileBlock } from '../../molecules';
 import UserInfo from '../../../types/user.type';
 interface Props {
   profileLoading?: boolean;
