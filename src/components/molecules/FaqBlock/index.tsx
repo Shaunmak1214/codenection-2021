@@ -8,7 +8,7 @@ import {
   AccordionPanel,
   Text,
 } from '@chakra-ui/react';
-import { Box, HStack } from '@chakra-ui/layout';
+import { Box, HStack, Flex } from '@chakra-ui/layout';
 import { MinusIcon, AddIcon } from '@chakra-ui/icons';
 import AOS from 'aos';
 import { ArrowForwardIcon, HelpIcon } from '../../../assets';
@@ -43,6 +43,8 @@ const FaqBlock = () => {
             allowToggle
             allowMultiple
             data-aos-duration="1000"
+            w="100%"
+            margin="0 auto"
           >
             {datas.map((data: any) => {
               return (
@@ -92,21 +94,24 @@ const FaqBlock = () => {
 
   return (
     <>
-      <HStack w="100%" spacing="26" justifyContent="center" mb="35">
-        {FaqCategories.map((category) => {
-          return (
-            <>
-              <FaqButton
-                key={category.idx}
-                selected={value === category.category ? true : false}
-                value={category.category}
-                onClick={handleCategory}
-              >
-                {category.category}
-              </FaqButton>
-            </>
-          );
-        })}
+      <HStack w="100%" justifyContent="center" mb="35">
+        <Flex flexDir="row" overflowX="scroll" spacing={2} alignItems="center">
+          {FaqCategories.map((category) => {
+            return (
+              <>
+                <FaqButton
+                  key={category.idx}
+                  selected={value === category.category ? true : false}
+                  value={category.category}
+                  onClick={handleCategory}
+                  mr="15px"
+                >
+                  {category.category}
+                </FaqButton>
+              </>
+            );
+          })}
+        </Flex>
         <Image src={ArrowForwardIcon} cursor="pointer" />
       </HStack>
       <FaqCategory selected={value} />
