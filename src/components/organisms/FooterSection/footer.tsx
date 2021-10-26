@@ -28,15 +28,27 @@ const Footer = () => {
         <Flex
           flexDirection={['column', 'column', 'row']}
           w="100%"
-          alignItems="center"
+          alignItems={['flex-start', 'flex-start', 'center']}
           justifyContent="space-between"
         >
-          <Box px="10">
-            <CodeNectionLogoImg />
+          <Box mb="25px">
+            <CodeNectionLogoImg
+              style={{
+                width: '125px',
+                height: 'auto',
+              }}
+            />
           </Box>
 
-          <SimpleGrid columns={[1, 1, 3]} w="100%">
-            <VStack color="white" alignItems="center">
+          <SimpleGrid
+            columns={[1, 1, 3]}
+            w="100%"
+            spacingY={['30px', '30px', '0px']}
+          >
+            <VStack
+              color="white"
+              alignItems={['flex-start', 'flex-start', 'center']}
+            >
               <VStack alignItems="flex-start">
                 <SecondaryText
                   mb="10px"
@@ -81,7 +93,10 @@ const Footer = () => {
                 </HStack>
               </VStack>
             </VStack>
-            <VStack color="white" alignItems="center">
+            <VStack
+              color="white"
+              alignItems={['flex-start', 'flex-start', 'center']}
+            >
               <VStack alignItems="flex-start">
                 <SecondaryText
                   mb="10px"
@@ -124,7 +139,10 @@ const Footer = () => {
                 </HStack>
               </VStack>
             </VStack>
-            <VStack color="white" alignItems="center">
+            <VStack
+              color="white"
+              alignItems={['flex-start', 'flex-start', 'center']}
+            >
               <VStack alignItems="flex-start">
                 <SecondaryText
                   mb="10px"
