@@ -1,5 +1,5 @@
 import React from 'react';
-import { HStack, Container, Center, SimpleGrid } from '@chakra-ui/layout';
+import { HStack, Container, Center, SimpleGrid, Flex } from '@chakra-ui/layout';
 import { Image, Link, Text, Box, VStack } from '@chakra-ui/react';
 import { HeaderButton } from '../../atoms';
 
@@ -76,46 +76,63 @@ const Header = () => {
         bg="#002A97"
         ref={headerSticky}
         w="100%"
-        py="10px"
+        py="5px"
         zIndex="150"
         position="fixed"
         transition="150ms cubic-bezier(0.215,0.61,0.355,1);"
         color="#FFFFFF"
+        maxWidth={window.innerWidth}
       >
         <Container maxW="1350px">
-          <SimpleGrid columns={3} justifyItems="center" alignItems="center">
+          <SimpleGrid
+            columns={[2, 2, 2, 3]}
+            justifyContent="center"
+            alignItems="center"
+            w="100%"
+          >
             <HStack w="100%" justifyContent="space-between" alignItems="center">
               <Image
                 src={CodeNectionText}
                 w="170px"
                 h="auto"
+                mr="25px"
                 cursor="pointer"
                 onClick={() => (window.location.href = '/')}
               />
-              <Link href="#">
-                <Text>About</Text>
-              </Link>
-              <Link href="#">
-                <Text>Agenda</Text>
-              </Link>
-              <Link href="#">
-                <Text>Leaderboard</Text>
-              </Link>
+              <Flex w="100%" d={['none', 'none', 'flex']}>
+                <Link href="#" mr="25px">
+                  <Text>About</Text>
+                </Link>
+                <Link href="#" mr="25px">
+                  <Text>Agenda</Text>
+                </Link>
+                <Link href="#">
+                  <Text>Leaderboard</Text>
+                </Link>
+              </Flex>
             </HStack>
             <Image
               src={CodeNectionLogo}
+              d={['none', 'none', 'none', 'flex']}
+              justifySelf="center"
               w="64px"
               h="auto"
               cursor="pointer"
               onClick={() => (window.location.href = '/')}
             />
-            <HStack w="100%" justifyContent="space-between" alignItems="center">
-              <Link>
-                <Text>Rules & FAQ</Text>
-              </Link>
-              <Link>
-                <Text>Sponsors & Partners</Text>
-              </Link>
+            <HStack w="100%" justifyContent={'flex-end'} alignItems="center">
+              <Flex
+                w="100%"
+                d={['none', 'none', 'none', 'flex']}
+                justifyContent="flex-end"
+              >
+                <Link mr="25px">
+                  <Text>Rules & FAQ</Text>
+                </Link>
+                <Link mr="25px">
+                  <Text>Sponsors & Partners</Text>
+                </Link>
+              </Flex>
               {authState.isAuthenticated ? (
                 <>
                   <Box

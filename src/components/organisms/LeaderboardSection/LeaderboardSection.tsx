@@ -30,11 +30,12 @@ const LeaderboardSection = () => {
 
         <SimpleGrid
           columns={[1, 1, 2]}
-          p={'60px'}
+          p={'40px'}
           w="100%"
           border="2px solid #95C7FF;"
           borderRadius="20px"
           alignItems="center"
+          flexDir="column-reverse"
         >
           <VStack w="100%" alignItems="flex-start">
             <SecondaryText fontSize="2xl" fontWeight="bold">

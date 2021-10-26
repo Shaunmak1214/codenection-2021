@@ -115,7 +115,7 @@
   background: white;
   border-radius: 20px;
   width: 600px;
-  height: max-content !important;
+  height: auto !important;
   justify-content: center;
   align-items: center;
   text-align: center;
