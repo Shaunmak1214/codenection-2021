@@ -66,7 +66,7 @@ const EditOther = ({
               userData={userInfo.address}
             />
             <Field
-              name="size"
+              name="shirt_size"
               placeholder=""
               component={CNTextFormField}
               customlabel="Shirt size"

@@ -22,7 +22,6 @@ const TeamMember = ({ leader = false, category, member }: Props) => {
           justifyContent="center"
           alignItems="center"
         >
-          {' '}
           <Image src={leader ? LeaderIcon : MemberIcon} />
         </Box>
       </Box>

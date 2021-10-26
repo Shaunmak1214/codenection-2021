@@ -31,7 +31,7 @@ const DashboardCard = ({
       mb="20px"
     >
       <Box mb="25px" ml={marginLeft}>
-        <SecondaryText fontSize="25px" fontWeight="bold">
+        <SecondaryText fontSize="2xl" fontWeight="bold">
           {title}
         </SecondaryText>
         <SecondaryText>{des}</SecondaryText>
