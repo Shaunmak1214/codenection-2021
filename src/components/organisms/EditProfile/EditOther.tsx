@@ -71,7 +71,7 @@ const EditOther = ({
               component={CNTextFormField}
               customlabel="Shirt size"
               userData={userInfo.shirt_size}
-              value={props.values.size}
+              value={props.values.shirt_size}
               onChange={props.handleChange}
             />
           </ProfileBlock>

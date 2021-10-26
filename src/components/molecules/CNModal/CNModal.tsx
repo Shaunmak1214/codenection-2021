@@ -122,6 +122,7 @@ const CNModal = ({
                 h="100%"
                 overflowY="scroll"
                 padding="1.5rem"
+                marginLeft="25px"
               >
                 {!disableCloseButton && (
                   <Box
