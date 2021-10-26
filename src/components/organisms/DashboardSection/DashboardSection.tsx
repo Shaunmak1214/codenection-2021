@@ -10,13 +10,23 @@ import FilePondPluginImageExifOrientation from 'filepond-plugin-image-exif-orien
 import FilePondPluginImagePreview from 'filepond-plugin-image-preview';
 import FilePondPluginFileValidateType from 'filepond-plugin-file-validate-type';
 
-import { PrimaryButton, JoinTeamButton, SecondaryText } from '../../atoms';
+import {
+  PrimaryButton,
+  JoinTeamButton,
+  SecondaryText,
+  CNSpacer,
+} from '../../atoms';
 import {
   CreateTeamModal,
   EmailVerifyModal,
   AdvertisementModal,
 } from '../../organisms';
-import { DashboardCard, JoinTeamTextField, CNModal } from '../../molecules';
+import {
+  DashboardCard,
+  JoinTeamTextField,
+  CNModal,
+  PublicTeamList,
+} from '../../molecules';
 import { Formik, Form, Field } from 'formik';
 
 import { useDispatch } from 'react-redux';
@@ -39,6 +49,8 @@ const DashboardSection = () => {
   const toast = useToast();
   const authStore: authTypes = store.getState().auth;
   const dispatch = useDispatch();
+
+  const [files, setFiles] = useState([]);
   const [teamModalIsOpen, setTeamModalIsOpen] = useState(false);
   const [discordModalIsOpen, setDiscordModalIsOpen] = useState(false);
 
@@ -47,8 +59,6 @@ const DashboardSection = () => {
     FilePondPluginImagePreview,
     FilePondPluginFileValidateType,
   );
-
-  const [files, setFiles] = React.useState([]);
 
   const {
     isOpen: resumeOpen,
@@ -73,6 +83,40 @@ const DashboardSection = () => {
       .max(6, 'Team code must be at least 6 characters')
       .required('Team code is required'),
   });
+
+  const { loading: resumeUploadLoading, fetch: resumeUpload } = useAxios(
+    {
+      url: '/resume/',
+      method: 'POST',
+      headers: {
+        Authorization: `Bearer ${authStore.accessToken}`,
+        'Content-Type': 'multipart/form-data',
+      },
+    },
+    // eslint-disable-next-line
+    (err, data) => {
+      if (err) {
+        console.log(err);
+        toast({
+          title: 'Failed to upload resume',
+          status: 'error',
+          description: err.data.message,
+          position: 'top-right',
+          duration: 100000,
+          isClosable: true,
+        });
+      } else {
+        toast({
+          title: 'Resume upload success',
+          description: 'You have successfully uploaded your resume',
+          status: 'success',
+          position: 'top-right',
+          duration: 100000,
+          isClosable: true,
+        });
+      }
+    },
+  );
 
   // eslint-disable-next-line
   const { loading: joinTeamLoading, fetch: joinTeam } = useAxios(
@@ -105,6 +149,7 @@ const DashboardSection = () => {
           duration: 10000,
           isClosable: true,
         });
+
         dispatch(
           UPDATE({
             ...authStore.user,
@@ -112,9 +157,7 @@ const DashboardSection = () => {
             team_id: data.data.team_id,
           }),
         );
-        setTimeout(() => {
-          window.location.href = '/dashboard';
-        }, 3000);
+        // window.location.reload();
       }
     },
   );
@@ -161,7 +204,27 @@ const DashboardSection = () => {
         onClose={handleResumeClose}
         modalIsOpen={resumeOpen}
         successText="Upload"
+        centerSpacing={false}
         CTAIsCenter={true}
+        isPrimaryLoading={resumeUploadLoading}
+        onPrimaryClick={() => {
+          if (files[0]) {
+            let bodyFormData = new FormData();
+            // @ts-ignore
+            bodyFormData.append('file', files[0]!.file);
+            bodyFormData.append('user_id', `${authStore.user!.id}`);
+            resumeUpload(bodyFormData);
+          } else {
+            toast({
+              title: 'No resume uplaoded',
+              description: 'Please upload your resume',
+              status: 'warning',
+              position: 'top-right',
+              duration: 100000,
+              isClosable: true,
+            });
+          }
+        }}
       >
         <Box py="25px">
           <SecondaryText fontSize="3xl" fontWeight="bold">
@@ -172,11 +235,10 @@ const DashboardSection = () => {
           </SecondaryText>
         </Box>
         <FilePond
-          style={{ width: '300px', height: '300px' }}
           acceptedFileTypes={['application/pdf']}
           //@ts-ignore
           onupdatefiles={setFiles}
-          maxFileSize="10MB"
+          maxFileSize="5MB"
           maxFiles={1}
           files={files}
           allowReorder={true}
@@ -200,7 +262,6 @@ const DashboardSection = () => {
             justifyItems="center"
             alignItems="center"
           >
-            {' '}
             <DashboardCard
               title="Join a Team"
               des="Enter a team code that gets from your leader to join the team"
@@ -215,8 +276,7 @@ const DashboardSection = () => {
                 onSubmit={(data) => {
                   joinTeam({
                     code: data.teamCode,
-                    // @ts-ignore
-                    user_id: authStore.user.id,
+                    user_id: authStore!.user!.id,
                   });
                 }}
               >
@@ -295,6 +355,8 @@ const DashboardSection = () => {
               </PrimaryButton>
             </DashboardCard>
           </SimpleGrid>
+          <CNSpacer size="md" />
+          <PublicTeamList />
         </Container>
       </Center>
     </>

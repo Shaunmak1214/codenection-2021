@@ -22,21 +22,20 @@ interface Props {
   edit?: boolean;
   setEdit?: any;
   updateLoading?: boolean;
+  formikProps: any;
 }
 
 const ProfileBlock = ({
   edit,
-  // eslint-disable-next-line no-unused-vars
-  updateUser,
   title,
   profileLoading,
-  // eslint-disable-next-line no-unused-vars
   updateLoading,
   setEdit,
-  // eslint-disable-next-line no-unused-vars
+  formikProps,
   ...props
 }: Props) => {
   const children = props.children;
+  console.log(formikProps);
   return (
     <Center>
       <Container mt="35px" maxW="800px" w="750px">
@@ -59,7 +58,10 @@ const ProfileBlock = ({
                   <HStack mr="35px">
                     <BoxIcons
                       icon={ReturnIcon}
-                      onClick={() => setEdit(!edit)}
+                      onClick={() => {
+                        setEdit(!edit);
+                        formikProps.resetForm(formikProps.initialValues);
+                      }}
                       mr="20px"
                       my="0"
                       w="42px"
