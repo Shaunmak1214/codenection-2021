@@ -13,12 +13,14 @@ import {
   useToast,
   Text,
   Box,
+  Image,
 } from '@chakra-ui/react';
 import { useAxios } from '../hooks';
 import store from '../store';
 import { TeamBlocks } from '../components/molecules';
 
 import authTypes from '../types/auth.types';
+import { EmailVerified } from '../assets';
 interface UserProps {
   full_name?: string;
   email?: string;
@@ -162,7 +164,7 @@ const Index = () => {
       <Container maxW="container.xl">
         <HStack alignItems="none">
           <Container mr="40px" mt="38px">
-            <Box mb="100px">
+            <Box mb="100px" maxW="300px">
               <Box
                 bg="#0099B8"
                 w="150px"
@@ -186,12 +188,20 @@ const Index = () => {
               <Text fontSize="2xl" fontWeight="bold" mb="15px">
                 EMAIL STATUS
               </Text>
+
               <Box
                 boxShadow="0px 8px 20px rgba(132, 132, 132, 0.25)"
                 borderRadius="10px"
                 w="340px"
                 h="240px"
-              ></Box>
+              >
+                <VStack py="25px" justifyContent="center" alignItems="center">
+                  <Image w="140px" h="130px" src={EmailVerified} />
+                  <Text fontSize="xl" py="10px">
+                    Email Verified
+                  </Text>
+                </VStack>
+              </Box>
             </Box>
             <Box>
               <Text fontSize="2xl" fontWeight="bold">
