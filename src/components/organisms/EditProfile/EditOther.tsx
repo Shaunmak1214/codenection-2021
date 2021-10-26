@@ -1,8 +1,9 @@
 import React from 'react';
-import { ProfileBlock } from '../../molecules';
 import { Formik, Form, Field } from 'formik';
 import * as yup from 'yup';
-import { CNTextFormField } from '../../atoms';
+
+import { ProfileBlock } from '../../molecules';
+import { CNTextFormField, CNSelectDropdownField } from '../../atoms';
 import UserInfo from '../../../types/user.type';
 
 interface Props {
@@ -30,7 +31,7 @@ const EditOther = ({
   }
   const schema = yup.object({
     address: yup.string().nullable(true),
-    size: yup.string().nullable(true),
+    shirt_size: yup.string().nullable(true),
   });
 
   return (
@@ -38,7 +39,8 @@ const EditOther = ({
       validationSchema={schema}
       initialValues={{
         address: userInfo.address,
-        size: userInfo.size,
+        // @ts-ignore
+        size: userInfo.shirt_size,
       }}
       onSubmit={(data) => {
         updateUser(data);
@@ -53,6 +55,7 @@ const EditOther = ({
             updateLoading={updateLoading}
             edit={edit}
             setEdit={setEdit}
+            formikProps={props}
             title={'Other Details'}
           >
             <Field
@@ -65,13 +68,31 @@ const EditOther = ({
               userData={userInfo.address}
             />
             <Field
-              name="size"
-              placeholder=""
-              component={CNTextFormField}
+              name="shirt_size"
+              placeholder={props.values.shirt_size}
+              options={[
+                {
+                  label: 'XS',
+                  value: 'XS',
+                },
+                {
+                  label: 'S',
+                  value: 'S',
+                },
+                {
+                  label: 'M',
+                  value: 'M',
+                },
+                {
+                  label: 'L',
+                  value: 'L',
+                },
+              ]}
               customlabel="Shirt size"
-              userData={userInfo.size}
-              value={props.values.size}
+              // @ts-ignore
+              userData={userInfo.shirt_size}
               onChange={props.handleChange}
+              component={CNSelectDropdownField}
             />
           </ProfileBlock>
         </Form>

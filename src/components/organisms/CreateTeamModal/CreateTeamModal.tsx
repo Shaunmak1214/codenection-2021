@@ -10,6 +10,7 @@ import {
   CNSelectFormField,
   MutedButton,
   PrimaryButton,
+  CNRadio,
 } from '../../atoms';
 import { CNModal } from '../../molecules';
 
@@ -34,6 +35,15 @@ const CreateTeamModal = ({ isOpen, onClose, ...props }: ModalProps) => {
       .string()
       .max(35, 'Team name must be less than 35 characters')
       .required('Team name is required'),
+    hackerrankUsername: yup
+      .string()
+      .max(35, 'Username must be less than 35 characters')
+      .required('Username is required'),
+    contactInfo: yup
+      .string()
+      .max(125, 'Contact info must be less than 35 characters')
+      .required('Contact info is required'),
+    visible: yup.string().required('Team Visibility is required'),
   });
 
   // eslint-disable-next-line
@@ -47,9 +57,9 @@ const CreateTeamModal = ({ isOpen, onClose, ...props }: ModalProps) => {
     },
     (err, data) => {
       if (err) {
+        console.log(err);
         toast({
           title: 'Failed to create team',
-          // @ts-ignore
           description: err.data.message,
           status: 'error',
           position: 'top-right',
@@ -59,7 +69,6 @@ const CreateTeamModal = ({ isOpen, onClose, ...props }: ModalProps) => {
       } else {
         toast({
           title: 'Create Team Success',
-          // @ts-ignore
           description: 'You have successfully created the team',
           status: 'success',
           position: 'top-right',
@@ -69,10 +78,11 @@ const CreateTeamModal = ({ isOpen, onClose, ...props }: ModalProps) => {
         dispatch(
           UPDATE({
             ...authStore.user,
-            // @ts-ignore
-            team_id: data.data.id,
+            team_id: data.data!.id,
           }),
         );
+
+        onClose();
 
         setTimeout(() => {
           window.location.href = '/dashboard';
@@ -88,6 +98,7 @@ const CreateTeamModal = ({ isOpen, onClose, ...props }: ModalProps) => {
       modalIsOpen={isOpen}
       disableCloseButton={false}
       onClose={onClose}
+      centerSpacing={false}
       {...props}
     >
       <Flex w="100%" justifyContent="flex-start" mb="0px">
@@ -102,6 +113,9 @@ const CreateTeamModal = ({ isOpen, onClose, ...props }: ModalProps) => {
           teamName: '',
           is_internal: false,
           is_external: true,
+          hackerrankUsername: '',
+          contactInfo: '',
+          visible: '',
         }}
         onSubmit={(data) => {
           let teamData = {
@@ -110,14 +124,16 @@ const CreateTeamModal = ({ isOpen, onClose, ...props }: ModalProps) => {
               ? data.is_internal
               : false,
             is_external: data.is_external,
-            // @ts-ignore
-            user_id: authStore.user.id,
+            hackerrank_username: data.hackerrankUsername,
+            contact_info: data.contactInfo,
+            user_id: authStore!.user!.id,
+            visible: data.visible,
           };
 
           createTeam(teamData);
         }}
       >
-        {() => (
+        {(props) => (
           <Form style={{ width: '100%' }}>
             <VStack spacing={7} w="100%">
               <VStack spacing={2} alignItems="flex-start" w="100%">
@@ -139,20 +155,91 @@ const CreateTeamModal = ({ isOpen, onClose, ...props }: ModalProps) => {
                           Open Category (Open to all universities including MMU)
                         </Flex>
                       }
+                      defaultSelected={true}
                       name="is_external"
                       component={CNSelectFormField}
                     />
+
+                    {props!.values!.is_internal === false &&
+                    props!.values!.is_external === false ? (
+                      <Text
+                        fontSize="sm"
+                        color="#E53E3E"
+                        fontWeight="500"
+                        mt={4}
+                      >
+                        Please select at least 1 event
+                      </Text>
+                    ) : (
+                      <></>
+                    )}
                   </>
                 ) : (
-                  <></>
+                  <>
+                    <FormLabel>Select Event: </FormLabel>
+                    <Field
+                      display={
+                        <Flex justifyContent="flex-start">
+                          Open Category (Open to all universities including MMU)
+                        </Flex>
+                      }
+                      name="is_external"
+                      defaultSelected={true}
+                      disabled={true}
+                      onDisabledClick={() => {
+                        toast({
+                          title: 'Failed to de-select',
+                          description: 'At least 1 event have to be selected',
+                          status: 'warning',
+                          position: 'top-right',
+                          duration: 5000,
+                          isClosable: true,
+                        });
+                      }}
+                      component={CNSelectFormField}
+                    />
+                  </>
                 )}
               </VStack>
+
+              <Field
+                name="visible"
+                label="Team Visibility:"
+                placeholder="Team Visibility"
+                options={[
+                  {
+                    label: 'Public',
+                    value: 'public',
+                  },
+                  {
+                    label: 'Private',
+                    value: 'private',
+                  },
+                ]}
+                component={CNRadio}
+              />
 
               <Field
                 type="string"
                 name="teamName"
                 label="Team Name:"
                 placeholder="Team Name"
+                component={CNTextFormField}
+              />
+
+              <Field
+                type="string"
+                name="hackerrankUsername"
+                label="HackerRank Username:"
+                placeholder="xxx"
+                component={CNTextFormField}
+              />
+
+              <Field
+                type="string"
+                name="contactInfo"
+                label="Contact Information:"
+                placeholder="Please contact me via discord: qwe#4001"
                 component={CNTextFormField}
               />
 
@@ -170,6 +257,12 @@ const CreateTeamModal = ({ isOpen, onClose, ...props }: ModalProps) => {
                   ml="20px"
                   border="none"
                   borderRadius="5px"
+                  disabled={
+                    props!.values!.is_internal === false &&
+                    props!.values!.is_external === false
+                      ? true
+                      : false
+                  }
                   isLoading={createTeamLoading}
                   _hover={{ border: 'none', bg: '#000000' }}
                 >
@@ -183,6 +276,8 @@ const CreateTeamModal = ({ isOpen, onClose, ...props }: ModalProps) => {
     </CNModal>
   );
 };
+
+React.memo(CreateTeamModal);
 
 CreateTeamModal.propTypes = {
   isOpen: PropTypes.bool.isRequired,

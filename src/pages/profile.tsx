@@ -34,7 +34,7 @@ interface UserProps {
   interest_job_position?: string;
   resume?: string;
   address?: string;
-  size?: string;
+  shirt_size?: string;
 }
 const Index = () => {
   const toast = useToast();
@@ -56,8 +56,10 @@ const Index = () => {
     interest_job_position: '',
     resume: '',
     address: '',
-    size: '',
+    shirt_size: '',
   });
+
+  const [teamInfo, setTeamInfo] = useState({});
 
   const { loading: profileLoading, fetch: fetchUserInfo } = useAxios(
     {
@@ -75,11 +77,31 @@ const Index = () => {
         console.log(userData);
         setUserInfo({
           ...userData,
-          size: 'S',
         });
       }
     },
   );
+  // eslint-disable-next-line no-unused-vars
+  const { loading: teamLoading, fetch: fetchTeamInfo } = useAxios(
+    {
+      url: `/team/${authStore!.user!.team_id}`,
+      method: 'GET',
+      headers: {
+        Authorization: `Bearer ${authStore.accessToken}`,
+      },
+    },
+    (err, data) => {
+      if (err) {
+        return;
+      } else {
+        const returnedData = data.data;
+        setTeamInfo({
+          ...returnedData,
+        });
+      }
+    },
+  );
+
   //eslint-disable-next-line no-unused-vars
   const { loading: updateLoading, fetch: updateUser } = useAxios(
     {
@@ -91,6 +113,7 @@ const Index = () => {
     },
     (err, data) => {
       if (err) {
+        console.log(err);
         toast({
           title: 'Failed to update profile',
           description: err.data.message,
@@ -130,6 +153,7 @@ const Index = () => {
 
   useEffect(() => {
     fetchUserInfo();
+    fetchTeamInfo();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -173,8 +197,12 @@ const Index = () => {
               <Text fontSize="2xl" fontWeight="bold">
                 YOUR TEAM
               </Text>
-              <TeamBlocks category="closed" />
-              <TeamBlocks />
+              <TeamBlocks
+                teamLoading={teamLoading}
+                teamInfo={teamInfo}
+                category="closed"
+              />
+              <TeamBlocks teamLoading={teamLoading} teamInfo={teamInfo} />
             </Box>
           </Container>
           <VStack>
