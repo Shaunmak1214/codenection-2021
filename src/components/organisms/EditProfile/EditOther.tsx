@@ -24,13 +24,13 @@ const EditOther = ({
 }: Props) => {
   interface FormValues {
     address: string;
-    size: string;
+    shirt_size: string;
     handleChange: any;
     values: any;
   }
   const schema = yup.object({
     address: yup.string().nullable(true),
-    size: yup.string().nullable(true),
+    shirt_size: yup.string().nullable(true),
   });
 
   return (
@@ -38,7 +38,7 @@ const EditOther = ({
       validationSchema={schema}
       initialValues={{
         address: userInfo.address,
-        size: userInfo.size,
+        shirt_size: userInfo.shirt_size,
       }}
       onSubmit={(data) => {
         updateUser(data);
@@ -70,7 +70,7 @@ const EditOther = ({
               placeholder=""
               component={CNTextFormField}
               customlabel="Shirt size"
-              userData={userInfo.size}
+              userData={userInfo.shirt_size}
               value={props.values.size}
               onChange={props.handleChange}
             />
