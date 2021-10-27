@@ -14,6 +14,7 @@ import {
   Text,
   Box,
   Image,
+  Spinner,
 } from '@chakra-ui/react';
 import { useAxios } from '../hooks';
 import store from '../store';
@@ -61,7 +62,15 @@ const Index = () => {
     shirt_size: '',
   });
 
-  const [teamInfo, setTeamInfo] = useState({});
+  interface TeamProps {
+    is_external: boolean;
+    is_internal: boolean;
+  }
+
+  const [teamInfo, setTeamInfo] = useState<TeamProps>({
+    is_external: false,
+    is_internal: false,
+  });
 
   const { loading: profileLoading, fetch: fetchUserInfo } = useAxios(
     {
@@ -97,6 +106,8 @@ const Index = () => {
         return;
       } else {
         const returnedData = data.data;
+        console.log('here');
+        console.log(returnedData);
         setTeamInfo({
           ...returnedData,
         });
@@ -126,7 +137,6 @@ const Index = () => {
         });
       } else if (data) {
         const updatedData: UserProps = JSON.parse(data.config.data);
-
         toast({
           title: 'Profile Updated',
           description: 'You have successfully updated your profile',
@@ -156,8 +166,28 @@ const Index = () => {
   useEffect(() => {
     fetchUserInfo();
     fetchTeamInfo();
+    console.log('updated');
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  const TeamBlocksRenderer = () => {
+    if (authStore!.user!.team_id) {
+      if (teamInfo.is_external && teamInfo.is_internal) {
+        return (
+          <>
+            <TeamBlocks teamInfo={teamInfo} category="closed" />
+            <TeamBlocks teamInfo={teamInfo} />
+          </>
+        );
+      } else if (teamInfo.is_external) {
+        return <TeamBlocks teamInfo={teamInfo} />;
+      } else {
+        return <TeamBlocks teamInfo={teamInfo} category="closed" />;
+      }
+    } else {
+      return <Text>No Team Yet</Text>;
+    }
+  };
 
   return (
     <Center py="150px">
@@ -207,12 +237,18 @@ const Index = () => {
               <Text fontSize="2xl" fontWeight="bold">
                 YOUR TEAM
               </Text>
-              <TeamBlocks
-                teamLoading={teamLoading}
-                teamInfo={teamInfo}
-                category="closed"
-              />
-              <TeamBlocks teamLoading={teamLoading} teamInfo={teamInfo} />
+              {teamLoading ? (
+                <Box
+                  h="210px"
+                  justifyContent="center"
+                  alignItems="center"
+                  d="flex"
+                >
+                  <Spinner size="xl" />
+                </Box>
+              ) : (
+                <TeamBlocksRenderer />
+              )}
             </Box>
           </Container>
           <VStack>

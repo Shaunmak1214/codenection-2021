@@ -52,7 +52,7 @@ const CountDownSection = () => {
               <SecondaryButton>Register Now</SecondaryButton>
             </Flex>
             <SimpleGrid
-              columns={[4, 4, 4]}
+              columns={[1, 1, 4]}
               spacing={2}
               py="45px"
               px={['15px', '15px', '0']}
