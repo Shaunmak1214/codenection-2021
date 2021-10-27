@@ -25,7 +25,7 @@ const EditOther = ({
 }: Props) => {
   interface FormValues {
     address: string;
-    size: string;
+    shirt_size: string;
     handleChange: any;
     values: any;
   }
@@ -39,8 +39,7 @@ const EditOther = ({
       validationSchema={schema}
       initialValues={{
         address: userInfo.address,
-        // @ts-ignore
-        size: userInfo.shirt_size,
+        shirt_size: userInfo.shirt_size,
       }}
       onSubmit={(data) => {
         updateUser(data);
@@ -93,7 +92,6 @@ const EditOther = ({
                 },
               ]}
               customlabel="Shirt size"
-              // @ts-ignore
               userData={userInfo.shirt_size}
               onChange={props.handleChange}
               component={CNSelectDropdownField}

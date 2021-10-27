@@ -7,6 +7,7 @@ import SilverBG from './jpgs-pngs/SilverBG.png';
 import BronzeBG from './jpgs-pngs/BronzeBG.png';
 import GrayBox from './jpgs-pngs/gray.png';
 import SaveProfile from './jpgs-pngs/SavePng.png';
+import EmailVerified from './jpgs-pngs/EmailVerified.png';
 
 //svgs
 import CNLanding from './svgs/CNLanding.svg';
@@ -102,6 +103,7 @@ export {
   Discord,
   Instagram,
   Facebook,
+  EmailVerified,
   CodeNectionLogoImg,
   ReturnIcon,
   SaveProfile,
