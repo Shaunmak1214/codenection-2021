@@ -1,23 +1,15 @@
 import React from 'react';
-import {
-  Box,
-  VStack,
-  HStack,
-  Container,
-  Text,
-  Spinner,
-} from '@chakra-ui/react';
+import { Box, VStack, HStack, Container, Text } from '@chakra-ui/react';
 import TeamMember from '../TeamMember/TeamMember';
 import PropTypes from 'prop-types';
 
 interface Props {
   category?: string;
   teamInfo: any;
-  teamLoading: boolean;
 }
 
-const TeamBlocks = ({ teamLoading, teamInfo, category = 'open' }: Props) => {
-  // console.log(teamInfo.length);
+const TeamBlocks = ({ teamInfo, category = 'open' }: Props) => {
+  console.log(teamInfo.length);
   return (
     <Box
       mt="20px"
@@ -32,11 +24,7 @@ const TeamBlocks = ({ teamLoading, teamInfo, category = 'open' }: Props) => {
       mb="35px"
     >
       <VStack minH="205px">
-        {teamLoading ? (
-          <Box h="210px" justifyContent="center" alignItems="center" d="flex">
-            <Spinner size="xl" />
-          </Box>
-        ) : Object.keys(teamInfo).length > 0 ? (
+        {Object.keys(teamInfo).length > 0 ? (
           <>
             {' '}
             <HStack py="5px">
@@ -78,7 +66,7 @@ const TeamBlocks = ({ teamLoading, teamInfo, category = 'open' }: Props) => {
                 <TeamMember
                   leader
                   category={category}
-                  member={teamInfo.team_lead.full_name}
+                  member={teamInfo.team_lead?.full_name}
                 />
                 {teamInfo.team_members?.map((member: any, idx: any) => (
                   <TeamMember
