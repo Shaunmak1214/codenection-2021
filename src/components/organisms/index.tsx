@@ -20,6 +20,7 @@ import CreateTeamModal from './CreateTeamModal/CreateTeamModal';
 import { EditPersonal, EditJob, EditEducation, EditOther } from './EditProfile';
 import EmailVerifyModal from './EmailVerifyModal/EmailVerifyModal';
 import AdvertisementModal from './AdvertisementModal/AdvertisementModal';
+import ResumeUploaderModal from './ResumeUploaderModal/ResumeUploaderModal';
 
 export {
   CountDownSection,
@@ -45,4 +46,5 @@ export {
   EmailVerifyModal,
   EditEducation,
   Footer,
+  ResumeUploaderModal,
 };

@@ -87,6 +87,10 @@ const EditOther = ({
                   label: 'L',
                   value: 'L',
                 },
+                {
+                  label: 'XL',
+                  value: 'XL',
+                },
               ]}
               customlabel="Shirt size"
               // @ts-ignore
