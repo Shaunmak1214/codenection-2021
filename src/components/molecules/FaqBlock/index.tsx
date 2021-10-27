@@ -25,6 +25,8 @@ const FaqBlock = () => {
     setValue(button.value);
   };
 
+  const scrollableRef = React.useRef<HTMLDivElement>(null);
+
   useEffect(() => {
     AOS.init({
       once: true,
@@ -95,7 +97,15 @@ const FaqBlock = () => {
   return (
     <>
       <HStack w="100%" justifyContent="center" mb="35">
-        <Flex flexDir="row" overflowX="scroll" spacing={2} alignItems="center">
+        <Flex
+          ref={scrollableRef}
+          flexDir="row"
+          overflowX="scroll"
+          spacing={2}
+          alignItems="center"
+          className="faq-scrollable"
+          transition="all 0.5s ease-in-out"
+        >
           {FaqCategories.map((category) => {
             return (
               <>
@@ -105,6 +115,7 @@ const FaqBlock = () => {
                   value={category.category}
                   onClick={handleCategory}
                   mr="15px"
+                  px="65px"
                 >
                   {category.category}
                 </FaqButton>
@@ -112,7 +123,14 @@ const FaqBlock = () => {
             );
           })}
         </Flex>
-        <Image src={ArrowForwardIcon} cursor="pointer" />
+        <Image
+          src={ArrowForwardIcon}
+          onClick={() => {
+            // @ts-ignore
+            scrollableRef.current.scrollBy(100, 0);
+          }}
+          cursor="pointer"
+        />
       </HStack>
       <FaqCategory selected={value} />
     </>

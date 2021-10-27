@@ -135,6 +135,10 @@
   height: 80%;
 }
 
+.faq-scrollable::-webkit-scrollbar {
+  display: none;
+}
+
 .modal-overlay {
   position: fixed;
   top: 0;
