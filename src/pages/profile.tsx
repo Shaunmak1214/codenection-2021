@@ -1,11 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import {
-  EditPersonal,
-  EditJob,
-  EditOther,
-  EditEducation,
-} from '../components/organisms';
-import {
   Center,
   Container,
   HStack,
@@ -17,13 +11,29 @@ import {
   Spinner,
   Flex,
 } from '@chakra-ui/react';
-import { useAxios, useCopyToClipboard } from '../hooks';
-import store from '../store';
-import { TeamBlocks } from '../components/molecules';
 
+import store from '../store';
 import authTypes from '../types/auth.types';
+
+import {
+  PrimaryButton,
+  SecondaryText,
+  WhiteBox,
+  CNSpacer,
+} from '../components/atoms';
+import { TeamBlocks } from '../components/molecules';
+import {
+  EditPersonal,
+  EditJob,
+  EditOther,
+  EditEducation,
+  EditTeamModal,
+} from '../components/organisms';
+
+import { useAxios, useCNModal, useCopyToClipboard } from '../hooks';
+
 import { EmailVerified } from '../assets';
-import { PrimaryButton, SecondaryText, WhiteBox } from '../components/atoms';
+
 interface UserProps {
   full_name?: string;
   email?: string;
@@ -41,9 +51,21 @@ interface UserProps {
   address?: string;
   shirt_size?: string;
 }
+
+interface TeamProps {
+  team_name: string;
+  hackerrank_username: string;
+  contact_info: string;
+  visible: string;
+  is_external: boolean;
+  is_internal: boolean;
+  code?: string;
+}
+
 const Index = () => {
   const toast = useToast();
   const authStore: authTypes = store.getState().auth;
+
   // eslint-disable-next-line
   const [value, copy] = useCopyToClipboard({
     onCopySuccess: () => {
@@ -77,15 +99,21 @@ const Index = () => {
     shirt_size: '',
   });
 
-  interface TeamProps {
-    is_external: boolean;
-    is_internal: boolean;
-    code?: string;
-  }
-
   const [teamInfo, setTeamInfo] = useState<TeamProps>({
+    team_name: '',
+    hackerrank_username: '',
+    contact_info: '',
+    visible: '',
     is_external: false,
     is_internal: false,
+  });
+
+  const {
+    isOpen: isEditTeamOpen,
+    handleModalClose: handleEditTeamClose,
+    handleModalOpen: handleEditTeamOpen,
+  } = useCNModal({
+    initialState: false,
   });
 
   const { loading: profileLoading, fetch: fetchUserInfo } = useAxios(
@@ -199,9 +227,7 @@ const Index = () => {
                 justifyContent="space-between"
                 alignItems="center"
               >
-                <SecondaryText fontWeight="bold" textSpacing="20px">
-                  {teamInfo.code}
-                </SecondaryText>
+                <SecondaryText fontWeight="bold">{teamInfo.code}</SecondaryText>
 
                 <PrimaryButton
                   borderRadius="10px"
@@ -235,9 +261,7 @@ const Index = () => {
                 justifyContent="space-between"
                 alignItems="center"
               >
-                <SecondaryText fontWeight="bold" textSpacing="20px">
-                  {teamInfo.code}
-                </SecondaryText>
+                <SecondaryText fontWeight="bold">{teamInfo.code}</SecondaryText>
 
                 <PrimaryButton
                   borderRadius="10px"
@@ -270,9 +294,7 @@ const Index = () => {
                 justifyContent="space-between"
                 alignItems="center"
               >
-                <SecondaryText fontWeight="bold" textSpacing="20px">
-                  {teamInfo.code}
-                </SecondaryText>
+                <SecondaryText fontWeight="bold">{teamInfo.code}</SecondaryText>
 
                 <PrimaryButton
                   borderRadius="10px"
@@ -319,99 +341,139 @@ const Index = () => {
   };
 
   return (
-    <Center py="150px">
-      <Container maxW="container.xl">
-        <HStack alignItems="none">
-          <Container mr="40px" mt="38px">
-            <Box mb="100px" maxW="300px">
-              <Box
-                bg="#0099B8"
-                w="150px"
-                h="140px"
-                textAlign="center"
-                d="flex"
-                borderRadius="8px"
-                justifyContent="center"
-                alignItems="center"
-              >
-                <Text fontSize="80px" color="#FFFFFF" textTransform="uppercase">
-                  {firstLetter}
-                </Text>
-              </Box>
-
-              <Text fontSize="xl" mt="20px" fontWeight="bold">
-                {authStore!.user!.full_name}
-              </Text>
-            </Box>
-            <Box mb="80px" mt="50px">
-              <Text fontSize="2xl" fontWeight="bold" mb="15px">
-                EMAIL STATUS
-              </Text>
-
-              <WhiteBox w="340px" h="240px">
-                <VStack py="25px" justifyContent="center" alignItems="center">
-                  <Image w="140px" h="130px" src={EmailVerified} />
-                  <Text fontSize="xl" py="10px">
-                    Email Verified
-                  </Text>
-                </VStack>
-              </WhiteBox>
-            </Box>
-            <Box>
-              <Text fontSize="2xl" fontWeight="bold">
-                YOUR TEAM
-              </Text>
-              {teamLoading ? (
+    <>
+      {authStore.user?.permission_level === 5 && !teamLoading ? (
+        <EditTeamModal
+          isOpen={isEditTeamOpen}
+          onClose={handleEditTeamClose}
+          initialValues={{
+            teamName: teamInfo.team_name,
+            is_internal: teamInfo.is_internal,
+            is_external: teamInfo.is_external,
+            hackerrankUsername: teamInfo.hackerrank_username,
+            contactInfo: teamInfo.contact_info,
+            visible: teamInfo.visible,
+          }}
+          onUpdatedTeam={(updatedTeam) => {
+            setTeamInfo({
+              ...teamInfo,
+              ...updatedTeam,
+            });
+          }}
+        />
+      ) : (
+        <></>
+      )}
+      <Center py="150px">
+        <Container maxW="container.xl">
+          <HStack alignItems="none">
+            <Container mr="40px" mt="38px">
+              <Box mb="100px" maxW="300px">
                 <Box
-                  h="210px"
+                  bg="#0099B8"
+                  w="150px"
+                  h="140px"
+                  textAlign="center"
+                  d="flex"
+                  borderRadius="8px"
                   justifyContent="center"
                   alignItems="center"
-                  d="flex"
                 >
-                  <Spinner size="xl" />
+                  <Text
+                    fontSize="80px"
+                    color="#FFFFFF"
+                    textTransform="uppercase"
+                  >
+                    {firstLetter}
+                  </Text>
                 </Box>
-              ) : (
-                <TeamBlocksRenderer />
-              )}
-            </Box>
-          </Container>
-          <VStack>
-            <EditPersonal
-              userInfo={userInfo}
-              profileLoading={profileLoading}
-              updateUser={updateUser}
-              edit={editPersonal}
-              setEdit={setEditPersonal}
-              updateLoading={updateLoading}
-            />
-            <EditEducation
-              userInfo={userInfo}
-              updateLoading={updateLoading}
-              profileLoading={profileLoading}
-              updateUser={updateUser}
-              edit={editEducation}
-              setEdit={setEditEducation}
-            />
-            <EditJob
-              userInfo={userInfo}
-              updateLoading={updateLoading}
-              profileLoading={profileLoading}
-              updateUser={updateUser}
-              edit={editJob}
-              setEdit={setEditJob}
-            />
-            <EditOther
-              userInfo={userInfo}
-              updateLoading={updateLoading}
-              profileLoading={profileLoading}
-              updateUser={updateUser}
-              edit={editOthers}
-              setEdit={setEditOthers}
-            />
-          </VStack>
-        </HStack>
-      </Container>
-    </Center>
+
+                <Text fontSize="xl" mt="20px" fontWeight="bold">
+                  {authStore!.user!.full_name}
+                </Text>
+              </Box>
+              <Box mb="80px" mt="50px">
+                <Text fontSize="2xl" fontWeight="bold" mb="15px">
+                  EMAIL STATUS
+                </Text>
+
+                <WhiteBox w="340px" h="240px">
+                  <VStack py="25px" justifyContent="center" alignItems="center">
+                    <Image w="140px" h="130px" src={EmailVerified} />
+                    <Text fontSize="xl" py="10px">
+                      Email Verified
+                    </Text>
+                  </VStack>
+                </WhiteBox>
+              </Box>
+              <Box>
+                <Text fontSize="2xl" fontWeight="bold">
+                  YOUR TEAM
+                </Text>
+                <CNSpacer size="3xs" />
+                {teamLoading ? (
+                  <Box
+                    h="210px"
+                    justifyContent="center"
+                    alignItems="center"
+                    d="flex"
+                  >
+                    <Spinner size="xl" />
+                  </Box>
+                ) : (
+                  <>
+                    <PrimaryButton
+                      w="100%"
+                      borderRadius="10px"
+                      onClick={() => {
+                        handleEditTeamOpen();
+                      }}
+                    >
+                      Edit Team
+                    </PrimaryButton>
+                    <TeamBlocksRenderer />
+                  </>
+                )}
+              </Box>
+            </Container>
+            <VStack>
+              <EditPersonal
+                userInfo={userInfo}
+                profileLoading={profileLoading}
+                updateUser={updateUser}
+                edit={editPersonal}
+                setEdit={setEditPersonal}
+                updateLoading={updateLoading}
+              />
+              <EditEducation
+                userInfo={userInfo}
+                updateLoading={updateLoading}
+                profileLoading={profileLoading}
+                updateUser={updateUser}
+                edit={editEducation}
+                setEdit={setEditEducation}
+              />
+              <EditJob
+                userInfo={userInfo}
+                updateLoading={updateLoading}
+                profileLoading={profileLoading}
+                updateUser={updateUser}
+                edit={editJob}
+                setEdit={setEditJob}
+              />
+              <EditOther
+                userInfo={userInfo}
+                updateLoading={updateLoading}
+                profileLoading={profileLoading}
+                updateUser={updateUser}
+                edit={editOthers}
+                setEdit={setEditOthers}
+              />
+            </VStack>
+          </HStack>
+        </Container>
+      </Center>
+    </>
   );
 };
 

@@ -14,6 +14,7 @@ import { getIn } from 'formik';
 
 interface Props {
   value: string;
+  defaultSelected: string;
   form: any;
   field: any;
   label: string;
@@ -23,9 +24,9 @@ interface Props {
 
 const CNRadio = (props: Props) => {
   // eslint-disable-next-line
-  let { value, form, field, label, options, ...rest } = props;
+  let { value, defaultSelected, form, field, label, options, ...rest } = props;
 
-  const [selected, setSelected] = useState(value);
+  const [selected, setSelected] = useState(defaultSelected);
 
   const errorText: string =
     getIn(form.touched, field.name) && getIn(form.errors, field.name);
@@ -54,5 +55,7 @@ const CNRadio = (props: Props) => {
     </VStack>
   );
 };
+
+React.memo(CNRadio);
 
 export default CNRadio;

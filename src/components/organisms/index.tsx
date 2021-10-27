@@ -16,11 +16,13 @@ import FaqSection from './FaqSection';
 import AboutSection from './AboutSection/AboutSection';
 import Footer from './FooterSection/footer';
 import ResetPasswordForm from './ResetPasswordForm/ResetPasswordForm';
-import CreateTeamModal from './CreateTeamModal/CreateTeamModal';
+
 import { EditPersonal, EditJob, EditEducation, EditOther } from './EditProfile';
 import EmailVerifyModal from './EmailVerifyModal/EmailVerifyModal';
 import AdvertisementModal from './AdvertisementModal/AdvertisementModal';
 import ResumeUploaderModal from './ResumeUploaderModal/ResumeUploaderModal';
+import CreateTeamModal from './CreateTeamModal/CreateTeamModal';
+import EditTeamModal from './EditTeamModal/EditTeamModal';
 
 export {
   CountDownSection,
@@ -47,4 +49,5 @@ export {
   EditEducation,
   Footer,
   ResumeUploaderModal,
+  EditTeamModal,
 };

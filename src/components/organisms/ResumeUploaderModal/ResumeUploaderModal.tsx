@@ -59,7 +59,7 @@ const ResumeUploaderModal = (props: Props) => {
           status: 'error',
           description: err.data.message,
           position: 'top-right',
-          duration: 100000,
+          duration: 10000,
           isClosable: true,
         });
       } else {
@@ -68,7 +68,7 @@ const ResumeUploaderModal = (props: Props) => {
           description: 'You have successfully uploaded your resume',
           status: 'success',
           position: 'top-right',
-          duration: 100000,
+          duration: 10000,
           isClosable: true,
         });
 
