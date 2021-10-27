@@ -1,4 +1,5 @@
 import useAxios from './useAxios';
 import useCountDown from './useCountDown';
 import useCNModal from './useModal';
-export { useAxios, useCountDown, useCNModal };
+import useCopyToClipboard from './useCopyToClipboard';
+export { useAxios, useCountDown, useCNModal, useCopyToClipboard };

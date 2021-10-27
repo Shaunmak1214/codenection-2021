@@ -15,13 +15,15 @@ import {
   Box,
   Image,
   Spinner,
+  Flex,
 } from '@chakra-ui/react';
-import { useAxios } from '../hooks';
+import { useAxios, useCopyToClipboard } from '../hooks';
 import store from '../store';
 import { TeamBlocks } from '../components/molecules';
 
 import authTypes from '../types/auth.types';
 import { EmailVerified } from '../assets';
+import { PrimaryButton, SecondaryText } from '../components/atoms';
 interface UserProps {
   full_name?: string;
   email?: string;
@@ -42,6 +44,19 @@ interface UserProps {
 const Index = () => {
   const toast = useToast();
   const authStore: authTypes = store.getState().auth;
+  // eslint-disable-next-line
+  const [value, copy] = useCopyToClipboard({
+    onCopySuccess: () => {
+      toast({
+        title: 'Copied to clipboard',
+        description: 'Your team code has been copied to your clipboard',
+        position: 'top-right',
+        status: 'success',
+        duration: 5000,
+        isClosable: true,
+      });
+    },
+  });
 
   // eslint-disable-next-line no-unused-vars
   const [userInfo, setUserInfo] = useState<UserProps>({
@@ -65,6 +80,7 @@ const Index = () => {
   interface TeamProps {
     is_external: boolean;
     is_internal: boolean;
+    code?: string;
   }
 
   const [teamInfo, setTeamInfo] = useState<TeamProps>({
@@ -105,8 +121,6 @@ const Index = () => {
         return;
       } else {
         const returnedData = data.data;
-        console.log('here');
-        console.log(returnedData);
         setTeamInfo({
           ...returnedData,
         });
@@ -165,7 +179,6 @@ const Index = () => {
   useEffect(() => {
     fetchUserInfo();
     fetchTeamInfo();
-    console.log('updated');
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -174,6 +187,35 @@ const Index = () => {
       if (teamInfo.is_external && teamInfo.is_internal) {
         return (
           <>
+            {teamInfo.code ? (
+              <Flex
+                mt="20px"
+                borderRadius="15px"
+                bg={'#FFFFFF'}
+                boxShadow={'0px 8px 20px rgba(151, 151, 151, 0.25)'}
+                py="15px"
+                px="25px"
+                mb="35px"
+                justifyContent="space-between"
+                alignItems="center"
+              >
+                <SecondaryText fontWeight="bold" textSpacing="20px">
+                  {teamInfo.code}
+                </SecondaryText>
+
+                <PrimaryButton
+                  borderRadius="10px"
+                  onClick={() => {
+                    // @ts-ignore
+                    copy(teamInfo.code);
+                  }}
+                >
+                  Copy code
+                </PrimaryButton>
+              </Flex>
+            ) : (
+              <></>
+            )}
             <TeamBlocks teamInfo={teamInfo} category="closed" />
             <TeamBlocks teamInfo={teamInfo} />
           </>
