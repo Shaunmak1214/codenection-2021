@@ -3,32 +3,53 @@ import PropTypes from 'prop-types';
 import { Formik, Form, Field } from 'formik';
 import * as yup from 'yup';
 
-import { FormLabel, Text, useToast } from '@chakra-ui/react';
+import { Text, useToast } from '@chakra-ui/react';
 import { VStack, Flex } from '@chakra-ui/layout';
 import {
   CNTextFormField,
-  CNSelectFormField,
   MutedButton,
   PrimaryButton,
   CNRadio,
+  CNSpacer,
 } from '../../atoms';
 import { CNModal } from '../../molecules';
-
-import { useDispatch } from 'react-redux';
-import { UPDATE } from '../../../reducers/authSlice';
 
 import store from '../../../store';
 import authTypes from '../../../types/auth.types';
 import { useAxios } from '../../../hooks';
 
-interface ModalProps {
-  isOpen: boolean;
-  onClose: () => void;
+interface InitialValues {
+  teamName: string;
+  is_internal: boolean;
+  is_external: boolean;
+  hackerrankUsername: string;
+  contactInfo: string;
+  visible: string;
 }
 
-const CreateTeamModal = ({ isOpen, onClose, ...props }: ModalProps) => {
+interface UpdatedTeam {
+  team_name: string;
+  hackerrank_username: string;
+  visible: string;
+  contact_info: string;
+}
+
+interface ModalProps {
+  isOpen: boolean;
+  initialValues: InitialValues;
+  onClose: () => void;
+  onUpdatedTeam?: (data: UpdatedTeam) => void;
+}
+
+const EditTeamModal = ({
+  isOpen,
+  initialValues,
+  onClose,
+  onUpdatedTeam,
+  ...props
+}: ModalProps) => {
   const authStore: authTypes = store.getState().auth;
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
   const toast = useToast();
   const createTeamSchema = yup.object({
     teamName: yup
@@ -47,19 +68,20 @@ const CreateTeamModal = ({ isOpen, onClose, ...props }: ModalProps) => {
   });
 
   // eslint-disable-next-line
-  const { loading: createTeamLoading, fetch: createTeam } = useAxios(
+  const { loading: editTeamLoading, fetch: editTeam } = useAxios(
     {
-      url: '/team/',
-      method: 'POST',
+      url: `/team/${authStore.user?.team_id}`,
+      method: 'PATCH',
       headers: {
         Authorization: `Bearer ${authStore.accessToken}`,
       },
     },
+    // eslint-disable-next-line
     (err, data) => {
       if (err) {
         console.log(err);
         toast({
-          title: 'Failed to create team',
+          title: 'Failed to edit team',
           description: err.data.message,
           status: 'error',
           position: 'top-right',
@@ -68,20 +90,16 @@ const CreateTeamModal = ({ isOpen, onClose, ...props }: ModalProps) => {
         });
       } else {
         toast({
-          title: 'Create Team Success',
-          description: 'You have successfully created the team',
+          title: 'Edit Team Success',
+          description: 'You have successfully edited the team',
           status: 'success',
           position: 'top-right',
           duration: 10000,
           isClosable: true,
         });
-        dispatch(
-          UPDATE({
-            ...authStore.user,
-            team_id: data.data!.id,
-          }),
-        );
         onClose();
+
+        if (onUpdatedTeam) onUpdatedTeam(data.data.team);
       }
     },
   );
@@ -98,20 +116,15 @@ const CreateTeamModal = ({ isOpen, onClose, ...props }: ModalProps) => {
     >
       <Flex w="100%" justifyContent="flex-start" mb="0px">
         <Text fontSize="35px" fontWeight="600">
-          Create Team
+          Edit Team
         </Text>
       </Flex>
 
+      <CNSpacer size="3xs" />
+
       <Formik
         validationSchema={createTeamSchema}
-        initialValues={{
-          teamName: '',
-          is_internal: false,
-          is_external: true,
-          hackerrankUsername: '',
-          contactInfo: '',
-          visible: '',
-        }}
+        initialValues={initialValues}
         onSubmit={(data) => {
           let teamData = {
             team_name: data.teamName,
@@ -125,78 +138,12 @@ const CreateTeamModal = ({ isOpen, onClose, ...props }: ModalProps) => {
             visible: data.visible,
           };
 
-          createTeam(teamData);
+          editTeam(teamData);
         }}
       >
         {(props) => (
           <Form style={{ width: '100%' }}>
             <VStack spacing={7} w="100%">
-              <VStack spacing={2} alignItems="flex-start" w="100%">
-                {authStore.user?.email.includes('mmu.edu.my') ? (
-                  <>
-                    <FormLabel>Select Event: </FormLabel>
-                    <Field
-                      display={
-                        <Flex justifyContent="flex-start">
-                          Closed Category (Open to MMU only)
-                        </Flex>
-                      }
-                      name="is_internal"
-                      component={CNSelectFormField}
-                    />
-                    <Field
-                      display={
-                        <Flex justifyContent="flex-start">
-                          Open Category (Open to all universities including MMU)
-                        </Flex>
-                      }
-                      defaultSelected={true}
-                      name="is_external"
-                      component={CNSelectFormField}
-                    />
-
-                    {props!.values!.is_internal === false &&
-                    props!.values!.is_external === false ? (
-                      <Text
-                        fontSize="sm"
-                        color="#E53E3E"
-                        fontWeight="500"
-                        mt={4}
-                      >
-                        Please select at least 1 event
-                      </Text>
-                    ) : (
-                      <></>
-                    )}
-                  </>
-                ) : (
-                  <>
-                    <FormLabel>Select Event: </FormLabel>
-                    <Field
-                      display={
-                        <Flex justifyContent="flex-start">
-                          Open Category (Open to all universities including MMU)
-                        </Flex>
-                      }
-                      name="is_external"
-                      defaultSelected={true}
-                      disabled={true}
-                      onDisabledClick={() => {
-                        toast({
-                          title: 'Failed to de-select',
-                          description: 'At least 1 event have to be selected',
-                          status: 'warning',
-                          position: 'top-right',
-                          duration: 5000,
-                          isClosable: true,
-                        });
-                      }}
-                      component={CNSelectFormField}
-                    />
-                  </>
-                )}
-              </VStack>
-
               <Field
                 name="visible"
                 label="Team Visibility:"
@@ -211,6 +158,7 @@ const CreateTeamModal = ({ isOpen, onClose, ...props }: ModalProps) => {
                     value: 'private',
                   },
                 ]}
+                defaultSelected={initialValues.visible}
                 component={CNRadio}
               />
 
@@ -258,10 +206,10 @@ const CreateTeamModal = ({ isOpen, onClose, ...props }: ModalProps) => {
                       ? true
                       : false
                   }
-                  isLoading={createTeamLoading}
+                  isLoading={editTeamLoading}
                   _hover={{ border: 'none', bg: '#000000' }}
                 >
-                  Create Team
+                  Edit Team
                 </PrimaryButton>
               </Flex>
             </VStack>
@@ -272,11 +220,11 @@ const CreateTeamModal = ({ isOpen, onClose, ...props }: ModalProps) => {
   );
 };
 
-React.memo(CreateTeamModal);
+React.memo(EditTeamModal);
 
-CreateTeamModal.propTypes = {
+EditTeamModal.propTypes = {
   isOpen: PropTypes.bool.isRequired,
   onClose: PropTypes.func.isRequired,
 };
 
-export default CreateTeamModal;
+export default EditTeamModal;
