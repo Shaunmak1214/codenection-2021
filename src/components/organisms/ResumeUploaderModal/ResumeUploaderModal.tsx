@@ -53,7 +53,6 @@ const ResumeUploaderModal = (props: Props) => {
     // eslint-disable-next-line
     (err, data) => {
       if (err) {
-        console.log(err);
         toast({
           title: 'Failed to upload resume',
           status: 'error',
@@ -131,6 +130,9 @@ const ResumeUploaderModal = (props: Props) => {
         files={files}
         allowReorder={true}
         allowMultiple={true}
+        style={{
+          width: '100%',
+        }}
         labelIdle='<div class="folder-image"></div><div class="drop-area-label"><h2 class="drop-area-text">Drag & Drop your files</h2> <h2 class="or-label"> <span>OR</span></h2><a class="filepond--label-action">Browse</a></div>'
       />
     </CNModal>

@@ -212,6 +212,7 @@ const EmailVerifyModal = ({
       blur
       disableButton
       modalIsOpen={isOpen}
+      centerSpacing={false}
       onRenderUpdate={(modalIsOpen) => {
         if (modalIsOpen) {
           OTPInputFunc();
@@ -287,10 +288,10 @@ const EmailVerifyModal = ({
               width={125}
               style={{ marginTop: 5, marginBottom: 5 }}
             />
-            <Text fontWeight="600" fontSize="28px">
+            <Text fontWeight="600" fontSize="28px" w="100%">
               Verify your email
             </Text>
-            <Text fontSize="18px">
+            <Text fontSize="18px" w="100%">
               A verification code has been sent to your email{' '}
               <span
                 style={{
@@ -304,12 +305,13 @@ const EmailVerifyModal = ({
               </span>
             </Text>
             <SimpleGrid
-              columns={6}
+              columns={[3, 3, 6]}
               spacing={2}
               mt="35px !important"
               id="otp"
               justifyContent="center"
               className="flex justify-center"
+              alignItems="center"
             >
               <Input
                 textAlign="center"
