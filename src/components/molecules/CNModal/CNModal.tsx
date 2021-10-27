@@ -164,6 +164,7 @@ const CNModal = ({
                         handlePrimaryClick();
                       }}
                       isLoading={isPrimaryLoading}
+                      type="submit"
                     >
                       {successText}
                     </PrimaryButton>

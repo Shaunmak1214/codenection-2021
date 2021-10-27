@@ -23,7 +23,7 @@ import { TeamBlocks } from '../components/molecules';
 
 import authTypes from '../types/auth.types';
 import { EmailVerified } from '../assets';
-import { PrimaryButton, SecondaryText } from '../components/atoms';
+import { PrimaryButton, SecondaryText, WhiteBox } from '../components/atoms';
 interface UserProps {
   full_name?: string;
   email?: string;
@@ -292,7 +292,29 @@ const Index = () => {
         );
       }
     } else {
-      return <Text>No Team Yet</Text>;
+      return (
+        <>
+          <WhiteBox w="340px" h="200px">
+            <VStack
+              py="20px"
+              mt="30px"
+              justifyContent="center"
+              alignItems="center"
+            >
+              <Text fontSize="xl" py="20px">
+                You don&apos;t have a team yet
+              </Text>
+              <PrimaryButton
+                borderRadius="10px"
+                px="20px"
+                onClick={() => (window.location.href = '/dashboard')}
+              >
+                Join/ Create Team
+              </PrimaryButton>
+            </VStack>
+          </WhiteBox>
+        </>
+      );
     }
   };
 
@@ -326,19 +348,14 @@ const Index = () => {
                 EMAIL STATUS
               </Text>
 
-              <Box
-                boxShadow="0px 8px 20px rgba(132, 132, 132, 0.25)"
-                borderRadius="10px"
-                w="340px"
-                h="240px"
-              >
+              <WhiteBox w="340px" h="240px">
                 <VStack py="25px" justifyContent="center" alignItems="center">
                   <Image w="140px" h="130px" src={EmailVerified} />
                   <Text fontSize="xl" py="10px">
                     Email Verified
                   </Text>
                 </VStack>
-              </Box>
+              </WhiteBox>
             </Box>
             <Box>
               <Text fontSize="2xl" fontWeight="bold">

@@ -99,13 +99,23 @@ const CNRoutes = ({
             />
           );
         } else {
-          return (
-            <>
-              {header && <Comp.Header />}
-              <Component {...props} />
-              {footer && <Comp.Footer />}
-            </>
-          );
+          if (isProtected && authState.user?.permission_level === 0) {
+            console.log('herer');
+            return (
+              <Redirect
+                to={{ pathname: '/dashboard', state: { from: props.location } }}
+              />
+            );
+          } else {
+            console.log('or here');
+            return (
+              <>
+                {header && <Comp.Header />}
+                <Component {...props} />
+                {footer && <Comp.Footer />}
+              </>
+            );
+          }
         }
       }}
     />

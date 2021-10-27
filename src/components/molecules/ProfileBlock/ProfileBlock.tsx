@@ -69,6 +69,7 @@ const ProfileBlock = ({
                       icon={ReturnIcon}
                       onClick={() => {
                         setEdit(!edit);
+
                         formikProps.resetForm(formikProps.initialValues);
                       }}
                       mr="20px"

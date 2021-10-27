@@ -23,10 +23,12 @@ interface Props {
   isOpen: boolean;
   onClose: () => void;
   onOpen?: () => void;
+  formikSubmit?: () => void;
+  formikProps?: any;
 }
 
 const ResumeUploaderModal = (props: Props) => {
-  let { isOpen, onClose } = props;
+  let { isOpen, onClose, formikSubmit, formikProps } = props;
   const toast = useToast();
   const authStore: authTypes = store.getState().auth;
   const dispatch = useDispatch();
@@ -98,6 +100,8 @@ const ResumeUploaderModal = (props: Props) => {
           bodyFormData.append('file', files[0]!.file);
           bodyFormData.append('user_id', `${authStore.user!.id}`);
           resumeUpload(bodyFormData);
+          formikProps.setFieldValue('resume', bodyFormData);
+          formikSubmit!();
         } else {
           toast({
             title: 'No resume uplaoded',
