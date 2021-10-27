@@ -17,7 +17,7 @@ interface Props {
 }
 
 const TeamBlocks = ({ teamLoading, teamInfo, category = 'open' }: Props) => {
-  console.log(teamInfo.length);
+  // console.log(teamInfo.length);
   return (
     <Box
       mt="20px"
