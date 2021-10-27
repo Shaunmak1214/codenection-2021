@@ -19,7 +19,7 @@ import {
   CNDatePicker,
 } from '../../atoms';
 
-import useAxios from '../../../hooks/useAxios';
+import { useAxios, useWindowSize } from '../../../hooks/';
 import { BoxIcons } from '../../molecules';
 import { BackIcon } from '../../.././assets';
 
@@ -59,6 +59,8 @@ const FormPersonalDetails = ({
     university: formStore!.register_state.university,
     field_major: formStore!.register_state.field_major,
   });
+  // eslint-disable-next-line
+  const [windowWidth, windowHeight] = useWindowSize();
 
   const handleOnChange = (e: any) => {
     setFormInput({ ...formInput, [e.target.name]: e.target.value });
@@ -69,7 +71,6 @@ const FormPersonalDetails = ({
     { url: '/auth/signup', method: 'POST' },
     (err, data) => {
       if (err) {
-        console.log(err);
         toast({
           title: 'Sign Up Failed',
           description: err.data.message,
@@ -162,13 +163,16 @@ const FormPersonalDetails = ({
   };
 
   return (
-    <VStack h="100%" w="50%">
+    <VStack h="100%" w={windowWidth > 1120 ? '50%' : '100%'}>
       <motion.div
         initial={{ opacity: 0, x: 75 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.5 }}
       >
-        <Container w="550px" maxW="container.form">
+        <Container
+          w={windowWidth > 1120 ? '550px' : '100%'}
+          maxW="container.form"
+        >
           <Container>
             <BoxIcons
               icon={BackIcon}
@@ -223,7 +227,7 @@ const FormPersonalDetails = ({
                       }}
                     />
                     <SimpleGrid
-                      columns={3}
+                      columns={[1, 2, 3]}
                       spacing={4}
                       w="100%"
                       alignItems="flex-start"
@@ -270,7 +274,7 @@ const FormPersonalDetails = ({
                       <Field
                         label="Citizenship:"
                         name="citizenship"
-                        placeholder="Malaysian"
+                        placeholder="Select"
                         options={[
                           {
                             label: 'Malaysian',

@@ -1,10 +1,13 @@
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
+
 import { Flex, Box } from '@chakra-ui/layout';
 import { IconButton } from '@chakra-ui/react';
 import { CloseIcon } from '@chakra-ui/icons';
 import { AnimatePresence, motion } from 'framer-motion';
+
 import { MutedButton, PrimaryButton, CNSpacer } from '../../atoms';
+import { useWindowSize } from '../../../hooks';
 
 interface Props {
   onClose?: () => void;
@@ -74,6 +77,9 @@ const CNModal = ({
 }: Props) => {
   const children: React.ReactNode = props.children;
 
+  // eslint-disable-next-line
+  const [windowWidth, windowHeight] = useWindowSize();
+
   const handlePrimaryClick = () => {
     if (onPrimaryClick) {
       onPrimaryClick();
@@ -111,7 +117,9 @@ const CNModal = ({
               style={{
                 backgroundColor: theme === 'discord' ? '#5865F2' : '#fff',
                 transition: 'height 0.3s ease-in-out',
-                maxHeight: '95%',
+                maxHeight: windowWidth > 650 ? '95%' : '85%',
+                width: windowWidth > 650 ? '600px' : '90%',
+                padding: windowWidth > 650 ? '20px' : '15px',
               }}
               {...props}
             >
@@ -121,8 +129,8 @@ const CNModal = ({
                 w="100%"
                 h="100%"
                 overflowY="scroll"
-                padding="1.5rem"
-                marginLeft="25px"
+                padding={['0px', '0px', '1.5rem']}
+                marginLeft={windowWidth > 600 ? '25px' : '0'}
               >
                 {!disableCloseButton && (
                   <Box
@@ -132,6 +140,7 @@ const CNModal = ({
                     right="35px"
                     justifyContent="flex-end"
                     onClick={onClose}
+                    zIndex={100}
                   >
                     <IconButton
                       variant="ghost"
@@ -140,6 +149,7 @@ const CNModal = ({
                         bg: theme === 'discord' ? '#3945C9' : '#F5F5F5',
                       }}
                       icon={<CloseIcon w="12px" h="12px" />}
+                      zIndex={100}
                     />
                   </Box>
                 )}
@@ -147,7 +157,7 @@ const CNModal = ({
                 {children}
                 {!disableButton && (
                   <Flex
-                    flexDir={['column', 'column', 'row']}
+                    flexDir={['column-reverse', 'column-reverse', 'row']}
                     justifyContent={CTAIsCenter ? 'center' : 'flex-end'}
                     alignSelf="flex-end"
                     w="100%"
@@ -156,7 +166,9 @@ const CNModal = ({
                   >
                     <MutedButton onClick={onClose}>{mutedText}</MutedButton>
                     <PrimaryButton
-                      ml="20px"
+                      ml={[0, 0, '20px']}
+                      mb={['20px', '20px', 0]}
+                      w={['100%', '100%', 'auto']}
                       border="none"
                       borderRadius="5px"
                       _hover={{ border: 'none', bg: '#000000' }}

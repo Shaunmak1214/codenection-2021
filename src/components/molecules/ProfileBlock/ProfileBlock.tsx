@@ -45,7 +45,6 @@ const ProfileBlock = ({
   ...props
 }: Props) => {
   const children = props.children;
-  // console.log(formikProps);
   return (
     <Center>
       <Container mt="35px" maxW="800px" w={['305px', '305px', '750px']}>

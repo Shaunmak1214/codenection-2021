@@ -28,8 +28,9 @@ import UserInfo from '../../../types/user.type';
 import store from '../../../store';
 import authTypes from '../../../types/auth.types';
 import { useCNModal } from '../../../hooks';
-import axios from 'axios';
 import { TickIcon, DeleteIcon } from '../../../assets';
+import axios from 'axios';
+
 interface Props {
   profileLoading?: boolean;
   loading?: boolean;
@@ -40,6 +41,7 @@ interface Props {
   updateLoading: boolean;
   setUserInfo: any;
 }
+
 const EditJob = ({
   edit,
   setEdit,
@@ -59,10 +61,11 @@ const EditJob = ({
     props: any;
   }
 
-  const cancelRef = React.useRef();
   const toast = useToast();
   const authStore: authTypes = store.getState().auth;
   const dispatch = useDispatch();
+
+  const cancelRef = React.useRef();
 
   const {
     isOpen: resumeOpen,
@@ -109,7 +112,6 @@ const EditJob = ({
           //   }),
           // );
         }
-        console.log('here');
         formikProps.setFieldValue('resume', undefined);
         setUserInfo({
           ...userInfo,
@@ -121,7 +123,6 @@ const EditJob = ({
         formikProps.submitForm!();
       })
       .catch((err) => {
-        console.log(err);
         toast({
           title: 'Failed to delete resume',
           status: 'error',
@@ -134,56 +135,6 @@ const EditJob = ({
         setResumeDeleteLoading(false);
       });
   };
-
-  // const { loading: deleteResumeLoading, fetch: deleteResume } = useAxios(
-  //   {
-  //     url: `/resume/${authStore.user!.id}`,
-  //     method: 'DELETE',
-  //     headers: {
-  //       Authorization: `Bearer ${authStore.accessToken}`,
-  //     },
-  //   },
-  //   // eslint-disable-next-line
-  //   (err, data) => {
-  //     if (err) {
-  //       console.log(err);
-  //       toast({
-  //         title: 'Failed to delete resume',
-  //         status: 'error',
-  //         description: err.data.message,
-  //         position: 'top-right',
-  //         duration: 10000,
-  //         isClosable: true,
-  //       });
-  //     } else {
-  //       toast({
-  //         title: 'Resume deleted',
-  //         description: 'You have successfully deleted your resume',
-  //         status: 'success',
-  //         position: 'top-right',
-  //         duration: 10000,
-  //         isClosable: true,
-  //       });
-
-  //       dispatch(
-  //         LOGIN({
-  //           // @ts-ignore
-  //           user: data.data.user,
-  //           // @ts-ignore
-  //           accessToken: data.data.token,
-  //           // @ts-ignore
-  //           refreshToken: data.data.refreshToken,
-  //         }),
-  //       );
-
-  //       setTimeout(() => {
-  //         window.location.reload();
-  //       }, 800);
-  //       onAlertClose();
-  //       // @ts-ignore
-  //     }
-  //   },
-  // );
 
   const schema = yup.object({
     interest_job_position: yup.string().nullable(true),
