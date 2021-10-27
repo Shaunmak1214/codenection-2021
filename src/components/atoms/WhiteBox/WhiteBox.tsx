@@ -3,8 +3,8 @@ import { Box } from '@chakra-ui/react';
 import PropTypes from 'prop-types';
 interface Props {
   children: any;
-  w: string;
-  h: string;
+  w: any;
+  h: any;
 }
 const WhiteBox = ({ ...props }: Props) => {
   const children = props.children;

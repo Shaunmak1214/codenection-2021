@@ -1,4 +1,5 @@
-import React from 'react';
+/* eslint-disable no-unused-vars */
+import React, { useState } from 'react';
 import { Formik, Form, Field } from 'formik';
 import * as yup from 'yup';
 import {
@@ -17,7 +18,7 @@ import {
   useToast,
 } from '@chakra-ui/react';
 import { useDispatch } from 'react-redux';
-import { LOGIN } from '../../../reducers/authSlice';
+// import { LOGIN } from '../../../reducers/authSlice';
 
 import { CNTextFormField, PrimaryButton } from '../../atoms';
 import { ProfileBlock } from '../../molecules';
@@ -26,8 +27,8 @@ import { ResumeUploaderModal } from '../../organisms';
 import UserInfo from '../../../types/user.type';
 import store from '../../../store';
 import authTypes from '../../../types/auth.types';
-import { useAxios, useCNModal } from '../../../hooks';
-
+import { useCNModal } from '../../../hooks';
+import axios from 'axios';
 import { TickIcon, DeleteIcon } from '../../../assets';
 interface Props {
   profileLoading?: boolean;
@@ -37,6 +38,7 @@ interface Props {
   edit?: boolean;
   setEdit?: any;
   updateLoading: boolean;
+  setUserInfo: any;
 }
 const EditJob = ({
   edit,
@@ -45,13 +47,16 @@ const EditJob = ({
   profileLoading,
   updateLoading,
   updateUser,
+  setUserInfo,
 }: Props) => {
   interface FormValues {
+    setFieldValue: any;
     submitForm: (() => void) | undefined;
     job: string;
     resume: string;
     handleChange: any;
     values: any;
+    props: any;
   }
 
   const cancelRef = React.useRef();
@@ -73,55 +78,112 @@ const EditJob = ({
     onClose: onAlertClose,
   } = useDisclosure();
 
-  const { loading: deleteResumeLoading, fetch: deleteResume } = useAxios(
-    {
-      url: `/resume/${authStore.user!.id}`,
-      method: 'DELETE',
-      headers: {
-        Authorization: `Bearer ${authStore.accessToken}`,
-      },
-    },
-    // eslint-disable-next-line
-    (err, data) => {
-      if (err) {
+  const [resumeDeleteLoading, setResumeDeleteLoading] = useState(false);
+
+  const handleOnDelete = (formikProps: any) => {
+    setResumeDeleteLoading(true);
+    axios
+      .delete(`/resume/${authStore.user!.id}`, {
+        headers: {
+          Authorization: `Bearer ${authStore.accessToken}`,
+        },
+      })
+      .then((res) => {
+        if (res.status === 200 || res.status === 201 || res.status === 203) {
+          toast({
+            title: 'Resume deleted',
+            description: 'You have successfully deleted your resume',
+            status: 'success',
+            position: 'top-right',
+            duration: 10000,
+            isClosable: true,
+          });
+          // dispatch(
+          //   LOGIN({
+          //     // @ts-ignore
+          //     user: res.data.data.user,
+          //     // @ts-ignore
+          //     accessToken: res.data.data.token,
+          //     // @ts-ignore
+          //     refreshToken: res.data.data.refreshToken,
+          //   }),
+          // );
+        }
+        console.log('here');
+        formikProps.setFieldValue('resume', undefined);
+        setUserInfo({
+          ...userInfo,
+          resume: undefined,
+        });
+        onAlertClose();
+
+        setResumeDeleteLoading(false);
+        formikProps.submitForm!();
+      })
+      .catch((err) => {
         console.log(err);
         toast({
           title: 'Failed to delete resume',
           status: 'error',
-          description: err.data.message,
-          position: 'top-right',
-          duration: 10000,
-          isClosable: true,
-        });
-      } else {
-        toast({
-          title: 'Resume deleted',
-          description: 'You have successfully deleted your resume',
-          status: 'success',
+          description: 'testing',
           position: 'top-right',
           duration: 10000,
           isClosable: true,
         });
 
-        dispatch(
-          LOGIN({
-            // @ts-ignore
-            user: data.data.user,
-            // @ts-ignore
-            accessToken: data.data.token,
-            // @ts-ignore
-            refreshToken: data.data.refreshToken,
-          }),
-        );
+        setResumeDeleteLoading(false);
+      });
+  };
 
-        setTimeout(() => {
-          window.location.reload();
-        }, 800);
-        onAlertClose();
-        // @ts-ignore
-      }
-    },
-  );
+  // const { loading: deleteResumeLoading, fetch: deleteResume } = useAxios(
+  //   {
+  //     url: `/resume/${authStore.user!.id}`,
+  //     method: 'DELETE',
+  //     headers: {
+  //       Authorization: `Bearer ${authStore.accessToken}`,
+  //     },
+  //   },
+  //   // eslint-disable-next-line
+  //   (err, data) => {
+  //     if (err) {
+  //       console.log(err);
+  //       toast({
+  //         title: 'Failed to delete resume',
+  //         status: 'error',
+  //         description: err.data.message,
+  //         position: 'top-right',
+  //         duration: 10000,
+  //         isClosable: true,
+  //       });
+  //     } else {
+  //       toast({
+  //         title: 'Resume deleted',
+  //         description: 'You have successfully deleted your resume',
+  //         status: 'success',
+  //         position: 'top-right',
+  //         duration: 10000,
+  //         isClosable: true,
+  //       });
+
+  //       dispatch(
+  //         LOGIN({
+  //           // @ts-ignore
+  //           user: data.data.user,
+  //           // @ts-ignore
+  //           accessToken: data.data.token,
+  //           // @ts-ignore
+  //           refreshToken: data.data.refreshToken,
+  //         }),
+  //       );
+
+  //       setTimeout(() => {
+  //         window.location.reload();
+  //       }, 800);
+  //       onAlertClose();
+  //       // @ts-ignore
+  //     }
+  //   },
+  // );
 
   const schema = yup.object({
     interest_job_position: yup.string().nullable(true),
@@ -240,9 +302,9 @@ const EditJob = ({
                           <Button
                             colorScheme="red"
                             ml={3}
-                            isLoading={deleteResumeLoading}
+                            isLoading={resumeDeleteLoading}
                             onClick={() => {
-                              deleteResume();
+                              handleOnDelete(props);
                             }}
                           >
                             Yes

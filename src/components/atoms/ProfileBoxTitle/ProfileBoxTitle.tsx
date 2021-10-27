@@ -9,10 +9,12 @@ const ProfileBoxTitle = ({ title }: Props) => {
   return (
     <Box
       bg="#002A97"
-      marginLeft="-10px"
       py="10px"
       borderRadius="10px"
-      px="80px"
+      ml={['-20px', '-20px', '-10px']}
+      px={['30px', '30px', '80px']}
+      mb={['25px', '25px', '0']}
+      w={['200px', '200px', 'auto']}
     >
       <PrimaryText fontSize="lg" text-transform="uppercase" fontWeight="bold">
         {title}

@@ -29,7 +29,7 @@ const TeamBlocks = ({ teamInfo, category = 'open' }: Props) => {
             <HStack py="5px">
               <Box
                 py="3px"
-                px="25px"
+                px={['15px', '15px', '25px']}
                 borderRadius="8px"
                 mr="5px"
                 bg={category === 'closed' ? '#0099B8' : '#0078FF'}

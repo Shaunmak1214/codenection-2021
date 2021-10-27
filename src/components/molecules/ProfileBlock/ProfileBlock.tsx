@@ -10,6 +10,7 @@ import {
   Button,
   Spinner,
   Image,
+  Flex,
 } from '@chakra-ui/react';
 import PropTypes from 'prop-types';
 
@@ -47,24 +48,25 @@ const ProfileBlock = ({
   // console.log(formikProps);
   return (
     <Center>
-      <Container mt="35px" maxW="800px" w="750px">
+      <Container mt="35px" maxW="800px" w={['305px', '305px', '750px']}>
         <VStack
           bg="#FFFFFFF"
           boxShadow="0px 16px 40px rgba(134, 134, 134, 0.25) "
           borderRadius="10px"
           py="15px"
         >
-          <HStack
+          <Flex
+            flexDir={['column', 'column', 'row']}
             w="100%"
             justifyContent="space-between"
             my="15px"
-            alignItems="center"
+            alignItems={['none', 'none', 'center']}
           >
             <ProfileBoxTitle title={title} />
-            <Box>
+            <Box d={['flex', 'flex', 'block']} justifyContent="flex-end">
               {edit ? (
                 <>
-                  <HStack mr="35px">
+                  <HStack mr="35px !important">
                     <BoxIcons
                       icon={ReturnIcon}
                       onClick={() => {
@@ -107,7 +109,7 @@ const ProfileBlock = ({
                 />
               )}
             </Box>
-          </HStack>
+          </Flex>
           {profileLoading ? (
             <Box py="120px">
               <Spinner
@@ -125,7 +127,7 @@ const ProfileBlock = ({
                   return (
                     <>
                       <SimpleGrid
-                        columns={2}
+                        columns={[1, 1, 2]}
                         spacing={0}
                         margin="30px auto"
                         alignItems="center"
