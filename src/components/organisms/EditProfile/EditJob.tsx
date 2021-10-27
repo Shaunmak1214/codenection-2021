@@ -1,3 +1,6 @@
+/* eslint-disable react-hooks/rules-of-hooks */
+/* eslint-disable no-undef */
+/* eslint-disable no-unused-vars */
 import React from 'react';
 import { Formik, Form, Field } from 'formik';
 import * as yup from 'yup';
@@ -47,6 +50,7 @@ const EditJob = ({
   updateUser,
 }: Props) => {
   interface FormValues {
+    submitForm: (() => void) | undefined;
     job: string;
     resume: string;
     handleChange: any;
@@ -72,50 +76,55 @@ const EditJob = ({
     onClose: onAlertClose,
   } = useDisclosure();
 
-  const { loading: deleteResumeLoading, fetch: deleteResume } = useAxios(
-    {
-      url: `/resume/${authStore.user!.id}`,
-      method: 'DELETE',
-      headers: {
-        Authorization: `Bearer ${authStore.accessToken}`,
-      },
-    },
-    // eslint-disable-next-line
-    (err, data) => {
-      if (err) {
-        console.log(err);
-        toast({
-          title: 'Failed to delete resume',
-          status: 'error',
-          description: err.data.message,
-          position: 'top-right',
-          duration: 10000,
-          isClosable: true,
-        });
-      } else {
-        onAlertClose();
-        toast({
-          title: 'Resume deleted',
-          description: 'You have successfully deleted your resume',
-          status: 'success',
-          position: 'top-right',
-          duration: 10000,
-          isClosable: true,
-        });
+  const resumeActions = ({ ...props }) => {
+    const { formikProps } = props;
 
-        dispatch(
-          LOGIN({
-            // @ts-ignore
-            user: data.data.user,
-            // @ts-ignore
-            accessToken: data.data.token,
-            // @ts-ignore
-            refreshToken: data.data.refreshToken,
-          }),
-        );
-      }
-    },
-  );
+    const { loading: deleteResumeLoading, fetch: deleteResume } = useAxios(
+      {
+        url: `/resume/${authStore.user!.id}`,
+        method: 'DELETE',
+        headers: {
+          Authorization: `Bearer ${authStore.accessToken}`,
+        },
+      },
+      // eslint-disable-next-line
+      (err, data) => {
+        if (err) {
+          console.log(err);
+          toast({
+            title: 'Failed to delete resume',
+            status: 'error',
+            description: err.data.message,
+            position: 'top-right',
+            duration: 10000,
+            isClosable: true,
+          });
+        } else {
+          toast({
+            title: 'Resume deleted',
+            description: 'You have successfully deleted your resume',
+            status: 'success',
+            position: 'top-right',
+            duration: 10000,
+            isClosable: true,
+          });
+
+          dispatch(
+            LOGIN({
+              // @ts-ignore
+              user: data.data.user,
+              // @ts-ignore
+              accessToken: data.data.token,
+              // @ts-ignore
+              refreshToken: data.data.refreshToken,
+            }),
+          );
+          onAlertClose();
+          props.setFieldValue('resume', '');
+        }
+      },
+    );
+  };
 
   const schema = yup.object({
     interest_job_position: yup.string().nullable(true),
@@ -125,7 +134,6 @@ const EditJob = ({
   return (
     <>
       {/* resume uploader modal */}
-      <ResumeUploaderModal isOpen={resumeOpen} onClose={handleResumeClose} />
       <Formik
         validationSchema={schema}
         initialValues={{
@@ -133,6 +141,7 @@ const EditJob = ({
           resume: userInfo.resume,
         }}
         onSubmit={(data) => {
+          console.log(data);
           updateUser(data);
         }}
         enableReinitialize
@@ -158,6 +167,12 @@ const EditJob = ({
                 userData={userInfo.interest_job_position}
               />
 
+              <ResumeUploaderModal
+                isOpen={resumeOpen}
+                onClose={handleResumeClose}
+                formikSubmit={props.submitForm}
+                formikProps={props}
+              />
               <HStack
                 name="resume"
                 placeholder=""
@@ -169,8 +184,7 @@ const EditJob = ({
                 w="100%"
                 alignItems="center"
               >
-                {props.values.resume !== undefined &&
-                props.values.resume !== '' ? (
+                {props.values.resume !== undefined ? (
                   <>
                     <Center
                       w="100%"
@@ -230,11 +244,12 @@ const EditJob = ({
                           <Button
                             colorScheme="red"
                             ml={3}
-                            isLoading={deleteResumeLoading}
+                            // isLoading={deleteResumeLoading}
                             onClick={() => {
+                              resumeActions(props);
+
                               // @ts-ignore
-                              props.setFieldValue('resume', '');
-                              deleteResume();
+                              // props.setFieldValue('resume', undefined);
                             }}
                           >
                             Yes
@@ -249,7 +264,11 @@ const EditJob = ({
                     borderRadius="18px"
                     _hover={{ bg: '#000000' }}
                     border="none"
-                    onClick={handleResumeOpen}
+                    // onClick={handleResumeOpen}
+                    onClick={() => {
+                      console.log(props);
+                      handleResumeOpen();
+                    }}
                   >
                     Upload Resume
                   </PrimaryButton>
