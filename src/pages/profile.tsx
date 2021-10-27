@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import {
   Center,
   Container,
-  HStack,
   VStack,
   useToast,
   Text,
@@ -47,7 +46,7 @@ interface UserProps {
   gpa?: string;
   expected_graduation?: string;
   interest_job_position?: string;
-  resume?: string;
+  resume?: undefined;
   address?: string;
   shirt_size?: string;
 }
@@ -94,7 +93,7 @@ const Index = () => {
     gpa: '',
     expected_graduation: '',
     interest_job_position: '',
-    resume: '',
+    resume: undefined,
     address: '',
     shirt_size: '',
   });
@@ -210,38 +209,41 @@ const Index = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  const TeamCodeBlocksRenderer = () => {
+    return (
+      <Flex
+        mt="20px"
+        borderRadius="15px"
+        bg={'#FFFFFF'}
+        boxShadow={'0px 8px 20px rgba(151, 151, 151, 0.25)'}
+        py="15px"
+        px="25px"
+        mb="35px"
+        justifyContent="space-between"
+        alignItems="center"
+      >
+        <SecondaryText fontWeight="bold" pr={['5px', '5px', '0']}>
+          {teamInfo.code}
+        </SecondaryText>
+
+        <PrimaryButton
+          borderRadius="10px"
+          onClick={() => {
+            // @ts-ignore
+            copy(teamInfo.code);
+          }}
+        >
+          Copy code
+        </PrimaryButton>
+      </Flex>
+    );
+  };
+
   const TeamBlocksRenderer = () => {
     if (authStore!.user!.team_id) {
       if (teamInfo.is_external && teamInfo.is_internal) {
         return (
           <>
-            {teamInfo.code ? (
-              <Flex
-                mt="20px"
-                borderRadius="15px"
-                bg={'#FFFFFF'}
-                boxShadow={'0px 8px 20px rgba(151, 151, 151, 0.25)'}
-                py="15px"
-                px="25px"
-                mb="35px"
-                justifyContent="space-between"
-                alignItems="center"
-              >
-                <SecondaryText fontWeight="bold">{teamInfo.code}</SecondaryText>
-
-                <PrimaryButton
-                  borderRadius="10px"
-                  onClick={() => {
-                    // @ts-ignore
-                    copy(teamInfo.code);
-                  }}
-                >
-                  Copy code
-                </PrimaryButton>
-              </Flex>
-            ) : (
-              <></>
-            )}
             <TeamBlocks teamInfo={teamInfo} category="closed" />
             <TeamBlocks teamInfo={teamInfo} />
           </>
@@ -249,66 +251,12 @@ const Index = () => {
       } else if (teamInfo.is_external) {
         return (
           <>
-            {teamInfo.code ? (
-              <Flex
-                mt="20px"
-                borderRadius="15px"
-                bg={'#FFFFFF'}
-                boxShadow={'0px 8px 20px rgba(151, 151, 151, 0.25)'}
-                py="15px"
-                px="25px"
-                mb="35px"
-                justifyContent="space-between"
-                alignItems="center"
-              >
-                <SecondaryText fontWeight="bold">{teamInfo.code}</SecondaryText>
-
-                <PrimaryButton
-                  borderRadius="10px"
-                  onClick={() => {
-                    // @ts-ignore
-                    copy(teamInfo.code);
-                  }}
-                >
-                  Copy code
-                </PrimaryButton>
-              </Flex>
-            ) : (
-              <></>
-            )}
             <TeamBlocks teamInfo={teamInfo} />
           </>
         );
       } else {
         return (
           <>
-            {teamInfo.code ? (
-              <Flex
-                mt="20px"
-                borderRadius="15px"
-                bg={'#FFFFFF'}
-                boxShadow={'0px 8px 20px rgba(151, 151, 151, 0.25)'}
-                py="15px"
-                px="25px"
-                mb="35px"
-                justifyContent="space-between"
-                alignItems="center"
-              >
-                <SecondaryText fontWeight="bold">{teamInfo.code}</SecondaryText>
-
-                <PrimaryButton
-                  borderRadius="10px"
-                  onClick={() => {
-                    // @ts-ignore
-                    copy(teamInfo.code);
-                  }}
-                >
-                  Copy code
-                </PrimaryButton>
-              </Flex>
-            ) : (
-              <></>
-            )}
             <TeamBlocks teamInfo={teamInfo} category="closed" />{' '}
           </>
         );
@@ -316,7 +264,7 @@ const Index = () => {
     } else {
       return (
         <>
-          <WhiteBox w="340px" h="200px">
+          <WhiteBox w={['265px', '265px', '340px']} h="200px">
             <VStack
               py="20px"
               mt="30px"
@@ -331,7 +279,7 @@ const Index = () => {
                 px="20px"
                 onClick={() => (window.location.href = '/dashboard')}
               >
-                Join/ Create Team
+                Join/Create Team
               </PrimaryButton>
             </VStack>
           </WhiteBox>
@@ -366,9 +314,16 @@ const Index = () => {
       )}
       <Center py="150px">
         <Container maxW="container.xl">
-          <HStack alignItems="none">
+          <Flex flexDir={['column', 'column', 'row']}>
             <Container mr="40px" mt="38px">
-              <Box mb="100px" maxW="300px">
+              <Box
+                mb="100px"
+                maxW="300px"
+                d={['flex', 'flex', 'block']}
+                justifyContent="center"
+                alignItems="center"
+                flexDir="column"
+              >
                 <Box
                   bg="#0099B8"
                   w="150px"
@@ -397,9 +352,13 @@ const Index = () => {
                   EMAIL STATUS
                 </Text>
 
-                <WhiteBox w="340px" h="240px">
+                <WhiteBox w={['260px', '260px', '260px']} h="240px">
                   <VStack py="25px" justifyContent="center" alignItems="center">
-                    <Image w="140px" h="130px" src={EmailVerified} />
+                    <Image
+                      w={['120px', '120px', '140px']}
+                      h={['110px', '110px', '130px']}
+                      src={EmailVerified}
+                    />
                     <Text fontSize="xl" py="10px">
                       Email Verified
                     </Text>
@@ -431,6 +390,7 @@ const Index = () => {
                     >
                       Edit Team
                     </PrimaryButton>
+                    {teamInfo.code && <TeamCodeBlocksRenderer />}
                     <TeamBlocksRenderer />
                   </>
                 )}
@@ -460,6 +420,7 @@ const Index = () => {
                 updateUser={updateUser}
                 edit={editJob}
                 setEdit={setEditJob}
+                setUserInfo={setUserInfo}
               />
               <EditOther
                 userInfo={userInfo}
@@ -470,7 +431,7 @@ const Index = () => {
                 setEdit={setEditOthers}
               />
             </VStack>
-          </HStack>
+          </Flex>
         </Container>
       </Center>
     </>

@@ -32,7 +32,7 @@ const BoxIcons = (props: Props) => {
 };
 BoxIcons.propTypes = {
   icon: PropTypes.string,
-  mr: PropTypes.string,
+  mr: PropTypes.any,
   my: PropTypes.string,
   w: PropTypes.string,
   h: PropTypes.string,

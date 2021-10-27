@@ -80,6 +80,8 @@ const ResumeUploaderModal = (props: Props) => {
           }),
         );
 
+        formikProps.setFieldValue('resume', data.data.user.resume);
+        formikSubmit!();
         onClose();
       }
     },
@@ -100,8 +102,6 @@ const ResumeUploaderModal = (props: Props) => {
           bodyFormData.append('file', files[0]!.file);
           bodyFormData.append('user_id', `${authStore.user!.id}`);
           resumeUpload(bodyFormData);
-          formikProps.setFieldValue('resume', bodyFormData);
-          formikSubmit!();
         } else {
           toast({
             title: 'No resume uplaoded',
