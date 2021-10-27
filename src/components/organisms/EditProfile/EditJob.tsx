@@ -26,9 +26,11 @@ import { ResumeUploaderModal } from '../../organisms';
 import UserInfo from '../../../types/user.type';
 import store from '../../../store';
 import authTypes from '../../../types/auth.types';
-import { useAxios, useCNModal } from '../../../hooks';
+import { useCNModal } from '../../../hooks';
 
 import { TickIcon, DeleteIcon } from '../../../assets';
+import axios from 'axios';
+
 interface Props {
   profileLoading?: boolean;
   loading?: boolean;
@@ -38,6 +40,7 @@ interface Props {
   setEdit?: any;
   updateLoading: boolean;
 }
+
 const EditJob = ({
   edit,
   setEdit,
@@ -54,10 +57,12 @@ const EditJob = ({
     values: any;
   }
 
-  const cancelRef = React.useRef();
   const toast = useToast();
   const authStore: authTypes = store.getState().auth;
   const dispatch = useDispatch();
+
+  const cancelRef = React.useRef();
+  const [resumeDeleteLoading, setResumeDeleteLoading] = React.useState(false);
 
   const {
     isOpen: resumeOpen,
@@ -73,27 +78,15 @@ const EditJob = ({
     onClose: onAlertClose,
   } = useDisclosure();
 
-  const { loading: deleteResumeLoading, fetch: deleteResume } = useAxios(
-    {
-      url: `/resume/${authStore.user!.id}`,
-      method: 'DELETE',
-      headers: {
-        Authorization: `Bearer ${authStore.accessToken}`,
-      },
-    },
-    // eslint-disable-next-line
-    (err, data) => {
-      if (err) {
-        console.log(err);
-        toast({
-          title: 'Failed to delete resume',
-          status: 'error',
-          description: err.data.message,
-          position: 'top-right',
-          duration: 10000,
-          isClosable: true,
-        });
-      } else {
+  const handleDeleteResume = (setFieldValue: any) => {
+    setResumeDeleteLoading(true);
+    axios
+      .delete(`/resume/${authStore.user!.id}`, {
+        headers: {
+          Authorization: `Bearer ${authStore.accessToken}`,
+        },
+      })
+      .then((data) => {
         toast({
           title: 'Resume deleted',
           description: 'You have successfully deleted your resume',
@@ -114,14 +107,23 @@ const EditJob = ({
           }),
         );
 
-        setTimeout(() => {
-          window.location.reload();
-        }, 800);
+        setFieldValue('resume', undefined);
+        setResumeDeleteLoading(false);
         onAlertClose();
-        // @ts-ignore
-      }
-    },
-  );
+      })
+      .catch((err) => {
+        console.log(err);
+        toast({
+          title: 'Failed to delete resume',
+          status: 'error',
+          description: err.data.message,
+          position: 'top-right',
+          duration: 10000,
+          isClosable: true,
+        });
+        setResumeDeleteLoading(false);
+      });
+  };
 
   const schema = yup.object({
     interest_job_position: yup.string().nullable(true),
@@ -240,9 +242,10 @@ const EditJob = ({
                           <Button
                             colorScheme="red"
                             ml={3}
-                            isLoading={deleteResumeLoading}
+                            isLoading={resumeDeleteLoading}
                             onClick={() => {
-                              deleteResume();
+                              // @ts-ignore
+                              handleDeleteResume(props.setFieldValue);
                             }}
                           >
                             Yes
