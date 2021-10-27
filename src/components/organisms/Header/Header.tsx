@@ -8,6 +8,7 @@ import { useRef, useEffect } from 'react';
 import store from '../../../store';
 import { useDispatch } from 'react-redux';
 import { LOGOUT } from '../../../reducers/authSlice';
+import { useWindowSize } from '../../../hooks';
 
 import { CodeNectionLogo, CodeNectionText, DownIcon } from '../../../assets';
 
@@ -18,6 +19,9 @@ const Header = () => {
   const headerSticky = useRef<any | null>(null);
   const moreHover = useRef<any | null>(null);
   const buttonRef = React.createRef<HTMLButtonElement>();
+
+  // eslint-disable-next-line
+  const [windowWidth, windowHeight] = useWindowSize();
 
   const handleScroll = (e: any) => {
     const window: any = e.currentTarget;
@@ -81,7 +85,7 @@ const Header = () => {
         position="fixed"
         transition="150ms cubic-bezier(0.215,0.61,0.355,1);"
         color="#FFFFFF"
-        maxWidth={window.innerWidth}
+        maxWidth={windowWidth}
       >
         <Container maxW="1350px">
           <SimpleGrid

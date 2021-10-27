@@ -19,7 +19,7 @@ import { UPDATE } from '../../../reducers/authSlice';
 
 import store from '../../../store';
 import authTypes from '../../../types/auth.types';
-import { useAxios } from '../../../hooks';
+import { useAxios, useWindowSize } from '../../../hooks';
 
 interface ModalProps {
   isOpen: boolean;
@@ -30,6 +30,10 @@ const CreateTeamModal = ({ isOpen, onClose, ...props }: ModalProps) => {
   const authStore: authTypes = store.getState().auth;
   const dispatch = useDispatch();
   const toast = useToast();
+
+  // eslint-disable-next-line
+  const [windowWidth, windowHeight] = useWindowSize();
+
   const createTeamSchema = yup.object({
     teamName: yup
       .string()
@@ -239,7 +243,7 @@ const CreateTeamModal = ({ isOpen, onClose, ...props }: ModalProps) => {
               />
 
               <Flex
-                flexDir={['column', 'column', 'row']}
+                flexDir={['column-reverse', 'column-reverse', 'row']}
                 justifyContent={'flex-end'}
                 alignSelf="flex-end"
                 w="100%"
@@ -249,9 +253,11 @@ const CreateTeamModal = ({ isOpen, onClose, ...props }: ModalProps) => {
                 <MutedButton onClick={onClose}>Cancel</MutedButton>
                 <PrimaryButton
                   type="submit"
-                  ml="20px"
+                  ml={[0, 0, '20px']}
+                  mb={['20px', '20px', 0]}
                   border="none"
                   borderRadius="5px"
+                  w={['100%', '100%', 'auto']}
                   disabled={
                     props!.values!.is_internal === false &&
                     props!.values!.is_external === false

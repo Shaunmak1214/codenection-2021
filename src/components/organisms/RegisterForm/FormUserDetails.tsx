@@ -10,7 +10,7 @@ import { BoxIcons } from '../../molecules';
 
 import { EmailIcon, PasswordIcon, HomeIcon } from '../../../assets';
 
-import { useAxios } from '../../../hooks';
+import { useAxios, useWindowSize } from '../../../hooks';
 import { genericEmail } from '../../../data/emailData';
 
 interface MyFormValues {
@@ -49,7 +49,6 @@ const FormUserDetails = (props: Props) => {
 
   const schema = yup.object({
     email: yup.string().min(3).max(60).required('Email is a required email'),
-
     password: yup
       .string()
       .min(3)
@@ -60,6 +59,7 @@ const FormUserDetails = (props: Props) => {
       .oneOf([yup.ref('password'), null], 'Password not match')
       .required('Confirm Password is a required field'),
   });
+
   const initialValues: MyFormValues = {
     email: formStore!.register_state.email,
     password: '',
@@ -67,8 +67,12 @@ const FormUserDetails = (props: Props) => {
   };
 
   // eslint-disable-next-line
+  const [windowWidth, windowHeight] = useWindowSize();
+
+  // eslint-disable-next-line
   const { loading: checkExistsLoading, fetch: checkExists } = useAxios(
     { url: `/user/exists/${formInput.email}`, method: 'GET' },
+    // eslint-disable-next-line
     (err, data) => {
       if (err) {
         if (err.status === 204) {
@@ -76,7 +80,7 @@ const FormUserDetails = (props: Props) => {
         } else {
           toast({
             title: 'There"s an erorr while checking email',
-            description: err.data.message,
+            description: err.data.message || '',
             status: 'error',
             position: 'top-right',
             duration: 90000,
@@ -86,7 +90,7 @@ const FormUserDetails = (props: Props) => {
       } else {
         toast({
           title: 'Email already existed',
-          description: data.message,
+          description: '',
           status: 'error',
           position: 'top-right',
           duration: 90000,
@@ -97,13 +101,16 @@ const FormUserDetails = (props: Props) => {
   );
 
   return (
-    <VStack h="100%" w="50%">
+    <VStack h="100%" w={windowWidth > 1120 ? '50%' : '100%'}>
       <motion.div
         initial={{ opacity: 0, x: prev ? -75 : 75 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.5 }}
       >
-        <Container w="550px" maxW="container.form">
+        <Container
+          w={windowWidth > 1120 ? '550px' : '100%'}
+          maxW="container.form"
+        >
           <Container>
             <BoxIcons
               icon={HomeIcon}

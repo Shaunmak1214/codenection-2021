@@ -187,7 +187,7 @@ const EditTeamModal = ({
               />
 
               <Flex
-                flexDir={['column', 'column', 'row']}
+                flexDir={['column-reverse', 'column-reverse', 'row']}
                 justifyContent={'flex-end'}
                 alignSelf="flex-end"
                 w="100%"
@@ -197,9 +197,11 @@ const EditTeamModal = ({
                 <MutedButton onClick={onClose}>Cancel</MutedButton>
                 <PrimaryButton
                   type="submit"
-                  ml="20px"
+                  ml={[0, 0, '20px']}
+                  mb={['20px', '20px', 0]}
                   border="none"
                   borderRadius="5px"
+                  w={['100%', '100%', 'auto']}
                   disabled={
                     props!.values!.is_internal === false &&
                     props!.values!.is_external === false

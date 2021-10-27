@@ -171,10 +171,11 @@ const DashboardSection = () => {
       <Center h="100%" py="150px">
         <Container maxW="container.lg">
           <SimpleGrid
-            columns={2}
+            columns={[1, 1, 2]}
             spacing={10}
             justifyItems="center"
             alignItems="center"
+            w="100%"
           >
             <DashboardCard
               title="Join a Team"
@@ -221,7 +222,6 @@ const DashboardSection = () => {
               des="Create your own team to participate this contest."
               leadImage={CreateTeamImg}
               bgColor="#D9F1F6"
-              marginLeft="-85px"
             >
               <JoinTeamButton
                 w="80%"
@@ -253,7 +253,6 @@ const DashboardSection = () => {
               des="There are a few details you might still haven't fill up"
               leadImage={ProfileImg}
               bgColor="#D8E8FA"
-              marginLeft="-85px"
             >
               <PrimaryButton
                 w="80%"

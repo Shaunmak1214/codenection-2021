@@ -1,5 +1,5 @@
 import React from 'react';
-import { HStack } from '@chakra-ui/layout';
+import { Flex } from '@chakra-ui/layout';
 
 import { PrimaryButton } from '../../atoms';
 import { CNTextFormField } from '../../atoms';
@@ -26,7 +26,8 @@ const JoinTeamBlock = ({
   ...props
 }: Props) => {
   return (
-    <HStack
+    <Flex
+      flexDirection={['column', 'column', 'row']}
       w="100%"
       d="flex"
       justifyContent="center"
@@ -44,10 +45,11 @@ const JoinTeamBlock = ({
 
       <PrimaryButton
         d="flex"
-        position="absolute"
+        mt={[4, 4, 0]}
+        position={['flex', 'flex', 'absolute']}
         top="18px"
         right="10px"
-        w="150px"
+        w={['100%', '100%', '150px']}
         borderRadius="12px"
         border="none"
         bgColor="#50C0D9"
@@ -63,7 +65,7 @@ const JoinTeamBlock = ({
       >
         Join Team
       </PrimaryButton>
-    </HStack>
+    </Flex>
   );
 };
 
