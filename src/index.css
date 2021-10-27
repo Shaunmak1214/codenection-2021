@@ -39,6 +39,7 @@
 .filepond--wrapper {
   width: 465px;
   height: 350px;
+  margin: 0 auto;
 }
 
 .filepond--drop-label {
