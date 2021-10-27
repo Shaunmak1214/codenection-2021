@@ -221,9 +221,75 @@ const Index = () => {
           </>
         );
       } else if (teamInfo.is_external) {
-        return <TeamBlocks teamInfo={teamInfo} />;
+        return (
+          <>
+            {teamInfo.code ? (
+              <Flex
+                mt="20px"
+                borderRadius="15px"
+                bg={'#FFFFFF'}
+                boxShadow={'0px 8px 20px rgba(151, 151, 151, 0.25)'}
+                py="15px"
+                px="25px"
+                mb="35px"
+                justifyContent="space-between"
+                alignItems="center"
+              >
+                <SecondaryText fontWeight="bold" textSpacing="20px">
+                  {teamInfo.code}
+                </SecondaryText>
+
+                <PrimaryButton
+                  borderRadius="10px"
+                  onClick={() => {
+                    // @ts-ignore
+                    copy(teamInfo.code);
+                  }}
+                >
+                  Copy code
+                </PrimaryButton>
+              </Flex>
+            ) : (
+              <></>
+            )}
+            <TeamBlocks teamInfo={teamInfo} />
+          </>
+        );
       } else {
-        return <TeamBlocks teamInfo={teamInfo} category="closed" />;
+        return (
+          <>
+            {teamInfo.code ? (
+              <Flex
+                mt="20px"
+                borderRadius="15px"
+                bg={'#FFFFFF'}
+                boxShadow={'0px 8px 20px rgba(151, 151, 151, 0.25)'}
+                py="15px"
+                px="25px"
+                mb="35px"
+                justifyContent="space-between"
+                alignItems="center"
+              >
+                <SecondaryText fontWeight="bold" textSpacing="20px">
+                  {teamInfo.code}
+                </SecondaryText>
+
+                <PrimaryButton
+                  borderRadius="10px"
+                  onClick={() => {
+                    // @ts-ignore
+                    copy(teamInfo.code);
+                  }}
+                >
+                  Copy code
+                </PrimaryButton>
+              </Flex>
+            ) : (
+              <></>
+            )}
+            <TeamBlocks teamInfo={teamInfo} category="closed" />{' '}
+          </>
+        );
       }
     } else {
       return <Text>No Team Yet</Text>;
