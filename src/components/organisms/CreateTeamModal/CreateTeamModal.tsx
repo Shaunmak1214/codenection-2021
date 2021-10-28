@@ -3,7 +3,8 @@ import PropTypes from 'prop-types';
 import { Formik, Form, Field } from 'formik';
 import * as yup from 'yup';
 
-import { FormLabel, Text, useToast } from '@chakra-ui/react';
+import { InfoOutlineIcon } from '@chakra-ui/icons';
+import { FormLabel, Text, Tooltip, useToast } from '@chakra-ui/react';
 import { VStack, Flex } from '@chakra-ui/layout';
 import {
   CNTextFormField,
@@ -230,6 +231,15 @@ const CreateTeamModal = ({ isOpen, onClose, ...props }: ModalProps) => {
                 name="hackerrankUsername"
                 label="HackerRank Username:"
                 placeholder="xxx"
+                tooltip={
+                  <Tooltip
+                    hasArrow
+                    label="Your hackerrank username will be used to do linking stuff"
+                    fontSize="md"
+                  >
+                    <InfoOutlineIcon />
+                  </Tooltip>
+                }
                 component={CNTextFormField}
               />
 
