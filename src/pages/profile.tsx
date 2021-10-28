@@ -58,6 +58,7 @@ interface TeamProps {
   visible: string;
   is_external: boolean;
   is_internal: boolean;
+  team_lead: any;
   code?: string;
 }
 
@@ -101,6 +102,7 @@ const Index = () => {
   const [teamInfo, setTeamInfo] = useState<TeamProps>({
     team_name: '',
     hackerrank_username: '',
+    team_lead: {},
     contact_info: '',
     visible: '',
     is_external: false,
@@ -380,15 +382,18 @@ const Index = () => {
                   </Box>
                 ) : (
                   <>
-                    <PrimaryButton
-                      w="100%"
-                      borderRadius="10px"
-                      onClick={() => {
-                        handleEditTeamOpen();
-                      }}
-                    >
-                      Edit Team
-                    </PrimaryButton>
+                    {authStore!.user!.permission_level === 5 && (
+                      <PrimaryButton
+                        w="100%"
+                        borderRadius="10px"
+                        onClick={() => {
+                          handleEditTeamOpen();
+                        }}
+                      >
+                        Edit Team
+                      </PrimaryButton>
+                    )}
+
                     {teamInfo.code && <TeamCodeBlocksRenderer />}
                     <TeamBlocksRenderer />
                   </>
