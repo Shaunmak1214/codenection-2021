@@ -18,6 +18,7 @@ interface Props {
   path: string;
   footer?: boolean;
   clearForm?: boolean;
+  protectLevel?: number;
 }
 
 const CNRoutes = ({
@@ -26,6 +27,7 @@ const CNRoutes = ({
   component: Component,
   clearForm = true,
   footer = true,
+  protectLevel = 2,
   ...rest
 }: Props) => {
   const authState = store.getState().auth;
@@ -99,7 +101,10 @@ const CNRoutes = ({
             />
           );
         } else {
-          if (isProtected && authState.user?.permission_level === 0) {
+          if (
+            isProtected &&
+            authState!.user!.permission_level < protectLevel!
+          ) {
             return (
               <Redirect
                 to={{ pathname: '/dashboard', state: { from: props.location } }}
@@ -128,6 +133,7 @@ CNRoutes.propTypes = {
   path: PropTypes.string,
   isProtected: PropTypes.bool,
   location: PropTypes.object,
+  protectLevel: PropTypes.number,
 };
 
 export default CNRoutes;

@@ -15,6 +15,7 @@ import {
   EmailVerifyModal,
   AdvertisementModal,
   ResumeUploaderModal,
+  DomainVerifyModal,
 } from '../../organisms';
 import {
   DashboardCard,
@@ -65,6 +66,13 @@ const DashboardSection = () => {
     isOpen: emailVerifierOpen,
     handleModalClose: handleEmailVerifierClose,
     handleModalOpen: handleEmailVerifierOpen,
+  } = useCNModal({
+    initialState: false,
+  });
+
+  const {
+    isOpen: domainVerifierOpen,
+    handleModalOpen: handleDomainVerifierOpen,
   } = useCNModal({
     initialState: false,
   });
@@ -127,6 +135,14 @@ const DashboardSection = () => {
       handleEmailVerifierOpen();
     }
 
+    if (authStore.user!.permission_level === 1) {
+      handleDomainVerifierOpen();
+    }
+
+    if (authStore.user!.permission_level >= 2) {
+      setDiscordModalIsOpen(true);
+    }
+
     dispatch(
       UPDATEAD({
         advert: {
@@ -138,7 +154,6 @@ const DashboardSection = () => {
       }),
     );
 
-    setDiscordModalIsOpen(true);
     // @ts-ignore
     // store.getState().advert.find((ad) => ad.id === 1)!.count < 3
     //   ? true
@@ -157,6 +172,8 @@ const DashboardSection = () => {
           setTeamModalIsOpen(false);
         }}
       />
+
+      <DomainVerifyModal isOpen={domainVerifierOpen} />
 
       {/* resume uploader modal */}
       <ResumeUploaderModal isOpen={resumeOpen} onClose={handleResumeClose} />

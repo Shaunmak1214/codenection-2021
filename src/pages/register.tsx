@@ -59,7 +59,7 @@ const Register = () => {
   };
 
   if (authStore.user) {
-    if (authStore.user.permission_level > 1) {
+    if (authStore.user.permission_level > 0) {
       return <Redirect to="/dashboard" />;
     }
   }
