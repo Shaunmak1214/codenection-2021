@@ -16,7 +16,7 @@ import {
 import { CNModal } from '../../molecules';
 
 import { useDispatch } from 'react-redux';
-import { UPDATE } from '../../../reducers/authSlice';
+import { LOGIN } from '../../../reducers/authSlice';
 
 import store from '../../../store';
 import authTypes from '../../../types/auth.types';
@@ -82,10 +82,15 @@ const CreateTeamModal = ({ isOpen, onClose, ...props }: ModalProps) => {
           isClosable: true,
         });
         dispatch(
-          UPDATE({
-            ...authStore.user,
-            permission_level: 5,
-            team_id: data.data!.id,
+          // UPDATE({
+          //   ...authStore.user,
+          //   permission_level: 5,
+          //   team_id: data.data!.id,
+          // }),
+          LOGIN({
+            user: data.data.user,
+            accessToken: data.data.token,
+            refreshToken: data.data.refreshToken,
           }),
         );
         onClose();
