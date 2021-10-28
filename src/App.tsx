@@ -34,6 +34,7 @@ function App() {
           header
           component={Screens.Dashboard}
           isProtected
+          protectLevel={-1}
         />
         <CNRoutes
           exact

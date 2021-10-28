@@ -23,6 +23,7 @@ import AdvertisementModal from './AdvertisementModal/AdvertisementModal';
 import ResumeUploaderModal from './ResumeUploaderModal/ResumeUploaderModal';
 import CreateTeamModal from './CreateTeamModal/CreateTeamModal';
 import EditTeamModal from './EditTeamModal/EditTeamModal';
+import DomainVerifyModal from './DomainVerifyModal/DomainVerifyModal';
 
 export {
   CountDownSection,
@@ -50,4 +51,5 @@ export {
   Footer,
   ResumeUploaderModal,
   EditTeamModal,
+  DomainVerifyModal,
 };
