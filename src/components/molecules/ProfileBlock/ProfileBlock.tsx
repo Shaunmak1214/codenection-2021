@@ -149,6 +149,11 @@ const ProfileBlock = ({
                                   new Date(
                                     `${child.props.userData}`,
                                   ).toLocaleDateString('en-US')
+                                ) : child.props.name ==
+                                  'expected_graduation' ? (
+                                  new Date(
+                                    `${child.props.userData}`,
+                                  ).toLocaleDateString('en-US')
                                 ) : child.props.name !== 'resume' ? (
                                   child.props.userData
                                 ) : child.props.userData !== undefined ? (

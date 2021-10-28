@@ -5,6 +5,7 @@
   "dependencies": {
     "@chakra-ui/icons": "^1.0.15",
     "@chakra-ui/react": "^1.6.8",
+    "@craco/craco": "^6.4.0",
     "@emotion/react": "^11.4.1",
     "@emotion/styled": "^11.3.0",
     "@reduxjs/toolkit": "^1.6.1",
@@ -44,6 +45,10 @@
     "yup": "^0.32.9"
   },
   "scripts": {
+    "craco-start": "craco start",
+    "craco-build": "craco build",
+    "craco-test": "craco test",
+    "craco-eject": "craco eject",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
