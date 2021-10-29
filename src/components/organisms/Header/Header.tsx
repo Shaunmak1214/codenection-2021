@@ -83,6 +83,7 @@ const Header = () => {
         py="5px"
         zIndex="150"
         position="fixed"
+        top="0"
         transition="150ms cubic-bezier(0.215,0.61,0.355,1);"
         color="#FFFFFF"
         maxWidth={windowWidth}

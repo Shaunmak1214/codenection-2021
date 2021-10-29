@@ -8,11 +8,13 @@ import {
   Spinner,
 } from '@chakra-ui/react';
 import { Formik, Form, Field } from 'formik';
+import Lottie from 'react-lottie';
 
 import { CNTextFormField, PrimaryButton } from '../../atoms';
 import { CNModal } from '../../molecules';
 import { useAxios } from '../../../hooks';
 import store from '../../../store';
+import { Checking } from '../../../constants';
 
 import * as yup from 'yup';
 interface Props {
@@ -119,11 +121,23 @@ const DomainVerifyModal = ({ isOpen }: Props) => {
   return (
     <CNModal blur disableButton centerSpacing={false} modalIsOpen={isOpen}>
       {checkExistsLoading ? (
-        <Center>
+        <Center py="20px">
           <Spinner />
         </Center>
       ) : checkExists ? (
-        <Text>Your email domain is still being screened</Text>
+        <Center>
+          <VStack w="100%" h="100%">
+            <Lottie
+              options={Checking}
+              height={125}
+              width={125}
+              style={{ marginTop: 5, marginBottom: 5 }}
+            />
+            <Text textAlign="center" fontSize="lg" mt="15px !important">
+              Your email domain is still being screened
+            </Text>
+          </VStack>
+        </Center>
       ) : (
         <>
           <Flex w="100%" justifyContent="flex-start" mb="15px">
