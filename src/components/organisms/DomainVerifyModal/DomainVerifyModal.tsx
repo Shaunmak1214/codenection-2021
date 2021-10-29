@@ -1,10 +1,18 @@
 import React, { useEffect, useState } from 'react';
+import {
+  useToast,
+  VStack,
+  Text,
+  Flex,
+  Center,
+  Spinner,
+} from '@chakra-ui/react';
+import { Formik, Form, Field } from 'formik';
+
+import { CNTextFormField, PrimaryButton } from '../../atoms';
 import { CNModal } from '../../molecules';
 import { useAxios } from '../../../hooks';
 import store from '../../../store';
-import { useToast, VStack, HStack, Text } from '@chakra-ui/react';
-import { Formik, Form, Field } from 'formik';
-import { CNTextFormField, PrimaryButton } from '../../atoms';
 
 import * as yup from 'yup';
 interface Props {
@@ -12,7 +20,9 @@ interface Props {
 }
 
 interface MyFormValues {
-  university: string;
+  uni_name: string;
+  email: string;
+  domain: string;
 }
 const DomainVerifyModal = ({ isOpen }: Props) => {
   const authStore = store.getState().auth;
@@ -21,11 +31,12 @@ const DomainVerifyModal = ({ isOpen }: Props) => {
   const [checkExists, setCheckExists] = useState(false);
 
   const schema = yup.object({
-    university: yup
+    uni_name: yup
       .string()
       .min(3)
       .max(60)
       .required('Name of institution/university is a required field'),
+    domain: yup.string().min(3).max(60).required('Domain is a required field'),
   });
 
   const { loading: requestDomainLoading, fetch: requestDomainVerify } =
@@ -42,7 +53,8 @@ const DomainVerifyModal = ({ isOpen }: Props) => {
         if (err) {
           toast({
             title: 'Unable to request domain verification',
-            description: err.data.message,
+            description: err.data.message || '',
+            position: 'top-right',
             status: 'error',
             duration: 2000,
             isClosable: true,
@@ -51,6 +63,7 @@ const DomainVerifyModal = ({ isOpen }: Props) => {
           toast({
             title: 'Success',
             description: 'Domain verfication request has been sent',
+            position: 'top-right',
             status: 'success',
             duration: 2000,
             isClosable: true,
@@ -95,20 +108,29 @@ const DomainVerifyModal = ({ isOpen }: Props) => {
     // eslint-disable-next-line
   }, []);
 
+  const domainFromEmail = authStore!.user!.email.split('@')[1];
+
   const initialValues: MyFormValues = {
-    university: authStore!.user!.university,
+    uni_name: authStore!.user!.university,
+    email: authStore!.user!.email,
+    domain: domainFromEmail,
   };
 
-  const domain = authStore!.user!.email.split('@')[1];
-
   return (
-    <CNModal blur disableButton modalIsOpen={isOpen}>
+    <CNModal blur disableButton centerSpacing={false} modalIsOpen={isOpen}>
       {checkExistsLoading ? (
-        <h1>Loading</h1>
+        <Center>
+          <Spinner />
+        </Center>
       ) : checkExists ? (
-        <Text>Checking</Text>
+        <Text>Your email domain is still being screened</Text>
       ) : (
         <>
+          <Flex w="100%" justifyContent="flex-start" mb="15px">
+            <Text fontSize="35px" fontWeight="600">
+              Request Domain Verification
+            </Text>
+          </Flex>
           <Formik
             validationSchema={schema}
             initialValues={initialValues}
@@ -119,25 +141,38 @@ const DomainVerifyModal = ({ isOpen }: Props) => {
             {(props) => (
               <Form>
                 <>
-                  <VStack spacing={9}>
+                  <VStack spacing={7}>
                     <Field
-                      label="Name of institution/university "
-                      name="university"
-                      placeholder="Multimedia University"
+                      label="Email"
+                      name="email"
+                      placeholder="email"
+                      disabled={true}
                       component={CNTextFormField}
                       // eslint-disable-next-line react/prop-types
-                      value={props.values.university}
+                      value={props.values.email}
                       // eslint-disable-next-line react/prop-types
                       onChange={props.handleChange}
                     />
-                    <HStack>
-                      <Text>Domain</Text>
-                      <Text>{domain}</Text>
-                    </HStack>
-                    <HStack>
-                      <Text>afsd</Text>
-                      <Text>{authStore!.user!.email}</Text>
-                    </HStack>
+                    <Field
+                      label="Domain "
+                      name="domain"
+                      placeholder="Domain"
+                      component={CNTextFormField}
+                      // eslint-disable-next-line react/prop-types
+                      value={props.values.domain}
+                      // eslint-disable-next-line react/prop-types
+                      onChange={props.handleChange}
+                    />
+                    <Field
+                      label="Name of institution/university "
+                      name="uni_name"
+                      placeholder="Multimedia University"
+                      component={CNTextFormField}
+                      // eslint-disable-next-line react/prop-types
+                      value={props.values.uni_name}
+                      // eslint-disable-next-line react/prop-types
+                      onChange={props.handleChange}
+                    />
                   </VStack>
 
                   <PrimaryButton
@@ -147,6 +182,10 @@ const DomainVerifyModal = ({ isOpen }: Props) => {
                     _hover={{ bg: '#000000' }}
                     isLoading={requestDomainLoading}
                     type="submit"
+                    onClick={() => {
+                      // eslint-disable-next-line
+                      props.submitForm();
+                    }}
                   >
                     Request Domain Verification
                   </PrimaryButton>

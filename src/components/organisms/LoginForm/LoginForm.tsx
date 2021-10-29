@@ -53,11 +53,8 @@ const LoginForm = () => {
       } else {
         dispatch(
           LOGIN({
-            // @ts-ignore
             user: data.data.user,
-            // @ts-ignore
             accessToken: data.data.token,
-            // @ts-ignore
             refreshToken: data.data.refreshToken,
           }),
         );
