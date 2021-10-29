@@ -156,7 +156,7 @@ const EmailVerifyModal = ({
         } else if (event.keyCode === 86 && isCtrl) {
           event.preventDefault();
 
-          const text = await navigator.clipboard.readText();
+          const text = await (await navigator.clipboard.readText()).trim();
           if (isNumeric(text)) {
             for (let h = 0; h < text.length; h++) {
               inputs[h].value = text.charAt(h);
