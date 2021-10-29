@@ -46,7 +46,7 @@ const SponsorsBlock = ({ sponsorData, ...props }: any) => {
         return (
           <SponsorImg
             bgImage={sponsorData.flags}
-            w={['290px', '290px', '450px']}
+            w={['100%', '340px', '450px']}
             h={['205px', '205px', '270px']}
           >
             <Image maxH="125px" mb="20px" src={sponsor.imageSrc} />
@@ -56,8 +56,8 @@ const SponsorsBlock = ({ sponsorData, ...props }: any) => {
         return (
           <SponsorImg
             bgImage={sponsorData.flags}
-            w={['265px', '265px', '370px']}
-            h={['205px', '205px', '220px']}
+            w={['265px', '240px', '265px', '370px']}
+            h={['205px', '205px', '205px', '220px']}
           >
             <Image maxH="125px" mb="20px" src={sponsor.imageSrc} />
           </SponsorImg>
@@ -101,7 +101,12 @@ const SponsorsBlock = ({ sponsorData, ...props }: any) => {
           <BadgeRenderer sponsorData={sponsorData} />
         </VStack>
         <SimpleGrid
-          columns={['1', '2', sponsorData.level]}
+          columns={[
+            '1',
+            sponsorData.level > 2 ? '2' : sponsorData.level,
+            sponsorData.level > 2 ? '2' : sponsorData.level,
+            sponsorData.level,
+          ]}
           w="100%"
           justifyItems="center"
           alignItems="center"

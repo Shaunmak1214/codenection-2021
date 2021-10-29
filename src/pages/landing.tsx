@@ -17,9 +17,19 @@ import { CNLanding } from '../assets';
 const Landing: React.FC = () => {
   const LandingImgRenderer = () => {
     if (window.screen.width < 768) {
-      return <Image position="absolute" src={CNLanding} />;
+      return (
+        <Image position="absolute" margin="0px !important" src={CNLanding} />
+      );
     } else {
-      return <Image h="100vh" position="absolute" right="0" src={CNLanding} />;
+      return (
+        <Image
+          h="100vh"
+          position="absolute"
+          margin="0px !important"
+          right="0"
+          src={CNLanding}
+        />
+      );
     }
   };
   return (
