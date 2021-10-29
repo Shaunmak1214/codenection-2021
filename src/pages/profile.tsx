@@ -209,6 +209,7 @@ const Index = () => {
   const TeamCodeBlocksRenderer = () => {
     return (
       <Flex
+        flexDir={['column', 'column', 'column', 'row']}
         mt="20px"
         borderRadius="15px"
         bg={'#FFFFFF'}
@@ -219,7 +220,7 @@ const Index = () => {
         justifyContent="space-between"
         alignItems="center"
       >
-        <SecondaryText fontWeight="bold" pr={['5px', '5px', '0']}>
+        <SecondaryText fontWeight="bold" pr={['5px', '5px', '5px', '0']}>
           {teamInfo.code}
         </SecondaryText>
 
@@ -229,6 +230,8 @@ const Index = () => {
             // @ts-ignore
             copy(teamInfo.code);
           }}
+          w={['100%', '100%', '100%', 'auto']}
+          mt={['10px', '10px', '10px', '0px']}
         >
           Copy code
         </PrimaryButton>
@@ -333,7 +336,14 @@ const Index = () => {
       <Center py="150px">
         <Container maxW="container.xl">
           <Flex flexDir={['column', 'column', 'row']}>
-            <Container mr="40px" mt="38px">
+            <Container
+              mr="40px"
+              mt="38px"
+              d="flex"
+              flexDir="column"
+              alignItems={['center', 'center', 'center', 'flex-start']}
+              w="100%"
+            >
               <Box
                 mb="100px"
                 maxW="300px"
@@ -365,8 +375,17 @@ const Index = () => {
                   {authStore!.user!.full_name}
                 </Text>
               </Box>
-              <Box mb="80px" mt="50px">
-                <Text fontSize="2xl" fontWeight="bold" mb="15px">
+              <VStack
+                alignItems={['center', 'center', 'center', 'flex-start']}
+                mb="80px"
+                mt="50px"
+              >
+                <Text
+                  alignSelf="flex-start"
+                  fontSize="2xl"
+                  fontWeight="bold"
+                  mb="15px"
+                >
                   EMAIL STATUS
                 </Text>
 
@@ -382,8 +401,8 @@ const Index = () => {
                     </Text>
                   </VStack>
                 </WhiteBox>
-              </Box>
-              <Box id="team" ref={teamRef}>
+              </VStack>
+              <Box id="team" ref={teamRef} w="100%">
                 <Text fontSize="2xl" fontWeight="bold">
                   YOUR TEAM
                 </Text>

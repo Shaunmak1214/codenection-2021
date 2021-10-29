@@ -62,7 +62,11 @@ const EditPersonal = ({
         enableReinitialize
       >
         {(props: FormValues) => (
-          <Form>
+          <Form
+            style={{
+              width: '100%',
+            }}
+          >
             <ProfileBlock
               title={'Personal Details'}
               profileLoading={profileLoading}

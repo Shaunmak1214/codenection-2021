@@ -63,7 +63,11 @@ const EditEducation = ({
       enableReinitialize
     >
       {(props: FormValues) => (
-        <Form>
+        <Form
+          style={{
+            width: '100%',
+          }}
+        >
           <ProfileBlock
             updateUser={updateUser}
             profileLoading={profileLoading}

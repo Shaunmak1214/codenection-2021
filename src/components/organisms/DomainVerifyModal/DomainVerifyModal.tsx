@@ -70,6 +70,10 @@ const DomainVerifyModal = ({ isOpen }: Props) => {
             duration: 2000,
             isClosable: true,
           });
+
+          setTimeout(() => {
+            window.location.reload();
+          }, 1200);
         }
       },
     );

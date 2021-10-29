@@ -256,7 +256,7 @@ const CreateTeamModal = ({
                 type="string"
                 name="contactInfo"
                 label="Contact Information:"
-                placeholder="Please contact me via discord: qwe#4001"
+                placeholder="Please contact me via ..."
                 component={CNTextFormField}
               />
 
