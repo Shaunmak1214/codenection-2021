@@ -93,6 +93,7 @@ const ResumeUploaderModal = (props: Props) => {
       successText="Upload"
       centerSpacing={false}
       CTAIsCenter={true}
+      blockClose={resumeUploadLoading}
       isPrimaryLoading={resumeUploadLoading}
       onPrimaryClick={() => {
         if (files[0]) {

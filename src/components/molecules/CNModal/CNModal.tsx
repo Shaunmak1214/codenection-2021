@@ -26,6 +26,7 @@ interface Props {
   onRenderUpdate?: (modalIsOpen: boolean) => void;
   primaryButtonFormId?: string;
   theme?: any;
+  blockClose?: boolean;
 }
 const modalAnimation = {
   hidden: {
@@ -73,6 +74,7 @@ const CNModal = ({
   centerSpacing = true,
   theme,
   onRenderUpdate,
+  blockClose = false,
   ...props
 }: Props) => {
   const children: React.ReactNode = props.children;
@@ -139,7 +141,13 @@ const CNModal = ({
                     top="35px"
                     right="35px"
                     justifyContent="flex-end"
-                    onClick={onClose}
+                    disabled={blockClose}
+                    onClick={() => {
+                      if (!blockClose) {
+                        // @ts-ignore
+                        onClose();
+                      }
+                    }}
                     zIndex={100}
                   >
                     <IconButton
@@ -164,7 +172,17 @@ const CNModal = ({
                     pt="15px"
                     mt="15px"
                   >
-                    <MutedButton onClick={onClose}>{mutedText}</MutedButton>
+                    <MutedButton
+                      disabled={blockClose}
+                      onClick={() => {
+                        if (!blockClose) {
+                          // @ts-ignore
+                          onClose();
+                        }
+                      }}
+                    >
+                      {mutedText}
+                    </MutedButton>
                     <PrimaryButton
                       ml={[0, 0, '20px']}
                       mb={['20px', '20px', 0]}
