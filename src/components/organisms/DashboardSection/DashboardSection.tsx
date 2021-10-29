@@ -168,6 +168,8 @@ const DashboardSection = () => {
   useEffect(() => {
     fetchTeamInfo();
 
+    handleEmailVerifierOpen();
+
     // @ts-ignore
     if (authStore.user!.permission_level < 1) {
       handleEmailVerifierOpen();
