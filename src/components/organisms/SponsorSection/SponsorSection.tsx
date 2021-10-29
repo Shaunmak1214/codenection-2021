@@ -12,7 +12,7 @@ import {
 import { SecondaryButton } from '../../atoms';
 const SponsorSection = () => {
   return (
-    <Center bg="#EFF8F7" py="100px">
+    <Center bg="#EFF8F7" py="100px" id="sponsors">
       <Container maxW="container.xl" textAlign="center">
         <SecondaryText fontWeight="bold" fontSize="3xl" mb="15px">
           SPONSORS AND PARTNERS
