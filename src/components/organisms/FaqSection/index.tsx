@@ -6,7 +6,7 @@ import { FaqBlock } from '../../molecules';
 
 const FaqSection = () => {
   return (
-    <Center py="100px">
+    <Center py="100px" id="faq">
       <Container maxW="container.xl">
         <SecondaryText
           fontWeight="bold"

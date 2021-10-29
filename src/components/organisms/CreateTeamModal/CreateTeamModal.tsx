@@ -25,9 +25,15 @@ import { useAxios, useWindowSize } from '../../../hooks';
 interface ModalProps {
   isOpen: boolean;
   onClose: () => void;
+  createSuccess?: () => void;
 }
 
-const CreateTeamModal = ({ isOpen, onClose, ...props }: ModalProps) => {
+const CreateTeamModal = ({
+  isOpen,
+  onClose,
+  createSuccess,
+  ...props
+}: ModalProps) => {
   const authStore: authTypes = store.getState().auth;
   const dispatch = useDispatch();
   const toast = useToast();
@@ -87,6 +93,7 @@ const CreateTeamModal = ({ isOpen, onClose, ...props }: ModalProps) => {
             refreshToken: data.data.refreshToken,
           }),
         );
+        createSuccess && createSuccess();
         onClose();
       }
     },

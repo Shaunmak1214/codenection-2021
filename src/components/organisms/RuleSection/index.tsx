@@ -9,7 +9,7 @@ import { RulesBlock } from '../../molecules';
 
 const RuleSection = () => {
   return (
-    <Center bg="#002A97" py="100px">
+    <Center bg="#002A97" py="100px" id="rules">
       <Container maxW="container.xl" textAlign="left">
         <PrimaryText
           fontFamily="Raleway"

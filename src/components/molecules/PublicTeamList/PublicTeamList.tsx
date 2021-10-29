@@ -24,7 +24,7 @@ import store from '../../../store';
 import authTypes from '../../../types/auth.types';
 import { useAxios } from '../../../hooks';
 
-const PublicTeamList = () => {
+const PublicTeamList = React.forwardRef((props, ref) => {
   const authStore: authTypes = store.getState().auth;
 
   const [teams, setTeams] = useState([]);
@@ -54,7 +54,14 @@ const PublicTeamList = () => {
   }, []);
 
   return (
-    <VStack w="100%" h="max-content" alignItems="flex-start">
+    <VStack
+      w="100%"
+      h="max-content"
+      alignItems="flex-start"
+      id="publicTeamList"
+      // @ts-ignore
+      ref={ref}
+    >
       <SecondaryText fontSize="2xl" fontWeight="bold">
         Are you looking for new team member?
       </SecondaryText>
@@ -151,6 +158,6 @@ const PublicTeamList = () => {
       )}
     </VStack>
   );
-};
+});
 
 export default PublicTeamList;

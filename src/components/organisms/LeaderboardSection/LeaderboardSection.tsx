@@ -16,7 +16,7 @@ import { DiscordBlue, InstagramBlue, FacebookBlue } from '../../../assets';
 
 const LeaderboardSection = () => {
   return (
-    <Center py="100px">
+    <Center py="100px" id="leaderboard">
       <Container maxW="container.lg">
         <SecondaryText
           fontFamily="Raleway"

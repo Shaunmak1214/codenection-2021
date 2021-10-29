@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import {
   Center,
   Container,
@@ -65,6 +65,14 @@ interface TeamProps {
 const Index = () => {
   const toast = useToast();
   const authStore: authTypes = store.getState().auth;
+
+  const [editPersonal, setEditPersonal] = useState(false);
+  const [editEducation, setEditEducation] = useState(false);
+  const [editJob, setEditJob] = useState(false);
+  const [editOthers, setEditOthers] = useState(false);
+  const firstLetter = authStore!.user!.full_name[0];
+
+  const teamRef = useRef<HTMLDivElement>(null);
 
   // eslint-disable-next-line
   const [value, copy] = useCopyToClipboard({
@@ -198,18 +206,6 @@ const Index = () => {
     },
   );
 
-  const [editPersonal, setEditPersonal] = useState(false);
-  const [editEducation, setEditEducation] = useState(false);
-  const [editJob, setEditJob] = useState(false);
-  const [editOthers, setEditOthers] = useState(false);
-  const firstLetter = authStore!.user!.full_name[0];
-
-  useEffect(() => {
-    fetchUserInfo();
-    fetchTeamInfo();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
   const TeamCodeBlocksRenderer = () => {
     return (
       <Flex
@@ -289,6 +285,27 @@ const Index = () => {
     }
   };
 
+  useEffect(() => {
+    fetchUserInfo();
+    fetchTeamInfo();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  useEffect(() => {
+    if (window.location.hash === '#team') {
+      if (teamInfo && userInfo) {
+        setTimeout(() => {
+          if (teamRef.current) {
+            window.scrollTo({
+              top: teamRef.current.offsetTop - 100,
+              behavior: 'smooth',
+            });
+          }
+        }, 800);
+      }
+    }
+  }, [teamInfo, userInfo]);
+
   return (
     <>
       {authStore.user?.permission_level === 5 && !teamLoading ? (
@@ -366,7 +383,7 @@ const Index = () => {
                   </VStack>
                 </WhiteBox>
               </Box>
-              <Box>
+              <Box id="team" ref={teamRef}>
                 <Text fontSize="2xl" fontWeight="bold">
                   YOUR TEAM
                 </Text>

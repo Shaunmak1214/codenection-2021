@@ -61,31 +61,31 @@ const Footer = () => {
 
                 <HStack alignItems="center">
                   <ArrowRight />
-                  <Link href="#">
+                  <Link href="/#about">
                     <SecondaryText color="white">About</SecondaryText>
                   </Link>
                 </HStack>
                 <HStack alignItems="center">
                   <ArrowRight />
-                  <Link href="#">
+                  <Link href="/#agenda">
                     <SecondaryText color="white">Agenda</SecondaryText>
                   </Link>
                 </HStack>
                 <HStack alignItems="center">
                   <ArrowRight />
-                  <Link href="#">
+                  <Link href="/#leaderboard">
                     <SecondaryText color="white">Leaderboard</SecondaryText>
                   </Link>
                 </HStack>
                 <HStack alignItems="center">
                   <ArrowRight />
-                  <Link href="#">
+                  <Link href="/#rules">
                     <SecondaryText color="white">Rules & FAQ</SecondaryText>
                   </Link>
                 </HStack>
                 <HStack alignItems="center">
                   <ArrowRight />
-                  <Link href="#">
+                  <Link href="/#sponsors">
                     <SecondaryText color="white">
                       Sponsors & Partners
                     </SecondaryText>
@@ -109,31 +109,31 @@ const Footer = () => {
 
                 <HStack alignItems="center">
                   <ArrowRight />
-                  <Link href="#">
+                  <Link href="/dashboard">
                     <SecondaryText color="white">Dashboard</SecondaryText>
                   </Link>
                 </HStack>
                 <HStack alignItems="center">
                   <ArrowRight />
-                  <Link href="#">
+                  <Link href="/edit-profile">
                     <SecondaryText color="white">Profile</SecondaryText>
                   </Link>
                 </HStack>
                 <HStack alignItems="center">
                   <ArrowRight />
-                  <Link href="#">
+                  <Link href="/dashboard#join">
                     <SecondaryText color="white">Join a Team</SecondaryText>
                   </Link>
                 </HStack>
                 <HStack alignItems="center">
                   <ArrowRight />
-                  <Link href="#">
+                  <Link href="/dashboard#create">
                     <SecondaryText color="white">Create a Team</SecondaryText>
                   </Link>
                 </HStack>
                 <HStack alignItems="center">
                   <ArrowRight />
-                  <Link href="#">
+                  <Link href="#dashboard#upload">
                     <SecondaryText color="white">Upload Resume</SecondaryText>
                   </Link>
                 </HStack>

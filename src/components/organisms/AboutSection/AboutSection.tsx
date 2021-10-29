@@ -9,7 +9,7 @@ import { GrayBox } from '../../../assets';
 
 const AboutSection = () => {
   return (
-    <Center py={['10px', '20px', '50px']}>
+    <Center py={['10px', '20px', '50px']} id="about">
       <Flex
         flexDirection={['column', 'column', 'row']}
         maxW="container.lg"

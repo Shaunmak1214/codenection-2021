@@ -52,6 +52,8 @@ const Header = () => {
     if (status) {
       headerSticky.current!.style!.background = '#FFFFFF';
       headerSticky.current!.style!.color = '#000000';
+      headerSticky.current!.style!.boxShadow =
+        '0px 8px 20px rgba(196, 196, 196, 0.25)';
       if (buttonRef.current) {
         buttonRef.current!.style!.color = '#FFFFFF';
         buttonRef.current!.style!.background = '#002A97';
@@ -59,6 +61,7 @@ const Header = () => {
     } else {
       headerSticky.current!.style!.background = '#002A97';
       headerSticky.current!.style!.color = '#FFFFFF';
+      headerSticky.current!.style!.boxShadow = 'none';
       if (buttonRef.current) {
         buttonRef.current!.style!.color = '#002A97';
         buttonRef.current!.style!.background = '#FFFFFF';
@@ -105,13 +108,13 @@ const Header = () => {
                 onClick={() => (window.location.href = '/')}
               />
               <Flex w="100%" d={['none', 'none', 'flex']}>
-                <Link href="#" mr="25px">
+                <Link href="/#about" mr="25px">
                   <Text>About</Text>
                 </Link>
-                <Link href="#" mr="25px">
+                <Link href="/#agenda" mr="25px">
                   <Text>Agenda</Text>
                 </Link>
-                <Link href="#">
+                <Link href="/#leaderboard">
                   <Text>Leaderboard</Text>
                 </Link>
               </Flex>
@@ -131,10 +134,10 @@ const Header = () => {
                 d={['none', 'none', 'none', 'flex']}
                 justifyContent="flex-end"
               >
-                <Link mr="25px">
+                <Link href="/#rules" mr="25px">
                   <Text>Rules & FAQ</Text>
                 </Link>
-                <Link mr="25px">
+                <Link href="/#sponsors" mr="25px">
                   <Text>Sponsors & Partners</Text>
                 </Link>
               </Flex>
