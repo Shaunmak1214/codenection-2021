@@ -72,7 +72,6 @@ const CreateTeamModal = ({ isOpen, onClose, ...props }: ModalProps) => {
           isClosable: true,
         });
       } else {
-        console.log(data);
         toast({
           title: 'Create Team Success',
           description: 'You have successfully created the team',
@@ -82,11 +81,6 @@ const CreateTeamModal = ({ isOpen, onClose, ...props }: ModalProps) => {
           isClosable: true,
         });
         dispatch(
-          // UPDATE({
-          //   ...authStore.user,
-          //   permission_level: 5,
-          //   team_id: data.data!.id,
-          // }),
           LOGIN({
             user: data.data.user,
             accessToken: data.data.token,
