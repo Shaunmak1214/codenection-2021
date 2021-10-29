@@ -47,7 +47,7 @@ const ProfileBlock = ({
   const children = props.children;
   return (
     <Center>
-      <Container mt="35px" maxW="800px" w={['305px', '305px', '750px']}>
+      <Container mt="35px" maxW="800px" w={['100%', '100%', '750px']}>
         <VStack
           bg="#FFFFFFF"
           boxShadow="0px 16px 40px rgba(134, 134, 134, 0.25) "

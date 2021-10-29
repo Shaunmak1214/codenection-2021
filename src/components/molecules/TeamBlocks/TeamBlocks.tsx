@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, VStack, HStack, Container, Text } from '@chakra-ui/react';
+import { Box, VStack, Flex, Container, Text } from '@chakra-ui/react';
 import TeamMember from '../TeamMember/TeamMember';
 import PropTypes from 'prop-types';
 
@@ -26,19 +26,28 @@ const TeamBlocks = ({ teamInfo, category = 'open' }: Props) => {
         {Object.keys(teamInfo).length > 0 ? (
           <>
             {' '}
-            <HStack py="5px">
+            <Flex
+              flexDir={['column', 'column', 'column', 'row']}
+              px="10px"
+              py="5px"
+            >
               <Box
+                w={['100%', '100%', '100%', '65%']}
                 py="3px"
                 px={['15px', '15px', '25px']}
                 borderRadius="8px"
                 mr="5px"
                 bg={category === 'closed' ? '#0099B8' : '#0078FF'}
+                d="flex"
+                justifyContent="center"
+                alignItems="center"
               >
-                <Text color="#FFFFFF" fontWeight="bold">
+                <Text color="#FFFFFF" fontSize="sm" p="0">
                   {category === 'closed' ? 'Closed Category' : 'Open Category'}
                 </Text>
               </Box>
               <Box
+                w={['100%', '100%', '100%', '35%']}
                 py="3px"
                 borderRadius="8px"
                 px="25px"
@@ -48,16 +57,23 @@ const TeamBlocks = ({ teamInfo, category = 'open' }: Props) => {
                     ? '0px 2px 5px rgba(162, 162, 162, 0.25)'
                     : 'none'
                 }
+                mt={['10px', '10px', '10px', '0px']}
+                d="flex"
+                justifyContent="center"
+                alignItems="center"
               >
-                <Text>{category === 'closed' ? 'Public' : 'Private'}</Text>
+                <Text textAlign="center" fontSize="sm" p="0">
+                  {category === 'closed' ? 'Public' : 'Private'}
+                </Text>
               </Box>
-            </HStack>
+            </Flex>
             <Container>
               <VStack>
                 <Text
                   py="8px"
                   fontSize="xl"
                   fontWeight="600"
+                  textAlign="center"
                   color={category === 'closed' ? '#0099B8' : '#0078FF'}
                 >
                   {teamInfo.team_name}
