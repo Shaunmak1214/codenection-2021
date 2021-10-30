@@ -33,10 +33,14 @@ const FaqCategories: FaqCategory[] = [
   },
   {
     idx: 4,
-    category: 'Preparation',
+    category: 'Prizes',
   },
   {
     idx: 5,
+    category: 'Preparation',
+  },
+  {
+    idx: 6,
     category: 'Summary',
   },
 ];
@@ -106,6 +110,11 @@ const FaqData: Data = {
     },
     {
       idx: 4,
+      question: 'When will the competition be held?',
+      ans: '<ol style="margin-left: 15px"><li>Closed Category <br> Date: 10 December 2021 <br> Duration: 3 hours</li><li>Open Category - Preliminary Round <br> Date: 12 December 2021 <br> Duration: 2 hours</li><li>Open Category - Final Round <br> Date: 19 December 2021 <br> Duration: 5 hours</li></ol>',
+    },
+    {
+      idx: 5,
       question: 'What are the platforms that will be used?',
       ans: 'As our event will be held virtually, Airmeet will be used for the opening ceremony, participant’s briefing session and workshop event while HackerRank will be the platform used for the competition itself. ',
     },
@@ -113,11 +122,16 @@ const FaqData: Data = {
   Prizes: [
     {
       idx: 0,
+      question: 'Cash Prizes',
+      ans: 'Closed Category <ul style="margin-left: 25px"><li>1st place: MYR 500</li><li>2nd place: MYR 300</li><li>3rd place: MYR 100</li></ul> <br> Open Category <ul style="margin-left: 25px"><li>1st place: MYR 3000</li><li>2nd place: MYR 2000</li><li>3rd place: MYR 1000</li><li>Best female team: MYR 500</li><li>Best Uni-Diversity Team: MYR 500 (each member must be from a different institution to be eligible for this award)</li></ul>',
+    },
+    {
+      idx: 1,
       question: 'Hackathon Kits',
       ans: 'CodeNection Event Shirt, CodeNection Event Drawstring Bag, *T&C applied (Only final round participants)',
     },
     {
-      idx: 1,
+      idx: 2,
       question: 'Certificates',
       ans: 'E-Certificates will be given to every participant regardless of their achievement during the competition. The Top 10 teams will be given a hardcopy certificate through mailing after the competition.',
     },
