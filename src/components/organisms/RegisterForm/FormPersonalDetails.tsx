@@ -195,6 +195,7 @@ const FormPersonalDetails = ({
 
                 prevStep();
               }}
+              backIcon
             />
 
             <Text color="#5B5B5B">Step 2</Text>
