@@ -15,6 +15,9 @@ interface Props {
   value?: string;
   field?: any;
   form?: any;
+  formInput?: any;
+  setFormInput?: any;
+  name: string;
   updateReg: (values: any) => void;
 }
 
@@ -23,13 +26,19 @@ const CNSelectDropdownField = ({
   form,
   label,
   value,
-
+  formInput,
+  setFormInput,
+  name,
   ...props
 }: Props) => {
   const errorText: string =
     getIn(form.touched, field.name) && getIn(form.errors, field.name);
 
   const handleSelect = (e: any) => {
+    if (formInput) {
+      setFormInput({ ...formInput, [field.name]: e.value });
+    }
+
     form.setFieldValue(field.name, e.value);
   };
 
@@ -52,6 +61,7 @@ React.memo(CNSelectDropdownField);
 
 CNSelectDropdownField.propTypes = {
   onSelect: PropTypes.func,
+  setFormState: PropTypes.bool,
   props: PropTypes.node,
 };
 

@@ -4,10 +4,11 @@ import PropTypes from 'prop-types';
 
 interface Props {
   icon: string;
+  backIcon?: boolean;
   onClick: any;
 }
 const BoxIcons = (props: Props) => {
-  const { icon, onClick, ...rest } = props;
+  const { icon, onClick, backIcon = false, ...rest } = props;
   return (
     <Box
       boxShadow="0px 4px 10px rgba(159, 159, 159, 0.25)"
@@ -26,7 +27,7 @@ const BoxIcons = (props: Props) => {
       onClick={onClick}
       {...rest}
     >
-      <Image w="25px" h="25px" src={icon} />
+      <Image w="25px" h={backIcon ? '15px' : '25px'} src={icon} />
     </Box>
   );
 };
