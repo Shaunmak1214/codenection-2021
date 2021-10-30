@@ -28,15 +28,27 @@ const Footer = () => {
         <Flex
           flexDirection={['column', 'column', 'row']}
           w="100%"
-          alignItems="center"
+          alignItems={['flex-start', 'flex-start', 'center']}
           justifyContent="space-between"
         >
-          <Box px="10">
-            <CodeNectionLogoImg />
+          <Box mb="25px">
+            <CodeNectionLogoImg
+              style={{
+                width: '125px',
+                height: 'auto',
+              }}
+            />
           </Box>
 
-          <SimpleGrid columns={[1, 1, 3]} w="100%">
-            <VStack color="white" alignItems="center">
+          <SimpleGrid
+            columns={[1, 1, 3]}
+            w="100%"
+            spacingY={['30px', '30px', '0px']}
+          >
+            <VStack
+              color="white"
+              alignItems={['flex-start', 'flex-start', 'center']}
+            >
               <VStack alignItems="flex-start">
                 <SecondaryText
                   mb="10px"
@@ -49,31 +61,31 @@ const Footer = () => {
 
                 <HStack alignItems="center">
                   <ArrowRight />
-                  <Link href="#">
+                  <Link href="/#about">
                     <SecondaryText color="white">About</SecondaryText>
                   </Link>
                 </HStack>
                 <HStack alignItems="center">
                   <ArrowRight />
-                  <Link href="#">
+                  <Link href="/#agenda">
                     <SecondaryText color="white">Agenda</SecondaryText>
                   </Link>
                 </HStack>
                 <HStack alignItems="center">
                   <ArrowRight />
-                  <Link href="#">
+                  <Link href="/#leaderboard">
                     <SecondaryText color="white">Leaderboard</SecondaryText>
                   </Link>
                 </HStack>
                 <HStack alignItems="center">
                   <ArrowRight />
-                  <Link href="#">
+                  <Link href="/#rules">
                     <SecondaryText color="white">Rules & FAQ</SecondaryText>
                   </Link>
                 </HStack>
                 <HStack alignItems="center">
                   <ArrowRight />
-                  <Link href="#">
+                  <Link href="/#sponsors">
                     <SecondaryText color="white">
                       Sponsors & Partners
                     </SecondaryText>
@@ -81,7 +93,10 @@ const Footer = () => {
                 </HStack>
               </VStack>
             </VStack>
-            <VStack color="white" alignItems="center">
+            <VStack
+              color="white"
+              alignItems={['flex-start', 'flex-start', 'center']}
+            >
               <VStack alignItems="flex-start">
                 <SecondaryText
                   mb="10px"
@@ -94,37 +109,40 @@ const Footer = () => {
 
                 <HStack alignItems="center">
                   <ArrowRight />
-                  <Link href="#">
+                  <Link href="/dashboard">
                     <SecondaryText color="white">Dashboard</SecondaryText>
                   </Link>
                 </HStack>
                 <HStack alignItems="center">
                   <ArrowRight />
-                  <Link href="#">
+                  <Link href="/edit-profile">
                     <SecondaryText color="white">Profile</SecondaryText>
                   </Link>
                 </HStack>
                 <HStack alignItems="center">
                   <ArrowRight />
-                  <Link href="#">
+                  <Link href="/dashboard#join">
                     <SecondaryText color="white">Join a Team</SecondaryText>
                   </Link>
                 </HStack>
                 <HStack alignItems="center">
                   <ArrowRight />
-                  <Link href="#">
+                  <Link href="/dashboard#create">
                     <SecondaryText color="white">Create a Team</SecondaryText>
                   </Link>
                 </HStack>
                 <HStack alignItems="center">
                   <ArrowRight />
-                  <Link href="#">
+                  <Link href="#dashboard#upload">
                     <SecondaryText color="white">Upload Resume</SecondaryText>
                   </Link>
                 </HStack>
               </VStack>
             </VStack>
-            <VStack color="white" alignItems="center">
+            <VStack
+              color="white"
+              alignItems={['flex-start', 'flex-start', 'center']}
+            >
               <VStack alignItems="flex-start">
                 <SecondaryText
                   mb="10px"

@@ -22,7 +22,6 @@ const TeamMember = ({ leader = false, category, member }: Props) => {
           justifyContent="center"
           alignItems="center"
         >
-          {' '}
           <Image src={leader ? LeaderIcon : MemberIcon} />
         </Box>
       </Box>
@@ -39,5 +38,5 @@ TeamMember.propTypes = {
   leader: PropTypes.bool,
   member: PropTypes.string,
 };
-
+React.memo(TeamMember);
 export default TeamMember;

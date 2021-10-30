@@ -15,7 +15,7 @@ import { CreateTeamModal, EmailVerifyModal } from '../../organisms';
 
 import store from '../../../store';
 import authTypes from '../../../types/auth.types';
-import { useAxios } from '../../../hooks';
+import { useAxios, useWindowSize } from '../../../hooks';
 
 import { TickIcon } from '../../../assets';
 
@@ -25,6 +25,9 @@ const FormTeamDetails = () => {
   const dispatch = useDispatch();
   const [teamModalIsOpen, setTeamModalIsOpen] = useState(false);
   const [emailVerifyModalIsOpen, setEmailVerifyModalIsOpen] = useState(false);
+
+  // eslint-disable-next-line
+  const [windowWidth, windowHeight] = useWindowSize();
 
   const joinTeamSchema = yup.object({
     teamCode: yup
@@ -130,13 +133,17 @@ const FormTeamDetails = () => {
         }}
       />
 
-      <VStack h="100%" w="50%">
+      <VStack h="100%" w={windowWidth > 1120 ? '50%' : '100%'}>
         <motion.div
           initial={{ opacity: 0, x: 75 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.5 }}
         >
-          <Container mt="100px" w="550px" maxW="container.form">
+          <Container
+            w={windowWidth > 1120 ? '550px' : '100%'}
+            mt="50px"
+            maxW="container.form"
+          >
             <Container mb="20px">
               <Text color="#5B5B5B">Step 3</Text>
               <SecondaryText fontWeight="bold" fontSize="4xl">

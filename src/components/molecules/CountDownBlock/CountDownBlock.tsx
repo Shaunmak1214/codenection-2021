@@ -15,12 +15,12 @@ const CountDownBlock = ({ lastBlock, ...props }: Props) => {
       borderRight={
         lastBlock === 'last' ? 'none' : ['none', 'none', '1.5px solid #002A97']
       }
-      borderBottom={
-        lastBlock === 'last'
-          ? 'none'
-          : ['1.5px solid #002A97', '1.5px solid #002A97', 'none']
-      }
-      width="250px"
+      // borderBottom={
+      //   lastBlock === 'last'
+      //     ? 'none'
+      //     : ['1.5px solid #002A97', '1.5px solid #002A97', 'none']
+      // }
+      width="100%"
       d="flex"
       flexDir="column"
       justifyContent="center"

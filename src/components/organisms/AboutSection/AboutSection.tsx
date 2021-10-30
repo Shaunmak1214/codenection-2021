@@ -3,39 +3,49 @@ import React from 'react';
 import { Image } from '@chakra-ui/image';
 import { Flex, VStack, Center } from '@chakra-ui/layout';
 
-import { SecondaryText } from '../../atoms';
+import { PrimaryText } from '../../atoms';
 
-import { GrayBox } from '../../../assets';
+import { CNAboutLogo } from '../../../assets';
 
 const AboutSection = () => {
   return (
-    <Center py="50px">
+    <Center bg="#002A97" py={['10px', '20px', '50px']} id="about">
       <Flex
         flexDirection={['column', 'column', 'row']}
         maxW="container.lg"
         w="100%"
-        py="50px"
         justifyContent="flex-start"
         alignItems="flex-start"
       >
-        <Center w="50%" h="auto">
-          <Image src={GrayBox} alt="Gray" />
+        <Center w={['100%', '100%', '50%']} h="auto">
+          <Image src={CNAboutLogo} alt="Gray" />
         </Center>
 
-        <VStack w="50%" h="100%" alignItems="flex-start" px="3" py="2">
-          <SecondaryText fontSize="2xl" fontWeight="bold">
+        <VStack
+          w={['100%', '100%', '50%']}
+          h="100%"
+          alignItems={['center', 'center', 'flex-start']}
+          px="3"
+          py={['5', '5', '2']}
+        >
+          <PrimaryText
+            fontSize={['2xl', '3xl', '4xl']}
+            mb={['10px', '20px', '30px']}
+            fontWeight="bold"
+          >
             ABOUT
-          </SecondaryText>
-          <SecondaryText>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex ea commodo consequat.
+          </PrimaryText>
+          <br></br>
+          <PrimaryText textAlign={['center', 'center', 'left']}>
+            CodeNection 2021 is a programming-focused event organized by IT
+            Society MMU Cyberjaya that includes a series of algorithm workshops
+            and hackathons.
             <br></br>
             <br></br>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua.{' '}
-          </SecondaryText>
+            This event will be opened to students of all universities in
+            Malaysia and aims to encourage a competitive mindset within the
+            local programming culture.
+          </PrimaryText>
         </VStack>
       </Flex>
     </Center>

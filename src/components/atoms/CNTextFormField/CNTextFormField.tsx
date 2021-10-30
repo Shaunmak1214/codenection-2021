@@ -1,4 +1,5 @@
 /* eslint-disable react/no-children-prop */
+import React from 'react';
 import {
   Input,
   InputGroup,
@@ -10,12 +11,14 @@ import {
   FormErrorMessage,
   Image,
   Box,
+  HStack,
 } from '@chakra-ui/react';
-import { ShowIcon, HideIcon } from '../../../assets';
 import PropTypes from 'prop-types';
-import { PrimaryButton } from '..';
-import React from 'react';
 import { getIn } from 'formik';
+
+import { PrimaryButton } from '../../atoms';
+import { ShowIcon, HideIcon } from '../../../assets';
+
 interface Props {
   label: string;
   leftIcon?: string;
@@ -24,6 +27,7 @@ interface Props {
   type?: string;
   placeholder?: string;
   sendCodeBtn?: boolean;
+  tooltip?: any;
 }
 
 const CNTextFormField = ({
@@ -33,6 +37,7 @@ const CNTextFormField = ({
   leftIcon,
   type,
   sendCodeBtn = false,
+  tooltip,
   ...props
 }: Props) => {
   const textRef = React.useRef<any>(null);
@@ -52,7 +57,15 @@ const CNTextFormField = ({
   return (
     <VStack w="100%">
       <FormControl w="100%" isInvalid={errorText ? true : false}>
-        <FormLabel>{label}</FormLabel>
+        <HStack
+          w="100%"
+          pr="10px"
+          justifyContent="space-between"
+          alignItems="flex-start"
+        >
+          <FormLabel>{label}</FormLabel>
+          {tooltip}
+        </HStack>
         <InputGroup>
           {leftIcon && (
             <InputLeftElement

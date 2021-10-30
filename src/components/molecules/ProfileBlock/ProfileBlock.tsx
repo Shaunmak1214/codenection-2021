@@ -6,13 +6,23 @@ import {
   HStack,
   Box,
   SimpleGrid,
+  Text,
+  Button,
+  Spinner,
+  Image,
+  Flex,
 } from '@chakra-ui/react';
-import { Text, Button } from '@chakra-ui/react';
-import { BoxIcons } from '../../molecules';
-import { EditProfileIcon, SaveIcon, ReturnIcon } from '../../../assets';
-import { ProfileBoxTitle } from '../../atoms';
-import { Spinner } from '@chakra-ui/react';
 import PropTypes from 'prop-types';
+
+import { BoxIcons } from '../../molecules';
+import { ProfileBoxTitle } from '../../atoms';
+
+import {
+  EditProfileIcon,
+  SaveIcon,
+  ReturnIcon,
+  TickIcon,
+} from '../../../assets';
 
 interface Props {
   title: string;
@@ -22,44 +32,47 @@ interface Props {
   edit?: boolean;
   setEdit?: any;
   updateLoading?: boolean;
+  formikProps: any;
 }
 
 const ProfileBlock = ({
   edit,
-  // eslint-disable-next-line no-unused-vars
-  updateUser,
   title,
   profileLoading,
-  // eslint-disable-next-line no-unused-vars
   updateLoading,
   setEdit,
-  // eslint-disable-next-line no-unused-vars
+  formikProps,
   ...props
 }: Props) => {
   const children = props.children;
   return (
     <Center>
-      <Container mt="35px" maxW="800px" w="750px">
+      <Container mt="35px" maxW="800px" w={['100%', '100%', '750px']}>
         <VStack
           bg="#FFFFFFF"
           boxShadow="0px 16px 40px rgba(134, 134, 134, 0.25) "
           borderRadius="10px"
           py="15px"
         >
-          <HStack
+          <Flex
+            flexDir={['column', 'column', 'row']}
             w="100%"
             justifyContent="space-between"
             my="15px"
-            alignItems="center"
+            alignItems={['none', 'none', 'center']}
           >
             <ProfileBoxTitle title={title} />
-            <Box>
+            <Box d={['flex', 'flex', 'block']} justifyContent="flex-end">
               {edit ? (
                 <>
-                  <HStack mr="35px">
+                  <HStack mr="35px !important">
                     <BoxIcons
                       icon={ReturnIcon}
-                      onClick={() => setEdit(!edit)}
+                      onClick={() => {
+                        setEdit(!edit);
+
+                        formikProps.resetForm(formikProps.initialValues);
+                      }}
                       mr="20px"
                       my="0"
                       w="42px"
@@ -95,7 +108,7 @@ const ProfileBlock = ({
                 />
               )}
             </Box>
-          </HStack>
+          </Flex>
           {profileLoading ? (
             <Box py="120px">
               <Spinner
@@ -108,13 +121,12 @@ const ProfileBlock = ({
             </Box>
           ) : (
             <>
-              {' '}
               <Container>
                 {React.Children.map(children, (child) => {
                   return (
                     <>
                       <SimpleGrid
-                        columns={2}
+                        columns={[1, 1, 2]}
                         spacing={0}
                         margin="30px auto"
                         alignItems="center"
@@ -131,13 +143,43 @@ const ProfileBlock = ({
                           <>
                             <Box>
                               <Text fontSize="lg">
-                                {child.props.userData === null
-                                  ? '-'
-                                  : child.props.name == 'dob'
-                                  ? new Date(
-                                      `${child.props.userData}`,
-                                    ).toLocaleDateString('en-US')
-                                  : child.props.userData}
+                                {child.props.userData === null ? (
+                                  '-'
+                                ) : child.props.name == 'dob' ? (
+                                  new Date(
+                                    `${child.props.userData}`,
+                                  ).toLocaleDateString('en-US')
+                                ) : child.props.name ==
+                                  'expected_graduation' ? (
+                                  new Date(
+                                    `${child.props.userData}`,
+                                  ).toLocaleDateString('en-US')
+                                ) : child.props.name !== 'resume' ? (
+                                  child.props.userData
+                                ) : child.props.userData !== undefined ? (
+                                  <HStack w="100%" alignItems="center">
+                                    <Center
+                                      w="100%"
+                                      boxShadow="0px 4px 10px rgba(132, 132, 132, 0.25);"
+                                      borderRadius="10px"
+                                      backgroundColor="white"
+                                      px="12px"
+                                      py="7px"
+                                      mr="10px"
+                                    >
+                                      <Image
+                                        src={TickIcon}
+                                        alt="icon"
+                                        h="18px"
+                                        w="18px"
+                                        mr="10px"
+                                      />
+                                      <Text fontSize="md">Uploaded</Text>
+                                    </Center>
+                                  </HStack>
+                                ) : (
+                                  '-'
+                                )}
                               </Text>
                             </Box>
                           </>

@@ -19,8 +19,7 @@ import {
 } from '../../../assets';
 
 import { genericEmail } from '../../../data/emailData';
-
-import { useCNModal, useAxios } from '../../../hooks';
+import { useCNModal, useAxios, useWindowSize } from '../../../hooks';
 interface MyFormValues {
   email: string;
   password: string;
@@ -32,6 +31,9 @@ const LoginForm = () => {
 
   const dispatch = useDispatch();
   const toast = useToast();
+
+  // eslint-disable-next-line
+  const [windowWidth, windowHeight] = useWindowSize();
 
   const { loading, fetch } = useAxios(
     {
@@ -51,11 +53,8 @@ const LoginForm = () => {
       } else {
         dispatch(
           LOGIN({
-            // @ts-ignore
             user: data.data.user,
-            // @ts-ignore
             accessToken: data.data.token,
-            // @ts-ignore
             refreshToken: data.data.refreshToken,
           }),
         );
@@ -119,9 +118,9 @@ const LoginForm = () => {
   return (
     <>
       <CNModal
-        maxHeight="50%"
         blur
         disableButton
+        centerSpacing={false}
         modalIsOpen={isOpen}
         onClose={handleModalClose}
       >
@@ -130,7 +129,7 @@ const LoginForm = () => {
             <SecondaryText fontSize="3xl" fontWeight="bold">
               Reset Password
             </SecondaryText>
-            <SecondaryText fontSize="sm" opacity=".7">
+            <SecondaryText textAlign="left" fontSize="sm" opacity=".7">
               An email will be sent to you with a link to reset your password.
             </SecondaryText>
           </VStack>
@@ -177,7 +176,11 @@ const LoginForm = () => {
                   >
                     Cancel
                   </Link>
-                  <PrimaryButton type="submit" isLoading={forgotLoading}>
+                  <PrimaryButton
+                    borderRadius="10px"
+                    type="submit"
+                    isLoading={forgotLoading}
+                  >
                     Submit
                   </PrimaryButton>
                 </HStack>
@@ -186,13 +189,17 @@ const LoginForm = () => {
           </Formik>
         </VStack>
       </CNModal>
-      <VStack h="100%" w="50%">
+      <VStack h="100%" w={windowWidth > 1120 ? '50%' : '100%'}>
         <motion.div
           initial={{ opacity: 0, x: -75 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.5 }}
         >
-          <Container w="550px" maxW="container.form">
+          <Container
+            mt="50px"
+            w={windowWidth > 1120 ? '550px' : '100%'}
+            maxW="container.form"
+          >
             <Container mb="25px">
               <HStack
                 justifyContent="space-between"

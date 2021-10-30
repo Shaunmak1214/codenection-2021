@@ -13,5 +13,5 @@ export default interface UserInfo {
   interest_job_position?: string;
   resume?: string;
   address?: string;
-  size?: string;
+  shirt_size?: string;
 }

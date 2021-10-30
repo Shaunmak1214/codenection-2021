@@ -9,13 +9,13 @@ import { RulesBlock } from '../../molecules';
 
 const RuleSection = () => {
   return (
-    <Center bg="#002A97" py="100px">
+    <Center bg="#002A97" py="100px" id="rules">
       <Container maxW="container.xl" textAlign="left">
         <PrimaryText
           fontFamily="Raleway"
           fontWeight="bold"
-          fontSize="3xl"
-          mb="40px"
+          fontSize={['2xl', '3xl', '4xl']}
+          mb={['30px', '40px', '50px']}
           align="center"
         >
           RULES
@@ -30,7 +30,7 @@ const RuleSection = () => {
           }}
           gap={6}
           fontSize="lg"
-          mx="50px"
+          mx={'25px'}
         >
           {RulesData.map((data) => {
             return (

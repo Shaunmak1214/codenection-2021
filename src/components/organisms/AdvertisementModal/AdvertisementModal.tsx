@@ -27,10 +27,10 @@ const AdvertisementModal = () => {
       centerSpacing={false}
       theme="discord"
     >
-      <VStack h="100%" w="100%" justifyContent="flex-start">
+      <VStack h="100%" w="100%" p="3" justifyContent="flex-start">
         <HStack>
           <Discord style={{ width: '35px', height: '35px' }} />
-          <PrimaryText fontSize="3xl" fontWeight="bold">
+          <PrimaryText fontSize={['md', 'xl', '3xl']} fontWeight="bold">
             Discord Invitation!
           </PrimaryText>
         </HStack>

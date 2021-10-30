@@ -9,6 +9,7 @@ function App() {
     <Router forceRefresh={true}>
       <Switch>
         <CNRoutes header exact path="/" component={Screens.Landing} />
+        <CNRoutes header exact path="/rules" component={Screens.Rules} />
         <CNRoutes
           header
           exact
@@ -34,6 +35,7 @@ function App() {
           header
           component={Screens.Dashboard}
           isProtected
+          protectLevel={-1}
         />
         <CNRoutes
           exact

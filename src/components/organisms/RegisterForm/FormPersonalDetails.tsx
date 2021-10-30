@@ -19,7 +19,7 @@ import {
   CNDatePicker,
 } from '../../atoms';
 
-import useAxios from '../../../hooks/useAxios';
+import { useAxios, useWindowSize } from '../../../hooks/';
 import { BoxIcons } from '../../molecules';
 import { BackIcon } from '../../.././assets';
 
@@ -58,7 +58,14 @@ const FormPersonalDetails = ({
     full_name: formStore!.register_state.full_name,
     university: formStore!.register_state.university,
     field_major: formStore!.register_state.field_major,
+    dob: formStore!.register_state.dob,
+    sex: formStore!.register_state.sex,
+    citizenship: formStore!.register_state.citizenship,
+    education_level: formStore!.register_state.education_level,
+    coding_prof: formStore!.register_state.coding_prof,
   });
+  // eslint-disable-next-line
+  const [windowWidth, windowHeight] = useWindowSize();
 
   const handleOnChange = (e: any) => {
     setFormInput({ ...formInput, [e.target.name]: e.target.value });
@@ -69,7 +76,6 @@ const FormPersonalDetails = ({
     { url: '/auth/signup', method: 'POST' },
     (err, data) => {
       if (err) {
-        console.log(err);
         toast({
           title: 'Sign Up Failed',
           description: err.data.message,
@@ -152,23 +158,26 @@ const FormPersonalDetails = ({
 
   const initialValues: MyFormValues = {
     full_name: formStore!.register_state.full_name,
-    dob: '',
-    sex: '',
-    citizenship: '',
+    dob: formStore!.register_state.dob,
+    sex: formStore!.register_state.sex,
+    citizenship: formStore!.register_state.citizenship,
     university: formStore!.register_state.university,
     field_major: formStore!.register_state.field_major,
-    education_level: '',
-    coding_prof: '',
+    education_level: formStore!.register_state.education_level,
+    coding_prof: formStore!.register_state.coding_prof,
   };
 
   return (
-    <VStack h="100%" w="50%">
+    <VStack h="100%" w={windowWidth > 1120 ? '50%' : '100%'}>
       <motion.div
         initial={{ opacity: 0, x: 75 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.5 }}
       >
-        <Container w="550px" maxW="container.form">
+        <Container
+          w={windowWidth > 1120 ? '550px' : '100%'}
+          maxW="container.form"
+        >
           <Container>
             <BoxIcons
               icon={BackIcon}
@@ -177,10 +186,16 @@ const FormPersonalDetails = ({
                   full_name: formInput.full_name,
                   university: formInput.university,
                   field_major: formInput.field_major,
+                  dob: formInput.dob,
+                  sex: formInput.sex,
+                  citizenship: formInput.citizenship,
+                  education_level: formInput.education_level,
+                  coding_prof: formInput.coding_prof,
                 });
 
                 prevStep();
               }}
+              backIcon
             />
 
             <Text color="#5B5B5B">Step 2</Text>
@@ -205,6 +220,7 @@ const FormPersonalDetails = ({
                 });
                 clearReg();
               }}
+              enableReinitialize
             >
               {(props) => (
                 // eslint-disable-next-line
@@ -223,7 +239,7 @@ const FormPersonalDetails = ({
                       }}
                     />
                     <SimpleGrid
-                      columns={3}
+                      columns={[1, 2, 3]}
                       spacing={4}
                       w="100%"
                       alignItems="flex-start"
@@ -238,15 +254,19 @@ const FormPersonalDetails = ({
                         placeholderText="DD / MM / YY"
                         type="string"
                         borderColor="#E2E8F0 !important"
-                        value={formInput.dob}
+                        value={Date.parse(formInput.dob)}
                         // eslint-disable-next-line
-                        selectedDate={props.values.dob}
+                        selectedDate={Date.parse(props.values.dob)}
                         component={CNDatePicker}
+                        formInput={formInput}
+                        setFormInput={setFormInput}
                       />
                       <Field
                         label="Gender:"
                         name="sex"
-                        placeholder="Select"
+                        placeholder={
+                          formInput.sex === '' ? 'Select' : formInput.sex
+                        }
                         options={[
                           {
                             label: 'Male',
@@ -265,12 +285,19 @@ const FormPersonalDetails = ({
                             value: 'Not-Say',
                           },
                         ]}
+                        value={formInput.sex}
+                        formInput={formInput}
+                        setFormInput={setFormInput}
                         component={CNSelectDropdownField}
                       />
                       <Field
                         label="Citizenship:"
                         name="citizenship"
-                        placeholder="Malaysian"
+                        placeholder={
+                          formInput.citizenship === ''
+                            ? 'Select'
+                            : formInput.citizenship
+                        }
                         options={[
                           {
                             label: 'Malaysian',
@@ -281,6 +308,9 @@ const FormPersonalDetails = ({
                             value: 'International',
                           },
                         ]}
+                        value={formInput.citizenship}
+                        formInput={formInput}
+                        setFormInput={setFormInput}
                         component={CNSelectDropdownField}
                       />
                     </SimpleGrid>
@@ -312,7 +342,11 @@ const FormPersonalDetails = ({
                     <Field
                       label="Level of education: "
                       name="education_level"
-                      placeholder="Selelct level of education"
+                      placeholder={
+                        formInput.education_level === ''
+                          ? 'Selelct level of education'
+                          : formInput.education_level
+                      }
                       options={[
                         {
                           label: 'A" level',
@@ -336,12 +370,19 @@ const FormPersonalDetails = ({
                         },
                       ]}
                       component={CNSelectDropdownField}
+                      value={formInput.education_level}
+                      formInput={formInput}
+                      setFormInput={setFormInput}
                     />
 
                     <Field
                       label="Coding proficiency: "
                       name="coding_prof"
-                      placeholder="Select coding proficiency"
+                      placeholder={
+                        formInput.coding_prof === ''
+                          ? 'Select coding proficiency'
+                          : formInput.coding_prof
+                      }
                       options={[
                         {
                           label: 'Novice',
@@ -365,6 +406,9 @@ const FormPersonalDetails = ({
                         },
                       ]}
                       component={CNSelectDropdownField}
+                      value={formInput.coding_prof}
+                      formInput={formInput}
+                      setFormInput={setFormInput}
                     />
                   </VStack>
                   <HStack mt="50px" mb="80px">

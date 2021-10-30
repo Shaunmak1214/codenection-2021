@@ -1,22 +1,32 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import * as yup from 'yup';
 
-import { useToast } from '@chakra-ui/react';
-import { Center, Container, SimpleGrid } from '@chakra-ui/layout';
-import { Box } from '@chakra-ui/react';
+import { useToast, Spinner } from '@chakra-ui/react';
+import { Center, Container, Link, SimpleGrid, VStack } from '@chakra-ui/layout';
 
-import { FilePond, registerPlugin } from 'react-filepond';
+import { registerPlugin } from 'react-filepond';
 import FilePondPluginImageExifOrientation from 'filepond-plugin-image-exif-orientation';
 import FilePondPluginImagePreview from 'filepond-plugin-image-preview';
 import FilePondPluginFileValidateType from 'filepond-plugin-file-validate-type';
 
-import { PrimaryButton, JoinTeamButton, SecondaryText } from '../../atoms';
+import {
+  PrimaryButton,
+  JoinTeamButton,
+  CNSpacer,
+  SecondaryText,
+} from '../../atoms';
 import {
   CreateTeamModal,
   EmailVerifyModal,
   AdvertisementModal,
+  ResumeUploaderModal,
+  DomainVerifyModal,
 } from '../../organisms';
-import { DashboardCard, JoinTeamTextField, CNModal } from '../../molecules';
+import {
+  DashboardCard,
+  JoinTeamTextField,
+  PublicTeamList,
+} from '../../molecules';
 import { Formik, Form, Field } from 'formik';
 
 import { useDispatch } from 'react-redux';
@@ -34,21 +44,31 @@ import {
 } from '../../../assets';
 
 import 'filepond/dist/filepond.min.css';
+import { ArrowRightIcon } from '@chakra-ui/icons';
+
+interface TeamInfo {
+  team_name: string;
+}
 
 const DashboardSection = () => {
   const toast = useToast();
   const authStore: authTypes = store.getState().auth;
   const dispatch = useDispatch();
+
   const [teamModalIsOpen, setTeamModalIsOpen] = useState(false);
   const [discordModalIsOpen, setDiscordModalIsOpen] = useState(false);
+
+  const [teamInfo, setTeamInfo] = useState<TeamInfo>({
+    team_name: '',
+  });
+
+  const publicTeamList = useRef<HTMLDivElement>(null);
 
   registerPlugin(
     FilePondPluginImageExifOrientation,
     FilePondPluginImagePreview,
     FilePondPluginFileValidateType,
   );
-
-  const [files, setFiles] = React.useState([]);
 
   const {
     isOpen: resumeOpen,
@@ -62,6 +82,13 @@ const DashboardSection = () => {
     isOpen: emailVerifierOpen,
     handleModalClose: handleEmailVerifierClose,
     handleModalOpen: handleEmailVerifierOpen,
+  } = useCNModal({
+    initialState: false,
+  });
+
+  const {
+    isOpen: domainVerifierOpen,
+    handleModalOpen: handleDomainVerifierOpen,
   } = useCNModal({
     initialState: false,
   });
@@ -105,6 +132,7 @@ const DashboardSection = () => {
           duration: 10000,
           isClosable: true,
         });
+
         dispatch(
           UPDATE({
             ...authStore.user,
@@ -112,17 +140,64 @@ const DashboardSection = () => {
             team_id: data.data.team_id,
           }),
         );
-        setTimeout(() => {
-          window.location.href = '/dashboard';
-        }, 3000);
+      }
+    },
+  );
+
+  // eslint-disable-next-line no-unused-vars
+  const { loading: teamLoading, fetch: fetchTeamInfo } = useAxios(
+    {
+      url: `/team/${authStore!.user!.team_id}`,
+      method: 'GET',
+      headers: {
+        Authorization: `Bearer ${authStore.accessToken}`,
+      },
+    },
+    (err, data) => {
+      if (err) {
+        return;
+      } else {
+        const returnedData = data.data;
+        setTeamInfo({
+          ...returnedData,
+        });
       }
     },
   );
 
   useEffect(() => {
+    fetchTeamInfo();
+
     // @ts-ignore
     if (authStore.user!.permission_level < 1) {
       handleEmailVerifierOpen();
+    }
+
+    if (authStore.user!.permission_level === 1) {
+      handleDomainVerifierOpen();
+    }
+
+    if (authStore.user!.permission_level >= 2) {
+      setDiscordModalIsOpen(true);
+
+      if (window.location.hash === '#create') {
+        setTeamModalIsOpen(true);
+      }
+
+      if (window.location.hash === '#upload') {
+        handleResumeOpen();
+      }
+
+      if (window.location.hash === '#publicTeamList') {
+        setTimeout(() => {
+          if (publicTeamList.current) {
+            window.scrollTo({
+              top: publicTeamList.current.offsetTop - 100,
+              behavior: 'smooth',
+            });
+          }
+        }, 800);
+      }
     }
 
     dispatch(
@@ -136,7 +211,6 @@ const DashboardSection = () => {
       }),
     );
 
-    setDiscordModalIsOpen(true);
     // @ts-ignore
     // store.getState().advert.find((ad) => ad.id === 1)!.count < 3
     //   ? true
@@ -154,36 +228,17 @@ const DashboardSection = () => {
         onClose={() => {
           setTeamModalIsOpen(false);
         }}
+        createSuccess={() => {
+          setTimeout(() => {
+            window.location.reload();
+          }, 1000);
+        }}
       />
 
+      <DomainVerifyModal isOpen={domainVerifierOpen} />
+
       {/* resume uploader modal */}
-      <CNModal
-        onClose={handleResumeClose}
-        modalIsOpen={resumeOpen}
-        successText="Upload"
-        CTAIsCenter={true}
-      >
-        <Box py="25px">
-          <SecondaryText fontSize="3xl" fontWeight="bold">
-            Upload your resume
-          </SecondaryText>
-          <SecondaryText fontSize="sm" opacity=".7">
-            FIle should be in pdf & less than 10 MB
-          </SecondaryText>
-        </Box>
-        <FilePond
-          style={{ width: '300px', height: '300px' }}
-          acceptedFileTypes={['application/pdf']}
-          //@ts-ignore
-          onupdatefiles={setFiles}
-          maxFileSize="10MB"
-          maxFiles={1}
-          files={files}
-          allowReorder={true}
-          allowMultiple={true}
-          labelIdle='<div class="folder-image"></div><div class="drop-area-label"><h2 class="drop-area-text">Drag & Drop your files</h2> <h2 class="or-label"> <span>OR</span></h2><a class="filepond--label-action">Browse</a></div>'
-        />
-      </CNModal>
+      <ResumeUploaderModal isOpen={resumeOpen} onClose={handleResumeClose} />
 
       {/* Email Verification Modal */}
       <EmailVerifyModal
@@ -194,13 +249,140 @@ const DashboardSection = () => {
 
       <Center h="100%" py="150px">
         <Container maxW="container.lg">
+          <SimpleGrid columns={[1, 1, 3]} spacing={8}>
+            <Center
+              px="25px"
+              py="25px"
+              bgColor="#F1FFFF"
+              boxShadow="0px 8px 20px rgba(0, 131, 124, 0.25)"
+              borderRadius="10px"
+            >
+              <VStack
+                spacing="20px"
+                h="100%"
+                w="100%"
+                justifyContent="flex-start"
+              >
+                <SecondaryText fontSize="xl" fontWeight="bold">
+                  YOUR TEAM
+                </SecondaryText>
+                {teamLoading ? (
+                  <Spinner />
+                ) : teamInfo.team_name ? (
+                  <>
+                    <SecondaryText fontSize="md">
+                      {teamInfo.team_name}
+                    </SecondaryText>
+                    <PrimaryButton
+                      bgColor="#0099B8;"
+                      borderRadius="10px"
+                      w="100%"
+                      onClick={() => {
+                        window.location.href = '/edit-profile#team';
+                      }}
+                    >
+                      View Team Profile
+                    </PrimaryButton>
+                  </>
+                ) : (
+                  <>
+                    <SecondaryText fontSize="md">No Teams Yet</SecondaryText>
+                    <PrimaryButton
+                      bgColor="#0099B8;"
+                      borderRadius="10px"
+                      w="100%"
+                      onClick={() => {
+                        setTeamModalIsOpen(true);
+                      }}
+                    >
+                      Create Team
+                    </PrimaryButton>
+                  </>
+                )}
+              </VStack>
+            </Center>
+
+            <Center
+              px="25px"
+              py="25px"
+              bgColor="#EEF6FF"
+              boxShadow="0px 8px 20px rgba(0, 131, 124, 0.25)"
+              borderRadius="10px"
+            >
+              <VStack spacing="20px" w="100%">
+                <SecondaryText fontSize="xl" fontWeight="bold">
+                  YOUR PROFILE
+                </SecondaryText>
+                <SecondaryText fontSize="md">
+                  {authStore!.user!.full_name}
+                </SecondaryText>
+                <PrimaryButton
+                  bgColor="#0078FF;"
+                  borderRadius="10px"
+                  w="100%"
+                  onClick={() => {
+                    window.location.href = '/edit-profile';
+                  }}
+                >
+                  View Profile
+                </PrimaryButton>
+              </VStack>
+            </Center>
+            <Center
+              px="25px"
+              py="25px"
+              bgColor="#EEF6FF"
+              boxShadow="0px 8px 20px rgba(0, 131, 124, 0.25)"
+              borderRadius="10px"
+            >
+              <VStack spacing="20px" w="80%">
+                <Link
+                  href="https://discord.gg/VpCeFaeKcq"
+                  target="_blank"
+                  w="100%"
+                  justifyContent="space-between"
+                  alignItems="center"
+                  d="flex"
+                  flexDir="row"
+                >
+                  <SecondaryText fontSize="md">Join our discord</SecondaryText>
+                  <ArrowRightIcon h="8px" w="8px" />
+                </Link>
+                <Link
+                  href="/dashboard#publicTeamList"
+                  w="100%"
+                  justifyContent="space-between"
+                  alignItems="center"
+                  d="flex"
+                  flexDir="row"
+                >
+                  <SecondaryText fontSize="md">
+                    View all public teams
+                  </SecondaryText>
+                  <ArrowRightIcon h="8px" w="8px" />
+                </Link>
+                <Link
+                  href="/#rules"
+                  w="100%"
+                  justifyContent="space-between"
+                  alignItems="center"
+                  d="flex"
+                  flexDir="row"
+                >
+                  <SecondaryText fontSize="md">Read the rules</SecondaryText>
+                  <ArrowRightIcon h="8px" w="8px" />
+                </Link>
+              </VStack>
+            </Center>
+          </SimpleGrid>
+          <CNSpacer size="md" />
           <SimpleGrid
-            columns={2}
+            columns={[1, 1, 2]}
             spacing={10}
             justifyItems="center"
             alignItems="center"
+            w="100%"
           >
-            {' '}
             <DashboardCard
               title="Join a Team"
               des="Enter a team code that gets from your leader to join the team"
@@ -215,8 +397,7 @@ const DashboardSection = () => {
                 onSubmit={(data) => {
                   joinTeam({
                     code: data.teamCode,
-                    // @ts-ignore
-                    user_id: authStore.user.id,
+                    user_id: authStore!.user!.id,
                   });
                 }}
               >
@@ -247,9 +428,7 @@ const DashboardSection = () => {
               des="Create your own team to participate this contest."
               leadImage={CreateTeamImg}
               bgColor="#D9F1F6"
-              marginLeft="-85px"
             >
-              {' '}
               <JoinTeamButton
                 w="80%"
                 onClick={() => {
@@ -265,7 +444,6 @@ const DashboardSection = () => {
               leadImage={ResumeImg}
               bgColor="#D8E8FA"
             >
-              {' '}
               <PrimaryButton
                 w="80%"
                 borderRadius="18px"
@@ -281,9 +459,7 @@ const DashboardSection = () => {
               des="There are a few details you might still haven't fill up"
               leadImage={ProfileImg}
               bgColor="#D8E8FA"
-              marginLeft="-85px"
             >
-              {' '}
               <PrimaryButton
                 w="80%"
                 borderRadius="18px"
@@ -291,10 +467,12 @@ const DashboardSection = () => {
                 border="none"
                 onClick={() => (window.location.href = '/edit-profile')}
               >
-                Complete Profile
+                Edit Profile
               </PrimaryButton>
             </DashboardCard>
           </SimpleGrid>
+          <CNSpacer size="md" />
+          <PublicTeamList ref={publicTeamList} />
         </Container>
       </Center>
     </>

@@ -10,6 +10,14 @@ import {
   SimpleGrid,
   Input,
   IconButton,
+  Button,
+  AlertDialog,
+  AlertDialogBody,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogContent,
+  AlertDialogOverlay,
+  useDisclosure,
 } from '@chakra-ui/react';
 import { VStack } from '@chakra-ui/layout';
 import { ChevronLeftIcon } from '@chakra-ui/icons';
@@ -39,6 +47,12 @@ const EmailVerifyModal = ({
   const authStore: authTypes = store.getState().auth;
   const dispatch = useDispatch();
   const toast = useToast();
+  const {
+    isOpen: isDialogOpen,
+    onOpen: onDialogOpen,
+    onClose: onDialogClose,
+  } = useDisclosure();
+  const cancelRef = React.useRef();
 
   // eslint-disable-next-line
   const { loading: verifyLoading, fetch: verify } = useAxios(
@@ -107,6 +121,7 @@ const EmailVerifyModal = ({
           isClosable: true,
         });
         setStep(2);
+        onDialogClose();
       }
     },
   );
@@ -146,7 +161,6 @@ const EmailVerifyModal = ({
 
   function OTPInputFunc() {
     const inputs = document.querySelectorAll<HTMLInputElement>('#otp > *[id]');
-    console.log(inputs);
     for (let i = 0; i < inputs.length; i++) {
       let isCtrl = false;
       inputs[i].addEventListener('keydown', async function (event: any) {
@@ -157,7 +171,7 @@ const EmailVerifyModal = ({
         } else if (event.keyCode === 86 && isCtrl) {
           event.preventDefault();
 
-          const text = await navigator.clipboard.readText();
+          const text = await (await navigator.clipboard.readText()).trim();
           if (isNumeric(text)) {
             for (let h = 0; h < text.length; h++) {
               inputs[h].value = text.charAt(h);
@@ -208,206 +222,259 @@ const EmailVerifyModal = ({
   }, [step]);
 
   return (
-    <CNModal
-      maxHeight={step === 1 ? '55%' : '70%'}
-      blur
-      disableButton
-      modalIsOpen={isOpen}
-      onRenderUpdate={(modalIsOpen) => {
-        if (modalIsOpen) {
-          OTPInputFunc();
-        }
-      }}
-    >
-      {step === 1 ? (
-        <VStack height="100%" w="100%" justifyContent="center">
-          <Lottie
-            options={Warning}
-            height={125}
-            width={125}
-            style={{ marginTop: 5, marginBottom: 5 }}
-          />
-          <SecondaryText fontSize="3xl" fontWeight="bold">
-            Your email is not verified
-          </SecondaryText>
+    <>
+      <AlertDialog
+        motionPreset="slideInBottom"
+        isOpen={isDialogOpen}
+        // @ts-ignore
+        leastDestructiveRef={cancelRef}
+        onClose={onDialogClose}
+        isCentered
+      >
+        <AlertDialogOverlay>
+          <AlertDialogContent>
+            <AlertDialogHeader fontSize="lg" fontWeight="bold">
+              Resend verification email
+            </AlertDialogHeader>
 
-          <SecondaryText fontSize="sm" opacity=".7">
-            Click the button below to send a confirmation code to your email
-          </SecondaryText>
-
-          <PrimaryButton
-            bgColor="#407DC1"
-            mt="40px !important"
-            borderRadius="8px"
-            isLoading={requestVerifyLoading ? true : false}
-            onClick={() => {
-              requestVerify({
-                email: authStore.user!.email,
-              });
-            }}
-          >
-            Send a verification code
-          </PrimaryButton>
-          <Text mt="20px" fontSize="15px">
-            <Link
-              color="#407DC1"
-              onClick={() => {
-                setStep(2);
-              }}
-            >
-              I already have the code
-            </Link>
-          </Text>
-        </VStack>
-      ) : (
-        <>
-          <VStack
-            height="100%"
-            w="100%"
-            justifyContent="center"
-            position="relative"
-          >
-            {sendable ? (
-              <Box position="absolute" top="-10px" left="15px">
-                <IconButton
-                  variant="ghost"
-                  aria-label="Back"
-                  icon={<ChevronLeftIcon w="25px" h="25px" />}
-                  onClick={() => {
-                    setStep(1);
-                  }}
-                />
-              </Box>
-            ) : (
-              <></>
-            )}
-
-            <Lottie
-              options={EmailLoader}
-              height={125}
-              width={125}
-              style={{ marginTop: 5, marginBottom: 5 }}
-            />
-            <Text fontWeight="600" fontSize="28px">
-              Verify your email
-            </Text>
-            <Text fontSize="18px">
-              A verification code has been sent to your email{' '}
+            <AlertDialogBody>
+              <Text>Please make sure your email is correct:</Text>
               <span
                 style={{
                   backgroundColor: '#F5F5F5',
                   padding: '5px 5px',
                   borderRadius: '8px',
                   fontSize: '16px',
+                  textAlign: 'center',
+                  marginTop: '10px',
                 }}
               >
                 {authStore.user!.email}
               </span>
-            </Text>
-            <SimpleGrid
-              columns={6}
-              spacing={2}
-              mt="35px !important"
-              id="otp"
-              justifyContent="center"
-              className="flex justify-center"
-            >
-              <Input
-                textAlign="center"
-                p="0px 6px !important"
-                w="45px"
-                type="text"
-                id="first"
-                ref={firstNum}
-                maxLength={1}
-                keyboardType="number-pad"
-                boxShadow="0px 5px 6px rgba(185, 185, 185, 0.25);"
-              />
-              <Input
-                textAlign="center"
-                p="0px 6px !important"
-                w="45px"
-                type="text"
-                id="second"
-                ref={SecNum}
-                maxLength={1}
-                keyboardType="number-pad"
-                boxShadow="0px 5px 6px rgba(185, 185, 185, 0.25);"
-              />
-              <Input
-                textAlign="center"
-                p="0px 6px !important"
-                w="45px"
-                type="text"
-                id="third"
-                ref={thirdNum}
-                maxLength={1}
-                keyboardType="number-pad"
-                boxShadow="0px 5px 6px rgba(185, 185, 185, 0.25);"
-              />
-              <Input
-                textAlign="center"
-                p="0px 6px !important"
-                w="45px"
-                type="text"
-                id="fourth"
-                ref={forthNum}
-                maxLength={1}
-                keyboardType="number-pad"
-                boxShadow="0px 5px 6px rgba(185, 185, 185, 0.25);"
-              />
-              <Input
-                textAlign="center"
-                p="0px 6px !important"
-                w="45px"
-                type="text"
-                id="fifth"
-                ref={fifthNum}
-                maxLength={1}
-                keyboardType="number-pad"
-                boxShadow="0px 5px 6px rgba(185, 185, 185, 0.25);"
-              />
-              <Input
-                textAlign="center"
-                p="0px 6px !important"
-                w="45px"
-                type="text"
-                id="sixth"
-                ref={sixthNum}
-                maxLength={1}
-                keyboardType="number-pad"
-                boxShadow="0px 5px 6px rgba(185, 185, 185, 0.25);"
-              />
-            </SimpleGrid>
+            </AlertDialogBody>
 
-            <PrimaryButton
-              bgColor="#407DC1"
-              mt="40px !important"
-              borderRadius="8px"
-              isLoading={verifyLoading ? true : false}
-              onClick={() => {
-                submitVerify();
-              }}
-            >
-              Confirm
-            </PrimaryButton>
-            <Text mt="15px" fontSize="15px">
-              Didn{"'"}t recieve any code?{' '}
-              <Link
-                color="#407DC1"
+            <AlertDialogFooter>
+              {/* @ts-ignore */}
+              <Button ref={cancelRef} onClick={onDialogClose}>
+                Cancel
+              </Button>
+              <Button
+                colorScheme="red"
                 onClick={() => {
                   requestVerify({
                     email: authStore.user!.email,
                   });
                 }}
+                ml={3}
+                isLoading={requestVerifyLoading}
               >
-                Resend
+                Resend email
+              </Button>
+            </AlertDialogFooter>
+          </AlertDialogContent>
+        </AlertDialogOverlay>
+      </AlertDialog>
+      <CNModal
+        maxHeight={step === 1 ? '55%' : '70%'}
+        blur
+        disableButton
+        modalIsOpen={isOpen}
+        centerSpacing={false}
+        onRenderUpdate={(modalIsOpen) => {
+          if (modalIsOpen) {
+            OTPInputFunc();
+          }
+        }}
+      >
+        {step === 1 ? (
+          <VStack height="100%" w="100%" justifyContent="center">
+            <Lottie
+              options={Warning}
+              height={125}
+              width={125}
+              style={{ marginTop: 5, marginBottom: 5 }}
+            />
+            <SecondaryText fontSize="3xl" fontWeight="bold">
+              Your email is not verified
+            </SecondaryText>
+
+            <SecondaryText fontSize="sm" opacity=".7">
+              Click the button below to send a confirmation code to your email
+            </SecondaryText>
+
+            <PrimaryButton
+              bgColor="#407DC1"
+              mt="40px !important"
+              borderRadius="8px"
+              isLoading={requestVerifyLoading ? true : false}
+              onClick={() => {
+                requestVerify({
+                  email: authStore.user!.email,
+                });
+              }}
+            >
+              Send a verification code
+            </PrimaryButton>
+            <Text mt="20px" fontSize="15px">
+              <Link
+                color="#407DC1"
+                onClick={() => {
+                  setStep(2);
+                }}
+              >
+                I already have the code
               </Link>
             </Text>
           </VStack>
-        </>
-      )}
-    </CNModal>
+        ) : (
+          <>
+            <VStack
+              height="100%"
+              w="100%"
+              justifyContent="center"
+              position="relative"
+            >
+              {sendable ? (
+                <Box position="absolute" top="-10px" left="15px">
+                  <IconButton
+                    variant="ghost"
+                    aria-label="Back"
+                    icon={<ChevronLeftIcon w="25px" h="25px" />}
+                    onClick={() => {
+                      setStep(1);
+                    }}
+                  />
+                </Box>
+              ) : (
+                <></>
+              )}
+
+              <Lottie
+                options={EmailLoader}
+                height={125}
+                width={125}
+                style={{ marginTop: 5, marginBottom: 5 }}
+              />
+              <Text fontWeight="600" fontSize="28px" w="100%">
+                Verify your email
+              </Text>
+              <Text fontSize="18px" w="100%">
+                A verification code has been sent to your email{' '}
+                <span
+                  style={{
+                    backgroundColor: '#F5F5F5',
+                    padding: '5px 5px',
+                    borderRadius: '8px',
+                    fontSize: '16px',
+                  }}
+                >
+                  {authStore.user!.email}
+                </span>
+              </Text>
+              <SimpleGrid
+                columns={[3, 3, 6]}
+                spacing={2}
+                mt="35px !important"
+                id="otp"
+                justifyContent="center"
+                className="flex justify-center"
+                alignItems="center"
+              >
+                <Input
+                  textAlign="center"
+                  p="0px 6px !important"
+                  w="45px"
+                  type="text"
+                  id="first"
+                  ref={firstNum}
+                  maxLength={1}
+                  keyboardType="number-pad"
+                  boxShadow="0px 5px 6px rgba(185, 185, 185, 0.25);"
+                />
+                <Input
+                  textAlign="center"
+                  p="0px 6px !important"
+                  w="45px"
+                  type="text"
+                  id="second"
+                  ref={SecNum}
+                  maxLength={1}
+                  keyboardType="number-pad"
+                  boxShadow="0px 5px 6px rgba(185, 185, 185, 0.25);"
+                />
+                <Input
+                  textAlign="center"
+                  p="0px 6px !important"
+                  w="45px"
+                  type="text"
+                  id="third"
+                  ref={thirdNum}
+                  maxLength={1}
+                  keyboardType="number-pad"
+                  boxShadow="0px 5px 6px rgba(185, 185, 185, 0.25);"
+                />
+                <Input
+                  textAlign="center"
+                  p="0px 6px !important"
+                  w="45px"
+                  type="text"
+                  id="fourth"
+                  ref={forthNum}
+                  maxLength={1}
+                  keyboardType="number-pad"
+                  boxShadow="0px 5px 6px rgba(185, 185, 185, 0.25);"
+                />
+                <Input
+                  textAlign="center"
+                  p="0px 6px !important"
+                  w="45px"
+                  type="text"
+                  id="fifth"
+                  ref={fifthNum}
+                  maxLength={1}
+                  keyboardType="number-pad"
+                  boxShadow="0px 5px 6px rgba(185, 185, 185, 0.25);"
+                />
+                <Input
+                  textAlign="center"
+                  p="0px 6px !important"
+                  w="45px"
+                  type="text"
+                  id="sixth"
+                  ref={sixthNum}
+                  maxLength={1}
+                  keyboardType="number-pad"
+                  boxShadow="0px 5px 6px rgba(185, 185, 185, 0.25);"
+                />
+              </SimpleGrid>
+
+              <PrimaryButton
+                bgColor="#407DC1"
+                mt="40px !important"
+                borderRadius="8px"
+                isLoading={verifyLoading ? true : false}
+                onClick={() => {
+                  submitVerify();
+                }}
+              >
+                Confirm
+              </PrimaryButton>
+              <Text mt="15px" fontSize="15px">
+                Didn{"'"}t recieve any code?{' '}
+                <Link
+                  color="#407DC1"
+                  onClick={() => {
+                    onDialogOpen();
+                  }}
+                >
+                  Resend
+                </Link>
+              </Text>
+            </VStack>
+          </>
+        )}
+      </CNModal>
+    </>
   );
 };
 
