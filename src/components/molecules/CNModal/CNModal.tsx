@@ -121,7 +121,7 @@ const CNModal = ({
                 transition: 'height 0.3s ease-in-out',
                 maxHeight: windowWidth > 650 ? '95%' : '85%',
                 width: windowWidth > 650 ? '600px' : '90%',
-                padding: windowWidth > 650 ? '20px' : '15px',
+                padding: windowWidth > 650 ? '20px' : '25px',
               }}
               {...props}
             >
