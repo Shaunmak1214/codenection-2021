@@ -19,6 +19,8 @@ interface Props {
   field?: any;
   selectedDate: Date | undefined;
   showPopperArrow?: boolean;
+  setFormInput?: any;
+  formInput?: any;
   updateReg: (values: any) => void;
 }
 
@@ -30,12 +32,17 @@ const CNDatePicker = ({
   field,
   isClearable = false,
   showPopperArrow = false,
+  formInput,
+  setFormInput,
   ...props
 }: Props & HTMLAttributes<HTMLElement>) => {
   const errorText: string =
     getIn(form.touched, field.name) && getIn(form.errors, field.name);
 
   const onChange = (date: Date | [Date | null, Date | null] | null) => {
+    if (formInput) {
+      setFormInput({ ...formInput, dob: date });
+    }
     // eslint-disable-next-line
     form.setFieldValue(formInputName, date);
   };
