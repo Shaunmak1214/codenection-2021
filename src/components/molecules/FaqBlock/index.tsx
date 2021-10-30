@@ -11,9 +11,14 @@ import {
 import { Box, HStack, Flex } from '@chakra-ui/layout';
 import { MinusIcon, AddIcon } from '@chakra-ui/icons';
 import AOS from 'aos';
-import { ArrowForwardIcon, HelpIcon } from '../../../assets';
+
+import ReactHtmlParser from 'react-html-parser';
+
 import { FaqButton } from '../../atoms/Buttons/Buttons';
+
 import { FaqData, FaqCategories } from '../../../data/FaqData';
+
+import { ArrowForwardIcon, HelpIcon } from '../../../assets';
 import 'aos/dist/aos.css';
 
 const FaqBlock = () => {
@@ -79,7 +84,7 @@ const FaqBlock = () => {
                         )}
                       </AccordionButton>
                       <AccordionPanel pb="4" color="#5A5A5A">
-                        {data.ans}
+                        {ReactHtmlParser(data.ans)}
                       </AccordionPanel>
                     </>
                   )}

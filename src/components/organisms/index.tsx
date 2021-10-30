@@ -20,6 +20,7 @@ import TitleSponsorSection from './TitleSponsorSection/TitleSponsorSection';
 import MediaPartnersSection from './MediaPartnersSection/MediaPartnersSection';
 import Footer from './FooterSection/footer';
 import ResetPasswordForm from './ResetPasswordForm/ResetPasswordForm';
+import RulesFullSection from './RulesFullSection/RulesFullSection';
 
 import { EditPersonal, EditJob, EditEducation, EditOther } from './EditProfile';
 import EmailVerifyModal from './EmailVerifyModal/EmailVerifyModal';
@@ -48,6 +49,7 @@ export {
   AgendaSection,
   TitleSponsorSection,
   MediaPartnersSection,
+  RulesFullSection,
   ResetPasswordForm,
   CreateTeamModal,
   AdvertisementModal,
