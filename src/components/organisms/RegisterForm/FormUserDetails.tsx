@@ -51,7 +51,7 @@ const FormUserDetails = (props: Props) => {
     email: yup.string().min(3).max(60).required('Email is a required email'),
     password: yup
       .string()
-      .min(3)
+      .min(6)
       .max(60)
       .required('Password is a required field'),
     confirmPassword: yup

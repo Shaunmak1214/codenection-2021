@@ -105,7 +105,7 @@ const LoginForm = () => {
     email: yup.string().min(3).max(60).required('Email is a required field'),
     password: yup
       .string()
-      .min(3)
+      .min(6)
       .max(60)
       .required('Password is a required field'),
   });
