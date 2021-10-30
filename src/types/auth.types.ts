@@ -4,6 +4,8 @@ export default interface authInitialState {
     id: number;
     permission_level: number;
     full_name: string;
+    university: string;
+    team_id: number;
   } | null;
   id: string | null;
   isAuthenticated: boolean;

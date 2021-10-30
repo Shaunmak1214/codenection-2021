@@ -1,12 +1,14 @@
 import React from 'react';
-import { ProfileBlock } from '../../molecules';
+import { Text } from '@chakra-ui/react';
 import { Formik, Form, Field } from 'formik';
 import * as yup from 'yup';
+
 import {
   CNTextFormField,
   CNDatePicker,
   CNSelectDropdownField,
 } from '../../atoms';
+import { ProfileBlock } from '../../molecules';
 import UserInfo from '../../../types/user.type';
 interface Props {
   profileLoading?: boolean;
@@ -38,7 +40,6 @@ const EditPersonal = ({
 
   const schema = yup.object({
     full_name: yup.string().required('fullname'),
-    email: yup.string().required('email'),
     dob: yup.string().required('dob'),
     sex: yup.string().required('gender'),
     citizenship: yup.string().required('citzentship'),
@@ -61,14 +62,18 @@ const EditPersonal = ({
         enableReinitialize
       >
         {(props: FormValues) => (
-          <Form>
+          <Form
+            style={{
+              width: '100%',
+            }}
+          >
             <ProfileBlock
-              updateUser={updateUser}
               title={'Personal Details'}
               profileLoading={profileLoading}
               updateLoading={updateLoading}
               edit={edit}
               setEdit={setEdit}
+              formikProps={props}
             >
               <Field
                 name="full_name"
@@ -79,15 +84,14 @@ const EditPersonal = ({
                 customlabel="Full Name"
                 userData={userInfo.full_name}
               />
-              <Field
-                name="email"
-                placeholder=""
-                component={CNTextFormField}
+
+              <Text
+                fontSize="lg"
                 customlabel="Student Email"
                 userData={userInfo.email}
-                value={props.values.email}
-                onChange={props.handleChange}
-              />
+              >
+                {userInfo.email}
+              </Text>
 
               <Field
                 name="dob"

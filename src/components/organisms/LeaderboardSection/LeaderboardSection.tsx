@@ -16,13 +16,13 @@ import { DiscordBlue, InstagramBlue, FacebookBlue } from '../../../assets';
 
 const LeaderboardSection = () => {
   return (
-    <Center py="100px">
+    <Center py="100px" id="leaderboard">
       <Container maxW="container.lg">
         <SecondaryText
           fontFamily="Raleway"
           fontWeight="bold"
-          fontSize="3xl"
-          mb="40px"
+          fontSize={['2xl', '3xl', '4xl']}
+          mb={['30px', '40px', '50px']}
           align="center"
         >
           LEADERBOARD
@@ -30,14 +30,15 @@ const LeaderboardSection = () => {
 
         <SimpleGrid
           columns={[1, 1, 2]}
-          p={'60px'}
+          p={'40px'}
           w="100%"
           border="2px solid #95C7FF;"
           borderRadius="20px"
           alignItems="center"
+          flexDir="column-reverse"
         >
           <VStack w="100%" alignItems="flex-start">
-            <SecondaryText fontSize="2xl" fontWeight="bold">
+            <SecondaryText fontSize="lg" fontWeight="bold">
               Coming Soon
             </SecondaryText>
             <SecondaryText fontSize="lg">

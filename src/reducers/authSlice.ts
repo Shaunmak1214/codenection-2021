@@ -42,6 +42,7 @@ export const authSlice = createSlice({
     },
     UPDATE: (state, action) => {
       state.user = action.payload;
+      cookie.set('userCN', JSON.stringify(action.payload));
     },
     REGISTERSTATE: (state, action) => {
       state.register_state = action.payload;

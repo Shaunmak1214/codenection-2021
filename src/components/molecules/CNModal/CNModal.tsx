@@ -1,10 +1,13 @@
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
+
 import { Flex, Box } from '@chakra-ui/layout';
 import { IconButton } from '@chakra-ui/react';
 import { CloseIcon } from '@chakra-ui/icons';
 import { AnimatePresence, motion } from 'framer-motion';
+
 import { MutedButton, PrimaryButton, CNSpacer } from '../../atoms';
+import { useWindowSize } from '../../../hooks';
 
 interface Props {
   onClose?: () => void;
@@ -18,10 +21,12 @@ interface Props {
   maxHeight?: string;
   CTAIsCenter?: boolean;
   centerSpacing?: boolean;
+  isPrimaryLoading?: boolean;
   onPrimaryClick?: () => void;
   onRenderUpdate?: (modalIsOpen: boolean) => void;
   primaryButtonFormId?: string;
   theme?: any;
+  blockClose?: boolean;
 }
 const modalAnimation = {
   hidden: {
@@ -64,13 +69,18 @@ const CNModal = ({
   disableButton = false,
   disableCloseButton = disableButton,
   CTAIsCenter = false,
+  isPrimaryLoading = false,
   onPrimaryClick,
   centerSpacing = true,
   theme,
   onRenderUpdate,
+  blockClose = false,
   ...props
 }: Props) => {
   const children: React.ReactNode = props.children;
+
+  // eslint-disable-next-line
+  const [windowWidth, windowHeight] = useWindowSize();
 
   const handlePrimaryClick = () => {
     if (onPrimaryClick) {
@@ -107,58 +117,90 @@ const CNModal = ({
               animate="visible"
               exit="exit"
               style={{
-                padding: '2rem',
                 backgroundColor: theme === 'discord' ? '#5865F2' : '#fff',
                 transition: 'height 0.3s ease-in-out',
+                maxHeight: windowWidth > 650 ? '95%' : '85%',
+                width: windowWidth > 650 ? '600px' : '90%',
+                padding: windowWidth > 650 ? '20px' : '15px',
               }}
               {...props}
             >
-              {!disableCloseButton && (
-                <Box
-                  d="flex"
-                  position="absolute"
-                  top="25px"
-                  right="25px"
-                  justifyContent="flex-end"
-                  onClick={onClose}
-                >
-                  <IconButton
-                    variant="ghost"
-                    aria-label="Close modal"
-                    _hover={{
-                      bg: theme === 'discord' ? '#3945C9' : '#F5F5F5',
-                    }}
-                    icon={<CloseIcon w="12px" h="12px" />}
-                  />
-                </Box>
-              )}
-
               {centerSpacing && <CNSpacer size="xs" />}
-
-              {children}
-              {!disableButton && (
-                <Flex
-                  flexDir={['column', 'column', 'row']}
-                  justifyContent={CTAIsCenter ? 'center' : 'flex-end'}
-                  alignSelf="flex-end"
-                  w="100%"
-                  pt="15px"
-                  mt="15px"
-                >
-                  <MutedButton onClick={onClose}>{mutedText}</MutedButton>
-                  <PrimaryButton
-                    ml="20px"
-                    border="none"
-                    borderRadius="5px"
-                    _hover={{ border: 'none', bg: '#000000' }}
+              <Box
+                className="CNModal-content"
+                w="100%"
+                h="100%"
+                overflowY="scroll"
+                padding={['0px', '0px', '1.5rem']}
+                marginLeft={windowWidth > 600 ? '25px' : '0'}
+              >
+                {!disableCloseButton && (
+                  <Box
+                    d="flex"
+                    position="absolute"
+                    top="35px"
+                    right="35px"
+                    justifyContent="flex-end"
+                    disabled={blockClose}
                     onClick={() => {
-                      handlePrimaryClick();
+                      if (!blockClose) {
+                        // @ts-ignore
+                        onClose();
+                      }
                     }}
+                    zIndex={100}
                   >
-                    {successText}
-                  </PrimaryButton>
-                </Flex>
-              )}
+                    <IconButton
+                      variant="ghost"
+                      aria-label="Close modal"
+                      _hover={{
+                        bg: theme === 'discord' ? '#3945C9' : '#F5F5F5',
+                      }}
+                      icon={<CloseIcon w="12px" h="12px" />}
+                      zIndex={100}
+                    />
+                  </Box>
+                )}
+
+                {children}
+                {!disableButton && (
+                  <Flex
+                    flexDir={['column-reverse', 'column-reverse', 'row']}
+                    justifyContent={CTAIsCenter ? 'center' : 'flex-end'}
+                    alignSelf="flex-end"
+                    w="100%"
+                    pt="15px"
+                    mt="15px"
+                  >
+                    <MutedButton
+                      disabled={blockClose}
+                      onClick={() => {
+                        if (!blockClose) {
+                          // @ts-ignore
+                          onClose();
+                        }
+                      }}
+                    >
+                      {mutedText}
+                    </MutedButton>
+                    <PrimaryButton
+                      ml={[0, 0, '20px']}
+                      mb={['20px', '20px', 0]}
+                      w={['100%', '100%', 'auto']}
+                      border="none"
+                      borderRadius="5px"
+                      _hover={{ border: 'none', bg: '#000000' }}
+                      onClick={() => {
+                        handlePrimaryClick();
+                      }}
+                      isLoading={isPrimaryLoading}
+                      type="submit"
+                    >
+                      {successText}
+                    </PrimaryButton>
+                  </Flex>
+                )}
+              </Box>
             </motion.div>
           </>
         )}

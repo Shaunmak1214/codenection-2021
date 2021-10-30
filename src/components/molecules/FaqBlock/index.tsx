@@ -8,22 +8,29 @@ import {
   AccordionPanel,
   Text,
 } from '@chakra-ui/react';
-import { Box, HStack } from '@chakra-ui/layout';
+import { Box, HStack, Flex } from '@chakra-ui/layout';
 import { MinusIcon, AddIcon } from '@chakra-ui/icons';
 import AOS from 'aos';
-import { ArrowForwardIcon, HelpIcon } from '../../../assets';
+
+import ReactHtmlParser from 'react-html-parser';
+
 import { FaqButton } from '../../atoms/Buttons/Buttons';
+
 import { FaqData, FaqCategories } from '../../../data/FaqData';
+
+import { ArrowForwardIcon, HelpIcon } from '../../../assets';
 import 'aos/dist/aos.css';
 
 const FaqBlock = () => {
-  const [value, setValue] = useState<string>('All');
+  const [value, setValue] = useState<string>('Registration');
   const handleCategory = (e: React.MouseEvent<HTMLElement>) => {
     e.preventDefault();
 
     const button: any = e.currentTarget;
     setValue(button.value);
   };
+
+  const scrollableRef = React.useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     AOS.init({
@@ -43,6 +50,8 @@ const FaqBlock = () => {
             allowToggle
             allowMultiple
             data-aos-duration="1000"
+            w="100%"
+            margin="0 auto"
           >
             {datas.map((data: any) => {
               return (
@@ -75,7 +84,7 @@ const FaqBlock = () => {
                         )}
                       </AccordionButton>
                       <AccordionPanel pb="4" color="#5A5A5A">
-                        {data.ans}
+                        {ReactHtmlParser(data.ans)}
                       </AccordionPanel>
                     </>
                   )}
@@ -92,22 +101,41 @@ const FaqBlock = () => {
 
   return (
     <>
-      <HStack w="100%" spacing="26" justifyContent="center" mb="35">
-        {FaqCategories.map((category) => {
-          return (
-            <>
-              <FaqButton
-                key={category.idx}
-                selected={value === category.category ? true : false}
-                value={category.category}
-                onClick={handleCategory}
-              >
-                {category.category}
-              </FaqButton>
-            </>
-          );
-        })}
-        <Image src={ArrowForwardIcon} cursor="pointer" />
+      <HStack w="100%" justifyContent="center" mb="35">
+        <Flex
+          ref={scrollableRef}
+          flexDir="row"
+          overflowX="scroll"
+          spacing={2}
+          alignItems="center"
+          className="faq-scrollable"
+          transition="all 0.5s ease-in-out"
+        >
+          {FaqCategories.map((category) => {
+            return (
+              <>
+                <FaqButton
+                  key={category.idx}
+                  selected={value === category.category ? true : false}
+                  value={category.category}
+                  onClick={handleCategory}
+                  mr="15px"
+                  px="65px"
+                >
+                  {category.category}
+                </FaqButton>
+              </>
+            );
+          })}
+        </Flex>
+        <Image
+          src={ArrowForwardIcon}
+          onClick={() => {
+            // @ts-ignore
+            scrollableRef.current.scrollBy(100, 0);
+          }}
+          cursor="pointer"
+        />
       </HStack>
       <FaqCategory selected={value} />
     </>

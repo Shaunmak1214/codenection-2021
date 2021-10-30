@@ -26,25 +26,26 @@ const DashboardCard = ({
     <Container
       d="flex"
       justifyContent="center"
-      alignItems="center"
+      alignItems="flex-start"
       flexDir="column"
       mb="20px"
     >
       <Box mb="25px" ml={marginLeft}>
-        <SecondaryText fontSize="25px" fontWeight="bold">
+        <SecondaryText fontSize="2xl" fontWeight="bold">
           {title}
         </SecondaryText>
         <SecondaryText>{des}</SecondaryText>
-      </Box>{' '}
+      </Box>
       <VStack
-        w="450px"
-        h="410px"
+        h={['100%', '100%', '410px']}
+        w="100%"
         bg={bgColor}
         borderRadius="20px"
         justifyContent="center"
         alignItems="center"
+        py="5"
       >
-        <Image src={leadImage} h="310px" />
+        <Image src={leadImage} h={['175px', '175px', '310px']} w="auto" />
         {children}
       </VStack>
     </Container>

@@ -1,5 +1,6 @@
 import CNSpacer from './CNSpacer/CNSpacer';
 import CNTextFormField from './CNTextFormField/CNTextFormField';
+import CNRadio from './CNRadio/CNRadio';
 import CNSelectFormField from './CNSelectFormField/CNSelectFormField';
 import CNSelectDropdownField from './CNSelectDropdownField/CNSelectDropdownField';
 import CNChooser from './CNChooser/CNChooser';
@@ -20,6 +21,8 @@ import {
 import { BadgeImg, SponsorImg } from './SponsorAtom/SponsorAtom';
 import CircleStep from './CircleStep/CircleStep';
 import ProfileBoxTitle from './ProfileBoxTitle/ProfileBoxTitle';
+import WhiteBox from './WhiteBox/WhiteBox';
+
 export {
   PrimaryButton,
   JoinTeamButton,
@@ -42,4 +45,6 @@ export {
   CNDatePicker,
   ProfileBoxTitle,
   MutedButton,
+  CNRadio,
+  WhiteBox,
 };

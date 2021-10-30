@@ -41,24 +41,35 @@ const SponsorsBlock = ({ sponsorData, ...props }: any) => {
   // @ts-ignore
   const SponsorBlockRenderer = ({ sponsorData, ...props }): any => {
     const { sponsor } = props;
-
     switch (sponsorData.type) {
       case 'Title':
         return (
-          <SponsorImg bgImage={sponsorData.flags} w="450px" h="270px">
+          <SponsorImg
+            bgImage={sponsorData.flags}
+            w={['100%', '340px', '450px']}
+            h={['205px', '205px', '270px']}
+          >
             <Image maxH="125px" mb="20px" src={sponsor.imageSrc} />
           </SponsorImg>
         );
       case 'Platinum':
         return (
-          <SponsorImg bgImage={sponsorData.flags} w="370px" h="220px">
+          <SponsorImg
+            bgImage={sponsorData.flags}
+            w={['265px', '240px', '265px', '370px']}
+            h={['205px', '205px', '205px', '220px']}
+          >
             <Image maxH="125px" mb="20px" src={sponsor.imageSrc} />
           </SponsorImg>
         );
 
       case 'Gold':
         return (
-          <SponsorImg bgImage={sponsorData.flags} w="290px" h="200px">
+          <SponsorImg
+            bgImage={sponsorData.flags}
+            w={['230px', '230px', '290px']}
+            h={['195px', '195px', '200px']}
+          >
             <Image maxH="100px" mb="20px" src={sponsor.imageSrc} />
           </SponsorImg>
         );
@@ -90,11 +101,16 @@ const SponsorsBlock = ({ sponsorData, ...props }: any) => {
           <BadgeRenderer sponsorData={sponsorData} />
         </VStack>
         <SimpleGrid
-          columns={sponsorData.level}
+          columns={[
+            '1',
+            sponsorData.level > 2 ? '2' : sponsorData.level,
+            sponsorData.level > 2 ? '2' : sponsorData.level,
+            sponsorData.level,
+          ]}
           w="100%"
           justifyItems="center"
           alignItems="center"
-          spacing={5}
+          spacing={['2', '2', '5']}
         >
           {sponsorData.data.map((sponsor: dataObject) => {
             return (

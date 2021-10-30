@@ -1,18 +1,21 @@
 /* eslint-disable */
 
-import React, { useCallback, useEffect } from 'react';
+import React, { useCallback } from 'react';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { CLEARREG, UPDATEREG } from '../reducers/formSlice';
+import { Redirect } from 'react-router';
+import { HStack } from '@chakra-ui/layout';
+
 import {
   FormPersonalDetails,
   FormTeamDetails,
   FormUserDetails,
   RegisterIndicator,
 } from '../components/organisms';
-import { HStack } from '@chakra-ui/layout';
+
+import { CLEARREG, UPDATEREG } from '../reducers/formSlice';
+import { useWindowSize } from '../hooks';
 import store from '../store';
-import { Redirect } from 'react-router';
 import '../register.css';
 import '../wdyr';
 
@@ -24,6 +27,8 @@ const Register = () => {
   const [step, setStep] = useState<number>(1);
   const [prev, setPrev] = useState<boolean>(false);
   const [password, setPassword] = useState<string>('');
+
+  const [windowWidth, windowHeight] = useWindowSize();
 
   // will be passed down to children to execute the action
   const handleUpdateReg = (data: any) => {
@@ -54,14 +59,15 @@ const Register = () => {
   };
 
   if (authStore.user) {
-    if (authStore.user.permission_level > 1) {
+    if (authStore.user.permission_level > 0) {
       return <Redirect to="/dashboard" />;
     }
   }
 
   return (
-    <HStack alignItems="flex-start">
-      <RegisterIndicator currentStep={step} />
+    <HStack alignItems="flex-start" id="non-scrollable">
+      {windowWidth > 1120 && <RegisterIndicator currentStep={step} />}
+
       {step == 1 && (
         <FormUserDetails
           nextStep={nextStep}

@@ -1,10 +1,10 @@
 import {
-  CNFullLogo,
   TitleBG,
   PlatinumBG,
   GoldBG,
   SilverBG,
   BronzeBG,
+  StockLogo,
 } from '../assets';
 
 interface SponsorsObject {
@@ -27,7 +27,7 @@ const TitleSponsor: SponsorsObject = {
   data: [
     {
       idx: 0,
-      imageSrc: CNFullLogo,
+      imageSrc: StockLogo,
     },
   ],
 };
@@ -39,17 +39,17 @@ const PlatinumSponsor: SponsorsObject = {
   data: [
     {
       idx: 0,
-      imageSrc: CNFullLogo,
+      imageSrc: StockLogo,
     },
 
     {
       idx: 1,
-      imageSrc: CNFullLogo,
+      imageSrc: StockLogo,
     },
 
     {
       idx: 2,
-      imageSrc: CNFullLogo,
+      imageSrc: StockLogo,
     },
   ],
 };
@@ -61,27 +61,27 @@ const GoldSponsor: SponsorsObject = {
   data: [
     {
       idx: 0,
-      imageSrc: CNFullLogo,
+      imageSrc: StockLogo,
     },
     {
       idx: 1,
-      imageSrc: CNFullLogo,
+      imageSrc: StockLogo,
     },
     {
       idx: 2,
-      imageSrc: CNFullLogo,
+      imageSrc: StockLogo,
     },
     {
       idx: 3,
-      imageSrc: CNFullLogo,
+      imageSrc: StockLogo,
     },
     {
       idx: 4,
-      imageSrc: CNFullLogo,
+      imageSrc: StockLogo,
     },
     {
       idx: 5,
-      imageSrc: CNFullLogo,
+      imageSrc: StockLogo,
     },
   ],
 };
@@ -93,23 +93,23 @@ const SilverSponsor: SponsorsObject = {
   data: [
     {
       idx: 0,
-      imageSrc: CNFullLogo,
+      imageSrc: StockLogo,
     },
     {
       idx: 1,
-      imageSrc: CNFullLogo,
+      imageSrc: StockLogo,
     },
     {
       idx: 2,
-      imageSrc: CNFullLogo,
+      imageSrc: StockLogo,
     },
     {
       idx: 3,
-      imageSrc: CNFullLogo,
+      imageSrc: StockLogo,
     },
     {
       idx: 4,
-      imageSrc: CNFullLogo,
+      imageSrc: StockLogo,
     },
   ],
 };
@@ -121,27 +121,27 @@ const BronzeSponsor: SponsorsObject = {
   data: [
     {
       idx: 0,
-      imageSrc: CNFullLogo,
+      imageSrc: StockLogo,
     },
     {
       idx: 1,
-      imageSrc: CNFullLogo,
+      imageSrc: StockLogo,
     },
     {
       idx: 2,
-      imageSrc: CNFullLogo,
+      imageSrc: StockLogo,
     },
     {
       idx: 3,
-      imageSrc: CNFullLogo,
+      imageSrc: StockLogo,
     },
     {
       idx: 4,
-      imageSrc: CNFullLogo,
+      imageSrc: StockLogo,
     },
     {
       idx: 5,
-      imageSrc: CNFullLogo,
+      imageSrc: StockLogo,
     },
   ],
 };
