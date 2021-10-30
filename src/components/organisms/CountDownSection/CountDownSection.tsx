@@ -7,7 +7,7 @@ import { CountDownBlock } from '../../molecules';
 
 const CountDownSection = () => {
   const { daysRef, hoursRef, minutesRef, secondsRef } = useCountDown(
-    'October 30, 2021 00:00:00',
+    'December 17, 2021 00:00:00',
   );
   return (
     <>
@@ -20,6 +20,7 @@ const CountDownSection = () => {
         right="0"
         marginTop="-100px"
         w="100%"
+        zIndex={100}
       >
         <Container
           maxW="container.lg"
@@ -49,15 +50,22 @@ const CountDownSection = () => {
                 Join us as a{' '}
                 <span style={{ color: '#002A97' }}>CodeNector!</span>
               </Text>
-              <SecondaryButton>Register Now</SecondaryButton>
+              <SecondaryButton
+                onClick={() => {
+                  window.location.href = '/register';
+                }}
+              >
+                Register Now
+              </SecondaryButton>
             </Flex>
             <SimpleGrid
-              columns={[1, 1, 4]}
-              spacing={2}
-              py="45px"
+              columns={4}
+              spacingY={2}
+              py={['20px', '25px', '45px']}
               px={['15px', '15px', '0']}
-              justifyItems="center"
+              justifyItems="space-between"
               alignItems="center"
+              w="100%"
             >
               <CountDownBlock>
                 <Text
@@ -95,7 +103,7 @@ const CountDownSection = () => {
                   0
                 </Text>
                 <Text color="#002A97" fontSize={['sm', 'md', 'lg']}>
-                  MINUTES
+                  MINS
                 </Text>
               </CountDownBlock>
               <CountDownBlock lastBlock="last">
@@ -108,7 +116,7 @@ const CountDownSection = () => {
                   0
                 </Text>
                 <Text color="#002A97" fontSize={['sm', 'md', 'lg']}>
-                  SECONDS
+                  SECS
                 </Text>
               </CountDownBlock>
             </SimpleGrid>

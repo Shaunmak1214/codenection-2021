@@ -20,7 +20,7 @@ const Login = () => {
   }
 
   return (
-    <HStack>
+    <HStack id="non-scrollable">
       <LoginForm />
       {windowWidth > 1120 && (
         <Center h="100vh" w="50%" bg="#002A97">

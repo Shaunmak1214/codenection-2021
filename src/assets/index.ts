@@ -8,6 +8,15 @@ import BronzeBG from './jpgs-pngs/BronzeBG.png';
 import GrayBox from './jpgs-pngs/gray.png';
 import SaveProfile from './jpgs-pngs/SavePng.png';
 import EmailVerified from './jpgs-pngs/EmailVerified.png';
+import CNAboutLogo from './codenection/1050x1050 CodeNection_Vertical_Logo_Ori 31.png';
+import EventDateImg from './jpgs-pngs/event-date.png';
+import AgendaImg from './jpgs-pngs/agenda-section.png';
+import Workshop from './jpgs-pngs/workshop.png';
+import Contest from './jpgs-pngs/contest.png';
+import TitleSponsorImg from './jpgs-pngs/title-sponsor-bg.jpg';
+import TitleSponsorStock from './jpgs-pngs/stock-title-sponsor-img.png';
+import ExternalClubGroupedImg from './jpgs-pngs/external-club.png';
+import StockLogo from './jpgs-pngs/stock-logo.png';
 
 //svgs
 import CNLanding from './svgs/CNLanding.svg';
@@ -57,12 +66,20 @@ import LeaderIcon from './svgs/LeaderIcon.svg';
 import MemberIcon from './svgs/MemberIcon.svg';
 import DownIcon from './svgs/down.svg';
 import DeleteIcon from './svgs/delete.svg';
+import { ReactComponent as BecomeOurSponsorIcon } from './svgs/become-sponsor.svg';
 
 export {
   CNLanding,
+  CNAboutLogo,
+  EventDateImg,
+  AgendaImg,
+  Workshop,
+  Contest,
   CodeNectionLogo,
   CodeNectionText,
   CNFullLogo,
+  TitleSponsorImg,
+  TitleSponsorStock,
   TitleBadge,
   PlatinumBadge,
   GoldBadge,
@@ -115,4 +132,7 @@ export {
   MemberIcon,
   DownIcon,
   DeleteIcon,
+  BecomeOurSponsorIcon,
+  ExternalClubGroupedImg,
+  StockLogo,
 };

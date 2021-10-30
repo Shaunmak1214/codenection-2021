@@ -20,7 +20,7 @@ const CountDownBlock = ({ lastBlock, ...props }: Props) => {
       //     ? 'none'
       //     : ['1.5px solid #002A97', '1.5px solid #002A97', 'none']
       // }
-      width="250px"
+      width="100%"
       d="flex"
       flexDir="column"
       justifyContent="center"

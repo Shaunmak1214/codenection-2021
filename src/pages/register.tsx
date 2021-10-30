@@ -65,7 +65,7 @@ const Register = () => {
   }
 
   return (
-    <HStack alignItems="flex-start">
+    <HStack alignItems="flex-start" id="non-scrollable">
       {windowWidth > 1120 && <RegisterIndicator currentStep={step} />}
 
       {step == 1 && (

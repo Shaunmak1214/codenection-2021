@@ -21,8 +21,8 @@ const LeaderboardSection = () => {
         <SecondaryText
           fontFamily="Raleway"
           fontWeight="bold"
-          fontSize="3xl"
-          mb="40px"
+          fontSize={['2xl', '3xl', '4xl']}
+          mb={['30px', '40px', '50px']}
           align="center"
         >
           LEADERBOARD
@@ -38,7 +38,7 @@ const LeaderboardSection = () => {
           flexDir="column-reverse"
         >
           <VStack w="100%" alignItems="flex-start">
-            <SecondaryText fontSize="2xl" fontWeight="bold">
+            <SecondaryText fontSize="lg" fontWeight="bold">
               Coming Soon
             </SecondaryText>
             <SecondaryText fontSize="lg">

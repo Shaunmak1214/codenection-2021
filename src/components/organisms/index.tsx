@@ -14,6 +14,10 @@ import LeaderboardSection from './LeaderboardSection/LeaderboardSection';
 import RuleSection from './RuleSection';
 import FaqSection from './FaqSection';
 import AboutSection from './AboutSection/AboutSection';
+import EventDateSection from './EventDateSection/EventDateSection';
+import AgendaSection from './AgendaSection/AgendaSection';
+import TitleSponsorSection from './TitleSponsorSection/TitleSponsorSection';
+import MediaPartnersSection from './MediaPartnersSection/MediaPartnersSection';
 import Footer from './FooterSection/footer';
 import ResetPasswordForm from './ResetPasswordForm/ResetPasswordForm';
 
@@ -40,6 +44,10 @@ export {
   AboutSection,
   RuleSection,
   FaqSection,
+  EventDateSection,
+  AgendaSection,
+  TitleSponsorSection,
+  MediaPartnersSection,
   ResetPasswordForm,
   CreateTeamModal,
   AdvertisementModal,

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container, HStack, Box } from '@chakra-ui/layout';
+import { Container, HStack } from '@chakra-ui/layout';
 import { Image, Heading } from '@chakra-ui/react';
 
 import { PrimaryButton, PrimaryText, CNSpacer } from '../components/atoms';
@@ -10,6 +10,10 @@ import {
   AboutSection,
   LeaderboardSection,
   SponsorSection,
+  EventDateSection,
+  AgendaSection,
+  TitleSponsorSection,
+  MediaPartnersSection,
 } from '../components/organisms';
 
 import { CNLanding } from '../assets';
@@ -61,12 +65,15 @@ const Landing: React.FC = () => {
         <LandingImgRenderer />
       </HStack>
       <CountDownSection />
-      <Box w="100%" h="300px"></Box>
+      <TitleSponsorSection />
       <AboutSection />
+      <EventDateSection />
+      <AgendaSection />
       <LeaderboardSection />
       <RuleSection />
       <FaqSection />
       <SponsorSection />
+      <MediaPartnersSection />
     </>
   );
 };
