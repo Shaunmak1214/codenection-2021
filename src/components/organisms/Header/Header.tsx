@@ -114,8 +114,11 @@ const Header = () => {
                 <Link href="/#agenda" mr="25px">
                   <Text>Agenda</Text>
                 </Link>
-                <Link href="/#leaderboard">
+                <Link href="/#leaderboard" mr="25px">
                   <Text>Leaderboard</Text>
+                </Link>
+                <Link href="/#rules">
+                  <Text>Rules</Text>
                 </Link>
               </Flex>
             </HStack>
@@ -134,9 +137,6 @@ const Header = () => {
                 d={['none', 'none', 'none', 'flex']}
                 justifyContent="flex-end"
               >
-                <Link href="/#rules" mr="25px">
-                  <Text>Rules & FAQ</Text>
-                </Link>
                 <Link href="/#sponsors" mr="25px">
                   <Text>Sponsors & Partners</Text>
                 </Link>
@@ -199,12 +199,29 @@ const Header = () => {
                   </Box>
                 </>
               ) : (
-                <HeaderButton
-                  onClick={() => (window.location.href = '/login')}
-                  ref={buttonRef}
-                >
-                  Login/Register
-                </HeaderButton>
+                <HStack>
+                  <Box
+                    d={['none', 'block', 'block']}
+                    w="1px"
+                    h="18px"
+                    bgColor="#e9e9e9"
+                    mr="15px"
+                  ></Box>
+                  <Link
+                    onClick={() => (window.location.href = '/login')}
+                    py="3"
+                    mr="20px !important"
+                    d={['none', 'block', 'block']}
+                  >
+                    <Text fontSize="md">Login</Text>
+                  </Link>
+                  <HeaderButton
+                    onClick={() => (window.location.href = '/register')}
+                    ref={buttonRef}
+                  >
+                    Register
+                  </HeaderButton>
+                </HStack>
               )}
             </HStack>
           </SimpleGrid>

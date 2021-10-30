@@ -17,7 +17,7 @@ import { FaqData, FaqCategories } from '../../../data/FaqData';
 import 'aos/dist/aos.css';
 
 const FaqBlock = () => {
-  const [value, setValue] = useState<string>('All');
+  const [value, setValue] = useState<string>('Registration');
   const handleCategory = (e: React.MouseEvent<HTMLElement>) => {
     e.preventDefault();
 

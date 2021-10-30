@@ -14,8 +14,8 @@ const RuleSection = () => {
         <PrimaryText
           fontFamily="Raleway"
           fontWeight="bold"
-          fontSize="3xl"
-          mb="40px"
+          fontSize={['2xl', '3xl', '4xl']}
+          mb={['30px', '40px', '50px']}
           align="center"
         >
           RULES
