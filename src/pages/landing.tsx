@@ -1,6 +1,6 @@
 import React from 'react';
 import { Container, HStack } from '@chakra-ui/layout';
-import { Image, Heading } from '@chakra-ui/react';
+import { Image, Heading, Text, Box } from '@chakra-ui/react';
 
 import { PrimaryButton, PrimaryText, CNSpacer } from '../components/atoms';
 import {
@@ -40,9 +40,14 @@ const Landing: React.FC = () => {
     <>
       <HStack w="100%" h="100vh" position="relative" bg="#002A97">
         <Container maxW="container.xl">
-          <Heading color="#ffffff">CodeNection 2021</Heading>
+          <Heading fontSize="5xl" color="#ffffff">
+            CodeNection{' '}
+            <Box d="inline-block">
+              <Text fontFamily="Proxima Nova">2021</Text>
+            </Box>
+          </Heading>
 
-          <PrimaryText fontSize="2xl">
+          <PrimaryText letterSpacing="2px" fontSize="2xl" opacity=".8">
             Competitive Programming Contest
           </PrimaryText>
 
@@ -64,6 +69,7 @@ const Landing: React.FC = () => {
         </Container>
         <LandingImgRenderer />
       </HStack>
+      <CNSpacer size="4xs" />
       <CountDownSection />
       <TitleSponsorSection />
       <AboutSection />
