@@ -17,6 +17,7 @@ import TitleSponsorImg from './jpgs-pngs/title-sponsor-bg.jpg';
 import TitleSponsorStock from './jpgs-pngs/stock-title-sponsor-img.png';
 import ExternalClubGroupedImg from './jpgs-pngs/external-club.png';
 import StockLogo from './jpgs-pngs/stock-logo.png';
+import StockSponsor from './jpgs-pngs/stock-sponsor-group.png';
 
 //svgs
 import CNLanding from './svgs/CNLanding.svg';
@@ -135,4 +136,5 @@ export {
   BecomeOurSponsorIcon,
   ExternalClubGroupedImg,
   StockLogo,
+  StockSponsor,
 };
