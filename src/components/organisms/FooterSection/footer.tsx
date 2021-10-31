@@ -155,31 +155,31 @@ const Footer = () => {
 
                 <HStack alignItems="center">
                   <Facebook />
-                  <Link href="#">
+                  <Link href="https://www.facebook.com/CodeNection/">
                     <SecondaryText color="white">Facebook</SecondaryText>
                   </Link>
                 </HStack>
                 <HStack alignItems="center">
                   <Instagram />
-                  <Link href="#">
+                  <Link href="https://www.instagram.com/code_nection/">
                     <SecondaryText color="white">Instagram</SecondaryText>
                   </Link>
                 </HStack>
                 <HStack alignItems="center">
                   <Discord />
-                  <Link href="#">
+                  <Link href="https://discord.gg/VpCeFaeKcq">
                     <SecondaryText color="white">Discord Server</SecondaryText>
                   </Link>
                 </HStack>
                 <HStack alignItems="center">
                   <Email />
-                  <Link href="#">
+                  <Link href="mailto:its.codenection@gmail.com">
                     <SecondaryText color="white">Email Us</SecondaryText>
                   </Link>
                 </HStack>
                 <HStack alignItems="center">
                   <ITS />
-                  <Link href="#">
+                  <Link href="https://linktr.ee/itsocietycyberjaya">
                     <SecondaryText color="white">
                       Follow ITS Society
                     </SecondaryText>
@@ -189,6 +189,22 @@ const Footer = () => {
             </VStack>
           </SimpleGrid>
         </Flex>
+        <HStack
+          color="white"
+          alignItems={['flex-start', 'flex-start', 'center']}
+          justifyContent={['flex-start', 'flex-start', 'center']}
+          paddingTop={['35px', '55px', '75px']}
+        >
+          <ITS
+            style={{
+              width: '20px',
+              height: 'auto',
+            }}
+          />{' '}
+          <SecondaryText color="white">
+            Organized by IT Society MMU Cyberjaya
+          </SecondaryText>
+        </HStack>
       </Container>
     </Center>
   );

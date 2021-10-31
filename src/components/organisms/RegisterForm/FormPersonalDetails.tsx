@@ -389,7 +389,7 @@ const FormPersonalDetails = ({
                       }
                       options={[
                         {
-                          label: 'A" level',
+                          label: `A' level`,
                           value: 'A-level',
                         },
                         {
@@ -401,7 +401,7 @@ const FormPersonalDetails = ({
                           value: 'Diploma',
                         },
                         {
-                          label: 'Bachelor"s degree',
+                          label: `Bachelor's degree`,
                           value: 'Degree',
                         },
                         {
