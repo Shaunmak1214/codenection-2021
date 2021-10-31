@@ -170,3 +170,7 @@
   border-radius: 4px;
   border: 1px solid rgba(0, 0, 0, 0.3);
 }
+
+.rules-wrapper > ol > li > p{
+  margin-left: 12px !important;
+}

@@ -42,7 +42,7 @@ const EventDateSection = () => {
 
         <SimpleGrid w="100%" spacing={5} columns={[1, 2, 2]}>
           <VStack
-            w="95%"
+            w={['100%', '100%', '95%']}
             alignItems="center"
             p="5"
             border="1px solid #0099B8;"
@@ -65,7 +65,7 @@ const EventDateSection = () => {
             </PrimaryButton>
           </VStack>
           <VStack
-            w="95%"
+            w={['100%', '100%', '95%']}
             alignItems="center"
             p="5"
             border="1px solid #002A97;"

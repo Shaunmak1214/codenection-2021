@@ -31,7 +31,7 @@ import { Formik, Form, Field } from 'formik';
 
 import { useDispatch } from 'react-redux';
 import { UPDATE } from '../../../reducers/authSlice';
-import { UPDATEAD } from '../../../reducers/advertSlice';
+import { UPDATEAD, ADD } from '../../../reducers/advertSlice';
 
 import store from '../../../store';
 import authTypes from '../../../types/auth.types';
@@ -178,8 +178,6 @@ const DashboardSection = () => {
     }
 
     if (authStore.user!.permission_level >= 2) {
-      setDiscordModalIsOpen(true);
-
       if (window.location.hash === '#create') {
         setTeamModalIsOpen(true);
       }
@@ -200,21 +198,54 @@ const DashboardSection = () => {
       }
     }
 
-    dispatch(
-      UPDATEAD({
-        advert: {
-          id: 1,
-          // @ts-ignore
-          // count: store.getState().advert.find((ad) => ad.id === 1)!.count + 1,
-          latestPopupDateTime: new Date(),
-        },
-      }),
-    );
-
     // @ts-ignore
-    // store.getState().advert.find((ad) => ad.id === 1)!.count < 3
-    //   ? true
-    //   : false,
+    try {
+      // @ts-ignore
+      const ad = store.getState().advert.find((ad) => ad.id === 1);
+      if (ad) {
+        // @ts-ignore
+        const lastPopUpDateTime = new Date(
+          // @ts-ignore
+          store
+            .getState()
+            // @ts-ignore
+            .advert.find((ad) => ad.id === 1)!.latestPopupDateTime,
+        );
+        const dateNow = new Date();
+
+        // @ts-ignore
+        const diffTime = Math.abs(dateNow - lastPopUpDateTime);
+        const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+
+        if (diffDays > 2) {
+          setDiscordModalIsOpen(true);
+          dispatch(
+            UPDATEAD({
+              advert: {
+                id: 1,
+                latestPopupDateTime: new Date(),
+              },
+            }),
+          );
+        }
+      } else {
+        let initialLastPop = new Date();
+        initialLastPop.setDate(initialLastPop.getDate() - 2);
+        dispatch(
+          ADD({
+            advert: {
+              id: 1,
+              latestPopupDateTime: initialLastPop,
+            },
+          }),
+        );
+
+        setDiscordModalIsOpen(true);
+      }
+    } catch (error) {
+      console.log(error);
+      setDiscordModalIsOpen(true);
+    }
 
     // eslint-disable-next-line
   }, [setDiscordModalIsOpen]);
