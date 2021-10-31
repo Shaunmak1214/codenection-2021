@@ -205,7 +205,7 @@ const Index = () => {
         dispatch(
           UPDATE({
             ...authStore.user,
-            full_name: updatedData.full_name,
+            ...updatedData,
           }),
         );
         setEditPersonal(false);
