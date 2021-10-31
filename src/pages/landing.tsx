@@ -75,7 +75,6 @@ const Landing: React.FC = () => {
         </Container>
         <LandingImgRenderer />
       </HStack>
-      <CNSpacer size="4xs" />
       <CountDownSection />
       <TitleSponsorSection />
       <AboutSection />
