@@ -122,7 +122,7 @@ const FormPersonalDetails = ({
   const toast = useToast();
 
   const schema = yup.object({
-    full_name: yup.string().required('Full name is required'),
+    full_name: yup.string().required('Full name is a required field'),
     dob: yup
       .string()
       .min(3)
@@ -130,12 +130,12 @@ const FormPersonalDetails = ({
       .required('Date of birth is a required field'),
     university: yup
       .string()
-      .min(3)
+      .min(1)
       .max(60)
       .required('Name of institution/university is a required field'),
     field_major: yup
       .string()
-      .min(3)
+      .min(1)
       .max(60)
       .required('Field Major is a required field'),
     sex: yup.string().min(3).max(60).required('Gender is a required field'),
@@ -232,6 +232,11 @@ const FormPersonalDetails = ({
                       placeholder=""
                       value={formInput.full_name}
                       component={CNTextFormField}
+                      customLabel={
+                        <Text fontSize="md" color="#1A202C">
+                          Full Name <span style={{ color: 'red' }}>*</span>
+                        </Text>
+                      }
                       onChange={(e: any) => {
                         handleOnChange(e);
                         // eslint-disable-next-line
@@ -260,6 +265,12 @@ const FormPersonalDetails = ({
                         component={CNDatePicker}
                         formInput={formInput}
                         setFormInput={setFormInput}
+                        customLabel={
+                          <Text fontSize="md" color="#1A202C">
+                            Date of birth{' '}
+                            <span style={{ color: 'red' }}>*</span>
+                          </Text>
+                        }
                       />
                       <Field
                         label="Gender:"
@@ -289,6 +300,11 @@ const FormPersonalDetails = ({
                         formInput={formInput}
                         setFormInput={setFormInput}
                         component={CNSelectDropdownField}
+                        customLabel={
+                          <Text fontSize="md" color="#1A202C">
+                            Gender <span style={{ color: 'red' }}>*</span>
+                          </Text>
+                        }
                       />
                       <Field
                         label="Citizenship:"
@@ -309,6 +325,11 @@ const FormPersonalDetails = ({
                           },
                         ]}
                         value={formInput.citizenship}
+                        customLabel={
+                          <Text fontSize="md" color="#1A202C">
+                            Citizenship <span style={{ color: 'red' }}>*</span>
+                          </Text>
+                        }
                         formInput={formInput}
                         setFormInput={setFormInput}
                         component={CNSelectDropdownField}
@@ -326,6 +347,12 @@ const FormPersonalDetails = ({
                         // eslint-disable-next-line
                         props.setFieldValue('university', e.target.value);
                       }}
+                      customLabel={
+                        <Text fontSize="md" color="#1A202C">
+                          Name of institution/university{' '}
+                          <span style={{ color: 'red' }}>*</span>
+                        </Text>
+                      }
                     />
                     <Field
                       label="Field Major: "
@@ -338,6 +365,11 @@ const FormPersonalDetails = ({
                         // eslint-disable-next-line
                         props.setFieldValue('field_major', e.target.value);
                       }}
+                      customLabel={
+                        <Text fontSize="md" color="#1A202C">
+                          Field Major <span style={{ color: 'red' }}>*</span>
+                        </Text>
+                      }
                     />
                     <Field
                       label="Level of education: "
@@ -381,6 +413,12 @@ const FormPersonalDetails = ({
                       value={formInput.education_level}
                       formInput={formInput}
                       setFormInput={setFormInput}
+                      customLabel={
+                        <Text fontSize="md" color="#1A202C">
+                          Level of education{' '}
+                          <span style={{ color: 'red' }}>*</span>
+                        </Text>
+                      }
                     />
 
                     <Field
@@ -417,6 +455,12 @@ const FormPersonalDetails = ({
                       value={formInput.coding_prof}
                       formInput={formInput}
                       setFormInput={setFormInput}
+                      customLabel={
+                        <Text fontSize="md" color="#1A202C">
+                          Coding proficiency{' '}
+                          <span style={{ color: 'red' }}>*</span>
+                        </Text>
+                      }
                     />
                   </VStack>
                   <HStack mt="50px" mb="80px">

@@ -63,7 +63,7 @@ const TeamBlocks = ({ teamInfo, category = 'open' }: Props) => {
                 alignItems="center"
               >
                 <Text textAlign="center" fontSize="sm" p="0">
-                  {category === 'closed' ? 'Public' : 'Private'}
+                  {teamInfo.is_external ? 'Public' : 'Private'}
                 </Text>
               </Box>
             </Flex>

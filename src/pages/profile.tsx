@@ -28,9 +28,10 @@ import {
   EditEducation,
   EditTeamModal,
 } from '../components/organisms';
+import { useDispatch } from 'react-redux';
 
 import { useAxios, useCNModal, useCopyToClipboard } from '../hooks';
-
+import { UPDATE } from '../reducers/authSlice';
 import { EmailVerified } from '../assets';
 
 interface UserProps {
@@ -64,6 +65,7 @@ interface TeamProps {
 
 const Index = () => {
   const toast = useToast();
+  const dispatch = useDispatch();
   const authStore: authTypes = store.getState().auth;
 
   const [editPersonal, setEditPersonal] = useState(false);
@@ -138,6 +140,7 @@ const Index = () => {
         return;
       } else {
         const userData = data.data;
+
         setUserInfo({
           ...userData,
         });
@@ -158,6 +161,7 @@ const Index = () => {
         return;
       } else {
         const returnedData = data.data;
+
         setTeamInfo({
           ...returnedData,
         });
@@ -176,7 +180,6 @@ const Index = () => {
     },
     (err, data) => {
       if (err) {
-        console.log(err);
         toast({
           title: 'Failed to update profile',
           description: err.data.message,
@@ -199,6 +202,12 @@ const Index = () => {
           ...userInfo,
           ...updatedData,
         });
+        dispatch(
+          UPDATE({
+            ...authStore.user,
+            full_name: updatedData.full_name,
+          }),
+        );
         setEditPersonal(false);
         setEditEducation(false);
         setEditJob(false);

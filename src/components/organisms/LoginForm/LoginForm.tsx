@@ -160,6 +160,11 @@ const LoginForm = () => {
                     }
                   }}
                   component={CNTextFormField}
+                  customLabel={
+                    <Text fontSize="md" color="#1A202C">
+                      Student Email <span style={{ color: 'red' }}>*</span>
+                    </Text>
+                  }
                 />
 
                 <HStack
@@ -242,6 +247,12 @@ const LoginForm = () => {
                         leftIcon={EmailIcon}
                         placeholder="xxxx@student.mmu.edu.my"
                         component={CNTextFormField}
+                        customLabel={
+                          <Text fontSize="md" color="#1A202C">
+                            Student Email{' '}
+                            <span style={{ color: 'red' }}>*</span>
+                          </Text>
+                        }
                       />
 
                       <Field
@@ -251,6 +262,11 @@ const LoginForm = () => {
                         placeholder="*********"
                         component={CNTextFormField}
                         type="password"
+                        customLabel={
+                          <Text fontSize="md" color="#1A202C">
+                            Password <span style={{ color: 'red' }}>*</span>
+                          </Text>
+                        }
                       />
                     </VStack>
                     <Box d="flex" justifyContent="flex-end" mt="15px">

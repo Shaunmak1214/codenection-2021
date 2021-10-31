@@ -92,7 +92,6 @@ const DomainVerifyModal = ({ isOpen }: Props) => {
         if (err.status === 204) {
           setCheckExists(false);
         } else {
-          console.log(err);
           toast({
             title: 'Unable to get domain verification',
             description: err.data.message || '',

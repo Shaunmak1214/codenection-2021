@@ -53,7 +53,7 @@ const FormUserDetails = (props: Props) => {
       .min(3)
       .max(60)
       .email()
-      .required('Email is a required email'),
+      .required('Email is a required field'),
     password: yup
       .string()
       .min(6)
@@ -149,6 +149,11 @@ const FormUserDetails = (props: Props) => {
                     <Field
                       value={formInput.email}
                       label="Student Email: "
+                      customLabel={
+                        <Text fontSize="md" color="#1A202C">
+                          Student Email <span style={{ color: 'red' }}>*</span>
+                        </Text>
+                      }
                       name="email"
                       leftIcon={EmailIcon}
                       placeholder="xxxx@student.mmu.edu.my"
@@ -179,6 +184,11 @@ const FormUserDetails = (props: Props) => {
                       placeholder="*********"
                       component={CNTextFormField}
                       type="password"
+                      customLabel={
+                        <Text fontSize="md" color="#1A202C">
+                          Password <span style={{ color: 'red' }}>*</span>
+                        </Text>
+                      }
                     />
                     <Field
                       label="Confirmation Password: "
@@ -187,6 +197,12 @@ const FormUserDetails = (props: Props) => {
                       placeholder="*********"
                       component={CNTextFormField}
                       type="password"
+                      customLabel={
+                        <Text fontSize="md" color="#1A202C">
+                          Confirmation Pasword{' '}
+                          <span style={{ color: 'red' }}>*</span>
+                        </Text>
+                      }
                     />
                   </VStack>
                   <PrimaryButton

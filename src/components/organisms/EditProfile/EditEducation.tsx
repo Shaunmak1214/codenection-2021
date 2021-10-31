@@ -38,11 +38,24 @@ const EditEducation = ({
   }
 
   const schema = yup.object({
-    university: yup.string().required('university'),
-    field_major: yup.string().required('field_major'),
-    education_level: yup.string().required('education_level'),
-    coding_prof: yup.string().required('coding proficiency'),
-    gpa: yup.string().nullable(true),
+    university: yup.string().required('University is a required field'),
+    field_major: yup.string().required('Field Major is a required field'),
+    education_level: yup
+      .string()
+      .min(1)
+      .max(60)
+      .required('Level of education is a required field'),
+    coding_prof: yup
+      .string()
+      .min(1)
+      .max(60)
+      .required('Coding Proficiency is a required field'),
+    gpa: yup
+      .number()
+      .min(0, 'GPA must be above 0')
+      .max(4.0, 'GPA must be not more than 4.0')
+      .typeError('Invalid GPA')
+      .nullable(true),
     expected_graduation: yup.string().nullable(true),
   });
 
@@ -85,6 +98,7 @@ const EditEducation = ({
               component={CNTextFormField}
               customlabel="Name of institution/university"
               userData={userInfo.university}
+              required
             />
             <Field
               name="field_major"
@@ -94,6 +108,7 @@ const EditEducation = ({
               userData={userInfo.field_major}
               onChange={props.handleChange}
               value={props.values.field_major}
+              required
             />
             <Field
               name="education_level"
@@ -125,6 +140,7 @@ const EditEducation = ({
               userData={userInfo.education_level}
               onChange={props.handleChange}
               value={props.values.education_level}
+              required
             />
             <Field
               name="coding_prof"
@@ -156,6 +172,7 @@ const EditEducation = ({
               userData={userInfo.coding_prof}
               value={props.values.coding}
               onChange={props.handleChange}
+              required
             />
             <Field
               name="gpa"
