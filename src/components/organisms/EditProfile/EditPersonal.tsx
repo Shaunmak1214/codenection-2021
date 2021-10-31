@@ -39,10 +39,10 @@ const EditPersonal = ({
   }
 
   const schema = yup.object({
-    full_name: yup.string().required('fullname'),
-    dob: yup.string().required('dob'),
-    sex: yup.string().required('gender'),
-    citizenship: yup.string().required('citzentship'),
+    full_name: yup.string().required('Full Name is a required field'),
+    dob: yup.string().required('Date of birth is a required field'),
+    sex: yup.string().required('Gender is a required field'),
+    citizenship: yup.string().required('Citizenship is a required field'),
   });
 
   return (
@@ -83,6 +83,7 @@ const EditPersonal = ({
                 component={CNTextFormField}
                 customlabel="Full Name"
                 userData={userInfo.full_name}
+                required
               />
 
               <Text
@@ -101,6 +102,7 @@ const EditPersonal = ({
                 component={CNDatePicker}
                 customlabel="Date of birth"
                 userData={userInfo.dob}
+                required
               />
               <Field
                 name="sex"
@@ -127,6 +129,7 @@ const EditPersonal = ({
                 customlabel="Gender"
                 userData={userInfo.sex}
                 onChange={props.handleChange}
+                required
               />
               <Field
                 name="citizenship"
@@ -145,6 +148,7 @@ const EditPersonal = ({
                 customlabel="Citizenship"
                 userData={userInfo.citizenship}
                 onChange={props.handleChange}
+                required
               />
             </ProfileBlock>
           </Form>

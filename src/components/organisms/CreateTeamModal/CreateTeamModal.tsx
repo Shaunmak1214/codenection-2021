@@ -68,7 +68,6 @@ const CreateTeamModal = ({
     },
     (err, data) => {
       if (err) {
-        console.log(err);
         toast({
           title: 'Failed to create team',
           description: err.data.message,
