@@ -14,7 +14,7 @@ import {
 } from '../../../assets';
 import * as yup from 'yup';
 import { motion } from 'framer-motion';
-import useAxios from '../../../hooks/useAxios';
+import { useAxios, useWindowSize } from '../../../hooks/';
 
 interface MyFormValues {
   email: string;
@@ -24,6 +24,9 @@ interface MyFormValues {
 const ForgotPassForm = () => {
   const dispatch = useDispatch();
   const toast = useToast();
+
+  // eslint-disable-next-line
+  const [windowWidth, windowHeight] = useWindowSize();
 
   const { loading, fetch } = useAxios(
     {
@@ -67,7 +70,7 @@ const ForgotPassForm = () => {
 
     password: yup
       .string()
-      .min(3)
+      .min(6)
       .max(60)
       .required('Password is a required field'),
     confirmPassword: yup
@@ -83,13 +86,16 @@ const ForgotPassForm = () => {
   };
 
   return (
-    <VStack h="100%" w="50%">
+    <VStack h="100%" className="hai" w={windowWidth > 1120 ? '50%' : '100%'}>
       <motion.div
         initial={{ opacity: 0, x: -75 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.5 }}
       >
-        <Container w="550px" maxW="container.form">
+        <Container
+          w={windowWidth > 1120 ? '550px' : '100%'}
+          maxW="container.form"
+        >
           <Container mb="25px">
             <HStack
               justifyContent="space-between"

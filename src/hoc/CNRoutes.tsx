@@ -9,6 +9,8 @@ import { CLEARREG } from '../reducers/formSlice';
 import axios from 'axios';
 import { API_URL } from '../constants';
 
+import ReactGA from 'react-ga';
+
 interface Props {
   header?: boolean;
   component: any;
@@ -70,6 +72,8 @@ const CNRoutes = ({
   };
 
   useEffect(() => {
+    // Google Analytics
+    ReactGA.pageview(window.location.pathname + window.location.search);
     axios
       .get(`${API_URL}/auth`, {
         headers: {

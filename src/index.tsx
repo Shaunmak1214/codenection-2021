@@ -6,7 +6,10 @@ import { Provider } from 'react-redux';
 import store from './store';
 import { ChakraProvider } from '@chakra-ui/react';
 import theme from './utils/theme';
+import ReactGA from 'react-ga';
 import './index.css';
+
+ReactGA.initialize('UA-66076187-11');
 
 ReactDOM.render(
   <Provider store={store}>

@@ -122,6 +122,12 @@
   align-items: center;
   text-align: center;
   z-index: 250;
+
+}
+
+.CNModal-content{
+  overflow-y: scroll;
+  overflow-y: overlay;
 }
 
 .CNModal-content::-webkit-scrollbar-thumb {
@@ -132,14 +138,15 @@
   width: 10px;
 }
 
-.CNModal-content::-webkit-scrollbar {
+/* .CNModal-content::-webkit-scrollbar {
+  position: absolute;
   width: 10px;
   height: 80%;
 }
 
 .faq-scrollable::-webkit-scrollbar {
   display: none;
-}
+} */
 
 .modal-overlay {
   position: fixed;
