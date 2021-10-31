@@ -10,7 +10,7 @@ import { CNTextFormField, PrimaryButton, SecondaryText } from '../../atoms';
 import { BoxIcons } from '../../molecules';
 import { PasswordIcon, HomeIcon, CodeNectionLogo } from '../../../assets';
 
-import { useAxios } from '../../../hooks';
+import { useAxios, useWindowSize } from '../../../hooks';
 
 interface MyFormValues {
   password: string;
@@ -36,6 +36,9 @@ const ResetPasswordForm = () => {
     password: '',
     confirmPassword: '',
   };
+
+  // eslint-disable-next-line
+  const [windowWidth, windowHeight] = useWindowSize();
 
   useEffect(() => {
     const urlSearchParams = new URLSearchParams(window.location.search).get(
@@ -96,13 +99,17 @@ const ResetPasswordForm = () => {
   );
 
   return (
-    <VStack h="100%" w="50%">
+    <VStack h="100%" w={windowWidth > 1120 ? '50%' : '100%'}>
       <motion.div
         initial={{ opacity: 0, x: -75 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.5 }}
       >
-        <Container w="550px" maxW="container.form" py="25px">
+        <Container
+          w={windowWidth > 1120 ? '550px' : '100%'}
+          maxW="container.form"
+          py="25px"
+        >
           <Container py="20px">
             <HStack
               justifyContent="space-between"

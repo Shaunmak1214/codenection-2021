@@ -119,9 +119,9 @@ const CNModal = ({
               style={{
                 backgroundColor: theme === 'discord' ? '#5865F2' : '#fff',
                 transition: 'height 0.3s ease-in-out',
-                maxHeight: windowWidth > 650 ? '95%' : '85%',
+                maxHeight: windowWidth > 650 ? '90%' : '85%',
                 width: windowWidth > 650 ? '600px' : '90%',
-                padding: windowWidth > 650 ? '20px' : '15px',
+                padding: windowWidth > 650 ? '20px' : '25px',
               }}
               {...props}
             >
@@ -130,9 +130,9 @@ const CNModal = ({
                 className="CNModal-content"
                 w="100%"
                 h="100%"
-                overflowY="scroll"
+                // overflowY="scroll"
                 padding={['0px', '0px', '1.5rem']}
-                marginLeft={windowWidth > 600 ? '25px' : '0'}
+                // marginLeft={windowWidth > 600 ? '25px' : '0'}
               >
                 {!disableCloseButton && (
                   <Box
