@@ -50,7 +50,14 @@ const RuleSection = () => {
           textAlign="right"
         >
           <Link color="#FFFFFF" href="#">
-            <Box d="flex" justifyContent="center" alignItems="center">
+            <Box
+              d="flex"
+              justifyContent="center"
+              alignItems="center"
+              onClick={() => {
+                window.location.href = '/rules';
+              }}
+            >
               <Text mr={6}>Read more</Text>
               <RightArrow />
             </Box>
