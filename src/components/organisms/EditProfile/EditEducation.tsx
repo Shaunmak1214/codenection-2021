@@ -115,7 +115,7 @@ const EditEducation = ({
               placeholder={props.values.education_level}
               options={[
                 {
-                  label: 'A" level',
+                  label: `A' level`,
                   value: 'A-level',
                 },
                 {
@@ -127,7 +127,7 @@ const EditEducation = ({
                   value: 'Diploma',
                 },
                 {
-                  label: 'Bachelor"s degree',
+                  label: `Bachelor's degree`,
                   value: 'Degree',
                 },
                 {
