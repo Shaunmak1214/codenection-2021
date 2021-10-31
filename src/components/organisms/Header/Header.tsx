@@ -37,9 +37,11 @@ const Header = () => {
     if (moreHover.current && status === 'in') {
       moreHover.current.style.visibility = 'visible';
       moreHover.current.style.opacity = '1';
+      moreHover.current.style.transform = 'translate(-2%, -0%) scale(1.00)';
     } else if (moreHover.current && status === 'out') {
       moreHover.current.style.visibility = 'hidden';
       moreHover.current.style.opacity = '0';
+      moreHover.current.style.transform = 'translate(1%, -0%) scale(0.95)';
     }
   };
 
@@ -117,7 +119,7 @@ const Header = () => {
                 <Link href="/#leaderboard" mr="25px">
                   <Text>Leaderboard</Text>
                 </Link>
-                <Link href="/#rules">
+                <Link href="/rules">
                   <Text>Rules</Text>
                 </Link>
               </Flex>
@@ -176,7 +178,9 @@ const Header = () => {
                       py="4"
                       px="2"
                       borderRadius="4px"
-                      transition="visibility 0.2s ease-in-out, opacity 0.2s ease-in-out"
+                      transform="translate(1%, -0%) scale(0.95)"
+                      transition=" all 150ms cubic-bezier(0.215,0.61,0.355,1);"
+                      transformOrigin="100% 0;"
                       zIndex="50"
                       cursor="pointer"
                     >

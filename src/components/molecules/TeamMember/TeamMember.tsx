@@ -11,13 +11,17 @@ interface Props {
 const TeamMember = ({ leader = false, category, member }: Props) => {
   return (
     <HStack textAlign="center" w="80%" pb="10px" alignItems="none">
-      <Box d="flex" justifyContent="flex-start" w="10%" alignItems="flex-start">
-        {' '}
+      <Box
+        d="flex"
+        justifyContent="flex-start"
+        w="auto"
+        alignItems="flex-start"
+      >
         <Box
           bg={category === 'closed' ? '#0099B8' : '#0078FF'}
           d="flex"
-          w="25px"
-          h="25px"
+          w="25px !important"
+          h="25px !important"
           borderRadius="8px"
           justifyContent="center"
           alignItems="center"

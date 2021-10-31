@@ -22,7 +22,12 @@ const Landing: React.FC = () => {
   const LandingImgRenderer = () => {
     if (window.screen.width < 768) {
       return (
-        <Image position="absolute" margin="0px !important" src={CNLanding} />
+        <Image
+          position="absolute"
+          bottom="0px !important"
+          margin="0px !important"
+          src={CNLanding}
+        />
       );
     } else {
       return (
@@ -62,6 +67,7 @@ const Landing: React.FC = () => {
           <CNSpacer size="sm" />
           <PrimaryButton
             zIndex="20"
+            bg="none"
             onClick={() => (window.location.href = '/register')}
           >
             Register Now
