@@ -88,7 +88,7 @@ const FormUserDetails = (props: Props) => {
             description: err.data.message || '',
             status: 'error',
             position: 'top-right',
-            duration: 90000,
+            duration: 5000,
             isClosable: true,
           });
         }
@@ -98,7 +98,7 @@ const FormUserDetails = (props: Props) => {
           description: '',
           status: 'error',
           position: 'top-right',
-          duration: 90000,
+          duration: 5000,
           isClosable: true,
         });
       }
