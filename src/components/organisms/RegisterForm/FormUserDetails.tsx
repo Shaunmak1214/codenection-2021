@@ -48,7 +48,12 @@ const FormUserDetails = (props: Props) => {
   };
 
   const schema = yup.object({
-    email: yup.string().min(3).max(60).required('Email is a required email'),
+    email: yup
+      .string()
+      .min(3)
+      .max(60)
+      .email()
+      .required('Email is a required email'),
     password: yup
       .string()
       .min(6)
