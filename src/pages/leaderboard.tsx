@@ -1,8 +1,17 @@
-import { Container, HStack, VStack, Text, Box, Flex } from '@chakra-ui/layout';
-import CNSpacer from '../components/atoms/CNSpacer';
-import { CNChooser } from '../components/atoms/CNChooser';
 import React from 'react';
 import { Image } from '@chakra-ui/image';
+import {
+  Container,
+  HStack,
+  VStack,
+  Text,
+  Box,
+  Flex,
+  Heading,
+} from '@chakra-ui/layout';
+
+import { CNChooser, CNSpacer } from '../components/atoms';
+import { CNHoverableAvatarGroup } from '../components/organisms';
 
 const Index = () => {
   const leaderboardData = [
@@ -96,9 +105,9 @@ const Index = () => {
         <CNSpacer size="sm" />
         <HStack w="100%" justifyContent="space-between">
           <VStack alignItems="flex-start">
-            <Text fontSize="45px" fontWeight="bold">
+            <Heading fontSize="45px" fontWeight="bold">
               Leaderboard
-            </Text>
+            </Heading>
             <Text>Last updated at 30/09 6:00PM</Text>
           </VStack>
           <CNChooser />
@@ -139,7 +148,7 @@ const Index = () => {
           <CNSpacer size="5xs" />
 
           <VStack className="leaderboard-row" w="100%">
-            {leaderboardData.map((data, idx) => (
+            {leaderboardData.map((data) => (
               <HStack
                 className="table-row"
                 w="100%"
@@ -157,7 +166,7 @@ const Index = () => {
                   boxShadow: ' 0px 2px 20px rgba(182, 182, 182, 0.25);',
                 }}
                 transition="all 0.2s ease-in-out"
-                key={idx}
+                key={data.idx}
               >
                 <Box textAlign="center" w="15%">
                   <Text>{data.idx}</Text>
@@ -178,7 +187,22 @@ const Index = () => {
                   <Text>{data.teamName}</Text>
                 </Flex>
                 <Box w="100%" textAlign="center">
-                  <Text>Team Members</Text>
+                  <CNHoverableAvatarGroup
+                    data={[
+                      {
+                        uni: 'https://www.mmu.edu.my/favicon.ico',
+                        membersName: 'Shaun Mak',
+                      },
+                      {
+                        uni: 'https://www.mmu.edu.my/favicon.ico',
+                        membersName: 'WOW Mak',
+                      },
+                      {
+                        uni: 'https://www.mmu.edu.my/favicon.ico',
+                        membersName: 'Jason Tan',
+                      },
+                    ]}
+                  />
                 </Box>
                 <Box w="50%" textAlign="center">
                   <Text>{data.score}</Text>
