@@ -1,19 +1,57 @@
 import React from 'react';
 
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Switch } from 'react-router-dom';
 import * as Screens from './pages';
-import { Header } from './components/organisms';
+import CNRoutes from './hoc/CNRoutes';
+
 function App() {
   return (
     <Router forceRefresh={true}>
-      <Header />
       <Switch>
-        <Route exact path="/" component={Screens.Landing}></Route>
-        <Route
+        <CNRoutes header exact path="/" component={Screens.Landing} />
+        <CNRoutes header exact path="/rules" component={Screens.Rules} />
+        <CNRoutes
+          header
           exact
           path="/leaderboard"
           component={Screens.Leaderboard}
-        ></Route>
+        />
+        <CNRoutes
+          clearForm={false}
+          exact
+          path="/register"
+          footer={false}
+          component={Screens.Register}
+        />
+        <CNRoutes
+          exact
+          footer={false}
+          path="/login"
+          component={Screens.Login}
+        />
+        <CNRoutes
+          exact
+          path="/dashboard"
+          header
+          component={Screens.Dashboard}
+          isProtected
+          protectLevel={-1}
+        />
+        <CNRoutes
+          exact
+          path="/reset-password"
+          footer={false}
+          component={Screens.ResetPassword}
+        />
+        <CNRoutes
+          exact
+          isProtected
+          header
+          path="/edit-profile"
+          component={Screens.Profile}
+        />
+
+        <CNRoutes exact header path="*" component={Screens.Landing} />
       </Switch>
     </Router>
   );
