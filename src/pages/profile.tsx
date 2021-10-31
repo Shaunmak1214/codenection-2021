@@ -176,6 +176,7 @@ const Index = () => {
     },
     (err, data) => {
       if (err) {
+        console.log(err);
         toast({
           title: 'Failed to update profile',
           description: err.data.message,
