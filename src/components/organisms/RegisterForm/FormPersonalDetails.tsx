@@ -345,6 +345,14 @@ const FormPersonalDetails = ({
                       placeholder={
                         formInput.education_level === ''
                           ? 'Selelct level of education'
+                          : formInput.education_level === 'A-level'
+                          ? 'A" level'
+                          : formInput.education_level === 'Diploma'
+                          ? 'Diploma/Advanced Diploma'
+                          : formInput.education_level === 'Degree'
+                          ? 'Bachelor"s degree'
+                          : formInput.education_level === 'Master'
+                          ? 'Master/PHD'
                           : formInput.education_level
                       }
                       options={[

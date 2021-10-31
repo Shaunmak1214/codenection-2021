@@ -24,7 +24,7 @@ const ResetPasswordForm = () => {
   const schema = yup.object({
     password: yup
       .string()
-      .min(3)
+      .min(6)
       .max(60)
       .required('Password is a required field'),
     confirmPassword: yup
