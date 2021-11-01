@@ -61,6 +61,7 @@ const CNDatePicker = ({
           isClearable={isClearable}
           showMonthDropdown
           showYearDropdown
+          dateFormat="dd/MM/yyyy"
           dropdownMode="select"
           showPopperArrow={showPopperArrow}
           {...props}

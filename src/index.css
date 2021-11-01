@@ -122,10 +122,9 @@
   align-items: center;
   text-align: center;
   z-index: 250;
-
 }
 
-.CNModal-content{
+.CNModal-content {
   overflow-y: scroll;
   overflow-y: overlay;
 }
@@ -134,7 +133,7 @@
   background-color: #e9e9e9;
   border: 4px solid transparent;
   border-radius: 8px;
-  background-clip: padding-box;  
+  background-clip: padding-box;
   width: 10px;
 }
 
@@ -160,7 +159,6 @@
   background: rgba(31, 48, 65, 0.5);
 }
 
-
 .otpInput {
   width: 3rem !important;
   height: 3rem;
@@ -171,6 +169,10 @@
   border: 1px solid rgba(0, 0, 0, 0.3);
 }
 
-.rules-wrapper > ol > li > p{
+.rules-wrapper > ol > li > p {
   margin-left: 12px !important;
+}
+
+.react-datepicker__navigation {
+  height: 50px;
 }
