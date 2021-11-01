@@ -28,6 +28,7 @@ interface Props {
   placeholder?: string;
   sendCodeBtn?: boolean;
   tooltip?: any;
+  customLabel?: string;
 }
 
 const CNTextFormField = ({
@@ -38,6 +39,7 @@ const CNTextFormField = ({
   type,
   sendCodeBtn = false,
   tooltip,
+  customLabel,
   ...props
 }: Props) => {
   const textRef = React.useRef<any>(null);
@@ -63,7 +65,7 @@ const CNTextFormField = ({
           justifyContent="space-between"
           alignItems="flex-start"
         >
-          <FormLabel>{label}</FormLabel>
+          <FormLabel>{customLabel || label}</FormLabel>
           {tooltip}
         </HStack>
         <InputGroup>

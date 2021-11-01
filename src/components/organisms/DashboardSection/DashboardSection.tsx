@@ -393,7 +393,7 @@ const DashboardSection = () => {
                   <ArrowRightIcon h="8px" w="8px" />
                 </Link>
                 <Link
-                  href="/#rules"
+                  href="/rules"
                   w="100%"
                   justifyContent="space-between"
                   alignItems="center"

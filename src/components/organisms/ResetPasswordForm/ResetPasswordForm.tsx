@@ -156,6 +156,11 @@ const ResetPasswordForm = () => {
                       placeholder="*********"
                       component={CNTextFormField}
                       type="password"
+                      customLabel={
+                        <Text fontSize="md" color="#1A202C">
+                          Password <span style={{ color: 'red' }}>*</span>
+                        </Text>
+                      }
                     />
 
                     <Field
@@ -165,6 +170,12 @@ const ResetPasswordForm = () => {
                       placeholder="*********"
                       component={CNTextFormField}
                       type="password"
+                      customLabel={
+                        <Text fontSize="md" color="#1A202C">
+                          Confirmation Password{' '}
+                          <span style={{ color: 'red' }}>*</span>
+                        </Text>
+                      }
                     />
 
                     {/* <Field

@@ -133,6 +133,9 @@ const ProfileBlock = ({
                       >
                         <Text color="#002A97" fontSize="lg" fontWeight="bold">
                           {child.props.customlabel}
+                          {child.props.required && edit && (
+                            <span style={{ color: '#FF6D6D' }}> *</span>
+                          )}
                         </Text>
 
                         {edit ? (
@@ -143,7 +146,8 @@ const ProfileBlock = ({
                           <>
                             <Box>
                               <Text fontSize="lg">
-                                {child.props.userData === null ? (
+                                {child.props.userData === null ||
+                                child.props.userData === '' ? (
                                   '-'
                                 ) : child.props.name == 'dob' ? (
                                   new Date(

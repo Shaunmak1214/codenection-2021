@@ -68,6 +68,7 @@ import MemberIcon from './svgs/MemberIcon.svg';
 import DownIcon from './svgs/down.svg';
 import DeleteIcon from './svgs/delete.svg';
 import { ReactComponent as BecomeOurSponsorIcon } from './svgs/become-sponsor.svg';
+import { ReactComponent as ITSLogoWhite } from './svgs/ITSLogoWhite.svg';
 
 export {
   CNLanding,
@@ -137,4 +138,5 @@ export {
   ExternalClubGroupedImg,
   StockLogo,
   StockSponsor,
+  ITSLogoWhite,
 };
