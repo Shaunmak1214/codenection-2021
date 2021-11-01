@@ -22,6 +22,7 @@
     "aos": "^2.3.4",
     "axios": "^0.21.4",
     "chakra-react-select": "^1.2.2",
+    "dateformat": "^5.0.2",
     "filepond": "^4.30.3",
     "filepond-plugin-file-validate-type": "^1.2.6",
     "filepond-plugin-image-exif-orientation": "^1.0.11",
@@ -79,6 +80,7 @@
   },
   "devDependencies": {
     "@types/aos": "^3.0.4",
+    "@types/dateformat": "^3.0.1",
     "@types/js-cookie": "^2.2.7",
     "@types/lodash.uniqueid": "^4.0.6",
     "@types/react-datepicker": "^4.1.7",

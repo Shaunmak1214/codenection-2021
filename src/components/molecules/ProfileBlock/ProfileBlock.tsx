@@ -13,6 +13,7 @@ import {
   Flex,
 } from '@chakra-ui/react';
 import PropTypes from 'prop-types';
+import dateFormat from 'dateformat';
 
 import { BoxIcons } from '../../molecules';
 import { ProfileBoxTitle } from '../../atoms';
@@ -150,14 +151,16 @@ const ProfileBlock = ({
                                 child.props.userData === '' ? (
                                   '-'
                                 ) : child.props.name == 'dob' ? (
-                                  new Date(
-                                    `${child.props.userData}`,
-                                  ).toLocaleDateString('en-US')
+                                  dateFormat(
+                                    new Date(`${child.props.userData}`),
+                                    'dd/mm/yyyy',
+                                  )
                                 ) : child.props.name ==
                                   'expected_graduation' ? (
-                                  new Date(
-                                    `${child.props.userData}`,
-                                  ).toLocaleDateString('en-US')
+                                  dateFormat(
+                                    new Date(`${child.props.userData}`),
+                                    'dd/mm/yyyy',
+                                  )
                                 ) : child.props.name !== 'resume' ? (
                                   child.props.userData
                                 ) : child.props.userData !== undefined ? (
