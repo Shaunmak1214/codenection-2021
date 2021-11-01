@@ -21,6 +21,7 @@ interface Props {
   showPopperArrow?: boolean;
   setFormInput?: any;
   formInput?: any;
+  customLabel?: string;
   updateReg: (values: any) => void;
 }
 
@@ -34,6 +35,7 @@ const CNDatePicker = ({
   showPopperArrow = false,
   formInput,
   setFormInput,
+  customLabel,
   ...props
 }: Props & HTMLAttributes<HTMLElement>) => {
   const errorText: string =
@@ -50,7 +52,7 @@ const CNDatePicker = ({
   return (
     <VStack w="100%">
       <FormControl w="100%" isInvalid={errorText ? true : false}>
-        <FormLabel>{label}</FormLabel>
+        <FormLabel>{customLabel || label}</FormLabel>
         {/* @ts-ignore */}
         <ReactDatePicker
           selected={selectedDate}

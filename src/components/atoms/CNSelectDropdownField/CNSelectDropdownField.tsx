@@ -18,6 +18,7 @@ interface Props {
   formInput?: any;
   setFormInput?: any;
   name: string;
+  customLabel: string;
   updateReg: (values: any) => void;
 }
 
@@ -29,6 +30,7 @@ const CNSelectDropdownField = ({
   formInput,
   setFormInput,
   name,
+  customLabel,
   ...props
 }: Props) => {
   const errorText: string =
@@ -45,7 +47,7 @@ const CNSelectDropdownField = ({
   return (
     <>
       <FormControl isInvalid={errorText ? true : false}>
-        <FormLabel>{label}</FormLabel>
+        <FormLabel>{customLabel || label}</FormLabel>
         <Select
           {...props}
           // @ts-ignore
