@@ -46,6 +46,7 @@ const ProfileBlock = ({
   ...props
 }: Props) => {
   const children = props.children;
+
   return (
     <Center>
       <Container mt="35px" maxW="800px" w={['100%', '100%', '750px']}>
