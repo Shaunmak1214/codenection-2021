@@ -73,6 +73,10 @@ import { ReactComponent as ITSLogoWhite } from './svgs/ITSLogoWhite.svg';
 //sponsors banner
 import FusionexBanner from './jpgs-pngs/fusionex-banner.png';
 
+//proposal
+// @ts-ignore
+import SponsorProposal from './codenection/sponsorship_proposal.pdf';
+
 export {
   CNLanding,
   CNAboutLogo,
@@ -143,4 +147,5 @@ export {
   StockSponsor,
   ITSLogoWhite,
   FusionexBanner,
+  SponsorProposal,
 };
