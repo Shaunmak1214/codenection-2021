@@ -13,7 +13,7 @@ import 'swiper/swiper.min.css';
 import 'swiper/components/pagination/pagination.min.css';
 
 // import Swiper core and required modules
-import SwiperCore, { Pagination, Navigation } from 'swiper/core';
+import SwiperCore, { Pagination, Navigation, Autoplay } from 'swiper/core';
 
 import {
   TitleSponsorImg,
@@ -24,6 +24,7 @@ import {
 // install Swiper modules
 SwiperCore.use([Pagination]);
 SwiperCore.use([Navigation]);
+SwiperCore.use([Autoplay]);
 
 const TitleSponsorSection = () => {
   const navigationPrevRef = React.useRef(null);
@@ -38,10 +39,6 @@ const TitleSponsorSection = () => {
       pb="200px"
       w="100%"
     >
-      {/* <Container maxW="container.lg">
-        <Image mt="275px" src={TitleSponsorStock} />
-      </Container> */}
-
       <Container maxW="container.lg">
         <HStack
           spacing="10"
@@ -65,6 +62,9 @@ const TitleSponsorSection = () => {
             }}
             pagination={{
               clickable: true,
+            }}
+            autoplay={{
+              delay: 3000,
             }}
             className="mySwiper"
             style={{
