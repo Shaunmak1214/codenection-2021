@@ -91,6 +91,17 @@ const Footer = () => {
                     </SecondaryText>
                   </Link>
                 </HStack>
+                <HStack alignItems="center">
+                  <ArrowRight />
+                  <Link
+                    target="_blank"
+                    href="https://docs.google.com/forms/d/e/1FAIpQLSeVIac3p5WF3Art46PFEj6dHHU_wGjVcpFpz4blYs1u9Gqq2w/viewform"
+                  >
+                    <SecondaryText color="white">
+                      Drop your feedbacks!
+                    </SecondaryText>
+                  </Link>
+                </HStack>
               </VStack>
             </VStack>
             <VStack
