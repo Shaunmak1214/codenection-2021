@@ -70,6 +70,9 @@ import DeleteIcon from './svgs/delete.svg';
 import { ReactComponent as BecomeOurSponsorIcon } from './svgs/become-sponsor.svg';
 import { ReactComponent as ITSLogoWhite } from './svgs/ITSLogoWhite.svg';
 
+//sponsors banner
+import FusionexBanner from './jpgs-pngs/fusionex-banner.png';
+
 export {
   CNLanding,
   CNAboutLogo,
@@ -139,4 +142,5 @@ export {
   StockLogo,
   StockSponsor,
   ITSLogoWhite,
+  FusionexBanner,
 };

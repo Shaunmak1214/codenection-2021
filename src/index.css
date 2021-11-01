@@ -176,3 +176,7 @@
 .react-datepicker__navigation {
   height: 50px;
 }
+
+.swiper-pagination-bullet.swiper-pagination-bullet-active {
+  background: #15dffa;
+}
