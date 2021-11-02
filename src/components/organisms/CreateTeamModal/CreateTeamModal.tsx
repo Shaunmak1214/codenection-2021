@@ -242,7 +242,7 @@ const CreateTeamModal = ({
                 tooltip={
                   <Tooltip
                     hasArrow
-                    label="Your hackerrank username will be used to do linking stuff"
+                    label="Only the leader’s hackerrank username is needed, your hackerrank username will be used to connect with the leaderboard"
                     fontSize="md"
                   >
                     <InfoOutlineIcon />

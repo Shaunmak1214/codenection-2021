@@ -47,9 +47,30 @@ const LeaderboardSection = () => {
             </SecondaryText>
 
             <HStack mt="20px !important" alignItems="center">
-              <FacebookBlue style={{ height: '25px' }} />
-              <InstagramBlue style={{ height: '25px' }} />
-              <DiscordBlue style={{ height: '29px' }} />
+              <FacebookBlue
+                onClick={() => {
+                  window.open(
+                    'https://www.facebook.com/CodeNection/',
+                    '_blank',
+                  );
+                }}
+                style={{ height: '25px' }}
+              />
+              <InstagramBlue
+                onClick={() => {
+                  window.open(
+                    'https://www.instagram.com/code_nection/',
+                    '_blank',
+                  );
+                }}
+                style={{ height: '25px' }}
+              />
+              <DiscordBlue
+                onClick={() => {
+                  window.open('https://discord.gg/VpCeFaeKcq', '_blank');
+                }}
+                style={{ height: '29px' }}
+              />
             </HStack>
           </VStack>
 
