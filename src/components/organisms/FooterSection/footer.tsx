@@ -144,7 +144,7 @@ const Footer = () => {
                 </HStack>
                 <HStack alignItems="center">
                   <ArrowRight />
-                  <Link href="#dashboard#upload">
+                  <Link href="/dashboard#upload">
                     <SecondaryText color="white">Upload Resume</SecondaryText>
                   </Link>
                 </HStack>
@@ -192,7 +192,7 @@ const Footer = () => {
                   <ITS />
                   <Link href="https://linktr.ee/itsocietycyberjaya">
                     <SecondaryText color="white">
-                      Follow ITS Society
+                      Follow IT Society
                     </SecondaryText>
                   </Link>
                 </HStack>
