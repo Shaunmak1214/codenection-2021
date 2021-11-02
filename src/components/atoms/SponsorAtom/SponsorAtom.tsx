@@ -16,7 +16,13 @@ const BadgeImg = ({ ...props }) => {
 const SponsorImg = ({ ...props }): any => {
   let children = props.children;
   return (
-    <Center bgRepeat="none" bgPos="center" bgSize="cover" {...props}>
+    <Center
+      cursor="pointer"
+      bgRepeat="none"
+      bgPos="center"
+      bgSize="cover"
+      {...props}
+    >
       {children}
     </Center>
   );

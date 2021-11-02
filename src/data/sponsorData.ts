@@ -5,6 +5,10 @@ import {
   SilverBG,
   BronzeBG,
   StockLogo,
+  FusionexFullLogo,
+  DerivBlackLogo,
+  GoldPlaceholder,
+  BronzePlaceholder,
 } from '../assets';
 
 interface SponsorsObject {
@@ -13,11 +17,13 @@ interface SponsorsObject {
   flags: string;
   links?: string;
   data: dataObject[];
+  placeholderSrc?: string;
 }
 
 interface dataObject {
   idx: number;
   imageSrc: string;
+  url?: string;
 }
 
 const TitleSponsor: SponsorsObject = {
@@ -39,17 +45,8 @@ const PlatinumSponsor: SponsorsObject = {
   data: [
     {
       idx: 0,
-      imageSrc: StockLogo,
-    },
-
-    {
-      idx: 1,
-      imageSrc: StockLogo,
-    },
-
-    {
-      idx: 2,
-      imageSrc: StockLogo,
+      imageSrc: FusionexFullLogo,
+      url: 'https://www.fusionexgroup.com/',
     },
   ],
 };
@@ -58,29 +55,10 @@ const GoldSponsor: SponsorsObject = {
   type: 'Gold',
   level: 4,
   flags: GoldBG,
+  placeholderSrc: GoldPlaceholder,
   data: [
     {
       idx: 0,
-      imageSrc: StockLogo,
-    },
-    {
-      idx: 1,
-      imageSrc: StockLogo,
-    },
-    {
-      idx: 2,
-      imageSrc: StockLogo,
-    },
-    {
-      idx: 3,
-      imageSrc: StockLogo,
-    },
-    {
-      idx: 4,
-      imageSrc: StockLogo,
-    },
-    {
-      idx: 5,
       imageSrc: StockLogo,
     },
   ],
@@ -93,23 +71,8 @@ const SilverSponsor: SponsorsObject = {
   data: [
     {
       idx: 0,
-      imageSrc: StockLogo,
-    },
-    {
-      idx: 1,
-      imageSrc: StockLogo,
-    },
-    {
-      idx: 2,
-      imageSrc: StockLogo,
-    },
-    {
-      idx: 3,
-      imageSrc: StockLogo,
-    },
-    {
-      idx: 4,
-      imageSrc: StockLogo,
+      imageSrc: DerivBlackLogo,
+      url: 'https://deriv.com/',
     },
   ],
 };
@@ -118,29 +81,10 @@ const BronzeSponsor: SponsorsObject = {
   type: 'Bronze',
   level: 6,
   flags: BronzeBG,
+  placeholderSrc: BronzePlaceholder,
   data: [
     {
       idx: 0,
-      imageSrc: StockLogo,
-    },
-    {
-      idx: 1,
-      imageSrc: StockLogo,
-    },
-    {
-      idx: 2,
-      imageSrc: StockLogo,
-    },
-    {
-      idx: 3,
-      imageSrc: StockLogo,
-    },
-    {
-      idx: 4,
-      imageSrc: StockLogo,
-    },
-    {
-      idx: 5,
       imageSrc: StockLogo,
     },
   ],
