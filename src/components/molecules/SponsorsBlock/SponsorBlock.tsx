@@ -6,7 +6,7 @@ import {
   SilverBadge,
   BronzeBadge,
 } from '../../../assets';
-import { VStack, SimpleGrid } from '@chakra-ui/layout';
+import { VStack, SimpleGrid, Center } from '@chakra-ui/layout';
 import { Image } from '@chakra-ui/react';
 import { PrimaryText, BadgeImg, SponsorImg } from '../../atoms';
 
@@ -15,6 +15,7 @@ const SponsorsBlock = ({ sponsorData, ...props }: any) => {
     idx: number;
     imageSrc: string;
     flags: string;
+    url?: string;
   }
 
   // eslint-disable-next-line no-unused-vars
@@ -35,7 +36,7 @@ const SponsorsBlock = ({ sponsorData, ...props }: any) => {
         return <BadgeImg src={BronzeBadge} width="250px" />;
 
       default:
-        break;
+        return <></>;
     }
   };
   // @ts-ignore
@@ -48,6 +49,9 @@ const SponsorsBlock = ({ sponsorData, ...props }: any) => {
             bgImage={sponsorData.flags}
             w={['100%', '340px', '450px']}
             h={['205px', '205px', '270px']}
+            onClick={() => {
+              if (sponsor.url) window.open(sponsor.url, '_blank');
+            }}
           >
             <Image maxH="125px" mb="20px" src={sponsor.imageSrc} />
           </SponsorImg>
@@ -58,8 +62,11 @@ const SponsorsBlock = ({ sponsorData, ...props }: any) => {
             bgImage={sponsorData.flags}
             w={['265px', '240px', '265px', '370px']}
             h={['205px', '205px', '205px', '220px']}
+            onClick={() => {
+              if (sponsor.url) window.open(sponsor.url, '_blank');
+            }}
           >
-            <Image maxH="125px" mb="20px" src={sponsor.imageSrc} />
+            <Image maxH="125px" w="80%" mb="20px" src={sponsor.imageSrc} />
           </SponsorImg>
         );
 
@@ -69,6 +76,9 @@ const SponsorsBlock = ({ sponsorData, ...props }: any) => {
             bgImage={sponsorData.flags}
             w={['230px', '230px', '290px']}
             h={['195px', '195px', '200px']}
+            onClick={() => {
+              if (sponsor.url) window.open(sponsor.url, '_blank');
+            }}
           >
             <Image maxH="100px" mb="20px" src={sponsor.imageSrc} />
           </SponsorImg>
@@ -76,14 +86,28 @@ const SponsorsBlock = ({ sponsorData, ...props }: any) => {
 
       case 'Silver':
         return (
-          <SponsorImg bgImage={sponsorData.flags} w="250px" h="180px">
-            <Image maxH="80px" mb="20px" src={sponsor.imageSrc} />
+          <SponsorImg
+            bgImage={sponsorData.flags}
+            w="250px"
+            h="180px"
+            onClick={() => {
+              if (sponsor.url) window.open(sponsor.url, '_blank');
+            }}
+          >
+            <Image maxH="80px" w="80%" mb="20px" src={sponsor.imageSrc} />
           </SponsorImg>
         );
 
       case 'Bronze':
         return (
-          <SponsorImg bgImage={sponsorData.flags} w="230px" h="170px">
+          <SponsorImg
+            bgImage={sponsorData.flags}
+            w="230px"
+            h="170px"
+            onClick={() => {
+              if (sponsor.url) window.open(sponsor.url, '_blank');
+            }}
+          >
             <Image maxH="70px" mb="20px" src={sponsor.imageSrc} />
           </SponsorImg>
         );
@@ -97,30 +121,44 @@ const SponsorsBlock = ({ sponsorData, ...props }: any) => {
     return (
       <>
         <VStack alignItems="center" justifyContent="center" {...props}>
-          {/* @ts-ignore */}
-          <BadgeRenderer sponsorData={sponsorData} />
+          {sponsorData.data.length > 0 ? (
+            <BadgeRenderer sponsorData={sponsorData} />
+          ) : (
+            <></>
+          )}
         </VStack>
         <SimpleGrid
-          columns={[
-            '1',
-            sponsorData.level > 2 ? '2' : sponsorData.level,
-            sponsorData.level > 2 ? '2' : sponsorData.level,
-            sponsorData.level,
-          ]}
+          // columns={
+          //   sponsorData.data.length > 0
+          //     ? [
+          //         '1',
+          //         sponsorData.level > 2 ? '2' : sponsorData.level,
+          //         sponsorData.level > 2 ? '2' : sponsorData.level,
+          //         sponsorData.level,
+          //       ]
+          //     : 1
+          // }
+          columns={1}
           w="100%"
           justifyItems="center"
           alignItems="center"
           spacing={['2', '2', '5']}
         >
-          {sponsorData.data.map((sponsor: dataObject) => {
-            return (
-              <SponsorBlockRenderer
-                sponsorData={sponsorData}
-                key={sponsor.idx}
-                sponsor={sponsor}
-              />
-            );
-          })}
+          {sponsorData.data.length > 0 ? (
+            sponsorData.data.map((sponsor: dataObject) => {
+              return (
+                <SponsorBlockRenderer
+                  sponsorData={sponsorData}
+                  key={sponsor.idx}
+                  sponsor={sponsor}
+                />
+              );
+            })
+          ) : (
+            <Center w="100%">
+              <Image w="25%" h="auto" src={sponsorData.placeholderSrc} />
+            </Center>
+          )}
         </SimpleGrid>
       </>
     );

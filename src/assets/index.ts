@@ -70,6 +70,14 @@ import DeleteIcon from './svgs/delete.svg';
 import { ReactComponent as BecomeOurSponsorIcon } from './svgs/become-sponsor.svg';
 import { ReactComponent as ITSLogoWhite } from './svgs/ITSLogoWhite.svg';
 
+//sponsors logos
+import TitlePlaceholder from './sponsors/title-placeholder.png';
+import BronzePlaceholder from './sponsors/bronze-placeholder.png';
+import SilverPlaceholder from './sponsors/silver-placeholder.png';
+import GoldPlaceholder from './sponsors/gold-placeholder.png';
+import DerivBlackLogo from './sponsors/silver/deriv/Deriv (Black).png';
+import FusionexFullLogo from './sponsors/platinum/fusionex/Fusionex logo full colour - chien rou lim.png';
+
 //sponsors banner
 import FusionexBanner from './jpgs-pngs/fusionex-banner.png';
 
@@ -148,4 +156,10 @@ export {
   ITSLogoWhite,
   FusionexBanner,
   SponsorProposal,
+  TitlePlaceholder,
+  BronzePlaceholder,
+  SilverPlaceholder,
+  GoldPlaceholder,
+  DerivBlackLogo,
+  FusionexFullLogo,
 };
