@@ -6,7 +6,7 @@ import Dashboard from './dashboard';
 import ResetPassword from './resetPassword';
 import Profile from './profile';
 import Rules from './rules';
-
+import Logout from './logout';
 export {
   Landing,
   Leaderboard,
@@ -16,4 +16,5 @@ export {
   ResetPassword,
   Profile,
   Rules,
+  Logout,
 };
