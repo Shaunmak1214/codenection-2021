@@ -136,7 +136,7 @@ const Header = () => {
             <HStack w="100%" justifyContent={'flex-end'} alignItems="center">
               <Flex
                 w="100%"
-                d={['none', 'none', 'none', 'flex']}
+                d={['none', 'none', 'none', 'none', 'flex']}
                 justifyContent="flex-end"
               >
                 <Link href="/#sponsors" mr="25px">
