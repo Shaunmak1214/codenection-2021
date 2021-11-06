@@ -50,6 +50,20 @@ function App() {
           path="/edit-profile"
           component={Screens.Profile}
         />
+        <CNRoutes
+          exact
+          footer={false}
+          isProtected
+          path="/logout"
+          component={Screens.Logout}
+        />
+        <CNRoutes
+          exact
+          footer={false}
+          path="/write-ups"
+          header
+          component={Screens.WriteUps}
+        />
 
         <CNRoutes exact header path="*" component={Screens.Landing} />
       </Switch>

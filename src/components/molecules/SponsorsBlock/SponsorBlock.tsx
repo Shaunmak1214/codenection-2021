@@ -39,8 +39,8 @@ const SponsorsBlock = ({ sponsorData, ...props }: any) => {
         return <></>;
     }
   };
-  // @ts-ignore
-  const SponsorBlockRenderer = ({ sponsorData, ...props }): any => {
+
+  const SponsorBlockRenderer = ({ sponsorData, ...props }: any) => {
     const { sponsor } = props;
     switch (sponsorData.type) {
       case 'Title':
@@ -63,7 +63,7 @@ const SponsorsBlock = ({ sponsorData, ...props }: any) => {
             w={['265px', '240px', '265px', '370px']}
             h={['205px', '205px', '205px', '220px']}
             onClick={() => {
-              if (sponsor.url) window.open(sponsor.url, '_blank');
+              window.location.href = '/write-ups';
             }}
           >
             <Image maxH="125px" w="80%" mb="20px" src={sponsor.imageSrc} />
@@ -147,6 +147,7 @@ const SponsorsBlock = ({ sponsorData, ...props }: any) => {
           {sponsorData.data.length > 0 ? (
             sponsorData.data.map((sponsor: dataObject) => {
               return (
+                //@ts-ignore
                 <SponsorBlockRenderer
                   sponsorData={sponsorData}
                   key={sponsor.idx}
