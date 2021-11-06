@@ -73,7 +73,7 @@ const WriteUpsBlock = ({ sponsorWriteUps, ...props }: any) => {
           <SponsorImg
             bgImage={sponsorData.flags}
             w={['100%', '100%', '100%', '100%']}
-            h={['1255px', '1255px', '1255px', '80vh']}
+            h={['1255px', '950px', '950px', '80vh']}
             cursor="normal"
           >
             <Flex
@@ -89,7 +89,7 @@ const WriteUpsBlock = ({ sponsorWriteUps, ...props }: any) => {
                 h={[0, 0, '60vh']}
                 justifyContent="center"
                 alignItems="center"
-                mb={['90px', '90px', '0']}
+                mb={['100px', '135px', '0']}
               >
                 <Image maxH="125px" mb="30px" src={sponsor.imageSrc} />
                 <Box
@@ -217,7 +217,6 @@ const WriteUpsBlock = ({ sponsorWriteUps, ...props }: any) => {
   };
 
   if (sponsorWriteUps) {
-    console.log(sponsorWriteUps);
     return (
       <>
         <VStack alignItems="center" justifyContent="center" {...props}>
