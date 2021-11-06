@@ -29,6 +29,7 @@ import ResumeUploaderModal from './ResumeUploaderModal/ResumeUploaderModal';
 import CreateTeamModal from './CreateTeamModal/CreateTeamModal';
 import EditTeamModal from './EditTeamModal/EditTeamModal';
 import DomainVerifyModal from './DomainVerifyModal/DomainVerifyModal';
+import WriteUpsBlock from './WriteUpsBlock/WriteUpsBlock';
 
 export {
   CountDownSection,
@@ -62,4 +63,5 @@ export {
   ResumeUploaderModal,
   EditTeamModal,
   DomainVerifyModal,
+  WriteUpsBlock,
 };

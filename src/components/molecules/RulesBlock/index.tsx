@@ -8,10 +8,12 @@ const RulesBlock = ({ ...props }) => {
   const { ruleTitle, ruleDesc } = props;
   return (
     <Box bg="#0079FF" minH="100px" borderRadius="5px" p="30px">
-      <PrimaryText fontWeight="bold" color="#FFFFFF" mb={1}>
+      <PrimaryText fontSize="xl" fontWeight="bold" color="#FFFFFF" mb={1}>
         {ruleTitle}
       </PrimaryText>
-      <PrimaryText color="#FFFFFF">{ruleDesc}</PrimaryText>
+      <PrimaryText fontSize="md" color="#FFFFFF">
+        {ruleDesc}
+      </PrimaryText>
     </Box>
   );
 };
