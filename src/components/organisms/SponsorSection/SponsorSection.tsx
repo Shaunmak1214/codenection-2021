@@ -14,6 +14,7 @@ import {
   BecomeOurSponsorIcon,
   SponsorProposal,
   StockSponsor,
+  ArrowRight,
 } from '../../../assets';
 import { Image } from '@chakra-ui/image';
 const SponsorSection = () => {
@@ -36,7 +37,15 @@ const SponsorSection = () => {
             <SponsorsBlock sponsorData={GoldSponsor} />
             <SponsorsBlock sponsorData={SilverSponsor} />
             <SponsorsBlock sponsorData={BronzeSponsor} />
-            <SimpleGrid mt="15px" columns={1} spacing={[2, 5, 10]} w="100%">
+            <SimpleGrid
+              pt="25px"
+              columns={[1, 1, 2]}
+              spacing={[2, 5, 1]}
+              justifyItems="center"
+              alignItems="center"
+              w="70%"
+              margin="0 auto"
+            >
               <Center>
                 <SecondaryButton
                   bg="linear-gradient(90deg, #002A97 0%, #2054AC 50.52%, #407DC1 100%);"
@@ -45,7 +54,6 @@ const SponsorSection = () => {
                   }}
                   color="#FFFFFF"
                   border="none"
-                  w={['90%', '75%', '60%']}
                   px="20"
                   py="25px"
                   borderRadius="15px"
@@ -65,30 +73,33 @@ const SponsorSection = () => {
                   </HStack>
                 </SecondaryButton>
               </Center>
-              {/* <SecondaryButton
-            bg="linear-gradient(90deg, #002A97 0%, #2054AC 50.52%, #407DC1 100%);"
-            _hover={{
-              bg: 'linear-gradient(90deg, #001549 0%, #0b2e69 50.52%, #213347 100%);',
-            }}
-            color="#FFFFFF"
-            border="none"
-            px="20"
-            py="25px"
-            borderRadius="15px"
-          >
-            <HStack alignItems="center">
-              <PrimaryText fontSize="md">
-                Read more about our sponsor
-              </PrimaryText>
-              <ArrowRight
-                style={{
-                  marginTop: '5px',
-                  marginRight: '10px',
-                  height: '18px',
-                }}
-              />
-            </HStack>
-          </SecondaryButton> */}
+              <Center>
+                <SecondaryButton
+                  bg="linear-gradient(90deg, #002A97 0%, #2054AC 50.52%, #407DC1 100%);"
+                  _hover={{
+                    bg: 'linear-gradient(90deg, #001549 0%, #0b2e69 50.52%, #213347 100%);',
+                  }}
+                  color="#FFFFFF"
+                  border="none"
+                  px="20"
+                  py="25px"
+                  borderRadius="15px"
+                  onClick={() => (window.location.href = '/write-ups')}
+                >
+                  <HStack alignItems="center">
+                    <PrimaryText fontSize="md">
+                      Read more about our sponsor
+                    </PrimaryText>
+                    <ArrowRight
+                      style={{
+                        marginTop: '5px',
+                        marginRight: '10px',
+                        height: '18px',
+                      }}
+                    />
+                  </HStack>
+                </SecondaryButton>
+              </Center>
             </SimpleGrid>
           </>
         ) : (
