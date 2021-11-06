@@ -69,6 +69,8 @@ import DownIcon from './svgs/down.svg';
 import DeleteIcon from './svgs/delete.svg';
 import { ReactComponent as BecomeOurSponsorIcon } from './svgs/become-sponsor.svg';
 import { ReactComponent as ITSLogoWhite } from './svgs/ITSLogoWhite.svg';
+import ITSLogoBlack from './svgs/ITSLogoBlack.svg';
+import PrintlifezLogo from './svgs/PrintlifezLogo.svg';
 
 //sponsors logos
 import TitlePlaceholder from './sponsors/title-placeholder.png';
@@ -154,6 +156,7 @@ export {
   StockLogo,
   StockSponsor,
   ITSLogoWhite,
+  ITSLogoBlack,
   FusionexBanner,
   SponsorProposal,
   TitlePlaceholder,
@@ -162,4 +165,5 @@ export {
   GoldPlaceholder,
   DerivBlackLogo,
   FusionexFullLogo,
+  PrintlifezLogo,
 };

@@ -6,13 +6,13 @@ import {
   HStack,
   Link,
   Flex,
-  Box,
 } from '@chakra-ui/layout';
+import { Image } from '@chakra-ui/react';
 import React from 'react';
 import { SecondaryText } from '../../atoms';
 
 import {
-  CodeNectionLogoImg,
+  CNFullLogo,
   ArrowRight,
   Discord,
   Email,
@@ -31,14 +31,12 @@ const Footer = () => {
           alignItems={['flex-start', 'flex-start', 'center']}
           justifyContent="space-between"
         >
-          <Box mb="25px">
-            <CodeNectionLogoImg
-              style={{
-                width: '125px',
-                height: 'auto',
-              }}
-            />
-          </Box>
+          <Image
+            style={{
+              width: '250px',
+            }}
+            src={CNFullLogo}
+          />
 
           <SimpleGrid
             columns={[1, 1, 3]}

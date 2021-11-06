@@ -23,7 +23,12 @@ const AgendaSection = () => {
         >
           Agenda
         </PrimaryText>
-        <Image src={AgendaImg} />
+        <Image
+          style={{
+            width: '800px',
+          }}
+          src={AgendaImg}
+        />
       </Flex>
     </Center>
   );

@@ -68,7 +68,8 @@ const RulesFullSection = () => {
                     This competition is completely free to participate and will
                     only have one (1) round. It will be conducted online on 10
                     December 2021 using HackerRank as the main platform of the
-                    competition. The competition duration is three (3) hours.
+                    competition. The competition duration is three (3) hours
+                    with a total of five (5) questions to be solved.
                   </Text>
                 </li>
                 <li>
@@ -192,7 +193,8 @@ const RulesFullSection = () => {
                 <li>
                   <Text>
                     A given participant may only be a part of one (1) team
-                    throughout the duration of the whole competition.
+                    throughout the whole duration of both the Closed and Open
+                    Category competitions.
                   </Text>
                 </li>
                 <li>
@@ -275,6 +277,50 @@ const RulesFullSection = () => {
                   </Text>
                 </li>
               </ol>
+
+              <CNSpacer size="sm" />
+              <SecondaryText fontSize="xl" fontWeight="600">
+                Leaderboard Ranking
+              </SecondaryText>
+              <Text
+                style={{
+                  lineHeight: '32px',
+                }}
+              >
+                The “Closed Category Leaderboard” on CodeNection 2021’s website
+                will be used as the main reference for team rankings of the
+                closed category contest. The Closed Category Leaderboard will
+                differ from the one shown on HackerRank as individuals who did
+                not register officially on our website can still join the
+                competition on HackerRank, which means that we will need to
+                filter those individuals out from the finalized ranking list.
+              </Text>
+
+              <CNSpacer size="sm" />
+              <SecondaryText fontSize="xl" fontWeight="600">
+                Prizes & Awards Criteria
+              </SecondaryText>
+              <ol
+                style={{
+                  marginLeft: '20px',
+                  lineHeight: '32px',
+                }}
+              >
+                <li>
+                  <Text>
+                    Only the top 3 ranking teams on the Closed Category
+                    Leaderboard will receive cash prizes.
+                  </Text>
+                </li>
+                <li>
+                  <Text>
+                    E-Certificates will be given to every participant who
+                    appears on the Closed Category Leaderboard regardless of
+                    their achievement during the competition.
+                  </Text>
+                </li>
+              </ol>
+
               <CNSpacer size="sm" />
               <SecondaryText fontSize="xl" fontWeight="600">
                 Disqualification
@@ -472,9 +518,11 @@ const RulesFullSection = () => {
                     This competition is completely free to participate and will
                     include two (2) rounds, a preliminary round and a final
                     round. The duration for the preliminary round will be two
-                    (2) hours, while the final round will last for five (5)
-                    hours. Both rounds will be conducted online using HackerRank
-                    as the main platform of the competition.
+                    (2) hours and will have a total of five (5) questions to be
+                    solved, while the final round will last for five (5) hours
+                    with a total of ten (10) questions to be solved. Both rounds
+                    will be conducted online using HackerRank as the main
+                    platform of the competition.
                   </Text>
                 </li>
                 <li>
@@ -611,7 +659,8 @@ const RulesFullSection = () => {
                 <li>
                   <Text>
                     A given participant may only be a part of one (1) team
-                    throughout the duration of the whole competition.
+                    throughout the whole duration of both the Closed and Open
+                    Category competitions.
                   </Text>
                 </li>
                 <li>
@@ -825,8 +874,9 @@ const RulesFullSection = () => {
                     }}
                   >
                     <li>
-                      E-Certificates will be given to every participant
-                      regardless of their achievement during the competition.
+                      E-Certificates will be given to every participant who
+                      appears on the Open Category Leaderboard regardless of
+                      their achievement during the competition.
                     </li>
                     <li>
                       The top 10 teams from the Final Round will be given a
