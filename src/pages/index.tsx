@@ -7,6 +7,7 @@ import ResetPassword from './resetPassword';
 import Profile from './profile';
 import Rules from './rules';
 import Logout from './logout';
+import WriteUps from './writeups';
 export {
   Landing,
   Leaderboard,
@@ -17,4 +18,5 @@ export {
   Profile,
   Rules,
   Logout,
+  WriteUps,
 };
