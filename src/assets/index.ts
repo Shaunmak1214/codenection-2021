@@ -17,6 +17,8 @@ import TitleSponsorImg from './jpgs-pngs/title-sponsor-bg.jpg';
 import TitleSponsorStock from './jpgs-pngs/stock-title-sponsor-img.png';
 import ExternalClubGroupedImg from './jpgs-pngs/external-club.png';
 import StockLogo from './jpgs-pngs/stock-logo.png';
+import TitleWriteUpBG from './jpgs-pngs/TitleWriteUpBG.png';
+import PlatWriteUpBG from './jpgs-pngs/PlatWriteUpBG.png';
 import StockSponsor from './jpgs-pngs/stock-sponsor-group.png';
 
 //svgs
@@ -69,7 +71,7 @@ import DownIcon from './svgs/down.svg';
 import DeleteIcon from './svgs/delete.svg';
 import { ReactComponent as BecomeOurSponsorIcon } from './svgs/become-sponsor.svg';
 import { ReactComponent as ITSLogoWhite } from './svgs/ITSLogoWhite.svg';
-
+import LinkIcon from './svgs/LinkIcon.svg';
 //sponsors logos
 import TitlePlaceholder from './sponsors/title-placeholder.png';
 import BronzePlaceholder from './sponsors/bronze-placeholder.png';
@@ -113,6 +115,7 @@ export {
   PasswordIcon,
   ShowIcon,
   HideIcon,
+  LinkIcon,
   LockIcon,
   ProfileIcon,
   TeamIcon,
@@ -162,4 +165,6 @@ export {
   GoldPlaceholder,
   DerivBlackLogo,
   FusionexFullLogo,
+  TitleWriteUpBG,
+  PlatWriteUpBG,
 };

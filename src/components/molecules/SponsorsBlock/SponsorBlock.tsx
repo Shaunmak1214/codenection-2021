@@ -39,8 +39,8 @@ const SponsorsBlock = ({ sponsorData, ...props }: any) => {
         return <></>;
     }
   };
-  // @ts-ignore
-  const SponsorBlockRenderer = ({ sponsorData, ...props }): any => {
+
+  const SponsorBlockRenderer = ({ sponsorData, ...props }: any) => {
     const { sponsor } = props;
     switch (sponsorData.type) {
       case 'Title':
@@ -147,6 +147,7 @@ const SponsorsBlock = ({ sponsorData, ...props }: any) => {
           {sponsorData.data.length > 0 ? (
             sponsorData.data.map((sponsor: dataObject) => {
               return (
+                //@ts-ignore
                 <SponsorBlockRenderer
                   sponsorData={sponsorData}
                   key={sponsor.idx}
