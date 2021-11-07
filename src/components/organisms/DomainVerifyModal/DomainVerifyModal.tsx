@@ -137,7 +137,11 @@ const DomainVerifyModal = ({ isOpen }: Props) => {
               style={{ marginTop: 5, marginBottom: 5 }}
             />
             <Text textAlign="center" fontSize="lg" mt="15px !important">
-              Your email domain is still being screened
+              Your request has been sent!
+            </Text>
+            <Text textAlign="center" fontSize="sm" mt="15px !important">
+              It might take around <b>1 week</b> to verify your email domain, an
+              email will be sent to you once it is verified. Thanks!
             </Text>
           </VStack>
         </Center>
