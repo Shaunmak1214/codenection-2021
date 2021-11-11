@@ -9,6 +9,8 @@ import {
   DerivBlackLogo,
   GoldPlaceholder,
   BronzePlaceholder,
+  MoceanAPILogo,
+  VAimLogo,
 } from '../assets';
 
 interface SponsorsObject {
@@ -59,7 +61,13 @@ const GoldSponsor: SponsorsObject = {
   data: [
     {
       idx: 0,
-      imageSrc: StockLogo,
+      imageSrc: MoceanAPILogo,
+      url: 'https://moceanapi.com/',
+    },
+    {
+      idx: 1,
+      imageSrc: VAimLogo,
+      url: 'https://www.v-aim.com/',
     },
   ],
 };
