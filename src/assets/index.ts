@@ -81,7 +81,7 @@ import TitlePlaceholder from './sponsors/title-placeholder.png';
 import BronzePlaceholder from './sponsors/bronze-placeholder.png';
 import SilverPlaceholder from './sponsors/silver-placeholder.png';
 import GoldPlaceholder from './sponsors/gold-placeholder.png';
-import DerivBlackLogo from './sponsors/silver/deriv/Deriv (Black).png';
+import DerivBlackLogo from './sponsors/silver/deriv/Deriv_Black.svg';
 import FusionexFullLogo from './sponsors/platinum/fusionex/Fusionex logo full colour - chien rou lim.png';
 import MoceanAPILogo from './sponsors/gold/MoceanLogo.svg';
 import VAimLogo from './sponsors/gold/VAimLogo.png';

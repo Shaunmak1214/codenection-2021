@@ -28,9 +28,28 @@ const SponsorImg = ({ ...props }): any => {
   );
 };
 
+const WriteUpImg = React.forwardRef<HTMLDivElement, any>((props, ref) => (
+  <Center
+    ref={ref}
+    cursor="pointer"
+    bgRepeat="none"
+    bgPos="center"
+    bgSize="cover"
+    {...props}
+  >
+    {props.children}
+  </Center>
+));
+
+WriteUpImg.displayName = 'WriteUpImg';
+WriteUpImg.propTypes = {
+  children: PropTypes.node.isRequired,
+  ref: PropTypes.any,
+};
+
 SponsorImg.propTypes = {
   SponsorImg: PropTypes.string,
   children: PropTypes.node.isRequired,
 };
 
-export { BadgeImg, SponsorImg };
+export { BadgeImg, SponsorImg, WriteUpImg };

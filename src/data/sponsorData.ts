@@ -26,6 +26,7 @@ interface dataObject {
   idx: number;
   imageSrc: string;
   url?: string;
+  writeUpSection?: string;
 }
 
 const TitleSponsor: SponsorsObject = {
@@ -49,6 +50,7 @@ const PlatinumSponsor: SponsorsObject = {
       idx: 0,
       imageSrc: FusionexFullLogo,
       url: 'https://www.fusionexgroup.com/',
+      writeUpSection: '/write-ups#fusionex',
     },
   ],
 };
@@ -63,11 +65,13 @@ const GoldSponsor: SponsorsObject = {
       idx: 0,
       imageSrc: MoceanAPILogo,
       url: 'https://moceanapi.com/',
+      writeUpSection: '/write-ups#moceanapi',
     },
     {
       idx: 1,
       imageSrc: VAimLogo,
       url: 'https://www.v-aim.com/',
+      writeUpSection: '/write-ups#vaim',
     },
   ],
 };

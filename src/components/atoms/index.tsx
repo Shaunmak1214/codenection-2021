@@ -18,7 +18,7 @@ import {
   MutedButton,
   GradientButton,
 } from './Buttons/Buttons';
-import { BadgeImg, SponsorImg } from './SponsorAtom/SponsorAtom';
+import { BadgeImg, SponsorImg, WriteUpImg } from './SponsorAtom/SponsorAtom';
 import CircleStep from './CircleStep/CircleStep';
 import ProfileBoxTitle from './ProfileBoxTitle/ProfileBoxTitle';
 import WhiteBox from './WhiteBox/WhiteBox';
@@ -47,4 +47,5 @@ export {
   MutedButton,
   CNRadio,
   WhiteBox,
+  WriteUpImg,
 };

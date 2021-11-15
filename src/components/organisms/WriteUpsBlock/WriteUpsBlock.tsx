@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { createRef, useEffect } from 'react';
 import {
   TitleBadge,
   PlatinumBadge,
@@ -17,13 +17,48 @@ import {
   Text,
 } from '@chakra-ui/layout';
 import { Image } from '@chakra-ui/react';
-import { BadgeImg, SponsorImg, PrimaryText } from '../../atoms';
+import { BadgeImg, SponsorImg, PrimaryText, WriteUpImg } from '../../atoms';
 const WriteUpsBlock = ({ sponsorWriteUps, ...props }: any) => {
   interface dataObject {
     idx: number;
     imageSrc: string;
     writeUps: string;
   }
+
+  const platRef = createRef<HTMLDivElement>();
+  const goldRef = createRef<HTMLDivElement>();
+
+  useEffect(() => {
+    if (window.location.hash === '#fusionex') {
+      setTimeout(() => {
+        if (platRef.current) {
+          window.scrollTo({
+            top: platRef.current.offsetTop - 200,
+            behavior: 'smooth',
+          });
+        }
+      }, 800);
+    } else if (window.location.hash === '#moceanapi') {
+      setTimeout(() => {
+        if (goldRef.current) {
+          window.scrollTo({
+            top: goldRef.current.offsetTop - 800,
+            behavior: 'smooth',
+          });
+        }
+      }, 800);
+    } else if (window.location.hash === '#vaim') {
+      setTimeout(() => {
+        if (goldRef.current) {
+          window.scrollTo({
+            top: goldRef.current.offsetTop - 100,
+            behavior: 'smooth',
+          });
+        }
+      }, 800);
+    }
+  });
+
   const BadgeRenderer = ({ sponsorData }: any) => {
     switch (sponsorData.type) {
       case 'Title':
@@ -70,7 +105,8 @@ const WriteUpsBlock = ({ sponsorWriteUps, ...props }: any) => {
         );
       case 'Platinum':
         return (
-          <SponsorImg
+          <WriteUpImg
+            ref={platRef}
             bgImage={sponsorData.flags}
             w={['100%', '100%', '100%', '100%']}
             h={['1255px', '950px', '950px', '80vh']}
@@ -120,13 +156,14 @@ const WriteUpsBlock = ({ sponsorWriteUps, ...props }: any) => {
                 <Text whiteSpace="pre-line">{sponsor.writeUps}</Text>
               </Box>
             </Flex>
-          </SponsorImg>
+          </WriteUpImg>
         );
 
       case 'Gold':
         return (
           <>
-            <SponsorImg
+            <WriteUpImg
+              ref={goldRef}
               bgImage={sponsorData.flags}
               w={['90%', '90%', '100%']}
               h={['120vh', '120vh', '70vh']}
@@ -177,7 +214,7 @@ const WriteUpsBlock = ({ sponsorWriteUps, ...props }: any) => {
                   <Text whiteSpace="pre-line">{sponsor.writeUps}</Text>
                 </Box>
               </Flex>
-            </SponsorImg>
+            </WriteUpImg>
           </>
         );
 
