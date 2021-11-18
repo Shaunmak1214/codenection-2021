@@ -19,6 +19,7 @@ import ExternalClubGroupedImg from './jpgs-pngs/external-club.png';
 import StockLogo from './jpgs-pngs/stock-logo.png';
 import TitleWriteUpBG from './jpgs-pngs/TitleWriteUpBG.png';
 import PlatWriteUpBG from './jpgs-pngs/PlatWriteUpBG.png';
+import GoldWriteUpBG from './jpgs-pngs/GoldWriteUpBG.png';
 import StockSponsor from './jpgs-pngs/stock-sponsor-group.png';
 
 //svgs
@@ -80,9 +81,10 @@ import TitlePlaceholder from './sponsors/title-placeholder.png';
 import BronzePlaceholder from './sponsors/bronze-placeholder.png';
 import SilverPlaceholder from './sponsors/silver-placeholder.png';
 import GoldPlaceholder from './sponsors/gold-placeholder.png';
-import DerivBlackLogo from './sponsors/silver/deriv/Deriv (Black).png';
+import DerivBlackLogo from './sponsors/silver/deriv/Deriv_Black.svg';
 import FusionexFullLogo from './sponsors/platinum/fusionex/Fusionex logo full colour - chien rou lim.png';
-
+import MoceanAPILogo from './sponsors/gold/MoceanLogo.svg';
+import VAimLogo from './sponsors/gold/VAimLogo.png';
 //sponsors banner
 import FusionexBanner from './jpgs-pngs/fusionex-banner.png';
 
@@ -172,4 +174,7 @@ export {
   PrintlifezLogo,
   TitleWriteUpBG,
   PlatWriteUpBG,
+  MoceanAPILogo,
+  GoldWriteUpBG,
+  VAimLogo,
 };

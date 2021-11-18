@@ -63,7 +63,7 @@ const SponsorsBlock = ({ sponsorData, ...props }: any) => {
             w={['265px', '240px', '265px', '370px']}
             h={['205px', '205px', '205px', '220px']}
             onClick={() => {
-              window.location.href = '/write-ups';
+              window.location.href = sponsor.writeUpSection;
             }}
           >
             <Image maxH="125px" w="80%" mb="20px" src={sponsor.imageSrc} />
@@ -77,7 +77,7 @@ const SponsorsBlock = ({ sponsorData, ...props }: any) => {
             w={['230px', '230px', '290px']}
             h={['195px', '195px', '200px']}
             onClick={() => {
-              if (sponsor.url) window.open(sponsor.url, '_blank');
+              window.location.href = sponsor.writeUpSection;
             }}
           >
             <Image maxH="100px" mb="20px" src={sponsor.imageSrc} />

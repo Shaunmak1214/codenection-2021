@@ -1,5 +1,5 @@
 import React from 'react';
-import { PlatSponsorWriteUps } from '../data/writeUpsData';
+import { PlatSponsorWriteUps, GoldSponsorWriteUps } from '../data/writeUpsData';
 import { WriteUpsBlock } from '../components/organisms';
 import { Container, VStack } from '@chakra-ui/layout';
 import { SecondaryText } from '../components/atoms';
@@ -17,6 +17,7 @@ const WriteUps = () => {
         </SecondaryText>
 
         <WriteUpsBlock sponsorWriteUps={PlatSponsorWriteUps} />
+        <WriteUpsBlock sponsorWriteUps={GoldSponsorWriteUps} />
       </Container>
     </VStack>
   );
