@@ -7,9 +7,9 @@ const Index = ({ ...props }) => {
   return (
     <VStack
       alignItems="flex-start"
-      w="500px"
+      w="250px"
       maxW="500px"
-      h="200px"
+      h="150px"
       maxH="300px"
       borderRadius="8px"
       py="5"
