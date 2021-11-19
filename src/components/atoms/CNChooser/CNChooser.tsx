@@ -57,7 +57,7 @@ const CNChooser = ({ ...props }) => {
         }}
       >
         <Text color={selected === 1 ? '#ffffff' : '#000000'}>
-          Private Leaderboard
+          Closed Category
         </Text>
       </Center>
       <Center
@@ -69,7 +69,7 @@ const CNChooser = ({ ...props }) => {
         }}
       >
         <Text color={selected === 2 ? '#ffffff' : '#000000'}>
-          Public Leaderboard
+          Open Category
         </Text>
       </Center>
 

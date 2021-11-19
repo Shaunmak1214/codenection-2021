@@ -10,12 +10,12 @@ function App() {
       <Switch>
         <CNRoutes header exact path="/" component={Screens.Landing} />
         <CNRoutes header exact path="/rules" component={Screens.Rules} />
-        {/* <CNRoutes
+        <CNRoutes
           header
           exact
           path="/leaderboard"
           component={Screens.Leaderboard}
-        /> */}
+        />
         <CNRoutes
           clearForm={false}
           exact
