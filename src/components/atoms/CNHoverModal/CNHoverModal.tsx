@@ -1,15 +1,19 @@
 import { VStack } from '@chakra-ui/layout';
-import { Image } from '@chakra-ui/image';
 import React from 'react';
-import PropTypes from 'prop-types';
 
-const Index = ({ ...props }) => {
+interface CNHoverModalProps {
+  children?: React.ReactNode;
+  show: boolean;
+  [x: string]: any;
+}
+
+const Index = ({ children, ...props }: CNHoverModalProps) => {
   return (
     <VStack
       alignItems="flex-start"
       w="250px"
       maxW="500px"
-      h="150px"
+      h="fit-content"
       maxH="300px"
       borderRadius="8px"
       py="5"
@@ -23,14 +27,9 @@ const Index = ({ ...props }) => {
       transition="all 0.3s ease-in-out"
       {...props}
     >
-      <Image src={props.uni} borderRadius="50%" h="30px" w="30px" />
+      {children}
     </VStack>
   );
-};
-
-Index.propTypes = {
-  uni: PropTypes.string,
-  show: PropTypes.bool,
 };
 
 export default Index;

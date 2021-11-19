@@ -21,6 +21,7 @@ import {
 } from '@chakra-ui/react';
 import { CNChooser, CNSpacer } from '../components/atoms';
 import { CNHoverableTeamMembers } from '../components/molecules';
+import '../index.css';
 
 const Index = () => {
   const leaderboardData = [
@@ -32,6 +33,35 @@ const Index = () => {
       score: '100',
       entries: 3,
       last: '2h',
+      teamMember: [
+        {
+          name: 'ShaunShaunShaunShaun',
+          position: 'Leader',
+          imageUrl:
+            'https://www.mmu.edu.my/wp-content/themes/mmu2018/assets/images/logo-mmu2x.png',
+          university: 'UNIVERSITI TEKNOLOGI MALAYSIA',
+          citizenship: 'Malaysia',
+          education_level: 'Degree',
+        },
+        {
+          name: 'Sin Yin',
+          position: 'Member',
+          imageUrl:
+            'https://www.mmu.edu.my/wp-content/themes/mmu2018/assets/images/logo-mmu2x.png',
+          university: 'MMU',
+          citizenship: 'Malaysia',
+          education_level: 'Degree',
+        },
+        {
+          name: 'Jason',
+          position: 'Member',
+          imageUrl:
+            'https://www.mmu.edu.my/wp-content/themes/mmu2018/assets/images/logo-mmu2x.png',
+          university: 'MMU',
+          citizenship: 'Malaysia',
+          education_level: 'Degree',
+        },
+      ],
     },
     {
       idx: 2,
@@ -41,6 +71,35 @@ const Index = () => {
       score: '100,000,000',
       entries: 3,
       last: '2h',
+      teamMember: [
+        {
+          name: 'Shaun',
+          position: 'Leader',
+          imageUrl:
+            'https://www.mmu.edu.my/wp-content/themes/mmu2018/assets/images/logo-mmu2x.png',
+          university: 'MMU',
+          citizenship: 'Malaysia',
+          education_level: 'Degree',
+        },
+        {
+          name: 'Sin Yin',
+          position: 'Member',
+          imageUrl:
+            'https://www.mmu.edu.my/wp-content/themes/mmu2018/assets/images/logo-mmu2x.png',
+          university: 'MMU',
+          citizenship: 'Malaysia',
+          education_level: 'Degree',
+        },
+        {
+          name: 'Jason',
+          position: 'Member',
+          imageUrl:
+            'https://www.mmu.edu.my/wp-content/themes/mmu2018/assets/images/logo-mmu2x.png',
+          university: 'MMU',
+          citizenship: 'Malaysia',
+          education_level: 'Degree',
+        },
+      ],
     },
     {
       idx: 3,
@@ -50,6 +109,35 @@ const Index = () => {
       score: '100,000,000',
       entries: 3,
       last: '2h',
+      teamMember: [
+        {
+          name: 'Shaun',
+          position: 'Leader',
+          imageUrl:
+            'https://www.mmu.edu.my/wp-content/themes/mmu2018/assets/images/logo-mmu2x.png',
+          university: 'MMU',
+          citizenship: 'Malaysia',
+          education_level: 'Degree',
+        },
+        {
+          name: 'Sin Yin',
+          position: 'Member',
+          imageUrl:
+            'https://www.mmu.edu.my/wp-content/themes/mmu2018/assets/images/logo-mmu2x.png',
+          university: 'MMU',
+          citizenship: 'Malaysia',
+          education_level: 'Degree',
+        },
+        {
+          name: 'Jason',
+          position: 'Member',
+          imageUrl:
+            'https://www.mmu.edu.my/wp-content/themes/mmu2018/assets/images/logo-mmu2x.png',
+          university: 'MMU',
+          citizenship: 'Malaysia',
+          education_level: 'Degree',
+        },
+      ],
     },
     {
       idx: 4,
@@ -59,6 +147,35 @@ const Index = () => {
       score: '100,000,000',
       entries: 3,
       last: '2h',
+      teamMember: [
+        {
+          name: 'Shaun',
+          position: 'Leader',
+          imageUrl:
+            'https://www.mmu.edu.my/wp-content/themes/mmu2018/assets/images/logo-mmu2x.png',
+          university: 'MMU',
+          citizenship: 'Malaysia',
+          education_level: 'Degree',
+        },
+        {
+          name: 'Sin Yin',
+          position: 'Member',
+          imageUrl:
+            'https://www.mmu.edu.my/wp-content/themes/mmu2018/assets/images/logo-mmu2x.png',
+          university: 'MMU',
+          citizenship: 'Malaysia',
+          education_level: 'Degree',
+        },
+        {
+          name: 'Jason',
+          position: 'Member',
+          imageUrl:
+            'https://www.mmu.edu.my/wp-content/themes/mmu2018/assets/images/logo-mmu2x.png',
+          university: 'MMU',
+          citizenship: 'Malaysia',
+          education_level: 'Degree',
+        },
+      ],
     },
     {
       idx: 5,
@@ -68,6 +185,35 @@ const Index = () => {
       score: '100,000,000',
       entries: 3,
       last: '2h',
+      teamMember: [
+        {
+          name: 'Shaun',
+          position: 'Leader',
+          imageUrl:
+            'https://www.mmu.edu.my/wp-content/themes/mmu2018/assets/images/logo-mmu2x.png',
+          university: 'MMU',
+          citizenship: 'Malaysia',
+          education_level: 'Degree',
+        },
+        {
+          name: 'Sin Yin',
+          position: 'Member',
+          imageUrl:
+            'https://www.mmu.edu.my/wp-content/themes/mmu2018/assets/images/logo-mmu2x.png',
+          university: 'MMU',
+          citizenship: 'Malaysia',
+          education_level: 'Degree',
+        },
+        {
+          name: 'Jason',
+          position: 'Member',
+          imageUrl:
+            'https://www.mmu.edu.my/wp-content/themes/mmu2018/assets/images/logo-mmu2x.png',
+          university: 'MMU',
+          citizenship: 'Malaysia',
+          education_level: 'Degree',
+        },
+      ],
     },
     {
       idx: 6,
@@ -77,6 +223,35 @@ const Index = () => {
       score: '100,000,000',
       entries: 3,
       last: '2h',
+      teamMember: [
+        {
+          name: 'Shaun',
+          position: 'Leader',
+          imageUrl:
+            'https://www.mmu.edu.my/wp-content/themes/mmu2018/assets/images/logo-mmu2x.png',
+          university: 'MMU',
+          citizenship: 'Malaysia',
+          education_level: 'Degree',
+        },
+        {
+          name: 'Sin Yin',
+          position: 'Member',
+          imageUrl:
+            'https://www.mmu.edu.my/wp-content/themes/mmu2018/assets/images/logo-mmu2x.png',
+          university: 'MMU',
+          citizenship: 'Malaysia',
+          education_level: 'Degree',
+        },
+        {
+          name: 'Jason',
+          position: 'Member',
+          imageUrl:
+            'https://www.mmu.edu.my/wp-content/themes/mmu2018/assets/images/logo-mmu2x.png',
+          university: 'MMU',
+          citizenship: 'Malaysia',
+          education_level: 'Degree',
+        },
+      ],
     },
     {
       idx: 7,
@@ -86,6 +261,35 @@ const Index = () => {
       score: '100,000,000',
       entries: 3,
       last: '2h',
+      teamMember: [
+        {
+          name: 'Shaun',
+          position: 'Leader',
+          imageUrl:
+            'https://www.mmu.edu.my/wp-content/themes/mmu2018/assets/images/logo-mmu2x.png',
+          university: 'MMU',
+          citizenship: 'Malaysia',
+          education_level: 'Degree',
+        },
+        {
+          name: 'Sin Yin',
+          position: 'Member',
+          imageUrl:
+            'https://www.mmu.edu.my/wp-content/themes/mmu2018/assets/images/logo-mmu2x.png',
+          university: 'MMU',
+          citizenship: 'Malaysia',
+          education_level: 'Degree',
+        },
+        {
+          name: 'Jason',
+          position: 'Member',
+          imageUrl:
+            'https://www.mmu.edu.my/wp-content/themes/mmu2018/assets/images/logo-mmu2x.png',
+          university: 'MMU',
+          citizenship: 'Malaysia',
+          education_level: 'Degree',
+        },
+      ],
     },
     {
       idx: 8,
@@ -95,6 +299,35 @@ const Index = () => {
       score: '100,000,000',
       entries: 3,
       last: '2h',
+      teamMember: [
+        {
+          name: 'Shaun',
+          position: 'Leader',
+          imageUrl:
+            'https://www.mmu.edu.my/wp-content/themes/mmu2018/assets/images/logo-mmu2x.png',
+          university: 'MMU',
+          citizenship: 'Malaysia',
+          education_level: 'Degree',
+        },
+        {
+          name: 'Sin Yin',
+          position: 'Member',
+          imageUrl:
+            'https://www.mmu.edu.my/wp-content/themes/mmu2018/assets/images/logo-mmu2x.png',
+          university: 'MMU',
+          citizenship: 'Malaysia',
+          education_level: 'Degree',
+        },
+        {
+          name: 'Jason',
+          position: 'Member',
+          imageUrl:
+            'https://www.mmu.edu.my/wp-content/themes/mmu2018/assets/images/logo-mmu2x.png',
+          university: 'MMU',
+          citizenship: 'Malaysia',
+          education_level: 'Degree',
+        },
+      ],
     },
     {
       idx: 9,
@@ -111,7 +344,12 @@ const Index = () => {
     <Container maxW="container.xl" w="100%" h="100%">
       <CNSpacer size="md" />
       <VStack overflowX="auto">
-        <CNSpacer size="sm" />
+        {window.innerWidth > 768 ? (
+          <CNSpacer size="sm" />
+        ) : (
+          <CNSpacer size="3xs" />
+        )}
+
         <SimpleGrid columns={[1, 1, 2]} w="100%" justifyContent="space-between">
           <VStack alignItems="flex-start">
             <Heading fontSize="45px" fontWeight="bold">
@@ -119,13 +357,20 @@ const Index = () => {
             </Heading>
             <Text>Codenection 2021 - Closed Category | Open Category</Text>
           </VStack>
-          <CNChooser justifySelf="flex-end" />
+          <CNChooser
+            justifySelf={['flex-start', 'flex-start', 'flex-end']}
+            mt={['20px', '20px', '0px']}
+          />
         </SimpleGrid>
 
         <CNSpacer size="xs" />
 
-        <Box w="100%" overflowX="auto">
-          <Table className="leaderboard-table" variant="simple">
+        <Box w="100%">
+          <Table
+            visibility={'visible'}
+            className="leaderboard-table"
+            variant="simple"
+          >
             <TableCaption>Closed Category Leaderboard</TableCaption>
             <Thead>
               <Tr>
@@ -153,11 +398,18 @@ const Index = () => {
                       <Text fontSize={'20px'} fontWeight={'bold'} mb="8px">
                         {data.teamName}
                       </Text>
-                      <HStack>
-                        <CNHoverableTeamMembers uniLogo={data.teamLogo} />
-                        <CNHoverableTeamMembers uniLogo={data.teamLogo} />
-                        <CNHoverableTeamMembers uniLogo={data.teamLogo} />
-                      </HStack>
+                      {data.teamMember && data.teamMember.length > 0 ? (
+                        <HStack>
+                          {data.teamMember.map((member, idx) => (
+                            <CNHoverableTeamMembers
+                              uniLogo={data.teamLogo}
+                              user={member}
+                            />
+                          ))}
+                        </HStack>
+                      ) : (
+                        <></>
+                      )}
                     </VStack>
                   </Td>
                   <Td>
