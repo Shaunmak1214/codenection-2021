@@ -11,6 +11,7 @@ import ProfileBlock from './ProfileBlock/ProfileBlock';
 import FaqBlock from './FaqBlock';
 import TeamBlocks from './TeamBlocks/TeamBlocks';
 import PublicTeamList from './PublicTeamList/PublicTeamList';
+import CNHoverableTeamMembers from './CNHoverableTeamMember/CNHoverableTeamMembers';
 
 export {
   CountDownBlock,
@@ -26,4 +27,5 @@ export {
   FaqBlock,
   TeamBlocks,
   PublicTeamList,
+  CNHoverableTeamMembers,
 };

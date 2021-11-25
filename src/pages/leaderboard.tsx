@@ -1,17 +1,27 @@
+/* eslint-disable */
 import React from 'react';
-import { Image } from '@chakra-ui/image';
 import {
   Container,
   HStack,
   VStack,
   Text,
-  Box,
-  Flex,
   Heading,
+  Center,
 } from '@chakra-ui/layout';
-
+import {
+  Table,
+  Thead,
+  Tbody,
+  Tr,
+  Th,
+  Td,
+  TableCaption,
+  Box,
+  SimpleGrid,
+} from '@chakra-ui/react';
 import { CNChooser, CNSpacer } from '../components/atoms';
-import { CNHoverableAvatarGroup } from '../components/organisms';
+import { CNHoverableTeamMembers } from '../components/molecules';
+import '../index.css';
 
 const Index = () => {
   const leaderboardData = [
@@ -19,79 +29,311 @@ const Index = () => {
       idx: 1,
       teamName: 'Team 1',
       teamLogo:
-        'https://lh3.googleusercontent.com/ogw/ADea4I48pMqmRjD_VIFjWl23JWaMwveNy0JFQGPPbEDFjA=s32-c-mo',
+        'https://www.mmu.edu.my/wp-content/themes/mmu2018/assets/images/logo-mmu2x.png',
       score: '100',
       entries: 3,
       last: '2h',
+      teamMember: [
+        {
+          name: 'ShaunShaunShaunShaun',
+          position: 'Leader',
+          imageUrl:
+            'https://www.mmu.edu.my/wp-content/themes/mmu2018/assets/images/logo-mmu2x.png',
+          university: 'UNIVERSITI TEKNOLOGI MALAYSIA',
+          citizenship: 'Malaysia',
+          education_level: 'Degree',
+        },
+        {
+          name: 'Sin Yin',
+          position: 'Member',
+          imageUrl:
+            'https://www.mmu.edu.my/wp-content/themes/mmu2018/assets/images/logo-mmu2x.png',
+          university: 'MMU',
+          citizenship: 'Malaysia',
+          education_level: 'Degree',
+        },
+        {
+          name: 'Jason',
+          position: 'Member',
+          imageUrl:
+            'https://www.mmu.edu.my/wp-content/themes/mmu2018/assets/images/logo-mmu2x.png',
+          university: 'MMU',
+          citizenship: 'Malaysia',
+          education_level: 'Degree',
+        },
+      ],
     },
     {
       idx: 2,
       teamName: 'Team 2',
       teamLogo:
-        'https://lh3.googleusercontent.com/ogw/ADea4I48pMqmRjD_VIFjWl23JWaMwveNy0JFQGPPbEDFjA=s32-c-mo',
+        'https://www.mmu.edu.my/wp-content/themes/mmu2018/assets/images/logo-mmu2x.png',
       score: '100,000,000',
       entries: 3,
       last: '2h',
+      teamMember: [
+        {
+          name: 'Shaun',
+          position: 'Leader',
+          imageUrl:
+            'https://www.mmu.edu.my/wp-content/themes/mmu2018/assets/images/logo-mmu2x.png',
+          university: 'MMU',
+          citizenship: 'Malaysia',
+          education_level: 'Degree',
+        },
+        {
+          name: 'Sin Yin',
+          position: 'Member',
+          imageUrl:
+            'https://www.mmu.edu.my/wp-content/themes/mmu2018/assets/images/logo-mmu2x.png',
+          university: 'MMU',
+          citizenship: 'Malaysia',
+          education_level: 'Degree',
+        },
+        {
+          name: 'Jason',
+          position: 'Member',
+          imageUrl:
+            'https://www.mmu.edu.my/wp-content/themes/mmu2018/assets/images/logo-mmu2x.png',
+          university: 'MMU',
+          citizenship: 'Malaysia',
+          education_level: 'Degree',
+        },
+      ],
     },
     {
       idx: 3,
       teamName: 'Team 3',
       teamLogo:
-        'https://lh3.googleusercontent.com/ogw/ADea4I48pMqmRjD_VIFjWl23JWaMwveNy0JFQGPPbEDFjA=s32-c-mo',
+        'https://www.mmu.edu.my/wp-content/themes/mmu2018/assets/images/logo-mmu2x.png',
       score: '100,000,000',
       entries: 3,
       last: '2h',
+      teamMember: [
+        {
+          name: 'Shaun',
+          position: 'Leader',
+          imageUrl:
+            'https://www.mmu.edu.my/wp-content/themes/mmu2018/assets/images/logo-mmu2x.png',
+          university: 'MMU',
+          citizenship: 'Malaysia',
+          education_level: 'Degree',
+        },
+        {
+          name: 'Sin Yin',
+          position: 'Member',
+          imageUrl:
+            'https://www.mmu.edu.my/wp-content/themes/mmu2018/assets/images/logo-mmu2x.png',
+          university: 'MMU',
+          citizenship: 'Malaysia',
+          education_level: 'Degree',
+        },
+        {
+          name: 'Jason',
+          position: 'Member',
+          imageUrl:
+            'https://www.mmu.edu.my/wp-content/themes/mmu2018/assets/images/logo-mmu2x.png',
+          university: 'MMU',
+          citizenship: 'Malaysia',
+          education_level: 'Degree',
+        },
+      ],
     },
     {
       idx: 4,
       teamName: 'Team 4',
       teamLogo:
-        'https://lh3.googleusercontent.com/ogw/ADea4I48pMqmRjD_VIFjWl23JWaMwveNy0JFQGPPbEDFjA=s32-c-mo',
+        'https://www.mmu.edu.my/wp-content/themes/mmu2018/assets/images/logo-mmu2x.png',
       score: '100,000,000',
       entries: 3,
       last: '2h',
+      teamMember: [
+        {
+          name: 'Shaun',
+          position: 'Leader',
+          imageUrl:
+            'https://www.mmu.edu.my/wp-content/themes/mmu2018/assets/images/logo-mmu2x.png',
+          university: 'MMU',
+          citizenship: 'Malaysia',
+          education_level: 'Degree',
+        },
+        {
+          name: 'Sin Yin',
+          position: 'Member',
+          imageUrl:
+            'https://www.mmu.edu.my/wp-content/themes/mmu2018/assets/images/logo-mmu2x.png',
+          university: 'MMU',
+          citizenship: 'Malaysia',
+          education_level: 'Degree',
+        },
+        {
+          name: 'Jason',
+          position: 'Member',
+          imageUrl:
+            'https://www.mmu.edu.my/wp-content/themes/mmu2018/assets/images/logo-mmu2x.png',
+          university: 'MMU',
+          citizenship: 'Malaysia',
+          education_level: 'Degree',
+        },
+      ],
     },
     {
       idx: 5,
       teamName: 'Team 5',
       teamLogo:
-        'https://lh3.googleusercontent.com/ogw/ADea4I48pMqmRjD_VIFjWl23JWaMwveNy0JFQGPPbEDFjA=s32-c-mo',
+        'https://www.mmu.edu.my/wp-content/themes/mmu2018/assets/images/logo-mmu2x.png',
       score: '100,000,000',
       entries: 3,
       last: '2h',
+      teamMember: [
+        {
+          name: 'Shaun',
+          position: 'Leader',
+          imageUrl:
+            'https://www.mmu.edu.my/wp-content/themes/mmu2018/assets/images/logo-mmu2x.png',
+          university: 'MMU',
+          citizenship: 'Malaysia',
+          education_level: 'Degree',
+        },
+        {
+          name: 'Sin Yin',
+          position: 'Member',
+          imageUrl:
+            'https://www.mmu.edu.my/wp-content/themes/mmu2018/assets/images/logo-mmu2x.png',
+          university: 'MMU',
+          citizenship: 'Malaysia',
+          education_level: 'Degree',
+        },
+        {
+          name: 'Jason',
+          position: 'Member',
+          imageUrl:
+            'https://www.mmu.edu.my/wp-content/themes/mmu2018/assets/images/logo-mmu2x.png',
+          university: 'MMU',
+          citizenship: 'Malaysia',
+          education_level: 'Degree',
+        },
+      ],
     },
     {
       idx: 6,
       teamName: 'Team 5',
       teamLogo:
-        'https://lh3.googleusercontent.com/ogw/ADea4I48pMqmRjD_VIFjWl23JWaMwveNy0JFQGPPbEDFjA=s32-c-mo',
+        'https://www.mmu.edu.my/wp-content/themes/mmu2018/assets/images/logo-mmu2x.png',
       score: '100,000,000',
       entries: 3,
       last: '2h',
+      teamMember: [
+        {
+          name: 'Shaun',
+          position: 'Leader',
+          imageUrl:
+            'https://www.mmu.edu.my/wp-content/themes/mmu2018/assets/images/logo-mmu2x.png',
+          university: 'MMU',
+          citizenship: 'Malaysia',
+          education_level: 'Degree',
+        },
+        {
+          name: 'Sin Yin',
+          position: 'Member',
+          imageUrl:
+            'https://www.mmu.edu.my/wp-content/themes/mmu2018/assets/images/logo-mmu2x.png',
+          university: 'MMU',
+          citizenship: 'Malaysia',
+          education_level: 'Degree',
+        },
+        {
+          name: 'Jason',
+          position: 'Member',
+          imageUrl:
+            'https://www.mmu.edu.my/wp-content/themes/mmu2018/assets/images/logo-mmu2x.png',
+          university: 'MMU',
+          citizenship: 'Malaysia',
+          education_level: 'Degree',
+        },
+      ],
     },
     {
       idx: 7,
       teamName: 'Team 5',
       teamLogo:
-        'https://lh3.googleusercontent.com/ogw/ADea4I48pMqmRjD_VIFjWl23JWaMwveNy0JFQGPPbEDFjA=s32-c-mo',
+        'https://www.mmu.edu.my/wp-content/themes/mmu2018/assets/images/logo-mmu2x.png',
       score: '100,000,000',
       entries: 3,
       last: '2h',
+      teamMember: [
+        {
+          name: 'Shaun',
+          position: 'Leader',
+          imageUrl:
+            'https://www.mmu.edu.my/wp-content/themes/mmu2018/assets/images/logo-mmu2x.png',
+          university: 'MMU',
+          citizenship: 'Malaysia',
+          education_level: 'Degree',
+        },
+        {
+          name: 'Sin Yin',
+          position: 'Member',
+          imageUrl:
+            'https://www.mmu.edu.my/wp-content/themes/mmu2018/assets/images/logo-mmu2x.png',
+          university: 'MMU',
+          citizenship: 'Malaysia',
+          education_level: 'Degree',
+        },
+        {
+          name: 'Jason',
+          position: 'Member',
+          imageUrl:
+            'https://www.mmu.edu.my/wp-content/themes/mmu2018/assets/images/logo-mmu2x.png',
+          university: 'MMU',
+          citizenship: 'Malaysia',
+          education_level: 'Degree',
+        },
+      ],
     },
     {
       idx: 8,
       teamName: 'Team 5',
       teamLogo:
-        'https://lh3.googleusercontent.com/ogw/ADea4I48pMqmRjD_VIFjWl23JWaMwveNy0JFQGPPbEDFjA=s32-c-mo',
+        'https://www.mmu.edu.my/wp-content/themes/mmu2018/assets/images/logo-mmu2x.png',
       score: '100,000,000',
       entries: 3,
       last: '2h',
+      teamMember: [
+        {
+          name: 'Shaun',
+          position: 'Leader',
+          imageUrl:
+            'https://www.mmu.edu.my/wp-content/themes/mmu2018/assets/images/logo-mmu2x.png',
+          university: 'MMU',
+          citizenship: 'Malaysia',
+          education_level: 'Degree',
+        },
+        {
+          name: 'Sin Yin',
+          position: 'Member',
+          imageUrl:
+            'https://www.mmu.edu.my/wp-content/themes/mmu2018/assets/images/logo-mmu2x.png',
+          university: 'MMU',
+          citizenship: 'Malaysia',
+          education_level: 'Degree',
+        },
+        {
+          name: 'Jason',
+          position: 'Member',
+          imageUrl:
+            'https://www.mmu.edu.my/wp-content/themes/mmu2018/assets/images/logo-mmu2x.png',
+          university: 'MMU',
+          citizenship: 'Malaysia',
+          education_level: 'Degree',
+        },
+      ],
     },
     {
       idx: 9,
       teamName: 'Team 5',
       teamLogo:
-        'https://lh3.googleusercontent.com/ogw/ADea4I48pMqmRjD_VIFjWl23JWaMwveNy0JFQGPPbEDFjA=s32-c-mo',
+        'https://www.mmu.edu.my/wp-content/themes/mmu2018/assets/images/logo-mmu2x.png',
       score: '100,000,000',
       entries: 3,
       last: '2h',
@@ -101,21 +343,183 @@ const Index = () => {
   return (
     <Container maxW="container.xl" w="100%" h="100%">
       <CNSpacer size="md" />
-      <VStack>
-        <CNSpacer size="sm" />
-        <HStack w="100%" justifyContent="space-between">
+      <VStack overflowX="auto">
+        {window.innerWidth > 768 ? (
+          <CNSpacer size="sm" />
+        ) : (
+          <CNSpacer size="3xs" />
+        )}
+
+        <SimpleGrid columns={[1, 1, 2]} w="100%" justifyContent="space-between">
           <VStack alignItems="flex-start">
             <Heading fontSize="45px" fontWeight="bold">
               Leaderboard
             </Heading>
-            <Text>Last updated at 30/09 6:00PM</Text>
+            <Text>Codenection 2021 - Closed Category | Open Category</Text>
           </VStack>
-          <CNChooser />
-        </HStack>
+          <CNChooser
+            justifySelf={['flex-start', 'flex-start', 'flex-end']}
+            mt={['20px', '20px', '0px']}
+          />
+        </SimpleGrid>
 
         <CNSpacer size="xs" />
 
-        <VStack className="leaderboard-table" w="100%">
+        <Box w="100%">
+          <Table
+            visibility={'visible'}
+            className="leaderboard-table"
+            variant="simple"
+          >
+            <TableCaption>Closed Category Leaderboard</TableCaption>
+            <Thead>
+              <Tr>
+                <Th w="2%">#Rank</Th>
+                <Th>Team</Th>
+                <Th>Score</Th>
+                <Th>A</Th>
+                <Th>B</Th>
+                <Th>C</Th>
+                <Th>D</Th>
+                <Th>E</Th>
+              </Tr>
+            </Thead>
+            <Tbody>
+              {leaderboardData.map((data, idx) => (
+                <Tr>
+                  <Td w="2%">{idx}</Td>
+                  <Td>
+                    <VStack
+                      w="100%"
+                      h="100%"
+                      justifyContent={'flex-start'}
+                      alignItems={'flex-start'}
+                    >
+                      <Text fontSize={'20px'} fontWeight={'bold'} mb="8px">
+                        {data.teamName}
+                      </Text>
+                      {data.teamMember && data.teamMember.length > 0 ? (
+                        <HStack>
+                          {data.teamMember.map((member, idx) => (
+                            <CNHoverableTeamMembers
+                              uniLogo={data.teamLogo}
+                              user={member}
+                            />
+                          ))}
+                        </HStack>
+                      ) : (
+                        <></>
+                      )}
+                    </VStack>
+                  </Td>
+                  <Td>
+                    <Center
+                      borderRadius="25px"
+                      w="fit-content"
+                      px="3"
+                      py="2"
+                      bgColor="#C9C9C9"
+                    >
+                      {data.score}
+                    </Center>
+                  </Td>
+                  <Td px="0" py="3">
+                    <Center bgColor={'#83FFD2'} w="100%" h="100px">
+                      <VStack
+                        h="100%"
+                        w="100%"
+                        display={'flex'}
+                        alignItems={'center'}
+                        justifyContent={'center'}
+                      >
+                        <Text fontSize={'20px'} fontWeight={'bold'}>
+                          31
+                        </Text>
+                        <Text fontSize={'15px'} fontWeight={'normal'}>
+                          {data.entries} try
+                        </Text>
+                      </VStack>
+                    </Center>
+                  </Td>
+                  <Td px="0" py="3">
+                    <Center bgColor={'#FFA5AA'} w="100%" h="100px">
+                      <VStack
+                        h="100%"
+                        w="100%"
+                        display={'flex'}
+                        alignItems={'center'}
+                        justifyContent={'center'}
+                      >
+                        <Text fontSize={'20px'} fontWeight={'bold'}>
+                          31
+                        </Text>
+                        <Text fontSize={'15px'} fontWeight={'normal'}>
+                          {data.entries} try
+                        </Text>
+                      </VStack>
+                    </Center>
+                  </Td>
+                  <Td px="0" py="3">
+                    <Center bgColor={'#83FFD2'} w="100%" h="100px">
+                      <VStack
+                        h="100%"
+                        w="100%"
+                        display={'flex'}
+                        alignItems={'center'}
+                        justifyContent={'center'}
+                      >
+                        <Text fontSize={'20px'} fontWeight={'bold'}>
+                          31
+                        </Text>
+                        <Text fontSize={'15px'} fontWeight={'normal'}>
+                          {data.entries} try
+                        </Text>
+                      </VStack>
+                    </Center>
+                  </Td>
+                  <Td px="0" py="3">
+                    <Center bgColor={'#FFA5AA'} w="100%" h="100px">
+                      <VStack
+                        h="100%"
+                        w="100%"
+                        display={'flex'}
+                        alignItems={'center'}
+                        justifyContent={'center'}
+                      >
+                        <Text fontSize={'20px'} fontWeight={'bold'}>
+                          31
+                        </Text>
+                        <Text fontSize={'15px'} fontWeight={'normal'}>
+                          {data.entries} try
+                        </Text>
+                      </VStack>
+                    </Center>
+                  </Td>
+                  <Td px="0" py="3">
+                    <Center bgColor={'#83FFD2'} w="100%" h="100px">
+                      <VStack
+                        h="100%"
+                        w="100%"
+                        display={'flex'}
+                        alignItems={'center'}
+                        justifyContent={'center'}
+                      >
+                        <Text fontSize={'20px'} fontWeight={'bold'}>
+                          31
+                        </Text>
+                        <Text fontSize={'15px'} fontWeight={'normal'}>
+                          {data.entries} try
+                        </Text>
+                      </VStack>
+                    </Center>
+                  </Td>
+                </Tr>
+              ))}
+            </Tbody>
+          </Table>
+        </Box>
+
+        {/* <VStack className="leaderboard-table" w="100%">
           <HStack
             className="table-head-row"
             w="100%"
@@ -216,7 +620,9 @@ const Index = () => {
               </HStack>
             ))}
           </VStack>
-        </VStack>
+        </VStack> */}
+
+        <CNSpacer size="xs" />
       </VStack>
     </Container>
   );
