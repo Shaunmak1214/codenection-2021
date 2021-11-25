@@ -80,7 +80,7 @@ const SponsorsBlock = ({ sponsorData, ...props }: any) => {
               window.location.href = sponsor.writeUpSection;
             }}
           >
-            <Image maxH="100px" mb="20px" src={sponsor.imageSrc} />
+            <Image maxH="100px" mb="20px" maxW="80%" src={sponsor.imageSrc} />
           </SponsorImg>
         );
 
@@ -128,17 +128,17 @@ const SponsorsBlock = ({ sponsorData, ...props }: any) => {
           )}
         </VStack>
         <SimpleGrid
-          // columns={
-          //   sponsorData.data.length > 0
-          //     ? [
-          //         '1',
-          //         sponsorData.level > 2 ? '2' : sponsorData.level,
-          //         sponsorData.level > 2 ? '2' : sponsorData.level,
-          //         sponsorData.level,
-          //       ]
-          //     : 1
-          // }
-          columns={1}
+          columns={
+            sponsorData.data.length > 0
+              ? [
+                  '1',
+                  sponsorData.data.length,
+                  sponsorData.data.length,
+                  sponsorData.data.length,
+                ]
+              : 1
+          }
+          // columns={1}
           w="100%"
           justifyItems="center"
           alignItems="center"
