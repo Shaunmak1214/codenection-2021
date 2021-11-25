@@ -4,6 +4,7 @@ import {
   MoceanAPILogo,
   GoldWriteUpBG,
   VAimLogo,
+  FlexLogo,
 } from '../assets';
 
 interface WriteUps {
@@ -46,6 +47,13 @@ const PlatSponsorWriteUps: WriteUps = {
       At Fusionex, we believe in discovering, nurturing, and unlocking the potential of individuals. Regardless if you are a fresh graduate or a seasoned professional, so long as you have a ‘can-do, do-it-well’ attitude, we will always provide the opportunities, support, and platform for you.\n
       We also believe that continuous learning is key to progress. As such, we encourage and support individuals who aspire to explore, learn and grow.\n
       To learn more about Fusionex, visit www.fusionex-international.com`,
+    },
+    {
+      idx: 1,
+      imageSrc: FlexLogo,
+      url: 'https://flex.com/',
+      linkText: 'https://flex.com/',
+      writeUps: `Flex is the manufacturing partner of choice that helps a diverse customer base design and build products that improve the world. Through the collective strength of a global workforce across 30 countries and responsible, sustainable operations, Flex delivers technology innovation, supply chain, and manufacturing solutions to various industries and end markets. For more information, visit flex.com.`,
     },
   ],
 };

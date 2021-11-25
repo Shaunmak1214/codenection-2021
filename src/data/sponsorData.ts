@@ -11,6 +11,7 @@ import {
   BronzePlaceholder,
   MoceanAPILogo,
   VAimLogo,
+  FlexLogo,
 } from '../assets';
 
 interface SponsorsObject {
@@ -51,6 +52,12 @@ const PlatinumSponsor: SponsorsObject = {
       imageSrc: FusionexFullLogo,
       url: 'https://www.fusionexgroup.com/',
       writeUpSection: '/write-ups#fusionex',
+    },
+    {
+      idx: 1,
+      imageSrc: FlexLogo,
+      url: 'https://flex.com/',
+      writeUpSection: '/write-ups#flex',
     },
   ],
 };

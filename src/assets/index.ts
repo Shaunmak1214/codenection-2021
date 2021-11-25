@@ -21,6 +21,8 @@ import TitleWriteUpBG from './jpgs-pngs/TitleWriteUpBG.png';
 import PlatWriteUpBG from './jpgs-pngs/PlatWriteUpBG.png';
 import GoldWriteUpBG from './jpgs-pngs/GoldWriteUpBG.png';
 import StockSponsor from './jpgs-pngs/stock-sponsor-group.png';
+import EducationIcon from './jpgs-pngs/education.png';
+import CitizenshipIcon from './jpgs-pngs/citizenship.png';
 
 //svgs
 import CNLanding from './svgs/CNLanding.svg';
@@ -85,6 +87,8 @@ import DerivBlackLogo from './sponsors/silver/deriv/Deriv_Black.svg';
 import FusionexFullLogo from './sponsors/platinum/fusionex/Fusionex logo full colour - chien rou lim.png';
 import MoceanAPILogo from './sponsors/gold/MoceanLogo.svg';
 import VAimLogo from './sponsors/gold/VAimLogo.png';
+import FlexLogo from './sponsors/platinum/flex/Flex-blue.png';
+
 //sponsors banner
 import FusionexBanner from './jpgs-pngs/fusionex-banner.png';
 
@@ -177,4 +181,7 @@ export {
   MoceanAPILogo,
   GoldWriteUpBG,
   VAimLogo,
+  EducationIcon,
+  CitizenshipIcon,
+  FlexLogo,
 };
