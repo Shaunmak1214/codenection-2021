@@ -39,14 +39,14 @@ const SponsorSection = () => {
             <SponsorsBlock sponsorData={BronzeSponsor} />
             <SimpleGrid
               pt="25px"
-              columns={[1, 1, 2]}
-              spacing={[2, 5, 1]}
+              columns={[1, 1, 1, 2]}
+              spacing={[2, 5, 5, 1]}
               justifyItems="center"
               alignItems="center"
-              w="70%"
+              w={['100%', '80%', '80%%', '70%']}
               margin="0 auto"
             >
-              <Center>
+              <Center w="100%">
                 <SecondaryButton
                   bg="linear-gradient(90deg, #002A97 0%, #2054AC 50.52%, #407DC1 100%);"
                   _hover={{
@@ -60,6 +60,7 @@ const SponsorSection = () => {
                   onClick={() => {
                     window.open(SponsorProposal, '_blank');
                   }}
+                  w="90% !important"
                 >
                   <HStack alignItems="center">
                     <BecomeOurSponsorIcon
@@ -73,7 +74,7 @@ const SponsorSection = () => {
                   </HStack>
                 </SecondaryButton>
               </Center>
-              <Center>
+              <Center w="100%">
                 <SecondaryButton
                   bg="linear-gradient(90deg, #002A97 0%, #2054AC 50.52%, #407DC1 100%);"
                   _hover={{
@@ -85,6 +86,7 @@ const SponsorSection = () => {
                   py="25px"
                   borderRadius="15px"
                   onClick={() => (window.location.href = '/write-ups')}
+                  w="90% !important"
                 >
                   <HStack alignItems="center">
                     <PrimaryText fontSize="md">

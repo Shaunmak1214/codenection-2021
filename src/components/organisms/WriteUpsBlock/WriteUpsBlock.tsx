@@ -133,7 +133,7 @@ const WriteUpsBlock = ({ sponsorWriteUps, ...props }: any) => {
                   boxShadow="0px 4px 10px rgba(0, 121, 255, 0.25)"
                   borderRadius="10px"
                   d="flex"
-                  justifyContent="space-around"
+                  justifyContent="flex-start"
                   w={['90%', '90%', '80%']}
                   h="9%"
                   alignItems="center"
@@ -143,7 +143,11 @@ const WriteUpsBlock = ({ sponsorWriteUps, ...props }: any) => {
                     if (sponsor.url) window.open(sponsor.url, '_blank');
                   }}
                 >
-                  <Image src={LinkIcon} d={['none', 'none', 'block']} />
+                  <Image
+                    src={LinkIcon}
+                    mr="20px"
+                    d={['none', 'none', 'block']}
+                  />
                   <Text>{sponsor.linkText}</Text>
                 </Box>
               </Box>
@@ -191,7 +195,7 @@ const WriteUpsBlock = ({ sponsorWriteUps, ...props }: any) => {
                     boxShadow="0px 4px 10px rgba(0, 121, 255, 0.25)"
                     borderRadius="10px"
                     d="flex"
-                    justifyContent="space-around"
+                    justifyContent="flex-start"
                     w={['90%', '90%', '60%']}
                     h="9%"
                     alignItems="center"
@@ -201,7 +205,11 @@ const WriteUpsBlock = ({ sponsorWriteUps, ...props }: any) => {
                       if (sponsor.url) window.open(sponsor.url, '_blank');
                     }}
                   >
-                    <Image src={LinkIcon} d={['none', 'none', 'block']} />
+                    <Image
+                      src={LinkIcon}
+                      mr="20px"
+                      d={['none', 'none', 'block']}
+                    />
                     <Text> {sponsor.linkText} </Text>
                   </Box>
                 </Box>

@@ -87,6 +87,8 @@ import DerivBlackLogo from './sponsors/silver/deriv/Deriv_Black.svg';
 import FusionexFullLogo from './sponsors/platinum/fusionex/Fusionex logo full colour - chien rou lim.png';
 import MoceanAPILogo from './sponsors/gold/MoceanLogo.svg';
 import VAimLogo from './sponsors/gold/VAimLogo.png';
+import FlexLogo from './sponsors/platinum/flex/Flex-blue.png';
+
 //sponsors banner
 import FusionexBanner from './jpgs-pngs/fusionex-banner.png';
 
@@ -181,4 +183,5 @@ export {
   VAimLogo,
   EducationIcon,
   CitizenshipIcon,
+  FlexLogo,
 };
