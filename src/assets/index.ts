@@ -21,6 +21,8 @@ import TitleWriteUpBG from './jpgs-pngs/TitleWriteUpBG.png';
 import PlatWriteUpBG from './jpgs-pngs/PlatWriteUpBG.png';
 import GoldWriteUpBG from './jpgs-pngs/GoldWriteUpBG.png';
 import StockSponsor from './jpgs-pngs/stock-sponsor-group.png';
+import EducationIcon from './jpgs-pngs/education.png';
+import CitizenshipIcon from './jpgs-pngs/citizenship.png';
 
 //svgs
 import CNLanding from './svgs/CNLanding.svg';
@@ -177,4 +179,6 @@ export {
   MoceanAPILogo,
   GoldWriteUpBG,
   VAimLogo,
+  EducationIcon,
+  CitizenshipIcon,
 };
