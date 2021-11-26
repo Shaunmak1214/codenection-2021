@@ -19,6 +19,7 @@ import {
   TitleSponsorImg,
   TitleSponsorStock,
   FusionexBanner,
+  FlexBanner,
 } from '../../../assets';
 
 // install Swiper modules
@@ -82,6 +83,16 @@ const TitleSponsorSection = () => {
                 href="https://www.fusionexgroup.com/"
               >
                 <Image src={FusionexBanner} rounded="xl" />
+              </a>
+            </SwiperSlide>
+            <SwiperSlide>
+              <a
+                className="venobox"
+                target="_blank"
+                rel="noreferrer"
+                href="https://flex.com/"
+              >
+                <Image src={FlexBanner} rounded="xl" />
               </a>
             </SwiperSlide>
             <SwiperSlide>

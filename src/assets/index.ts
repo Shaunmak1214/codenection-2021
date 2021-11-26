@@ -91,6 +91,7 @@ import FlexLogo from './sponsors/platinum/flex/Flex-blue.png';
 
 //sponsors banner
 import FusionexBanner from './jpgs-pngs/fusionex-banner.png';
+import FlexBanner from './jpgs-pngs/flex-banner.jpg';
 
 //proposal
 // @ts-ignore
@@ -184,4 +185,5 @@ export {
   EducationIcon,
   CitizenshipIcon,
   FlexLogo,
+  FlexBanner,
 };
