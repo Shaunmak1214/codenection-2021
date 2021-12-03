@@ -33,11 +33,20 @@ const WriteUpsBlock = ({ sponsorWriteUps, ...props }: any) => {
       setTimeout(() => {
         if (platRef.current) {
           window.scrollTo({
-            top: platRef.current.offsetTop - 200,
+            top: platRef.current.offsetTop - 780,
             behavior: 'smooth',
           });
         }
       }, 800);
+    } else if (window.location.hash === '#flex') {
+      setTimeout(() => {
+        if (platRef.current) {
+          window.scrollTo({
+            top: platRef.current.offsetTop - 10,
+            behavior: 'smooth',
+          });
+        }
+      });
     } else if (window.location.hash === '#moceanapi') {
       setTimeout(() => {
         if (goldRef.current) {
