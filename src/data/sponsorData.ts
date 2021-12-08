@@ -8,10 +8,10 @@ import {
   FusionexFullLogo,
   DerivBlackLogo,
   GoldPlaceholder,
-  BronzePlaceholder,
   MoceanAPILogo,
   VAimLogo,
   FlexLogo,
+  SkyDrive,
 } from '../assets';
 
 interface SponsorsObject {
@@ -100,11 +100,11 @@ const BronzeSponsor: SponsorsObject = {
   type: 'Bronze',
   level: 6,
   flags: BronzeBG,
-  placeholderSrc: BronzePlaceholder,
   data: [
     {
       idx: 0,
-      imageSrc: StockLogo,
+      imageSrc: SkyDrive,
+      url: 'https://www.skydrivesolutions.com/',
     },
   ],
 };
