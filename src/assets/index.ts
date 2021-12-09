@@ -88,6 +88,7 @@ import FusionexFullLogo from './sponsors/platinum/fusionex/Fusionex logo full co
 import MoceanAPILogo from './sponsors/gold/MoceanLogo.svg';
 import VAimLogo from './sponsors/gold/VAimLogo.png';
 import FlexLogo from './sponsors/platinum/flex/Flex-blue.png';
+import SkyDrive from './sponsors/bronze/skydrive/skydrive.png';
 
 //sponsors banner
 import FusionexBanner from './jpgs-pngs/fusionex-banner.png';
@@ -186,4 +187,5 @@ export {
   CitizenshipIcon,
   FlexLogo,
   FlexBanner,
+  SkyDrive,
 };
