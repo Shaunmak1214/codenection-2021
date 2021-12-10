@@ -235,7 +235,7 @@ const Index = () => {
                   </Tr>
                 ))
               ) : (
-                <Td colSpan={selectedLeaderboard === 'closed' ? 7 : 4}>
+                <Td colSpan={selectedLeaderboard === 'closed' ? 8 : 4}>
                   {leaderboardErr ? (
                     <Alert status="error">
                       <AlertIcon />
