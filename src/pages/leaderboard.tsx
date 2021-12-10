@@ -83,7 +83,6 @@ const Index = () => {
         console.log(err);
         setLeaderboardErr(err);
       } else {
-        console.log(data);
         setLeaderboard(data.data.data);
       }
     },
@@ -110,10 +109,7 @@ const Index = () => {
               Leaderboard
             </Heading>
             <Text>
-              Codenection 2021 -{' '}
-              {selectedLeaderboard === 'open'
-                ? 'Open Category'
-                : 'Closed Category '}
+              This leaderboard is updated every <b>15mins</b>.
             </Text>
           </VStack>
           <CNChooser
@@ -156,7 +152,7 @@ const Index = () => {
             </Thead>
             <Tbody>
               {leaderboardLoading ? (
-                <Td colSpan={selectedLeaderboard === 'closed' ? 7 : 4}>
+                <Td colSpan={selectedLeaderboard === 'closed' ? 8 : 4}>
                   <Center w="100%">
                     <Spinner
                       thickness="4px"
