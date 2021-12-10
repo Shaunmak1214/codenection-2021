@@ -169,7 +169,7 @@ const Index = () => {
               ) : leaderboard.length > 0 ? (
                 leaderboard.map((data: leaderboardItem, idx: number) => (
                   <Tr key={idx}>
-                    <Td w="2%">{idx}</Td>
+                    <Td w="2%">{idx + 1}</Td>
                     <Td>
                       <VStack
                         w="100%"
