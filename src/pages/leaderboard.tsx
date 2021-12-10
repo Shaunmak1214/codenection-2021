@@ -201,9 +201,7 @@ const Index = () => {
                         py="2"
                         bgColor="#C9C9C9"
                       >
-                        {data.hackerrank_info.score
-                          ? data.hackerrank_info.score
-                          : 0}
+                        {data.hackerrank_info ? data.hackerrank_info.score : 0}
                       </Center>
                     </Td>
                     {data.scoresByChallenge &&
