@@ -56,7 +56,7 @@ interface hackerrank_info_data {
 
 interface leaderboardItem {
   id: number;
-  teamName: string;
+  team_name: string;
   teamLogo?: string;
   hackerrank_username: string;
   is_internal: boolean;
@@ -177,8 +177,8 @@ const Index = () => {
                         justifyContent={'flex-start'}
                         alignItems={'flex-start'}
                       >
-                        <Text fontSize={'20px'} fontWeight={'bold'} mb="8px">
-                          {data.teamName}
+                        <Text fontSize={'22px'} fontWeight={'bold'} mb="12px">
+                          {data.team_name}
                         </Text>
                         {data.teamMembers && data.teamMembers.length > 0 ? (
                           <HStack>
