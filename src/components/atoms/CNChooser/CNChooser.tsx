@@ -1,9 +1,13 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { Center, HStack, Box } from '@chakra-ui/layout';
 import { Text } from '@chakra-ui/react';
 
-const CNChooser = ({ ...props }) => {
+interface Props {
+  onSelect: (value: string) => void;
+}
+
+const CNChooser = ({ onSelect, ...props }: Props) => {
   // let children: React.ReactNode = props.children;
   const [selected, setSelected] = useState(1);
   let firstChoiceRef = useRef(null);
@@ -36,6 +40,14 @@ const CNChooser = ({ ...props }) => {
     }, 300);
   };
 
+  useEffect(() => {
+    if (selected === 1) {
+      onSelect('closed');
+    } else if (selected === 2) {
+      onSelect('open');
+    }
+  }, [selected, onSelect]);
+
   return (
     <HStack
       justifyContent="center"
@@ -46,6 +58,8 @@ const CNChooser = ({ ...props }) => {
       cursor="pointer"
       w="400px"
       position="relative"
+      justifySelf={['flex-start', 'flex-start', 'flex-end']}
+      mt={['20px', '20px', '0px']}
       {...props}
     >
       <Center
