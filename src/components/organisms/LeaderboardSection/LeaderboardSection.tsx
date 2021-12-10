@@ -1,18 +1,11 @@
 import React from 'react';
 
-import {
-  Center,
-  Container,
-  HStack,
-  SimpleGrid,
-  VStack,
-} from '@chakra-ui/layout';
+import { Center, Container, SimpleGrid, VStack } from '@chakra-ui/layout';
 import Lottie from 'react-lottie';
 
-import { SecondaryText } from '../../atoms';
+import { CNSpacer, SecondaryButton, SecondaryText } from '../../atoms';
 
 import { Building } from '../../../constants';
-import { DiscordBlue, InstagramBlue, FacebookBlue } from '../../../assets';
 
 const LeaderboardSection = () => {
   return (
@@ -30,23 +23,28 @@ const LeaderboardSection = () => {
 
         <SimpleGrid
           columns={[1, 1, 2]}
-          p={'40px'}
+          py={'0px'}
+          px={'40px'}
           w="100%"
           border="2px solid #95C7FF;"
           borderRadius="20px"
           alignItems="center"
           flexDir="column-reverse"
         >
-          <VStack w="100%" alignItems="flex-start">
-            <SecondaryText fontSize="lg" fontWeight="bold">
-              Coming Soon
+          <VStack w="100%" alignItems="center">
+            <SecondaryText fontSize="xl" fontWeight="bold">
+              The leaderboard is live now!
             </SecondaryText>
-            <SecondaryText fontSize="lg">
-              The leaderboard will be released shortly! Follow us now to be the
-              first to get some sneak peeks of our updates.
-            </SecondaryText>
+            <CNSpacer size="4xs" />
+            <SecondaryButton
+              onClick={() => {
+                window.location.href = '/leaderboard';
+              }}
+            >
+              Go to leaderboard
+            </SecondaryButton>
 
-            <HStack mt="20px !important" alignItems="center">
+            {/* <HStack mt="20px !important" alignItems="center">
               <FacebookBlue
                 onClick={() => {
                   window.open(
@@ -71,7 +69,7 @@ const LeaderboardSection = () => {
                 }}
                 style={{ height: '29px' }}
               />
-            </HStack>
+            </HStack> */}
           </VStack>
 
           <Center w="100%" h="100%">

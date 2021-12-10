@@ -208,13 +208,15 @@ const Index = () => {
                         py="2"
                         bgColor="#C9C9C9"
                       >
-                        {data.hackerrank_info ? data.hackerrank_info.score : 0}
+                        {data.hackerrank_info
+                          ? Number(data.hackerrank_info.score.toFixed(2))
+                          : 0}
                       </Center>
                     </Td>
                     {data.scoresByChallenge &&
                       data.scoresByChallenge.map((score: any, idx: number) => (
                         <Td px="0" py="3">
-                          <Center bgColor={'#83FFD2'} w="100%" h="100px">
+                          <Center bgColor={'#83FFD2'} w="100%" h="75px">
                             <VStack
                               h="100%"
                               w="100%"
@@ -222,8 +224,8 @@ const Index = () => {
                               alignItems={'center'}
                               justifyContent={'center'}
                             >
-                              <Text fontSize={'20px'} fontWeight={'bold'}>
-                                {score.score}
+                              <Text fontSize={'18px'} fontWeight={'bold'}>
+                                {Number(score.score.toFixed(2))}
                               </Text>
                             </VStack>
                           </Center>
