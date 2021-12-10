@@ -16,13 +16,13 @@ function App() {
           path="/leaderboard"
           component={Screens.Leaderboard}
         />
-        <CNRoutes
+        {/* <CNRoutes
           clearForm={false}
           exact
           path="/register"
           footer={false}
           component={Screens.Register}
-        />
+        /> */}
         <CNRoutes
           exact
           footer={false}

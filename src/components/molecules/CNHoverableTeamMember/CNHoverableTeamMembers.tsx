@@ -16,7 +16,7 @@ import { CNHoverModal } from '../../atoms';
 import { CitizenshipIcon, EducationIcon } from '../../../assets';
 
 interface user {
-  name: string;
+  full_name: string;
   position: string;
   imageUrl: string;
   university: string;
@@ -61,9 +61,9 @@ const Index = ({ uniLogo, user }: IProps) => {
             <>
               <HStack w="100%" justifyContent={'space-between'}>
                 <HStack>
-                  <Avatar size="xs" name={user.name}></Avatar>
+                  <Avatar size="xs" name={user.full_name} src=""></Avatar>
                   <Text fontWeight={'600'} wordBreak={'break-word'}>
-                    {user.name}
+                    {user.full_name}
                   </Text>
                 </HStack>
                 <Badge size="xs" alignSelf={'flex-start'}>
