@@ -74,7 +74,7 @@ const Index = () => {
 
   const { loading: leaderboardLoading, fetch: getLeaderboard } = useAxios(
     {
-      url: `/leaderboard/${selectedLeaderboard}`,
+      url: `/leaderboard/cached/${selectedLeaderboard}`,
       method: 'GET',
     },
     // eslint-disable-next-line
