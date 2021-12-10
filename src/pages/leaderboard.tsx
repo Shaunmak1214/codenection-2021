@@ -83,15 +83,16 @@ const Index = () => {
         console.log(err);
         setLeaderboardErr(err);
       } else {
-        console.log(data.data.data);
+        console.log(data);
         setLeaderboard(data.data.data);
       }
     },
   );
 
   useEffect(() => {
+    setLeaderboard([]);
     getLeaderboard();
-  }, [selectedLeaderboard]);
+  }, [selectedLeaderboard, setLeaderboard]);
 
   return (
     <Container maxW="container.xl" w="100%" h="100%">
