@@ -147,6 +147,7 @@ const Index = () => {
                     <Th>B</Th>
                     <Th>C</Th>
                     <Th>D</Th>
+                    <Th>E</Th>
                   </>
                 ) : (
                   <Th>A</Th>
