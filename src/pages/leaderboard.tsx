@@ -19,6 +19,10 @@ import {
   Box,
   SimpleGrid,
   Spinner,
+  Alert,
+  AlertIcon,
+  AlertTitle,
+  AlertDescription,
 } from '@chakra-ui/react';
 import { CNChooser, CNSpacer } from '../components/atoms';
 import { CNHoverableTeamMembers } from '../components/molecules';
@@ -66,6 +70,7 @@ interface leaderboardItem {
 const Index = () => {
   const [selectedLeaderboard, setSelectedLeaderboard] = useState('closed');
   const [leaderboard, setLeaderboard] = useState<leaderboardItem[]>([]);
+  const [leaderboardErr, setLeaderboardErr] = useState(null);
 
   const { loading: leaderboardLoading, fetch: getLeaderboard } = useAxios(
     {
@@ -76,6 +81,7 @@ const Index = () => {
     (err, data) => {
       if (err) {
         console.log(err);
+        setLeaderboardErr(err);
       } else {
         console.log(data.data.data);
         setLeaderboard(data.data.data);
@@ -228,9 +234,19 @@ const Index = () => {
                 ))
               ) : (
                 <Td colSpan={selectedLeaderboard === 'closed' ? 7 : 4}>
-                  <Center w="100%">
-                    <Text>No Data</Text>
-                  </Center>
+                  {leaderboardErr ? (
+                    <Alert status="error">
+                      <AlertIcon />
+                      <AlertTitle mr={2}>Error fetching leaderboard</AlertTitle>
+                      <AlertDescription>
+                        Please try again later
+                      </AlertDescription>
+                    </Alert>
+                  ) : (
+                    <Center w="100%">
+                      <Text>No Data</Text>
+                    </Center>
+                  )}
                 </Td>
               )}
             </Tbody>
