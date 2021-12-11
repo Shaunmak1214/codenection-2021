@@ -12,6 +12,7 @@ import {
   VAimLogo,
   FlexLogo,
   SkyDrive,
+  BaeLogo,
 } from '../assets';
 
 interface SponsorsObject {
@@ -58,6 +59,12 @@ const PlatinumSponsor: SponsorsObject = {
       imageSrc: FlexLogo,
       url: 'https://flex.com/',
       writeUpSection: '/write-ups#flex',
+    },
+    {
+      idx: 2,
+      imageSrc: BaeLogo,
+      url: 'https://www.baesystems.com/en/home',
+      writeUpSection: '/write-ups#baesystems',
     },
   ],
 };
