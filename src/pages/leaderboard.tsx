@@ -213,7 +213,15 @@ const Index = () => {
                     {data.scoresByChallenge &&
                       data.scoresByChallenge.map((score: any, idx: number) => (
                         <Td px="0" py="3">
-                          <Center bgColor={'#83FFD2'} w="100%" h="75px">
+                          <Center
+                            bgColor={
+                              Number(score.score.toFixed(2)) > 0
+                                ? '#83FFD2'
+                                : '#FF8383'
+                            }
+                            w="100%"
+                            h="75px"
+                          >
                             <VStack
                               h="100%"
                               w="100%"
