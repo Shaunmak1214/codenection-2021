@@ -20,6 +20,8 @@ import {
   TitleSponsorStock,
   FusionexBanner,
   FlexBanner,
+  BaeBannerOne,
+  BaeBannerTwo,
 } from '../../../assets';
 
 // install Swiper modules
@@ -93,6 +95,26 @@ const TitleSponsorSection = () => {
                 href="https://flex.com/"
               >
                 <Image src={FlexBanner} rounded="xl" />
+              </a>
+            </SwiperSlide>
+            <SwiperSlide>
+              <a
+                className="venobox"
+                target="_blank"
+                rel="noreferrer"
+                href="https://www.baesystems.com/en/home"
+              >
+                <Image src={BaeBannerOne} rounded="xl" />
+              </a>
+            </SwiperSlide>
+            <SwiperSlide>
+              <a
+                className="venobox"
+                target="_blank"
+                rel="noreferrer"
+                href="https://www.baesystems.com/en/home"
+              >
+                <Image src={BaeBannerTwo} rounded="xl" />
               </a>
             </SwiperSlide>
             <SwiperSlide>

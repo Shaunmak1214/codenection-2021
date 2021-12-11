@@ -89,10 +89,13 @@ import MoceanAPILogo from './sponsors/gold/MoceanLogo.svg';
 import VAimLogo from './sponsors/gold/VAimLogo.png';
 import FlexLogo from './sponsors/platinum/flex/Flex-blue.png';
 import SkyDrive from './sponsors/bronze/skydrive/skydrive.png';
+import BaeLogo from './sponsors/platinum/BAE/BaeLogo.png';
 
 //sponsors banner
 import FusionexBanner from './jpgs-pngs/fusionex-banner.png';
 import FlexBanner from './jpgs-pngs/flex-banner.jpg';
+import BaeBannerOne from './sponsors/platinum/BAE/BaeBannerOne.png';
+import BaeBannerTwo from './sponsors/platinum/BAE/BaeBannerTwo.png';
 
 //proposal
 // @ts-ignore
@@ -188,4 +191,7 @@ export {
   FlexLogo,
   FlexBanner,
   SkyDrive,
+  BaeBannerOne,
+  BaeBannerTwo,
+  BaeLogo,
 };

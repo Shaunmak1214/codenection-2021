@@ -5,6 +5,7 @@ import {
   GoldWriteUpBG,
   VAimLogo,
   FlexLogo,
+  BaeLogo,
 } from '../assets';
 
 interface WriteUps {
@@ -54,6 +55,23 @@ const PlatSponsorWriteUps: WriteUps = {
       url: 'https://flex.com/',
       linkText: 'https://flex.com/',
       writeUps: `Flex is the manufacturing partner of choice that helps a diverse customer base design and build products that improve the world. Through the collective strength of a global workforce across 30 countries and responsible, sustainable operations, Flex delivers technology innovation, supply chain, and manufacturing solutions to various industries and end markets. For more information, visit flex.com.`,
+    },
+    {
+      idx: 2,
+      imageSrc: BaeLogo,
+      url: 'https://www.baesystems.com/en/home',
+      linkText: 'https://www.baesystems.com/en/home',
+      writeUps: `BAE Systems will collect and process information about you that may be subject to data
+      protection laws. For more information about how we use and disclose your personal
+      information, how we protect your information, our legal basis to use your information, your
+      rights and who you can contact, please refer to the relevant sections of our Privacy note at
+      www.baesystems.com/en/cybersecurity/privacy\n\n
+      Please consider the environment before printing this email. This message should be
+      regarded as confidential. If you have received this email in error please notify the sender and
+      destroy it immediately. Statements of intent shall only become binding when confirmed in 
+      hard copy by an authorised signatory. The contents of this email may relate to dealings with 
+      other companies under the control of BAE Systems PLC, details of which can be found at 
+      http://www.baesystems.com/Businesses/index.htm. `,
     },
   ],
 };

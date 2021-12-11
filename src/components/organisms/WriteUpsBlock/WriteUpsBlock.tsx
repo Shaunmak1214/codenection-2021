@@ -33,7 +33,7 @@ const WriteUpsBlock = ({ sponsorWriteUps, ...props }: any) => {
       setTimeout(() => {
         if (platRef.current) {
           window.scrollTo({
-            top: platRef.current.offsetTop - 780,
+            top: platRef.current.offsetTop - 1300,
             behavior: 'smooth',
           });
         }
@@ -42,7 +42,7 @@ const WriteUpsBlock = ({ sponsorWriteUps, ...props }: any) => {
       setTimeout(() => {
         if (platRef.current) {
           window.scrollTo({
-            top: platRef.current.offsetTop - 10,
+            top: platRef.current.offsetTop - 550,
             behavior: 'smooth',
           });
         }
@@ -61,6 +61,15 @@ const WriteUpsBlock = ({ sponsorWriteUps, ...props }: any) => {
         if (goldRef.current) {
           window.scrollTo({
             top: goldRef.current.offsetTop - 100,
+            behavior: 'smooth',
+          });
+        }
+      }, 800);
+    } else if (window.location.hash === '#baesystems') {
+      setTimeout(() => {
+        if (platRef.current) {
+          window.scrollTo({
+            top: platRef.current.offsetTop - 145,
             behavior: 'smooth',
           });
         }
@@ -137,7 +146,13 @@ const WriteUpsBlock = ({ sponsorWriteUps, ...props }: any) => {
                 alignItems="center"
                 mb={['100px', '135px', '0']}
               >
-                <Image maxH="125px" mb="30px" src={sponsor.imageSrc} />
+                <Image
+                  maxH="125px"
+                  mb="30px"
+                  pl="10px"
+                  pr="10px"
+                  src={sponsor.imageSrc}
+                />
                 <Box
                   boxShadow="0px 4px 10px rgba(0, 121, 255, 0.25)"
                   borderRadius="10px"
