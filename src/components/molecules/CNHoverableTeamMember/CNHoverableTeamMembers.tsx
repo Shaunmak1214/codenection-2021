@@ -105,7 +105,15 @@ const Index = ({ uniLogo, user }: IProps) => {
           )}
         </VStack>
       </CNHoverModal>
-      <Image src={uniLogo} alt="team logo #1" minW="100px" w="100px" h="auto" />
+      <Image
+        src={uniLogo}
+        alt="team logo #1"
+        minW="100px"
+        w="100px"
+        h="auto"
+        maxH="40px"
+        loading="lazy"
+      />
     </Box>
   );
 };

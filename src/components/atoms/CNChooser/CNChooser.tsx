@@ -42,9 +42,9 @@ const CNChooser = ({ onSelect, ...props }: Props) => {
 
   useEffect(() => {
     if (selected === 1) {
-      onSelect('closed');
-    } else if (selected === 2) {
       onSelect('open');
+    } else if (selected === 2) {
+      onSelect('closed');
     }
   }, [selected, onSelect]);
 
@@ -71,7 +71,7 @@ const CNChooser = ({ onSelect, ...props }: Props) => {
         }}
       >
         <Text color={selected === 1 ? '#ffffff' : '#000000'}>
-          Closed Category
+          Open Category
         </Text>
       </Center>
       <Center
@@ -83,7 +83,7 @@ const CNChooser = ({ onSelect, ...props }: Props) => {
         }}
       >
         <Text color={selected === 2 ? '#ffffff' : '#000000'}>
-          Open Category
+          Closed Category
         </Text>
       </Center>
 

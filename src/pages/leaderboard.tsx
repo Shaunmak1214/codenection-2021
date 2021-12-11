@@ -23,11 +23,15 @@ import {
   AlertIcon,
   AlertTitle,
   AlertDescription,
+  Tooltip,
 } from '@chakra-ui/react';
 import { CNChooser, CNSpacer } from '../components/atoms';
 import { CNHoverableTeamMembers } from '../components/molecules';
 import { useAxios } from '../hooks';
+
+import uniLogos from '../data/uniLogos.json';
 import '../index.css';
+
 interface teamMember {
   id: number;
   full_name: string;
@@ -68,7 +72,7 @@ interface leaderboardItem {
 }
 
 const Index = () => {
-  const [selectedLeaderboard, setSelectedLeaderboard] = useState('closed');
+  const [selectedLeaderboard, setSelectedLeaderboard] = useState('open');
   const [leaderboard, setLeaderboard] = useState<leaderboardItem[]>([]);
   const [leaderboardErr, setLeaderboardErr] = useState(null);
 
@@ -139,20 +143,24 @@ const Index = () => {
                 <Th>Score</Th>
                 {selectedLeaderboard === 'closed' ? (
                   <>
-                    <Th>A</Th>
-                    <Th>B</Th>
-                    <Th>C</Th>
-                    <Th>D</Th>
-                    <Th>E</Th>
+                    <Th w="8%">A - Attend Talks</Th>
+                    <Th w="8%">B - Distant Relatives</Th>
+                    <Th w="8%">C - Concert</Th>
+                    <Th w="8%">D - Mamak</Th>
+                    <Th w="8%">E - Fair Contest</Th>
                   </>
                 ) : (
-                  <Th>A</Th>
+                  <>
+                    <Th w="12%">A - Semester Breaks</Th>
+                    <Th w="12%">B - Campus Plan</Th>
+                    <Th w="12%">C - Summer Date</Th>
+                  </>
                 )}
               </Tr>
             </Thead>
             <Tbody>
               {leaderboardLoading ? (
-                <Td colSpan={selectedLeaderboard === 'closed' ? 8 : 4}>
+                <Td colSpan={selectedLeaderboard === 'closed' ? 8 : 6}>
                   <Center w="100%">
                     <Spinner
                       thickness="4px"
@@ -180,16 +188,23 @@ const Index = () => {
                         {data.teamMembers && data.teamMembers.length > 0 ? (
                           <HStack>
                             {data.teamMembers.map(
-                              (member: any, idx: number) => (
-                                <CNHoverableTeamMembers
-                                  uniLogo={
-                                    data.teamLogo
-                                      ? data.teamLogo
-                                      : 'https://www.mmu.edu.my/wp-content/themes/mmu2018/assets/images/logo-mmu2x.png'
-                                  }
-                                  user={member}
-                                />
-                              ),
+                              (member: any, idx: number) => {
+                                let uniLogo = uniLogos.find(
+                                  (uni: any) =>
+                                    uni.university === member.university,
+                                )?.url_logo;
+
+                                return (
+                                  <CNHoverableTeamMembers
+                                    uniLogo={
+                                      uniLogo
+                                        ? uniLogo
+                                        : 'https://www.mmu.edu.my/wp-content/themes/mmu2018/assets/images/logo-mmu2x.png'
+                                    }
+                                    user={member}
+                                  />
+                                );
+                              },
                             )}
                           </HStack>
                         ) : (
@@ -239,7 +254,7 @@ const Index = () => {
                   </Tr>
                 ))
               ) : (
-                <Td colSpan={selectedLeaderboard === 'closed' ? 8 : 4}>
+                <Td colSpan={selectedLeaderboard === 'closed' ? 8 : 6}>
                   {leaderboardErr ? (
                     <Alert status="error">
                       <AlertIcon />
