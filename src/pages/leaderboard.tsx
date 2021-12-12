@@ -162,7 +162,15 @@ const Index = () => {
                       color="black"
                       placement="top"
                     >
-                      <Th w="5%" cursor={'pointer'}>
+                      <Th
+                        w="5%"
+                        cursor={'pointer'}
+                        onClick={() => {
+                          window.open(
+                            'https://www.hackerrank.com/contests/codenection-2021-open-category-preliminary/challenges/faibohphobia-1',
+                          );
+                        }}
+                      >
                         A - {truncate('f(Aibohphobia)^-1')}{' '}
                       </Th>
                     </Tooltip>
@@ -174,7 +182,17 @@ const Index = () => {
                       color="black"
                       placement="top"
                     >
-                      <Th w="5%">B - {truncate('Did they cheat?')}</Th>
+                      <Th
+                        w="5%"
+                        cursor={'pointer'}
+                        onClick={() => {
+                          window.open(
+                            'https://www.hackerrank.com/contests/codenection-2021-open-category-preliminary/challenges/did-they-cheat',
+                          );
+                        }}
+                      >
+                        B - {truncate('Did they cheat?')}
+                      </Th>
                     </Tooltip>
 
                     <Tooltip
@@ -184,7 +202,17 @@ const Index = () => {
                       color="black"
                       placement="top"
                     >
-                      <Th w="5%">C - {truncate('Campus Plan')}</Th>
+                      <Th
+                        w="5%"
+                        cursor={'pointer'}
+                        onClick={() => {
+                          window.open(
+                            'https://www.hackerrank.com/contests/codenection-2021-open-category-preliminary/challenges/campus-plan',
+                          );
+                        }}
+                      >
+                        C - {truncate('Campus Plan')}
+                      </Th>
                     </Tooltip>
                     <Tooltip
                       hasArrow
@@ -193,7 +221,17 @@ const Index = () => {
                       color="black"
                       placement="top"
                     >
-                      <Th w="5%">D - {truncate('Semester Breaks')}</Th>
+                      <Th
+                        w="5%"
+                        cursor={'pointer'}
+                        onClick={() => {
+                          window.open(
+                            'https://www.hackerrank.com/contests/codenection-2021-open-category-preliminary/challenges/semester-breaks',
+                          );
+                        }}
+                      >
+                        D - {truncate('Semester Breaks')}
+                      </Th>
                     </Tooltip>
                     <Tooltip
                       hasArrow
@@ -202,7 +240,17 @@ const Index = () => {
                       color="black"
                       placement="top"
                     >
-                      <Th w="5%">E - {truncate('Assignment Interviews')}</Th>
+                      <Th
+                        w="5%"
+                        cursor={'pointer'}
+                        onClick={() => {
+                          window.open(
+                            'https://www.hackerrank.com/contests/codenection-2021-open-category-preliminary/challenges/assignment-interviews',
+                          );
+                        }}
+                      >
+                        E - {truncate('Assignment Interviews')}
+                      </Th>
                     </Tooltip>
 
                     {/* <Th w="5%">F - {truncate('Summer Date')}</Th> */}
@@ -300,7 +348,15 @@ const Index = () => {
                                 alignItems={'center'}
                                 justifyContent={'center'}
                               >
-                                <Text fontSize={'18px'} fontWeight={'bold'}>
+                                <Text
+                                  fontSize={'18px'}
+                                  fontWeight={'bold'}
+                                  onClick={() => {
+                                    window.open(
+                                      'https://www.hackerrank.com/contests/codenection-2021-open-category-preliminary/challenges/faibohphobia-1',
+                                    );
+                                  }}
+                                >
                                   {Number(score.score.toFixed(2))}
                                 </Text>
                               </VStack>
