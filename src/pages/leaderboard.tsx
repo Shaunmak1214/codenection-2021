@@ -71,6 +71,10 @@ interface leaderboardItem {
   teamMembers: teamMember[];
 }
 
+const truncate = (str: string) => {
+  return str.length > 10 ? str.substring(0, 7) + '...' : str;
+};
+
 const Index = () => {
   const [selectedLeaderboard, setSelectedLeaderboard] = useState('open');
   const [leaderboard, setLeaderboard] = useState<leaderboardItem[]>([]);
@@ -151,16 +155,64 @@ const Index = () => {
                   </>
                 ) : (
                   <>
-                    <Th w="12%">A - Semester Breaks</Th>
-                    <Th w="12%">B - Campus Plan</Th>
-                    <Th w="12%">C - Summer Date</Th>
+                    <Tooltip
+                      hasArrow
+                      label="f(Aibohphobia)^-1"
+                      bg="gray.300"
+                      color="black"
+                      placement="top"
+                    >
+                      <Th w="5%" cursor={'pointer'}>
+                        A - {truncate('f(Aibohphobia)^-1')}{' '}
+                      </Th>
+                    </Tooltip>
+
+                    <Tooltip
+                      hasArrow
+                      label="Did they cheat?"
+                      bg="gray.300"
+                      color="black"
+                      placement="top"
+                    >
+                      <Th w="5%">B - {truncate('Did they cheat?')}</Th>
+                    </Tooltip>
+
+                    <Tooltip
+                      hasArrow
+                      label="Campus Plan"
+                      bg="gray.300"
+                      color="black"
+                      placement="top"
+                    >
+                      <Th w="5%">C - {truncate('Campus Plan')}</Th>
+                    </Tooltip>
+                    <Tooltip
+                      hasArrow
+                      label="Semester Breaks"
+                      bg="gray.300"
+                      color="black"
+                      placement="top"
+                    >
+                      <Th w="5%">D - {truncate('Semester Breaks')}</Th>
+                    </Tooltip>
+                    <Tooltip
+                      hasArrow
+                      label="Assignment Interviews"
+                      bg="gray.300"
+                      color="black"
+                      placement="top"
+                    >
+                      <Th w="5%">E - {truncate('Assignment Interviews')}</Th>
+                    </Tooltip>
+
+                    {/* <Th w="5%">F - {truncate('Summer Date')}</Th> */}
                   </>
                 )}
               </Tr>
             </Thead>
             <Tbody>
               {leaderboardLoading ? (
-                <Td colSpan={selectedLeaderboard === 'closed' ? 8 : 6}>
+                <Td colSpan={selectedLeaderboard === 'closed' ? 8 : 9}>
                   <Center w="100%">
                     <Spinner
                       thickness="4px"
@@ -175,7 +227,7 @@ const Index = () => {
                 leaderboard.map((data: leaderboardItem, idx: number) => (
                   <Tr key={idx}>
                     <Td w="2%">{idx + 1}</Td>
-                    <Td>
+                    <Td w="15%">
                       <VStack
                         w="100%"
                         h="100%"
@@ -226,35 +278,40 @@ const Index = () => {
                       </Center>
                     </Td>
                     {data.scoresByChallenge &&
-                      data.scoresByChallenge.map((score: any, idx: number) => (
-                        <Td px="0" py="3">
-                          <Center
-                            bgColor={
-                              Number(score.score.toFixed(2)) > 0
-                                ? '#83FFD2'
-                                : '#FF8383'
-                            }
-                            w="100%"
-                            h="75px"
-                          >
-                            <VStack
-                              h="100%"
+                      data.scoresByChallenge.map((score: any, idx: number) => {
+                        if (idx === 5) {
+                          return <></>;
+                        }
+                        return (
+                          <Td px="0" py="3">
+                            <Center
+                              bgColor={
+                                Number(score.score.toFixed(2)) > 0
+                                  ? '#83FFD2'
+                                  : '#FF8383'
+                              }
                               w="100%"
-                              display={'flex'}
-                              alignItems={'center'}
-                              justifyContent={'center'}
+                              h="75px"
                             >
-                              <Text fontSize={'18px'} fontWeight={'bold'}>
-                                {Number(score.score.toFixed(2))}
-                              </Text>
-                            </VStack>
-                          </Center>
-                        </Td>
-                      ))}
+                              <VStack
+                                h="100%"
+                                w="100%"
+                                display={'flex'}
+                                alignItems={'center'}
+                                justifyContent={'center'}
+                              >
+                                <Text fontSize={'18px'} fontWeight={'bold'}>
+                                  {Number(score.score.toFixed(2))}
+                                </Text>
+                              </VStack>
+                            </Center>
+                          </Td>
+                        );
+                      })}
                   </Tr>
                 ))
               ) : (
-                <Td colSpan={selectedLeaderboard === 'closed' ? 8 : 6}>
+                <Td colSpan={selectedLeaderboard === 'closed' ? 8 : 9}>
                   {leaderboardErr ? (
                     <Alert status="error">
                       <AlertIcon />
