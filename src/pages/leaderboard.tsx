@@ -83,7 +83,7 @@ const Index = () => {
 
   const { loading: leaderboardLoading, fetch: getLeaderboard } = useAxios(
     {
-      url: `/leaderboard/${selectedLeaderboard}`,
+      url: `/leaderboard/cached/${selectedLeaderboard}`,
       method: 'GET',
     },
     // eslint-disable-next-line
@@ -328,13 +328,7 @@ const Index = () => {
                       </Center>
                     </Td>
                     <Td w="10%">
-                      <Center
-                        borderRadius="25px"
-                        w="fit-content"
-                        px="3"
-                        py="2"
-                        // bgColor="#C9C9C9"
-                      >
+                      <Center borderRadius="25px" w="fit-content" px="3" py="2">
                         {data.hackerrank_info
                           ? Number(data.hackerrank_info.totalSubmissionTime) +
                             's'
