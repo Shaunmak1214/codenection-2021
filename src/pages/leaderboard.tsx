@@ -56,6 +56,7 @@ interface hackerrank_info_data {
   hacker: string;
   avatar: string;
   score: number;
+  totalSubmissionTime: number;
 }
 
 interface leaderboardItem {
@@ -82,7 +83,7 @@ const Index = () => {
 
   const { loading: leaderboardLoading, fetch: getLeaderboard } = useAxios(
     {
-      url: `/leaderboard/cached/${selectedLeaderboard}`,
+      url: `/leaderboard/${selectedLeaderboard}`,
       method: 'GET',
     },
     // eslint-disable-next-line
@@ -102,7 +103,7 @@ const Index = () => {
   }, [selectedLeaderboard, setLeaderboard]);
 
   return (
-    <Container maxW="container.xl" w="100%" h="100%">
+    <Container maxW="90%" w="100%" h="100%">
       <CNSpacer size="md" />
       <VStack overflowX="auto">
         {window.innerWidth > 768 ? (
@@ -145,6 +146,7 @@ const Index = () => {
                 <Th w="2%">#Rank</Th>
                 <Th>Team</Th>
                 <Th>Score</Th>
+                <Th>Time Taken</Th>
                 {selectedLeaderboard === 'closed' ? (
                   <>
                     <Th w="8%">A - Attend Talks</Th>
@@ -312,7 +314,7 @@ const Index = () => {
                         )}
                       </VStack>
                     </Td>
-                    <Td>
+                    <Td w="10%">
                       <Center
                         borderRadius="25px"
                         w="fit-content"
@@ -322,6 +324,20 @@ const Index = () => {
                       >
                         {data.hackerrank_info
                           ? Number(data.hackerrank_info.score.toFixed(2))
+                          : 0}
+                      </Center>
+                    </Td>
+                    <Td w="10%">
+                      <Center
+                        borderRadius="25px"
+                        w="fit-content"
+                        px="3"
+                        py="2"
+                        // bgColor="#C9C9C9"
+                      >
+                        {data.hackerrank_info
+                          ? Number(data.hackerrank_info.totalSubmissionTime) +
+                            's'
                           : 0}
                       </Center>
                     </Td>
