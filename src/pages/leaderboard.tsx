@@ -25,6 +25,7 @@ import {
   AlertDescription,
   Tooltip,
 } from '@chakra-ui/react';
+import { Select } from 'chakra-react-select';
 import { CNChooser, CNSpacer } from '../components/atoms';
 import { CNHoverableTeamMembers } from '../components/molecules';
 import { useAxios } from '../hooks';
@@ -76,8 +77,34 @@ const truncate = (str: string) => {
   return str.length > 10 ? str.substring(0, 7) + '...' : str;
 };
 
+const final_teams = [
+  'uwu',
+  'RGB',
+  'Clover',
+  'Squid Team',
+  'SSJ',
+  '$git mess up',
+  'Incognitoes',
+  'Uruha Rushia',
+  'while True: Try()',
+  'Challengers',
+  'the_team_that_has_the_longest_name',
+  'Newbigenics',
+  'Comp2Learn',
+  'Googler',
+  'SRH',
+  'Team Sussy Bakas',
+  'LKL',
+  'Mighty Bites',
+  'OmegaLOL Netizen',
+  'Runtime Terror',
+  'SUCCeSS',
+  'Code_Panda',
+  'Use Strict',
+];
+
 const Index = () => {
-  const [selectedLeaderboard, setSelectedLeaderboard] = useState('open');
+  const [selectedLeaderboard, setSelectedLeaderboard] = useState('final');
   const [leaderboard, setLeaderboard] = useState<leaderboardItem[]>([]);
   const [leaderboardErr, setLeaderboardErr] = useState(null);
 
@@ -92,6 +119,9 @@ const Index = () => {
         console.log(err);
         setLeaderboardErr(err);
       } else {
+        data.data.data = data.data.data.filter((i: any) =>
+          final_teams.includes(i.team_name),
+        );
         setLeaderboard(data.data.data);
       }
     },
@@ -121,11 +151,35 @@ const Index = () => {
               This leaderboard is updated every <b>15mins</b>.
             </Text>
           </VStack>
-          <CNChooser
+          {/* <CNChooser
             onSelect={(e: string) => {
               setSelectedLeaderboard(e);
             }}
-          />
+          /> */}
+          <Center>
+            <Container maxW="xl">
+              <Select
+                // @ts-ignore
+                name="leaderboard"
+                placeholder="Open - Finals"
+                options={[
+                  {
+                    label: 'Open - Preliminary ',
+                    value: 'open',
+                  },
+                  {
+                    label: 'Open - Finals',
+                    value: 'final',
+                  },
+                  {
+                    label: 'Closed',
+                    value: 'closed',
+                  },
+                ]}
+                onChange={(e: any) => setSelectedLeaderboard(e.value)}
+              />
+            </Container>
+          </Center>
         </SimpleGrid>
 
         <CNSpacer size="xs" />
@@ -154,6 +208,19 @@ const Index = () => {
                     <Th w="8%">C - Concert</Th>
                     <Th w="8%">D - Mamak</Th>
                     <Th w="8%">E - Fair Contest</Th>
+                  </>
+                ) : selectedLeaderboard === 'final' ? (
+                  <>
+                    <Th w="8%">A </Th>
+                    <Th w="8%">B </Th>
+                    <Th w="8%">C </Th>
+                    <Th w="8%">D </Th>
+                    <Th w="8%">E </Th>
+                    <Th w="8%">F </Th>
+                    <Th w="8%">G </Th>
+                    <Th w="8%">H </Th>
+                    <Th w="8%">I </Th>
+                    <Th w="8%">J </Th>
                   </>
                 ) : (
                   <>
@@ -262,7 +329,11 @@ const Index = () => {
             </Thead>
             <Tbody>
               {leaderboardLoading ? (
-                <Td colSpan={selectedLeaderboard === 'closed' ? 8 : 9}>
+                <Td
+                  colSpan={
+                    selectedLeaderboard === 'closed' ? 8 : 'finals' ? 14 : 9
+                  }
+                >
                   <Center w="100%">
                     <Spinner
                       thickness="4px"
@@ -337,11 +408,12 @@ const Index = () => {
                     </Td>
                     {data.scoresByChallenge &&
                       data.scoresByChallenge.map((score: any, idx: number) => {
-                        if (idx === 5) {
+                        if (selectedLeaderboard === 'open' && idx == 5) {
                           return <></>;
                         }
                         return (
                           <Td px="0" py="3">
+                            {console.log(data.scoresByChallenge)}
                             <Center
                               bgColor={
                                 Number(score.score.toFixed(2)) > 0
@@ -377,7 +449,11 @@ const Index = () => {
                   </Tr>
                 ))
               ) : (
-                <Td colSpan={selectedLeaderboard === 'closed' ? 8 : 9}>
+                <Td
+                  colSpan={
+                    selectedLeaderboard === 'closed' ? 8 : 'finals' ? 14 : 9
+                  }
+                >
                   {leaderboardErr ? (
                     <Alert status="error">
                       <AlertIcon />
