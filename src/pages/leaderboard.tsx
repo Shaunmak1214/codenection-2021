@@ -119,9 +119,11 @@ const Index = () => {
         console.log(err);
         setLeaderboardErr(err);
       } else {
-        data.data.data = data.data.data.filter((i: any) =>
-          final_teams.includes(i.team_name),
-        );
+        if (selectedLeaderboard === 'final') {
+          data.data.data = data.data.data.filter((i: any) =>
+            final_teams.includes(i.team_name),
+          );
+        }
         setLeaderboard(data.data.data);
       }
     },
