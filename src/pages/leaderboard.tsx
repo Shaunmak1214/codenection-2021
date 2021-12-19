@@ -96,7 +96,7 @@ const final_teams = [
   'Team Sussy Bakas',
   'LKL',
   'Mighty Bites',
-  'OmegaLOL Netizen',
+  'OmegaLOL',
   'Runtime Terror',
   'SUCCeSS',
   'Code_Panda',
