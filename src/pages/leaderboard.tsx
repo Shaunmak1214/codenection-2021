@@ -101,6 +101,7 @@ const final_teams = [
   'SUCCeSS',
   'Code_Panda',
   'Use Strict',
+  'Netizen',
 ];
 
 const Index = () => {
